@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Garvey Maceo High School – Events</title>
+    <link rel="icon" type="image/x-icon" href="../assets/img/logo.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" href="../assets/css/index.css" />
+    <link rel="stylesheet" type="text/css" href="../assets/css/Alumni.css" />
+    <link rel="preload" as="image" href="../assets/img/Paststudenttrue.jpg" />
+    <link rel="stylesheet" type="text/css"
+      href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700,900|Poppins:300,400,500,600,700" />
+    <script src="https://kit.fontawesome.com/742f06a093.js" crossorigin="anonymous" defer></script>
+
+    <style>
+      /* ══ TOKENS ══ */
+      :root {
+        --gold:        #d4a843;
+        --gold-dark:   #b8922a;
+        --gold-light:  #f2dc8a;
+        --gold-pale:   #fef6de;
+        --gold-soft:   #f9edbc;
+        --gold-border: rgba(212,168,67,.28);
+        --amber-deep:  #3a2200;
+        --amber-mid:   #6b4200;
+        --amber-warm:  #8c5a00;
+        --cream:       #faf7f0;
+        --cream-mid:   #f5edd8;
+        --cream-dark:  #ede3c8;
+        --white:       #ffffff;
+        --ink:         #1e1400;
+        --ink-mid:     #3d2e00;
+        --muted:       #8a7240;
+        --shadow:      rgba(180,140,40,.13);
+        --shadow-soft: rgba(212,168,67,.08);
+        --radius:      14px;
+        --radius-sm:   8px;
+        --panel-w:     320px;
+      }
+
+      *, *::before, *::after { box-sizing: border-box; }
+      body {
+        font-family: 'Poppins', sans-serif; color: var(--ink); margin: 0;
+        background-color: var(--cream);
+        background-image:
+          url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Crect x='20' y='20' width='40' height='40' fill='none' stroke='%23d4a843' stroke-width='0.6' opacity='0.08' transform='rotate(45 40 40)'/%3E%3C/svg%3E"),
+          url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20'%3E%3Ccircle cx='10' cy='10' r='0.8' fill='%23d4a843' opacity='0.06'/%3E%3C/svg%3E");
+        background-size: 80px 80px, 20px 20px;
+      }
+
+      /* ══ SHARED NAV/HEADER/FAB ══ */
+      header {
+        position: sticky; top: 0; z-index: 200;
+        display: flex; align-items: center;
+        background: linear-gradient(135deg, var(--ink) 0%, var(--ink-mid) 100%);
+        padding: 0 20px; height: 62px; gap: 14px;
+        box-shadow: 0 2px 20px rgba(0,0,0,.3);
+      }
+      .text_bg { display: flex; align-items: center; gap: 12px; flex: 1; text-decoration: none; }
+      .text_bg img { height: 40px; width: auto; }
+      .text_bg span {
+        font-family: 'Playfair Display', serif;
+        font-size: clamp(.8rem,2vw,1.05rem); font-weight: 700;
+        color: var(--gold-light); letter-spacing: .02em;
+      }
+      .flex_spacer { flex: 1; }
+      .header-socials { display: flex; gap: 10px; align-items: center; }
+      .header-socials a {
+        width: 32px; height: 32px; border-radius: 50%;
+        background: rgba(255,255,255,.08); border: 1px solid rgba(212,168,67,.25);
+        display: flex; align-items: center; justify-content: center;
+        color: var(--gold-light); font-size: .8rem; text-decoration: none;
+        transition: background .2s, transform .2s;
+      }
+      .header-socials a:hover { background: var(--gold); color: var(--ink); transform: scale(1.1); }
+
+      .panel-overlay {
+        position: fixed; inset: 0; background: rgba(0,0,0,.45);
+        backdrop-filter: blur(4px); z-index: 300;
+        opacity: 0; pointer-events: none; transition: opacity .3s ease;
+      }
+      .panel-overlay.open { opacity: 1; pointer-events: all; }
+
+      .side-panel {
+        position: fixed; top: 0; right: calc(-1 * var(--panel-w));
+        width: var(--panel-w); height: 100vh;
+        background: linear-gradient(160deg, var(--ink) 0%, var(--ink-mid) 100%);
+        z-index: 310; overflow-y: auto; overflow-x: hidden;
+        transition: right .35s cubic-bezier(.4,0,.2,1);
+        display: flex; flex-direction: column;
+      }
+      .side-panel.open { right: 0; }
+      .panel-head { display: flex; align-items: center; justify-content: space-between; padding: 20px 22px 16px; border-bottom: 1px solid rgba(212,168,67,.18); flex-shrink: 0; }
+      .panel-head .ph-logo { display: flex; align-items: center; gap: 10px; }
+      .panel-head .ph-logo img { height: 34px; }
+      .panel-head .ph-logo span { font-family: 'Playfair Display', serif; font-size: .82rem; color: var(--gold-light); font-weight: 700; line-height: 1.3; }
+      .panel-close { width: 34px; height: 34px; border-radius: 50%; background: rgba(255,255,255,.08); border: none; cursor: pointer; color: var(--white); font-size: .9rem; display: flex; align-items: center; justify-content: center; transition: background .2s; }
+      .panel-close:hover { background: var(--gold); color: var(--ink); }
+      .panel-nav { padding: 12px 0 20px; flex: 1; }
+      .pnav-item { display: block; padding: 11px 22px; color: rgba(255,255,255,.75); text-decoration: none; font-size: .85rem; font-weight: 500; transition: background .18s,color .18s,padding-left .18s; border-left: 3px solid transparent; }
+      .pnav-item:hover { background: rgba(212,168,67,.1); color: var(--white); padding-left: 28px; border-left-color: var(--gold); }
+      .pnav-item.active { color: var(--gold-light); border-left-color: var(--gold); background: rgba(212,168,67,.08); }
+      .pnav-label { padding: 12px 22px 6px; font-size: .65rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--gold); margin-top: 8px; }
+      .pnav-sub { display: block; padding: 8px 22px 8px 34px; color: rgba(255,255,255,.55); text-decoration: none; font-size: .8rem; transition: color .18s,padding-left .18s; margin-left: 22px; border-left: 1px solid rgba(212,168,67,.15); }
+      .pnav-sub:hover { color: var(--gold-light); padding-left: 40px; }
+      .pnav-sub.active-sub { color: var(--gold-light); }
+      .panel-footer { padding: 16px 22px; border-top: 1px solid rgba(212,168,67,.18); flex-shrink: 0; }
+      .panel-footer p { font-size: .72rem; color: rgba(255,255,255,.35); margin: 0; }
+
+      .fab-wrap { position: fixed; bottom: 32px; right: 28px; z-index: 400; }
+      .fab-main { width: 58px; height: 58px; border-radius: 50%; background: linear-gradient(135deg,var(--gold-dark),var(--gold)); border: none; cursor: pointer; color: var(--ink); font-size: 1.2rem; display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 24px rgba(0,0,0,.3); transition: transform .25s,box-shadow .25s; position: relative; z-index: 2; }
+      .fab-main:hover { transform: scale(1.08); }
+      .fab-main.open { background: linear-gradient(135deg,var(--ink),var(--ink-mid)); color: var(--gold-light); box-shadow: 0 6px 24px rgba(0,0,0,.4),0 0 0 8px rgba(212,168,67,.12); }
+      .fab-main .fab-icon-menu { transition: opacity .2s,transform .2s; }
+      .fab-main .fab-icon-close { position: absolute; opacity: 0; transform: rotate(-90deg); transition: opacity .2s,transform .2s; }
+      .fab-main.open .fab-icon-menu { opacity:0; transform:rotate(90deg); }
+      .fab-main.open .fab-icon-close { opacity:1; transform:rotate(0); }
+      .fab-items { position: absolute; bottom: 0; right: 0; width: 58px; height: 58px; pointer-events: none; }
+      .fab-item { position: absolute; bottom: 0; right: 0; width: 46px; height: 46px; border-radius: 50%; background: var(--white); border: 2px solid var(--gold-border); color: var(--ink-mid); display: flex; align-items: center; justify-content: center; font-size: .95rem; text-decoration: none; box-shadow: 0 4px 14px rgba(0,0,0,.18); transition: transform .35s cubic-bezier(.34,1.56,.64,1),opacity .25s,background .2s; transform: translate(0,0) scale(0); opacity:0; pointer-events:none; cursor:pointer; }
+      .fab-item:hover { background: var(--gold); border-color: var(--gold-dark); color: var(--ink); }
+      .fab-item .fab-tip { position: absolute; right: 54px; top: 50%; transform: translateY(-50%); background: var(--ink); color: var(--white); font-size: .68rem; font-weight: 600; padding: 4px 10px; border-radius: 6px; white-space: nowrap; opacity: 0; transition: opacity .2s; pointer-events: none; }
+      .fab-item:hover .fab-tip { opacity: 1; }
+      .fab-wrap.open .fab-item { opacity:1; pointer-events:all; }
+      .fab-wrap.open .fab-item:nth-child(1){ transform:translate(-2px,-72px)  scale(1); transition-delay:.03s; }
+      .fab-wrap.open .fab-item:nth-child(2){ transform:translate(-38px,-60px) scale(1); transition-delay:.06s; }
+      .fab-wrap.open .fab-item:nth-child(3){ transform:translate(-62px,-30px) scale(1); transition-delay:.09s; }
+      .fab-wrap.open .fab-item:nth-child(4){ transform:translate(-72px,2px)   scale(1); transition-delay:.12s; }
+      .fab-wrap.open .fab-item:nth-child(5){ transform:translate(-60px,38px)  scale(1); transition-delay:.15s; }
+
+      /* ══ HERO (unchanged structure) ══ */
+    
+      .hero_gradient_overlay.fixed { position: absolute; inset: 0; z-index: 1; pointer-events: none; background: linear-gradient(to bottom,rgba(0,0,0,.25),rgba(0,0,0,.55)); }
+      .hero_slide.fixed { position: absolute; inset: 0; z-index: 0; background-size: cover; background-position: center; opacity: 0; transition: opacity .6s ease; }
+      .hero_slide.fixed.active { opacity: 1; }
+
+      /* ══ GOLD DIVIDER ══ */
+      .gold-divider { height: 5px; background: linear-gradient(90deg,transparent,var(--gold),var(--gold-light),var(--gold),transparent); }
+
+      /* ══ PAGE INTRO ══ */
+      .events-intro {
+        background: linear-gradient(135deg,var(--gold-pale) 0%,var(--cream-mid) 50%,var(--gold-soft) 100%);
+        border-bottom: 2px solid var(--gold-border);
+        padding: 52px 24px 44px; text-align: center;
+        position: relative; overflow: hidden;
+      }
+      .events-intro::before { content:''; position:absolute; width:360px; height:360px; border:3px solid rgba(212,168,67,.11); transform:rotate(45deg); right:-100px; top:-100px; pointer-events:none; border-radius:4px; }
+      .events-intro::after  { content:''; position:absolute; width:200px; height:200px; border:2px solid rgba(212,168,67,.08); transform:rotate(45deg); left:-60px; bottom:-60px; pointer-events:none; border-radius:4px; }
+      .events-intro .inner { position: relative; z-index: 1; max-width: 680px; margin: 0 auto; }
+      .events-intro .accent-bar { display: block; width: 52px; height: 4px; background: linear-gradient(90deg,var(--gold-dark),var(--gold-light)); border-radius: 2px; margin: 0 auto 18px; }
+      .events-intro .eyebrow { font-size:.7rem; letter-spacing:.22em; text-transform:uppercase; color:var(--gold-dark); margin-bottom:14px; display:block; font-weight:600; }
+      .events-intro h1 { font-family:'Playfair Display',serif; font-size:clamp(1.9rem,4.5vw,3rem); font-weight:900; color:var(--ink); margin:0 0 12px; line-height:1.1; }
+      .events-intro h1 span { color:var(--gold-dark); font-style:italic; }
+      .events-intro p { font-size:.92rem; color:var(--muted); line-height:1.85; margin:0 0 24px; }
+
+      /* Download button */
+      .btn-download {
+        display: inline-flex; align-items: center; gap: 8px;
+        background: var(--ink); color: var(--white);
+        font-size: .84rem; font-weight: 700; padding: 12px 26px;
+        border-radius: 8px; text-decoration: none; letter-spacing: .03em;
+        transition: background .2s, transform .2s;
+      }
+      .btn-download:hover { background: var(--ink-mid); transform: translateY(-2px); }
+
+      /* ══ FILTER BAR ══ */
+      .filter-bar {
+        max-width: 1120px; margin: 0 auto;
+        padding: 32px 24px 0;
+        display: flex; align-items: center; justify-content: space-between;
+        gap: 14px; flex-wrap: wrap;
+      }
+      .filter-tabs { display: flex; gap: 8px; flex-wrap: wrap; }
+      .filter-tab {
+        padding: 7px 16px; border-radius: 50px;
+        font-family: 'Poppins', sans-serif; font-size: .74rem; font-weight: 600;
+        letter-spacing: .05em; text-transform: uppercase;
+        background: var(--white); border: 1.5px solid var(--cream-dark);
+        color: var(--muted); cursor: pointer;
+        transition: background .2s, border-color .2s, color .2s, transform .15s;
+      }
+      .filter-tab:hover { border-color: var(--gold-border); color: var(--gold-dark); transform: translateY(-1px); }
+      .filter-tab.active { background: var(--gold); border-color: var(--gold-dark); color: var(--ink); box-shadow: 0 3px 12px rgba(212,168,67,.3); }
+
+      /* Search */
+      .ev-search-wrap { position: relative; }
+      .ev-search-wrap i { position: absolute; left: 13px; top: 50%; transform: translateY(-50%); color: var(--gold-dark); font-size: .82rem; pointer-events: none; }
+      .ev-search-wrap input { padding: 9px 16px 9px 36px; border: 1.5px solid var(--cream-dark); border-radius: 50px; font-family: 'Poppins', sans-serif; font-size: .82rem; color: var(--ink); background: var(--white); outline: none; width: 210px; transition: border-color .2s,box-shadow .2s; }
+      .ev-search-wrap input:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(212,168,67,.12); }
+      .ev-search-wrap input::placeholder { color: var(--muted); }
+
+      /* ══ MAGAZINE GRID ══ */
+      .magazine-outer { max-width: 1120px; margin: 0 auto; padding: 28px 24px 80px; }
+
+      /* Results info */
+      .ev-results { font-size: .78rem; color: var(--muted); margin-bottom: 20px; min-height: 20px; }
+      .ev-results strong { color: var(--gold-dark); }
+
+      /* ── Featured / Hero event (full width top) ── */
+      .ev-hero-card {
+        background: var(--white); border-radius: var(--radius);
+        overflow: hidden; box-shadow: 0 6px 28px var(--shadow);
+        border-top: 5px solid var(--gold);
+        display: grid; grid-template-columns: 1.2fr 1fr;
+        margin-bottom: 28px;
+        transition: box-shadow .25s, transform .25s;
+        cursor: pointer;
+        position: top;
+      }
+      
+
+      /* ── 4-column grid ── */
+      .ev-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+      }
+
+      /* ── Magazine card ── */
+      .ev-card {
+        background: var(--white);
+        border-radius: var(--radius);
+        overflow: hidden;
+        box-shadow: 0 3px 18px var(--shadow-soft);
+        border-top: 3px solid var(--gold);
+        cursor: pointer;
+        transition: transform .25s, box-shadow .25s;
+        display: flex; flex-direction: column;
+        position: relative;
+      }
+      .ev-card:hover { transform: translateY(-6px); box-shadow: 0 14px 36px rgba(180,140,40,.18); }
+      .ev-card.hidden { display: none; }
+
+      /* Card image */
+      .ev-card-img {
+        width: 100%; aspect-ratio: 4/3; overflow: hidden;
+        background: var(--cream-dark); position: relative; flex-shrink: 0; object-fit: cover
+      }
+      .ev-card-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .4s; }
+      .ev-card:hover .ev-card-img img { transform: scale(1.06); }
+
+      /* Date badge overlaid on image */
+      .ev-date-badge {
+        position: absolute; top: 12px; left: 12px;
+        background: var(--gold); color: var(--ink);
+        border-radius: 8px; text-align: center;
+        padding: 6px 10px; z-index: 2;
+        box-shadow: 0 3px 10px rgba(0,0,0,.2);
+      }
+      .ev-date-badge .db-day   { font-family:'Playfair Display',serif; font-size:1.3rem; font-weight:900; line-height:1; display:block; }
+      .ev-date-badge .db-month { font-size:.6rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; display:block; }
+
+      /* Category chip on image */
+      .ev-cat-chip {
+        position: absolute; bottom: 10px; right: 10px;
+        font-size: .6rem; font-weight: 800; letter-spacing:.08em;
+        text-transform: uppercase; padding: 3px 10px; border-radius: 20px;
+        z-index: 2;
+      }
+      .chip-sports    { background:#fff3cd; color:#856404; }
+      .chip-academic  { background:#d1ecf1; color:#0c5460; }
+      .chip-community { background:#d4edda; color:#155724; }
+      .chip-cultural  { background:#fce4ec; color:#880e4f; }
+      .chip-pta       { background:var(--gold-pale); color:var(--gold-dark); }
+      .chip-awards    { background:#e2d9f3; color:#4a235a; }
+      .chip-graduation{ background:#fff8e1; color:#e65100; }
+
+      /* Card body */
+      .ev-card-body { padding: 18px 18px 20px; flex: 1; display: flex; flex-direction: column; }
+      .ev-card-body h3 { font-family:'Playfair Display',serif; font-size:.95rem; color:var(--ink); margin:0 0 8px; line-height:1.35; }
+      .ev-card-body p  { font-size:.78rem; color:var(--muted); line-height:1.72; margin:0 0 14px; flex:1; }
+      .ev-card-meta { display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-bottom:14px; }
+      .ev-card-meta span { font-size:.7rem; color:var(--muted); display:flex; align-items:center; gap:4px; }
+      .ev-card-meta i { color:var(--gold-dark); font-size:.68rem; }
+      .btn-readmore-sm {
+        display: inline-flex; align-items: center; gap: 6px;
+        background: var(--gold-pale); border: 1.5px solid var(--gold-border);
+        color: var(--ink-mid); font-size: .74rem; font-weight: 700;
+        padding: 8px 16px; border-radius: 7px; text-decoration: none;
+        letter-spacing: .03em; cursor: pointer;
+        transition: background .2s, border-color .2s, transform .2s;
+        align-self: flex-start; font-family: 'Poppins', sans-serif; border: none;
+      }
+      .btn-readmore-sm:hover { background: var(--gold); border-color: var(--gold-dark); transform: translateY(-1px); }
+
+      /* Hover overlay on image */
+      .ev-img-overlay {
+        position: absolute; inset: 0; background: linear-gradient(to top,rgba(30,14,0,.6) 0%,transparent 55%);
+        opacity: 0; transition: opacity .3s; z-index: 1;
+        display: flex; align-items: flex-end; padding: 12px;
+      }
+      .ev-card:hover .ev-img-overlay { opacity: 1; }
+      .ev-img-overlay span { font-size:.72rem; color:var(--gold-light); font-weight:600; letter-spacing:.05em; }
+
+      /* ══ EVENT MODAL ══ */
+      .ev-modal-backdrop {
+        position: fixed; inset: 0; background: rgba(10,5,0,.75);
+        backdrop-filter: blur(6px); z-index: 500;
+        display: flex; align-items: center; justify-content: center;
+        padding: 20px; opacity: 0; pointer-events: none;
+        transition: opacity .3s ease;
+      }
+      .ev-modal-backdrop.open { opacity: 1; pointer-events: all; }
+
+      .ev-modal {
+        background: var(--white); border-radius: var(--radius);
+        max-width: 720px; width: 100%; max-height: 90vh;
+        overflow-y: auto; box-shadow: 0 24px 80px rgba(0,0,0,.4);
+        position: relative;
+        transform: scale(.95) translateY(20px);
+        transition: transform .3s ease;
+      }
+      .ev-modal-backdrop.open .ev-modal { transform: scale(1) translateY(0); }
+
+      .ev-modal-img { width: 100%; height: 280px; object-fit: cover; display: block; }
+      .ev-modal-img-placeholder { width: 100%; height: 200px; background: linear-gradient(135deg,var(--gold-pale),var(--gold-soft)); display:flex; align-items:center; justify-content:center; font-size:3rem; }
+      .ev-modal-body { padding: 32px 36px 36px; }
+      .ev-modal-body .ev-modal-badge { margin-bottom: 16px; }
+      .ev-modal-body h2 { font-family:'Playfair Display',serif; font-size:clamp(1.4rem,3vw,2rem); color:var(--ink); margin:0 0 16px; line-height:1.25; }
+      .ev-modal-meta { display:flex; gap:18px; flex-wrap:wrap; margin-bottom:20px; padding-bottom:20px; border-bottom:1px solid var(--cream-dark); }
+      .ev-modal-meta span { font-size:.8rem; color:var(--muted); display:flex; align-items:center; gap:6px; }
+      .ev-modal-meta i { color:var(--gold-dark); }
+      .ev-modal-body p { font-size:.88rem; color:var(--muted); line-height:1.88; margin:0 0 14px; }
+      .ev-modal-body p:last-of-type { margin:0; }
+
+      /* Highlights list in modal */
+      .ev-highlights { list-style:none; padding:0; margin:18px 0 0; display:flex; flex-direction:column; gap:8px; }
+      .ev-highlights li { display:flex; align-items:flex-start; gap:10px; font-size:.84rem; color:var(--muted); line-height:1.65; }
+      .ev-highlights li::before { content:''; width:8px; height:8px; border-radius:50%; background:var(--gold); flex-shrink:0; margin-top:6px; }
+
+      .ev-modal-close {
+        position: absolute; top: 16px; right: 16px;
+        width: 36px; height: 36px; border-radius: 50%;
+        background: var(--white); border: 1.5px solid var(--cream-dark);
+        color: var(--ink-mid); font-size: 1rem; cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        box-shadow: 0 2px 10px rgba(0,0,0,.12); z-index: 2;
+        transition: background .2s, border-color .2s;
+      }
+      .ev-modal-close:hover { background: var(--gold); border-color: var(--gold-dark); color: var(--ink); }
+
+      /* ══ NO RESULTS ══ */
+      .no-ev-results { display:none; text-align:center; padding:60px 24px; color:var(--muted); font-size:.9rem; grid-column:1/-1; }
+      .no-ev-results .nr-emoji { font-size:2.8rem; display:block; margin-bottom:14px; }
+
+      /* ══ SCROLL REVEAL ══ */
+      .reveal { opacity:0; transform:translateY(22px); transition:opacity .6s ease,transform .6s ease; }
+      .reveal.visible { opacity:1; transform:translateY(0); }
+      .reveal.delay-1{transition-delay:.08s} .reveal.delay-2{transition-delay:.16s}
+      .reveal.delay-3{transition-delay:.24s} .reveal.delay-4{transition-delay:.32s}
+
+      @media(max-width:900px){ .ev-grid { grid-template-columns: repeat(2,1fr); } }
+      @media(max-width:600px){
+        .ev-grid { grid-template-columns: 1fr; }
+        .ev-hero-card { grid-template-columns:1fr; }
+        .ev-hero-img { min-height:220px; }
+        .filter-bar { flex-direction:column; align-items:flex-start; }
+        .ev-search-wrap input { width:100%; }
+        .ev-modal-body { padding:24px 20px 28px; }
+        .header-socials { display:none; }
+        .fab-wrap { bottom:22px; right:18px; }
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <!-- ══ PANEL OVERLAY ══ -->
+    <div class="panel-overlay" id="panelOverlay" onclick="closePanel()"></div>
+
+    <!-- ══ SIDE PANEL NAV ══ -->
+    <div class="side-panel" id="sidePanel">
+      <div class="panel-head">
+        <div class="ph-logo">
+          <img src="../assets/img/logo.png" alt="GMHS Logo" />
+          <span>Garvey Maceo<br>High School</span>
+        </div>
+        <button class="panel-close" onclick="closePanel()"><i class="fas fa-times"></i></button>
+      </div>
+      <nav class="panel-nav">
+        <a href="../index.html"  class="pnav-item"><i class="fas fa-home" style="width:18px;margin-right:8px;"></i> Home</a>
+        <a href="Principal.html" class="pnav-item"><i class="fas fa-user-tie" style="width:18px;margin-right:8px;"></i> Principal's Message</a>
+        <div class="pnav-label">Cubanz</div>
+        <a href="ethos.html"      class="pnav-sub">Our Ethos</a>
+        <a href="staff.html"      class="pnav-sub">Our Staff</a>
+        <a href="department.html" class="pnav-sub">Departments</a>
+        <a href="history.html"    class="pnav-sub">History</a>
+        <a href="news.html"       class="pnav-sub">News Updates</a>
+        <div class="pnav-label">Academics</div>
+        <a href="Curriculum.html"        class="pnav-sub">Curriculum</a>
+        <a href="Health.html"            class="pnav-sub">Health &amp; Welfare</a>
+        <a href="graduation.html"        class="pnav-sub">Graduation Requirements</a>
+        <a href="FacultySpotlight.html"  class="pnav-sub">Faculty Spotlight</a>
+        <div class="pnav-label">Stakeholders</div>
+        <a href="alumni.html" class="pnav-sub">Alumni</a>
+        <a href="pta.html"    class="pnav-sub">PTA</a>
+        <div class="pnav-label">Gallery</div>
+        <a href="sports.html" class="pnav-sub">Sports &amp; Events Gallery</a>
+        <a href="events.html" class="pnav-sub active-sub">Events</a>
+        <div class="pnav-label">Contact</div>
+        <a href="contact.html" class="pnav-sub">Contact Us</a>
+        <a href="faq.html"     class="pnav-sub">FAQ</a>
+        <a href="donate.html"  class="pnav-sub">Donate</a>
+      </nav>
+      <div class="panel-footer">
+        <p>© 2026 Garvey Maceo High School<br>Website design by SkoolTech London</p>
+      </div>
+    </div>
+
+    <!-- ══ STICKY HEADER ══ -->
+    <header>
+      <a href="../index.html" class="text_bg">
+        <img src="../assets/img/logo.png" alt="GMHS Logo" />
+        <span>Garvey Maceo High School</span>
+      </a>
+      <div class="flex_spacer"></div>
+      <div class="header-socials">
+        <a href="https://www.facebook.com/GARVEYMACEOCUBANS" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="youtube.com" title="YouTube"><i class="fab fa-youtube"></i></a>
+        <a href="https://www.instagram.com/garveymaceo/" title="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.linkedin.com/school/garvey-maceo-high-school/" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://twitter.com/garveymaceo" title="Twitter"><i class="fab fa-twitter"></i></a> 
+        <a href="https://www.tiktok.com/discover/garvey-maceo-high-school-jamaica" title="TikTok"><i class="fab fa-tiktok"></i></a>    
+      </div>
+    </header>
+
+    <!-- ══ HERO — pathbar INSIDE container ══ -->
+    <div class="hero_container fixed">
+      <div class="hero_pathbar">
+        <div class="inner">
+          <a href="../index.html">Home</a>
+          <i class="fas fa-chevron-right"></i>
+          <a href="events.html">Events</a>
+        </div>
+      </div>
+      <div class="hero_gradient_overlay fixed" style="pointer-events:none;"></div>
+      <div class="hero_slide fixed active"
+           data-bg="../assets/img/Paststudenttrue.jpg"
+           style="background-size:cover; background-position:center;
+                  position:absolute; inset:0; z-index:0;">
+      </div>
+    </div>
+
+    <div class="gold-divider"></div>
+
+    <!-- ══ INTRO BAND ══ -->
+    <div class="events-intro">
+      <div class="inner reveal">
+        <span class="accent-bar"></span>
+        <span class="eyebrow">Garvey Maceo High School</span>
+        <h1>School <span>Events</span></h1>
+        <p>Everything happening at GMHS — past highlights, upcoming occasions and community milestones. Click any event card to read the full story.</p>
+        <a href="757301535549-7vpat9esovn6mi1honqb94kb2igj3c1n.apps.googleusercontent.com" download class="btn-download">
+          <i class="fas fa-calendar-download"></i> Download Full Calendar
+        </a>
+      </div>
+    </div>
+
+    <!-- ══ FILTER BAR ══ -->
+    <div class="filter-bar reveal">
+      <div class="filter-tabs" id="filterTabs">
+        <button class="filter-tab active" data-cat="all">All Events</button>
+        <button class="filter-tab" data-cat="sports">⚽ Sports</button>
+        <button class="filter-tab" data-cat="academic">📚 Academic</button>
+        <button class="filter-tab" data-cat="cultural">🎭 Cultural</button>
+        <button class="filter-tab" data-cat="community">🤝 Community</button>
+        <button class="filter-tab" data-cat="pta">👪 PTA</button>
+        <button class="filter-tab" data-cat="awards">🏆 Awards</button>
+        <button class="filter-tab" data-cat="graduation">🎓 Graduation</button>
+      </div>
+      <div class="ev-search-wrap">
+        <i class="fas fa-search"></i>
+        <input type="text" id="evSearch" placeholder="Search events…" autocomplete="off" />
+      </div>
+    </div>
+
+    <!-- ══ MAGAZINE GRID ══ -->
+    <div class="magazine-outer">
+      <p class="ev-results" id="evResults"></p>
+
+      <!-- ── Featured hero event ── -->
+      <div class="ev-hero-card reveal"
+           data-cat="sports" data-title="DaCosta Cup Final 2024"
+           onclick="openModal('dacosta2024')">
+        <div class="ev-hero-img">
+          <img src="../assets/img/yardshadows.png" alt="DaCosta Cup 2024" height="95%" width="95%" loading="lazy"
+               onerror="this.closest('.ev-hero-img').style.background='linear-gradient(135deg,#6b4200,#3a2200)'" />
+        </div>
+        <div class="ev-hero-body">
+          <span class="ev-featured-label">⭐ Featured Event</span>
+          <span class="ev-cat-chip chip-sports" style="position:static;margin-bottom:14px;display:inline-block;">⚽ Sports</span>
+          <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.4rem,3vw,2rem);color:var(--ink);margin:0 0 12px;line-height:1.25;">DaCosta Cup Final 2024 — Champions Again!</h2>
+          <div class="ev-modal-meta" style="border-bottom:none;padding-bottom:0;margin-bottom:16px;">
+            <span><i class="fas fa-calendar-alt"></i> November 2024</span>
+            <span><i class="fas fa-map-marker-alt"></i> Clarendon</span>
+            <span><i class="fas fa-users"></i> Whole School</span>
+          </div>
+          <p style="font-size:.88rem;color:var(--muted);line-height:1.85;margin:0 0 20px;">Garvey Maceo High School claimed their DaCosta Cup title in a thrilling final, cementing their place among the elite of Jamaican schoolboy football. The entire school community celebrated this historic achievement.</p>
+          <button class="btn-readmore-sm" style="background:var(--ink);color:var(--white);padding:11px 22px;font-size:.84rem;">
+            <i class="fas fa-book-open"></i> Read Full Story
+          </button>
+        </div>
+      </div>
+
+      <!-- ── 4-column grid ── -->
+      <div class="ev-grid" id="evGrid">
+
+        <!-- 1 -->
+        <div class="ev-card reveal" data-cat="awards" data-title="Prize Giving Day 2024"
+             onclick="openModal('prizegiving2024')">
+          <div class="ev-card-img">
+            <div class="ev-date-badge"><span class="db-day">15</span><span class="db-month">Jul</span></div>
+            <span class="ev-cat-chip chip-awards">🏆 Awards</span>
+            <img src="../assets/img/PriceGiving.jpg" alt="Prize Giving" loading="lazy"
+                 onerror="this.style.display='none'" />
+            <div class="ev-img-overlay"><span>Read More</span></div>
+          </div>
+          <div class="ev-card-body">
+            <h3>Prize Giving &amp; Awards Day 2024</h3>
+            <div class="ev-card-meta">
+              <span><i class="fas fa-calendar-alt"></i> July 2024</span>
+              <span><i class="fas fa-map-marker-alt"></i> School Hall</span>
+            </div>
+            <p>A celebration of outstanding academic, cultural and sporting achievement across all year groups. Students and staff gathered to recognise the best of GMHS.</p>
+            <button class="btn-readmore-sm"><i class="fas fa-arrow-right"></i> Read More</button>
+          </div>
+        </div>
+
+        <!-- 2 -->
+        <div class="ev-card reveal delay-1" data-cat="community" data-title="Careers Day Alumni Visit"
+             onclick="openModal('careersday')">
+          <div class="ev-card-img">
+            <div class="ev-date-badge"><span class="db-day">22</span><span class="db-month">Mar</span></div>
+            <span class="ev-cat-chip chip-community">🤝 Community</span>
+            <img src="../assets/img/Paststudenttrue.jpg" alt="Careers Day" loading="lazy"
+                 onerror="this.style.display='none'" />
+            <div class="ev-img-overlay"><span>Read More</span></div>
+          </div>
+          <div class="ev-card-body">
+            <h3>Past Students' Careers Day</h3>
+            <div class="ev-card-meta">
+              <span><i class="fas fa-calendar-alt"></i> March 2024</span>
+              <span><i class="fas fa-map-marker-alt"></i> GMHS Campus</span>
+            </div>
+            <p>Alumni professionals returned to campus to inspire current students with career talks spanning medicine, engineering, education, technology and business.</p>
+            <button class="btn-readmore-sm"><i class="fas fa-arrow-right"></i> Read More</button>
+          </div>
+        </div>
+
+        <!-- 3 -->
+        <div class="ev-card reveal delay-2" data-cat="community" data-title="Jamalco Computer Donation Ceremony"
+             onclick="openModal('jamalco')">
+          <div class="ev-card-img">
+            <div class="ev-date-badge"><span class="db-day">10</span><span class="db-month">Feb</span></div>
+            <span class="ev-cat-chip chip-community">🤝 Community</span>
+            <img src="../assets/img/Donation.png" alt="Jamalco Donation" loading="lazy"
+                 onerror="this.style.display='none'" />
+            <div class="ev-img-overlay"><span>Read More</span></div>
+          </div>
+          <div class="ev-card-body">
+            <h3>Jamalco Computer Donation Ceremony</h3>
+            <div class="ev-card-meta">
+              <span><i class="fas fa-calendar-alt"></i> Feb 2024</span>
+              <span><i class="fas fa-building"></i> Jamalco / GMHS</span>
+            </div>
+            <p>Jamalco presented the school with a significant donation of computer equipment, strengthening the IT department's capacity to deliver digital education to students.</p>
+            <button class="btn-readmore-sm"><i class="fas fa-arrow-right"></i> Read More</button>
+          </div>
+        </div>
+
+        <!-- 4 -->
+        <div class="ev-card reveal delay-3" data-cat="sports" data-title="D'Cup Trophy Presentation"
+             onclick="openModal('dcuptrophy')">
+          <div class="ev-card-img">
+            <div class="ev-date-badge"><span class="db-day">28</span><span class="db-month">Jan</span></div>
+            <span class="ev-cat-chip chip-sports">⚽ Sports</span>
+            <img src="../assets/img/eventsDay7.jpg" alt="DaCosta Trophy" Loading="lazy"
+                 onerror="this.style.display='none'" />
+            <div class="ev-img-overlay"><span>Read More</span></div>
+          </div>
+          <div class="ev-card-body">
+            <h3>D'Cup Trophy Presentation</h3>
+            <div class="ev-card-meta">
+              <span><i class="fas fa-calendar-alt"></i> Jan 2022</span>
+              <span><i class="fas fa-trophy"></i> Football</span>
+            </div>
+            <p>The official DaCosta Cup trophy was presented to the GMHS football team following their championship victory — a proud moment celebrated by the entire school community.</p>
+            <button class="btn-readmore-sm"><i class="fas fa-arrow-right"></i> Read More</button>
+          </div>
+        </div>
+
+        <!-- 5 -->
+        <div class="ev-card reveal" data-cat="community" data-title="Alumni Sports Donation New York"
+             onclick="openModal('nydonate')">
+          <div class="ev-card-img">
+            <div class="ev-date-badge"><span class="db-day">05</span><span class="db-month">Apr</span></div>
+            <span class="ev-cat-chip chip-community">🤝 Community</span>
+            <img src="../assets/img/Donation2.jpg" alt="Alumni Donation" loading="lazy"
+                 onerror="this.style.display='none'" />
+            <div class="ev-img-overlay"><span>Read More</span></div>
+          </div>
+          <div class="ev-card-body">
+            <h3>New York Alumni Sports Donation</h3>
+            <div class="ev-card-meta">
+              <span><i class="fas fa-calendar-alt"></i> 2023</span>
+              <span><i class="fas fa-globe-americas"></i> New York PSA</span>
+            </div>
+            <p>The New York chapter of the GMHS Past Students' Association made a generous donation to support the school's sporting programmes, funding kits, equipment and travel.</p>
+            <button class="btn-readmore-sm"><i class="fas fa-arrow-right"></i> Read More</button>
+          </div>
+        </div>
+
+        <!-- 6 -->
+        <div class="ev-card reveal delay-1" data-cat="cultural" data-title="Teachers Valentine Day"
+             onclick="openModal('valentines')">
+          <div class="ev-card-img">
+            <div class="ev-date-badge"><span class="db-day">14</span><span class="db-month">Feb</span></div>
+            <span class="ev-cat-chip chip-cultural">🎭 Cultural</span>
+            <img src="../assets/img/teacher6.jpg" alt="Valentine's Day"
+                 onerror="this.style.display='none'" />
+            <div class="ev-img-overlay"><span>Read More</span></div>
+          </div>
+          <div class="ev-card-body">
+            <h3>Staff Valentine's Day Celebration</h3>
+            <div class="ev-card-meta">
+              <span><i class="fas fa-calendar-alt"></i> Feb 2024</span>
+              <span><i class="fas fa-heart"></i> Staff Event</span>
+            </div>
+            <p>Staff members came together to celebrate Valentine's Day — a warm reminder of the community spirit that makes GMHS a special place to work and learn.</p>
+            <button class="btn-readmore-sm"><i class="fas fa-arrow-right"></i> Read More</button>
+          </div>
+        </div>
+
+        <!-- 7 -->
+        <div class="ev-card reveal delay-2" data-cat="community" data-title="GMHS Expo"
+             onclick="openModal('expo')">
+          <div class="ev-card-img">
+            <div class="ev-date-badge"><span class="db-day">18</span><span class="db-month">May</span></div>
+            <span class="ev-cat-chip chip-academic">📚 Academic</span>
+            <img src="../assets/img/Expo.png" alt="Expo" loading="lazy"
+                 onerror="this.style.display='none'" />
+            <div class="ev-img-overlay"><span>Read More</span></div>
+          </div>
+          <div class="ev-card-body">
+            <h3>GMHS at the Expo</h3>
+            <div class="ev-card-meta">
+              <span><i class="fas fa-calendar-alt"></i> May 2023</span>
+              <span><i class="fas fa-star"></i> Achievement</span>
+            </div>
+            <p>GMHS showcased student projects and achievements at the annual educational expo, putting the school's academic and vocational programmes in the spotlight.</p>
+            <button class="btn-readmore-sm"><i class="fas fa-arrow-right"></i> Read More</button>
+          </div>
+        </div>
+
+        <!-- 8 -->
+        <div class="ev-card reveal delay-3" data-cat="awards" data-title="PSA Award Service"
+             onclick="openModal('psaawards')">
+          <div class="ev-card-img">
+            <div class="ev-date-badge"><span class="db-day">30</span><span class="db-month">Jun</span></div>
+            <span class="ev-cat-chip chip-awards">🏆 Awards</span>
+            <img src="../assets/img/psa.png" alt="PSA Award Service" loading="lazy"
+                 onerror="this.style.display='none'" />
+            <div class="ev-img-overlay"><span>Read More</span></div>
+          </div>
+          <div class="ev-card-body">
+            <h3>PSA Award &amp; Recognition Service</h3>
+            <div class="ev-card-meta">
+              <span><i class="fas fa-calendar-alt"></i> June 2023</span>
+              <span><i class="fas fa-users"></i> Past Students</span>
+            </div>
+            <p>The Past Students' Association held its annual award service, honouring outstanding alumni and celebrating the continued legacy of Garvey Maceo High School.</p>
+            <button class="btn-readmore-sm"><i class="fas fa-arrow-right"></i> Read More</button>
+          </div>
+        </div>
+
+        <!-- No results -->
+        <div class="no-ev-results" id="noEvResults">
+          <span class="nr-emoji">🔍</span>
+          <p>No events found. Try a different category or search term.</p>
+        </div>
+
+      </div><!-- /ev-grid -->
+    </div><!-- /magazine-outer -->
+
+    <!-- ══ EVENT MODALS ══ -->
+    <div class="ev-modal-backdrop" id="evModalBackdrop" onclick="closeModalOnBg(event)">
+      <div class="ev-modal" id="evModal">
+        <button class="ev-modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button>
+        <div id="evModalContent"></div>
+      </div>
+    </div>
+
+    <!-- ══ FOOTER ══ -->
+    <div class="footer">
+      <div class="top">
+        <div class="col"><b><a href="https://www.google.co.uk/maps/@17.9006093,-77.2989797,17z"><i class="fas fa-map-marker-alt"></i></a><span> Vernamfield, P.O Box 490 May Pen, Clarendon</span></b></div>
+        <div class="col"><b><a href="Tel:876 986-7006"><i class="fas fa-phone"></i></a><span> (876) 986-7006</span></b></div>
+        <div class="col"><b><a href="mailto:garveymaceo.high.cla@moey.gov.jm"><i class="fas fa-envelope"></i></a><span> garveymaceo.high.cla@moey.gov.jm</span></b></div>
+      </div>
+      <div class="bottom"><p>© 2026 Garvey Maceo High School | Website design SkoolTech London</p></div>
+    </div>
+
+    <!-- ══ RADIAL FAB ══ -->
+    <div class="fab-wrap" id="fabWrap">
+      <div class="fab-items">
+        <a href="contact.html"    class="fab-item"><i class="fas fa-envelope"></i><span class="fab-tip">Contact Us</span></a>
+        <a href="sports.html"     class="fab-item"><i class="fas fa-images"></i><span class="fab-tip">Gallery</span></a>
+        <a href="Curriculum.html" class="fab-item"><i class="fas fa-book-open"></i><span class="fab-tip">Curriculum</span></a>
+        <a href="donate.html"     class="fab-item"><i class="fas fa-heart"></i><span class="fab-tip">Donate</span></a>
+        <button class="fab-item"  onclick="openPanel(); closeFab();"><i class="fas fa-bars"></i><span class="fab-tip">Menu</span></button>
+      </div>
+      <button class="fab-main" id="fabMain" onclick="toggleFab()">
+        <i class="fas fa-grip-dots fab-icon-menu"></i>
+        <i class="fas fa-times fab-icon-close"></i>
+      </button>
+    </div>
+
+    <script src="assets/js/index.js"></script>
+    <script>
+      /* ── Panel / FAB ── */
+      function openPanel()  { document.getElementById('sidePanel').classList.add('open'); document.getElementById('panelOverlay').classList.add('open'); document.body.style.overflow='hidden'; }
+      function closePanel() { document.getElementById('sidePanel').classList.remove('open'); document.getElementById('panelOverlay').classList.remove('open'); document.body.style.overflow=''; }
+      function toggleFab()  { document.getElementById('fabWrap').classList.toggle('open'); document.getElementById('fabMain').classList.toggle('open'); }
+      function closeFab()   { document.getElementById('fabWrap').classList.remove('open'); document.getElementById('fabMain').classList.remove('open'); }
+
+      /* ── Modal content data ── */
+      const modalData = {
+        dacosta2024: {
+          img:   '../assets/img/winners2024.png',
+          badge: '<span class="ev-cat-chip chip-sports" style="position:static;display:inline-block;margin-bottom:14px;">⚽ Sports</span>',
+          title: "DaCosta Cup Final 2024 — Champions Again!",
+          meta:  [['fa-calendar-alt','November 2024'],['fa-map-marker-alt','Clarendon'],['fa-users','Whole School'],['fa-trophy','ISSA DaCosta Cup']],
+          body:  `<p>Garvey Maceo High School claimed the 2024 DaCosta Cup in a thrilling final that had the entire school community on its feet. The squad, guided by their dedicated coaching staff, delivered a performance of exceptional skill, discipline and teamwork throughout the tournament.</p>
+                  <p>The victory was the culmination of months of rigorous preparation and represents the very best of Garvey Maceo's sporting tradition. Students, teachers and supporters flooded the grounds in celebration as the final whistle confirmed the school's championship status.</p>`,
+          highlights: ['Champions crowned in a tightly contested final','Whole school celebration on campus following the victory','Coaching staff praised for exceptional player development throughout the season','Team to be honoured at the upcoming Prize Giving ceremony']
+        },
+        prizegiving2024: {
+          img:   '../assets/img/PriceGiving.jpg',
+          badge: '<span class="ev-cat-chip chip-awards" style="position:static;display:inline-block;margin-bottom:14px;">🏆 Awards</span>',
+          title: "Prize Giving & Awards Day 2024",
+          meta:  [['fa-calendar-alt','July 2024'],['fa-map-marker-alt','School Hall'],['fa-users','Students & Staff'],['fa-star','Annual Event']],
+          body:  `<p>The annual Prize Giving and Awards Day brought the GMHS community together to celebrate outstanding achievement across all year groups. Students were recognised for excellence in academics, sports, arts, leadership and community service.</p>
+                  <p>The ceremony was attended by parents, guardians, distinguished alumni and members of the Board of Management. Valedictorian and subject awards were presented, and the school acknowledged the contribution of retiring staff members.</p>`,
+          highlights: ['Academic subject awards across all forms','Valedictorian and Dux honours presented','Sporting achievement recognised including DaCosta Cup squad','Community service and leadership awards','Retiring staff members honoured']
+        },
+        careersday: {
+          img:   '../assets/img/Paststudenttrue.png',
+          badge: '<span class="ev-cat-chip chip-community" style="position:static;display:inline-block;margin-bottom:14px;">🤝 Community</span>',
+          title: "Past Students' Careers Day",
+          meta:  [['fa-calendar-alt','March 2024'],['fa-map-marker-alt','GMHS Campus'],['fa-graduation-cap','Alumni Event'],['fa-briefcase','Careers']],
+          body:  `<p>Alumni professionals from across Jamaica and the diaspora returned to campus for the annual Careers Day, sharing their journeys and inspiring current students with real-world career stories. Representatives from medicine, law, engineering, education, technology, finance and the arts participated.</p>
+                  <p>The event gives students direct access to role models who attended the same school — a powerful reminder that success is achievable regardless of where you start. Students were encouraged to ask questions and make connections that will serve them well beyond school.</p>`,
+          highlights: ['Speakers from medicine, law, IT, finance and the arts','Q&amp;A sessions with alumni professionals','CV writing and interview skills workshops','Networking session for 5th and 6th Form students']
+        },
+        jamalco: {
+          img:   '../assets/img/Donation.png',
+          badge: '<span class="ev-cat-chip chip-community" style="position:static;display:inline-block;margin-bottom:14px;">🤝 Community</span>',
+          title: "Jamalco Computer Donation Ceremony",
+          meta:  [['fa-calendar-alt','February 2024'],['fa-building','Jamalco'],['fa-laptop','IT Equipment'],['fa-handshake','Donation']],
+          body:  `<p>Jamalco, one of the leading employers in Clarendon, presented Garvey Maceo High School with a significant donation of computer equipment during a formal ceremony attended by school leadership, Jamalco representatives and students.</p>
+                  <p>The donation directly strengthens the school's IT department, providing updated hardware that supports CSEC and CAPE Information Technology programmes as well as general digital literacy for all students. GMHS extends its deepest gratitude to Jamalco for their continued investment in education in Clarendon.</p>`,
+          highlights: ['New computers delivered to the IT lab','Equipment supports CSEC and CAPE IT programmes','Ceremony attended by school leadership and Jamalco representatives','Partnership reflects Jamalco\'s commitment to education in Clarendon']
+        },
+        dcuptrophy: {
+          img:   '../assets/img/eventsDay7.jpg',
+          badge: '<span class="ev-cat-chip chip-sports" style="position:static;display:inline-block;margin-bottom:14px;">⚽ Sports</span>',
+          title: "D'Cup Trophy Presentation",
+          meta:  [['fa-calendar-alt','January 2022'],['fa-map-marker-alt','GMHS Campus'],['fa-trophy','DaCosta Cup'],['fa-football-ball','Football']],
+          body:  `<p>Following their historic DaCosta Cup victory, the GMHS football team received the official trophy in a ceremony that brought the entire school together in celebration. The presentation marked the culmination of an extraordinary tournament run that captured the hearts of the Clarendon community.</p>
+                  <p>The coaching staff, players and school leadership gathered on the field as the trophy was presented — a moment that will live long in the memory of everyone who was present.</p>`,
+          highlights: ['Trophy presented on campus to the full school community','Coaching staff and players recognised','5-0 final win over Manning\'s School celebrated','Second DaCosta Cup title for GMHS']
+        },
+        nydonate: {
+          img:   '../assets/img/Donation2.jpg',
+          badge: '<span class="ev-cat-chip chip-community" style="position:static;display:inline-block;margin-bottom:14px;">🤝 Community</span>',
+          title: "New York Alumni Sports Donation",
+          meta:  [['fa-calendar-alt','2023'],['fa-globe-americas','New York PSA'],['fa-heart','Donation'],['fa-futbol','Sports Support']],
+          body:  `<p>The New York chapter of the GMHS Past Students' Association made a generous financial donation to support the school's sporting programmes. The contribution covers kits, equipment and travel costs for the football and athletics teams.</p>
+                  <p>The school is enormously grateful to every alumnus who contributed. This kind of support from former students demonstrates the enduring bond between GMHS graduates and their alma mater — no matter how far they travel from Clarendon.</p>`,
+          highlights: ['Donation funds kits, equipment and travel for sports teams','New York PSA chapter continues tradition of giving back','Football and athletics programmes primary beneficiaries','School expresses deep gratitude to all contributing alumni']
+        },
+        valentines: {
+          img:   '../assets/img/teacher6.jpg',
+          badge: '<span class="ev-cat-chip chip-cultural" style="position:static;display:inline-block;margin-bottom:14px;">🎭 Cultural</span>',
+          title: "Staff Valentine's Day Celebration",
+          meta:  [['fa-calendar-alt','February 2024'],['fa-heart','Cultural'],['fa-users','Staff Event'],['fa-school','GMHS Campus']],
+          body:  `<p>Staff members at GMHS marked Valentine's Day with a celebration that reflects the warm, community-oriented culture of the school. Teachers and administrative staff came together to enjoy the occasion — a reminder of the close bonds that define life at Garvey Maceo.</p>
+                  <p>Events like this are an important part of staff wellbeing, recognising that a happy and supported team of educators is fundamental to student success.</p>`,
+          highlights: ["Staff wellbeing event supporting school culture","Teachers and admin staff participation","Reflects GMHS's commitment to community and belonging"]
+        },
+        expo: {
+          img:   '../assets/img/Expo.png',
+          badge: '<span class="ev-cat-chip chip-academic" style="position:static;display:inline-block;margin-bottom:14px;">📚 Academic</span>',
+          title: "GMHS at the Expo",
+          meta:  [['fa-calendar-alt','May 2023'],['fa-map-marker-alt','Expo Venue'],['fa-star','Achievement'],['fa-graduation-cap','Academic']],
+          body:  `<p>Garvey Maceo High School participated in the annual educational expo, showcasing student projects, vocational programmes and academic achievements to the wider community. The school's agriculture, IT and Home Economics departments were particularly well represented.</p>
+                  <p>Events like the Expo give students a platform to demonstrate their skills beyond the classroom and make connections with employers, further education institutions and community organisations.</p>`,
+          highlights: ['Agriculture, IT and Home Economics showcased','Student projects on display to public and employers','School received strong praise from expo organisers','Opportunity for students to connect with further education providers']
+        },
+        psaawards: {
+          img:   '../assets/img/psa.png',
+          badge: '<span class="ev-cat-chip chip-awards" style="position:static;display:inline-block;margin-bottom:14px;">🏆 Awards</span>',
+          title: "PSA Award & Recognition Service",
+          meta:  [['fa-calendar-alt','June 2023'],['fa-users','Past Students'],['fa-trophy','Awards'],['fa-heart','Alumni']],
+          body:  `<p>The Past Students' Association held its annual award and recognition service, bringing together alumni from across Jamaica and the diaspora to celebrate outstanding contributions to the GMHS community and to Jamaican society at large.</p>
+                  <p>The evening recognised alumni who have excelled in their fields, given back to the school, and kept the Garvey Maceo name proud across generations. It serves as both a celebration and an inspiration for current students.</p>`,
+          highlights: ['Alumni recognised for achievements in their fields','Distinguished service awards presented','Current students invited to attend and be inspired','PSA executive team formally acknowledged']
+        }
+      };
+
+      function openModal(id) {
+        const d = modalData[id];
+        if (!d) return;
+        const metaHTML = d.meta.map(m => `<span><i class="fas ${m[0]}"></i> ${m[1]}</span>`).join('');
+        const hlHTML   = d.highlights ? `<ul class="ev-highlights">${d.highlights.map(h=>`<li>${h}</li>`).join('')}</ul>` : '';
+        document.getElementById('evModalContent').innerHTML = `
+          <img class="ev-modal-img" src="${d.img}" alt="${d.title}"
+               onerror="this.outerHTML='<div class=ev-modal-img-placeholder>🎉</div>'" />
+          <div class="ev-modal-body">
+            <div class="ev-modal-badge">${d.badge}</div>
+            <h2>${d.title}</h2>
+            <div class="ev-modal-meta">${metaHTML}</div>
+            ${d.body}
+            ${hlHTML}
+          </div>`;
+        document.getElementById('evModalBackdrop').classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeModal() {
+        document.getElementById('evModalBackdrop').classList.remove('open');
+        document.body.style.overflow = '';
+      }
+
+      function closeModalOnBg(e) {
+        if (e.target === document.getElementById('evModalBackdrop')) closeModal();
+      }
+
+      /* ── Filter + Search ── */
+      let currentCat = 'all', currentSearch = '';
+      const allCards   = Array.from(document.querySelectorAll('.ev-card, .ev-hero-card'));
+      const noEvRes    = document.getElementById('noEvResults');
+      const evResults  = document.getElementById('evResults');
+
+      document.querySelectorAll('.filter-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+          document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+          tab.classList.add('active');
+          currentCat = tab.dataset.cat;
+          applyEvFilters();
+        });
+      });
+
+      document.getElementById('evSearch').addEventListener('input', e => {
+        currentSearch = e.target.value.trim().toLowerCase();
+        applyEvFilters();
+      });
+
+      function applyEvFilters() {
+        let vis = 0;
+        allCards.forEach(card => {
+          const catOk   = currentCat === 'all' || card.dataset.cat === currentCat;
+          const titleOk = !currentSearch || (card.dataset.title||'').toLowerCase().includes(currentSearch);
+          const show    = catOk && titleOk;
+          card.classList.toggle('hidden', !show);
+          if (show) vis++;
+        });
+        noEvRes.style.display = vis === 0 ? 'block' : 'none';
+        evResults.innerHTML   = currentSearch ? `Showing <strong>${vis}</strong> event${vis!==1?'s':''} for "<strong>${currentSearch}</strong>"` : '';
+      }
+
+      /* ── Keyboard close ── */
+      document.addEventListener('keydown', e => {
+        if (e.key === 'Escape') { closePanel(); closeFab(); closeModal(); }
+      });
+
+      /* ── Scroll reveal ── */
+      const rObs = new IntersectionObserver(entries => {
+        entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); rObs.unobserve(e.target); } });
+      }, { threshold: 0.07 });
+      document.querySelectorAll('.reveal').forEach(el => rObs.observe(el));
+      /* ══ HERO SLIDER ══ */
+const slides = Array.from(document.querySelectorAll('.hero_slide'));
+const dotCon = document.getElementById('dotContainer');
+const hcText = document.getElementById('hcText');
+const hcLabel = document.getElementById('hcLabel');
+let current = 0, timer;
+
+/* Always set background images from data-bg — works on ALL pages */
+slides.forEach(s => {
+  if (s.dataset.bg) {
+    s.style.backgroundImage    = `url(${s.dataset.bg})`;
+    s.style.backgroundSize     = 'cover';
+    s.style.backgroundPosition = 'top center';
+  }
+});
+
+/* Only run the slider/dots logic if the homepage elements exist */
+if (dotCon && slides.length > 1) {
+
+  slides.forEach((s, i) => {
+    const d = document.createElement('button');
+    d.className = 'hero_dot' + (i === 0 ? ' active' : '');
+    d.onclick = () => showSlide(i);
+    dotCon.appendChild(d);
+  });
+
+  function showSlide(n) {
+    slides[current].classList.remove('active');
+    dotCon.children[current].classList.remove('active');
+    current = (n + slides.length) % slides.length;
+    slides[current].classList.add('active');
+    dotCon.children[current].classList.add('active');
+    if (hcText)  { hcText.textContent  = slides[current].dataset.text  || ''; }
+    if (hcLabel) { hcLabel.textContent = slides[current].dataset.label || ''; }
+    if (hcText)  { hcText.style.animation  = 'none'; }
+    if (hcLabel) { hcLabel.style.animation = 'none'; }
+    requestAnimationFrame(() => {
+      if (hcText)  hcText.style.animation  = '';
+      if (hcLabel) hcLabel.style.animation = '';
+    });
+    clearInterval(timer);
+    timer = setInterval(() => showSlide(current + 1), 5000);
+  }
+
+  /* Make showSlide available globally for dot onclick */
+  window.showSlide = showSlide;
+  timer = setInterval(() => showSlide(current + 1), 5000);
+
+} else if (slides.length === 1) {
+  /* Single static hero — just show it, no dots needed */
+  slides[0].classList.add('active');
+}
+
+      
+    </script>
+  </body>
+</html>

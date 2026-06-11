@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Garvey Maceo High School – Graduation Requirements</title>
+    <link rel="icon" type="image/x-icon" href="../assets/img/logo.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" href="../assets/css/index.css" />
+    <!-- Add to <head> — use the actual image for that page -->
+    <link rel="preload" as="image" href="../assets/img/schoolbuilding.png" />
+    <link rel="stylesheet" type="text/css"
+      href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700,900|Poppins:300,400,500,600,700" />
+    <script src="https://kit.fontawesome.com/742f06a093.js" crossorigin="anonymous" defer></script>
+
+    <style>
+      :root {
+        --gold:        #d4a843;
+        --gold-dark:   #b8922a;
+        --gold-light:  #f2dc8a;
+        --gold-pale:   #fef6de;
+        --gold-soft:   #f9edbc;
+        --gold-border: rgba(212,168,67,.28);
+        --cream:       #faf7f0;
+        --cream-mid:   #f5edd8;
+        --cream-dark:  #ede3c8;
+        --white:       #ffffff;
+        --ink:         #1e1400;
+        --ink-mid:     #3d2e00;
+        --muted:       #8a7240;
+        --shadow:      rgba(180,140,40,.11);
+        --shadow-soft: rgba(212,168,67,.08);
+        --radius:      14px;
+        --radius-sm:   8px;
+        /* status colours */
+        --green:  #2e7d32;
+        --green-pale: #e8f5e9;
+        --red:    #c62828;
+        --red-pale:   #ffebee;
+        --blue:   #1565c0;
+        --blue-pale:  #e3f2fd;
+      }
+
+      *, *::before, *::after { box-sizing:border-box; }
+      body {
+        font-family:'Poppins',sans-serif; color:var(--ink); margin:0;
+        background-color:var(--cream);
+        background-image:
+          url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Crect x='20' y='20' width='40' height='40' fill='none' stroke='%23d4a843' stroke-width='0.6' opacity='0.08' transform='rotate(45 40 40)'/%3E%3C/svg%3E"),
+          url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20'%3E%3Ccircle cx='10' cy='10' r='0.8' fill='%23d4a843' opacity='0.06'/%3E%3C/svg%3E");
+        background-size:80px 80px,20px 20px;
+      }
+
+      /* ── Shared ── */
+      .section-inner { max-width:980px; margin:0 auto; padding:0 24px; }
+      .section-title { text-align:center; margin-bottom:52px; }
+      .section-title::before { content:''; display:block; width:48px; height:4px; background:var(--gold); border-radius:2px; margin:0 auto 18px; }
+      .section-title h2 { font-family:'Playfair Display',serif; font-size:clamp(1.7rem,3.8vw,2.4rem); color:var(--ink); margin:0 0 10px; line-height:1.2; }
+      .section-title p { font-size:.9rem; color:var(--muted); margin:0; line-height:1.7; }
+      .gold-divider { height:5px; background:linear-gradient(90deg,transparent,var(--gold),var(--gold-light),var(--gold),transparent); }
+      .hero_pathbar { background:rgba(0,0,0,.4); backdrop-filter:blur(4px); }
+
+      /* ════ INTRO BAND ════ */
+      .gr-intro {
+        background:linear-gradient(135deg,var(--gold-pale) 0%,var(--cream-mid) 50%,var(--gold-soft) 100%);
+        border-bottom:2px solid var(--gold-border);
+        padding:60px 24px 52px; text-align:center;
+        position:relative; overflow:hidden;
+      }
+      .gr-intro::before { content:''; position:absolute; width:360px; height:360px; border:3px solid rgba(212,168,67,.11); transform:rotate(45deg); right:-100px; top:-100px; pointer-events:none; border-radius:4px; }
+      .gr-intro::after  { content:''; position:absolute; width:220px; height:220px; border:2px solid rgba(212,168,67,.08); transform:rotate(45deg); left:-60px; bottom:-60px; pointer-events:none; border-radius:4px; }
+      .gr-intro .inner  { position:relative; z-index:1; max-width:700px; margin:0 auto; }
+      .gr-intro .accent-bar { display:block; width:52px; height:4px; background:linear-gradient(90deg,var(--gold-dark),var(--gold-light)); border-radius:2px; margin:0 auto 20px; }
+      .gr-intro .eyebrow { font-size:.7rem; letter-spacing:.22em; text-transform:uppercase; color:var(--gold-dark); margin-bottom:14px; display:block; font-weight:600; }
+      .gr-intro h1 { font-family:'Playfair Display',serif; font-size:clamp(1.9rem,4.5vw,3rem); font-weight:900; color:var(--ink); margin:0 0 14px; line-height:1.1; }
+      .gr-intro h1 span { color:var(--gold-dark); font-style:italic; }
+      .gr-intro p { font-size:.93rem; color:var(--muted); line-height:1.85; margin:0; max-width:580px; margin-left:auto; margin-right:auto; }
+
+      /* audience pill row */
+      .audience-pills { display:flex; gap:10px; justify-content:center; margin-top:24px; flex-wrap:wrap; }
+      .audience-pill {
+        display:inline-flex; align-items:center; gap:7px;
+        background:var(--white); border:1px solid var(--gold-border);
+        border-radius:50px; padding:8px 18px;
+        font-size:.78rem; font-weight:600; color:var(--ink-mid);
+        box-shadow:0 2px 10px var(--shadow-soft);
+      }
+      .audience-pill i { color:var(--gold-dark); font-size:.8rem; }
+
+      /* ════ STATS STRIP ════ */
+      .stats-strip { background:var(--gold); padding:36px 24px; }
+      .stats-inner { max-width:900px; margin:0 auto; display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:8px; text-align:center; }
+      .stat-item { padding:12px 8px; }
+      .stat-num  { font-family:'Playfair Display',serif; font-size:2.6rem; font-weight:900; color:var(--ink); line-height:1; display:block; }
+      .stat-label{ font-size:.75rem; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-mid); opacity:.72; margin-top:6px; display:block; }
+
+      /* ════ CAPE / 6TH FORM ════ */
+      .cape-section { padding:72px 24px; background:var(--white); }
+      .cape-layout {
+        max-width:980px; margin:0 auto;
+        display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:start;
+      }
+      .req-card {
+        background:var(--cream); border-radius:var(--radius);
+        border-top:4px solid var(--gold); padding:32px 28px;
+        box-shadow:0 3px 18px var(--shadow-soft);
+        transition:transform .25s,box-shadow .25s;
+      }
+      .req-card:hover { transform:translateY(-4px); box-shadow:0 10px 28px rgba(180,140,40,.15); }
+      .req-card h3 { font-family:'Playfair Display',serif; font-size:1.15rem; color:var(--ink); margin:0 0 6px; }
+      .req-card .req-sub { font-size:.75rem; letter-spacing:.08em; text-transform:uppercase; color:var(--gold-dark); font-weight:600; display:block; margin-bottom:18px; }
+      .req-list { list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:10px; }
+      .req-list li { display:flex; align-items:flex-start; gap:10px; font-size:.84rem; color:var(--muted); line-height:1.65; }
+      .req-list li i { color:var(--gold-dark); margin-top:3px; flex-shrink:0; width:14px; }
+      .req-list li strong { color:var(--ink); }
+      .req-note {
+        margin-top:18px; padding:12px 16px;
+        background:var(--gold-pale); border:1px solid var(--gold-border);
+        border-radius:var(--radius-sm); font-size:.78rem; color:var(--muted); line-height:1.65;
+      }
+      .req-note i { color:var(--gold-dark); margin-right:5px; }
+
+      /* subject table */
+      .subject-table { width:100%; border-collapse:collapse; margin-top:18px; font-size:.82rem; }
+      .subject-table th { background:var(--gold-pale); color:var(--ink-mid); text-align:left; padding:8px 12px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; font-size:.72rem; border-bottom:2px solid var(--gold-border); }
+      .subject-table td { padding:9px 12px; border-bottom:1px solid var(--cream-dark); color:var(--muted); vertical-align:middle; }
+      .subject-table tr:last-child td { border-bottom:none; }
+      .subject-table tr:hover td { background:rgba(212,168,67,.04); }
+      .badge { display:inline-block; font-size:.63rem; font-weight:800; letter-spacing:.07em; text-transform:uppercase; padding:2px 8px; border-radius:20px; }
+      .badge-req  { background:#e8f5e9; color:#2e7d32; }
+      .badge-elec { background:#e3f2fd; color:#1565c0; }
+      .badge-opt  { background:var(--gold-pale); color:var(--gold-dark); }
+
+      /* ════ ATTENDANCE & CONDUCT ════ */
+      .ac-section { padding:72px 24px; background:var(--cream); }
+      .ac-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:24px; max-width:980px; margin:0 auto; }
+      .ac-card {
+        background:var(--white); border-radius:var(--radius);
+        padding:30px 26px; border-left:4px solid var(--gold);
+        box-shadow:0 3px 18px var(--shadow-soft);
+        transition:transform .25s,box-shadow .25s;
+      }
+      .ac-card:hover { transform:translateY(-5px); box-shadow:0 12px 28px rgba(180,140,40,.14); }
+      .ac-card .ac-icon { font-size:2rem; display:block; margin-bottom:14px; }
+      .ac-card h3 { font-family:'Playfair Display',serif; font-size:1rem; color:var(--ink); margin:0 0 10px; }
+      .ac-card p  { font-size:.84rem; color:var(--muted); line-height:1.8; margin:0 0 10px; }
+      .ac-card p:last-child { margin:0; }
+      .percent-bar-wrap { margin:14px 0 6px; }
+      .percent-label { font-size:.76rem; font-weight:700; color:var(--ink-mid); display:flex; justify-content:space-between; margin-bottom:6px; }
+      .percent-bar { height:8px; border-radius:4px; background:var(--cream-dark); overflow:hidden; }
+      .percent-fill { height:100%; border-radius:4px; background:linear-gradient(90deg,var(--gold-dark),var(--gold-light)); transition:width 1.2s ease; width:0; }
+
+      /* ════ COMMUNITY SERVICE / HEART ════ */
+      .cs-section { padding:72px 24px; background:var(--white); }
+      .cs-layout { max-width:980px; margin:0 auto; display:grid; grid-template-columns:1.1fr 1fr; gap:48px; align-items:start; }
+      .cs-text::before { content:''; display:block; width:40px; height:4px; background:var(--gold); border-radius:2px; margin-bottom:18px; }
+      .cs-text h2 { font-family:'Playfair Display',serif; font-size:clamp(1.4rem,3vw,2rem); color:var(--ink); margin:0 0 16px; }
+      .cs-text p  { font-size:.88rem; color:var(--muted); line-height:1.85; margin:0 0 14px; }
+      .cs-steps { display:flex; flex-direction:column; gap:14px; }
+      .cs-step { display:flex; gap:14px; align-items:flex-start; background:var(--cream); border-radius:var(--radius-sm); padding:16px 18px; border:1px solid var(--gold-border); box-shadow:0 2px 10px var(--shadow-soft); }
+      .cs-step-num { width:32px; height:32px; border-radius:50%; flex-shrink:0; background:linear-gradient(135deg,var(--gold),var(--gold-light)); display:flex; align-items:center; justify-content:center; font-family:'Playfair Display',serif; font-size:.9rem; font-weight:700; color:var(--ink); box-shadow:0 2px 8px rgba(212,168,67,.3); }
+      .cs-step-text h4 { font-size:.84rem; font-weight:700; color:var(--ink); margin:0 0 4px; }
+      .cs-step-text p  { font-size:.79rem; color:var(--muted); margin:0; line-height:1.6; }
+      .heart-card {
+        background:linear-gradient(135deg,var(--gold-pale),var(--gold-soft));
+        border:1px solid var(--gold-border); border-radius:var(--radius);
+        padding:28px 26px; box-shadow:0 4px 20px var(--shadow-soft);
+      }
+      .heart-card h3 { font-family:'Playfair Display',serif; font-size:1.05rem; color:var(--ink); margin:0 0 12px; }
+      .heart-row { display:flex; align-items:flex-start; gap:10px; margin-bottom:10px; font-size:.84rem; color:var(--muted); }
+      .heart-row i { color:var(--gold-dark); flex-shrink:0; margin-top:3px; width:16px; }
+      .heart-row:last-child { margin-bottom:0; }
+
+      /* ════ GRADUATION CEREMONY ════ */
+      .ceremony-section {
+        padding:72px 24px;
+        background:linear-gradient(135deg,var(--gold-pale) 0%,var(--cream-mid) 50%,var(--gold-soft) 100%);
+        border-top:2px solid var(--gold-border);
+        border-bottom:2px solid var(--gold-border);
+        position:relative; overflow:hidden;
+      }
+      .ceremony-section::before { content:'🎓'; position:absolute; right:40px; top:24px; font-size:8rem; opacity:.06; pointer-events:none; line-height:1; }
+      .ceremony-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:20px; max-width:980px; margin:0 auto; }
+      .ceremony-card {
+        background:var(--white); border-radius:var(--radius);
+        padding:26px 22px; text-align:center;
+        box-shadow:0 4px 20px var(--shadow);
+        border-top:4px solid var(--gold);
+        transition:transform .25s,box-shadow .25s;
+      }
+      .ceremony-card:hover { transform:translateY(-5px); box-shadow:0 12px 30px rgba(180,140,40,.16); }
+      .ceremony-card .c-icon { width:56px; height:56px; border-radius:50%; background:linear-gradient(135deg,var(--gold),var(--gold-light)); display:flex; align-items:center; justify-content:center; font-size:1.4rem; margin:0 auto 14px; box-shadow:0 4px 14px rgba(212,168,67,.3); }
+      .ceremony-card h3 { font-family:'Playfair Display',serif; font-size:.95rem; color:var(--ink); margin:0 0 8px; }
+      .ceremony-card .c-detail { font-size:.85rem; font-weight:700; color:var(--gold-dark); display:block; margin-bottom:4px; }
+      .ceremony-card p { font-size:.76rem; color:var(--muted); margin:0; line-height:1.6; }
+
+      /* ════ PROGRESS CHECKLIST ════ */
+      .checklist-section { padding:72px 24px; background:var(--white); }
+      .checklist-wrap { max-width:720px; margin:0 auto; }
+      .checklist-intro { font-size:.88rem; color:var(--muted); line-height:1.8; margin-bottom:32px; text-align:center; }
+      .checklist-group { margin-bottom:32px; }
+      .checklist-group-title {
+        font-family:'Playfair Display',serif; font-size:1rem; color:var(--ink);
+        margin:0 0 14px; display:flex; align-items:center; gap:10px;
+      }
+      .checklist-group-title::after { content:''; flex:1; height:1px; background:var(--cream-dark); }
+      .check-item {
+        display:flex; align-items:flex-start; gap:14px;
+        padding:14px 18px; border-radius:var(--radius-sm);
+        border:1px solid var(--cream-dark);
+        background:var(--cream); margin-bottom:10px;
+        cursor:pointer; transition:border-color .2s,background .2s;
+        user-select:none;
+      }
+      .check-item:hover { border-color:var(--gold-border); }
+      .check-item.checked { background:var(--green-pale); border-color:rgba(46,125,50,.25); }
+      .check-box {
+        width:22px; height:22px; border-radius:5px; flex-shrink:0;
+        border:2px solid var(--cream-dark); background:var(--white);
+        display:flex; align-items:center; justify-content:center;
+        transition:background .2s,border-color .2s; margin-top:1px;
+      }
+      .check-item.checked .check-box { background:var(--green); border-color:var(--green); }
+      .check-box i { color:var(--white); font-size:.7rem; display:none; }
+      .check-item.checked .check-box i { display:block; }
+      .check-label { flex:1; }
+      .check-label strong { font-size:.86rem; color:var(--ink); display:block; margin-bottom:3px; }
+      .check-label span  { font-size:.78rem; color:var(--muted); line-height:1.55; }
+      .check-item.checked .check-label strong { color:var(--green); text-decoration:line-through; opacity:.7; }
+
+      /* progress bar */
+      .checklist-progress { margin-bottom:36px; }
+      .progress-top { display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; }
+      .progress-top span { font-size:.82rem; font-weight:600; color:var(--ink-mid); }
+      .progress-top .prog-pct { color:var(--gold-dark); }
+      .progress-outer { height:10px; border-radius:5px; background:var(--cream-dark); overflow:hidden; }
+      .progress-inner { height:100%; border-radius:5px; background:linear-gradient(90deg,var(--gold-dark),var(--gold-light)); transition:width .4s ease; width:0; }
+
+      /* reset btn */
+      .btn-reset {
+        display:inline-flex; align-items:center; gap:7px;
+        background:none; border:1.5px solid var(--gold-border);
+        color:var(--muted); font-family:'Poppins',sans-serif;
+        font-size:.78rem; font-weight:600; padding:8px 18px;
+        border-radius:50px; cursor:pointer; margin-top:8px;
+        transition:border-color .2s,color .2s;
+      }
+      .btn-reset:hover { border-color:var(--gold-dark); color:var(--ink); }
+
+      /* ════ CONTACTS ════ */
+      .contacts-section { padding:72px 24px; background:var(--cream); }
+      .contacts-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:20px; max-width:980px; margin:0 auto; }
+      .contact-card {
+        background:var(--white); border-radius:var(--radius);
+        padding:28px 22px; text-align:center;
+        box-shadow:0 3px 16px var(--shadow-soft);
+        border-top:4px solid var(--gold);
+        transition:transform .25s,box-shadow .25s;
+        text-decoration:none; color:var(--ink);
+        display:flex; flex-direction:column; align-items:center; gap:10px;
+      }
+      .contact-card:hover { transform:translateY(-5px); box-shadow:0 12px 28px rgba(180,140,40,.16); }
+      .contact-card .cc-icon { width:52px; height:52px; border-radius:50%; background:linear-gradient(135deg,var(--gold),var(--gold-light)); display:flex; align-items:center; justify-content:center; font-size:1.2rem; box-shadow:0 4px 14px rgba(212,168,67,.3); }
+      .contact-card h3 { font-family:'Playfair Display',serif; font-size:.95rem; color:var(--ink); margin:0; }
+      .contact-card p  { font-size:.79rem; color:var(--muted); margin:0; line-height:1.55; }
+      .contact-card .cc-cta { font-size:.74rem; font-weight:700; color:var(--gold-dark); display:flex; align-items:center; gap:4px; margin-top:4px; }
+
+      /* ════ CTA BANNER ════ */
+      .cta-banner {
+        background:linear-gradient(135deg,var(--gold-soft) 0%,var(--gold-pale) 60%,var(--cream-mid) 100%);
+        padding:64px 24px; text-align:center;
+        border-top:2px solid var(--gold-border);
+        position:relative; overflow:hidden;
+      }
+      .cta-banner::before { content:''; position:absolute; width:260px; height:260px; border:28px solid rgba(212,168,67,.09); transform:rotate(45deg); right:-70px; top:-70px; pointer-events:none; border-radius:4px; }
+      .cta-banner .inner { position:relative; z-index:1; max-width:580px; margin:0 auto; }
+      .cta-banner .accent-bar { display:block; width:40px; height:4px; background:linear-gradient(90deg,var(--gold-dark),var(--gold-light)); border-radius:2px; margin:0 auto 18px; }
+      .cta-banner h2 { font-family:'Playfair Display',serif; font-size:clamp(1.6rem,3.5vw,2.2rem); color:var(--ink); margin:0 0 14px; }
+      .cta-banner p  { font-size:.9rem; color:var(--muted); line-height:1.85; margin:0 0 28px; }
+      .cta-btn-row { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
+      .btn-ink { background:var(--ink); color:var(--white); font-weight:700; font-size:.88rem; padding:13px 28px; border-radius:8px; text-decoration:none; letter-spacing:.03em; transition:background .2s,transform .2s; display:inline-flex; align-items:center; gap:8px; }
+      .btn-ink:hover { background:var(--ink-mid); transform:translateY(-2px); }
+      .btn-gold-outline { border:2px solid var(--gold-border); color:var(--ink-mid); font-size:.88rem; padding:12px 26px; border-radius:8px; text-decoration:none; letter-spacing:.03em; transition:border-color .2s,background .2s,transform .2s; display:inline-flex; align-items:center; gap:8px; }
+      .btn-gold-outline:hover { border-color:var(--gold-dark); background:rgba(212,168,67,.08); transform:translateY(-2px); }
+
+      /* ════ REVEAL ════ */
+      .reveal { opacity:0; transform:translateY(24px); transition:opacity .65s ease,transform .65s ease; }
+      .reveal.visible { opacity:1; transform:translateY(0); }
+      .reveal.delay-1{transition-delay:.1s} .reveal.delay-2{transition-delay:.2s}
+      .reveal.delay-3{transition-delay:.3s} .reveal.delay-4{transition-delay:.4s}
+
+      @media(max-width:700px){
+        .cape-layout,.cs-layout { grid-template-columns:1fr; gap:28px; }
+        .ceremony-grid { grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- ══ PANEL OVERLAY ══ -->
+    <div class="panel-overlay" id="panelOverlay" onclick="closePanel()"></div>
+
+    <!-- ══ SIDE PANEL NAV ══ -->
+    <div class="side-panel" id="sidePanel">
+      <div class="panel-head">
+        <div class="ph-logo">
+          <img src="../assets/img/logo.png" alt="GMHS Logo" />
+          <span>Garvey Maceo<br>High School</span>
+        </div>
+        <button class="panel-close" onclick="closePanel()"><i class="fas fa-times"></i></button>
+      </div>
+      <nav class="panel-nav">
+        <a href="../index.html"          class="pnav-item"><i class="fas fa-home" style="width:18px;margin-right:8px;"></i> Home</a>
+        <a href="Principal.html"         class="pnav-item active"><i class="fas fa-user-tie" style="width:18px;margin-right:8px;"></i> Principal's Message</a>
+
+        <div class="pnav-label">Cubanz</div>
+        <a href="ethos.html"      class="pnav-sub">Our Ethos</a>
+        <a href="staff.html"      class="pnav-sub">Our Staff</a>
+        <a href="department.html" class="pnav-sub">Departments</a>
+        <a href="history.html"    class="pnav-sub">History</a>
+        <a href="news.html"       class="pnav-sub">News Updates</a>
+
+        <div class="pnav-label">Academics</div>
+        <a href="Curriculum.html"        class="pnav-sub">Curriculum</a>
+        <a href="Health.html"            class="pnav-sub">Health &amp; Welfare</a>
+        <a href="graduation.html"        class="pnav-sub">Graduation Requirements</a>
+        <a href="FacultySpotlight.html" class="pnav-sub">Faculty Spotlight</a>
+
+        <div class="pnav-label">Stakeholders</div>
+        <a href="alumni.html" class="pnav-sub">Alumni</a>
+        <a href="pta.html"    class="pnav-sub">PTA</a>
+
+        <div class="pnav-label">Gallery</div>
+        <a href="sports.html" class="pnav-sub">Sports &amp; Events Gallery</a>
+        <a href="events.html" class="pnav-sub">Events</a>
+
+        <div class="pnav-label">Contact</div>
+        <a href="contact.html" class="pnav-sub">Contact Us</a>
+        <a href="faq.html"     class="pnav-sub">FAQ</a>
+        <a href="donate.html"  class="pnav-sub">Donate</a>
+      </nav>
+      <div class="panel-footer">
+        <p>© 2026 Garvey Maceo High School<br>Website design by SkoolTech London</p>
+      </div>
+    </div>
+
+    <!-- ══ STICKY HEADER ══ -->
+    <header>
+      <a href="../index.html" class="text_bg">
+        <img src="../assets/img/logo.png" alt="GMHS Logo" />
+        <span>Garvey Maceo High School</span>
+      </a>
+      <div class="flex_spacer"></div>
+      <div class="header-socials">
+        <a href="https://www.facebook.com/GARVEYMACEOCUBANS" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="youtube.com" title="YouTube"><i class="fab fa-youtube"></i></a>
+        <a href="https://www.instagram.com/garveymaceo/" title="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.linkedin.com/school/garvey-maceo-high-school/" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://twitter.com/garveymaceo" title="Twitter"><i class="fab fa-twitter"></i></a> 
+        <a href="https://www.tiktok.com/discover/garvey-maceo-high-school-jamaica" title="TikTok"><i class="fab fa-tiktok"></i></a>    
+      </div>
+    </header>
+
+ <!-- ══ HERO ══ -->
+<div class="hero_container fixed">
+  <div class="hero_pathbar" style="position:relative;z-index:3;">
+    <div class="inner">
+      <a href="../index.html">Home</a>
+      <i class="fas fa-chevron-right"></i>
+      <a href="graduation.html">Graduation Requirements</a>
+    </div>
+  </div>
+  <div class="hero_gradient_overlay fixed" style="pointer-events:none;"></div>
+  <div class="hero_slide fixed"
+       data-bg="../assets/img/schoolbuilding.png"
+       style="background-size:cover;
+              background-position:center;
+              position:absolute;inset:0;z-index:0;">
+  </div>
+</div>
+
+ <div class="gold-divider"></div>
+
+    <!-- ══ INTRO ══ -->
+    <div class="gr-intro">
+      <div class="inner reveal">
+        <span class="accent-bar"></span>
+        <span class="eyebrow">Academic Standards at GMHS</span>
+        <h1>Graduation <span>Requirements</span></h1>
+        <p>Everything students and parents need to know about the requirements for completing your secondary education at Garvey Maceo High School from CSEC and CAPE to conduct, community service and the graduation ceremony.</p>
+        <div class="audience-pills">
+          <span class="audience-pill"><i class="fas fa-user-graduate"></i> For Students</span>
+          <span class="audience-pill"><i class="fas fa-users"></i> For Parents &amp; Guardians</span>
+        </div>
+      </div>
+    </div>
+    <div class="gold-divider"></div>
+
+    <!-- ══ STATS ══ -->
+    <div class="stats-strip">
+      <div class="stats-inner">
+        <div class="stat-item reveal"><span class="stat-num" data-target="5">0</span><span class="stat-label">CSEC Must-Passes</span></div>
+        <div class="stat-item reveal delay-1"><span class="stat-num" data-target="80">0</span><span class="stat-num">%</span><span class="stat-label">Min. Attendance</span></div>
+        <div class="stat-item reveal delay-2"><span class="stat-num" data-target="40">0</span><span class="stat-num">hrs</span><span class="stat-label">Community Service</span></div>
+        <div class="stat-item reveal delay-3"><span class="stat-num" data-target="2">0</span><span class="stat-label">CAPE Units Min.</span></div>
+      </div>
+    </div>
+
+    <!-- ══ CAPE / 6TH FORM ══ -->
+    <div class="cape-section">
+      <div class="section-inner">
+        <div class="section-title reveal">
+          <h2>CSEC &amp; CAPE Requirements</h2>
+          <p>The Caribbean Examinations Council qualifications that every GMHS student must achieve</p>
+        </div>
+        <div class="cape-layout">
+
+          <!-- CSEC -->
+          <div class="req-card reveal">
+            <h3>CSEC 4th &amp; 5th Form</h3>
+            <span class="req-sub">Caribbean Secondary Education Certificate</span>
+            <ul class="req-list">
+              <li><i class="fas fa-check-circle"></i><span>Minimum of <strong>5 CSEC subjects</strong> at Grade I, II or III to be eligible for graduation</span></li>
+              <li><i class="fas fa-check-circle"></i><span><strong>English Language</strong> is mandatory, a pass is required for all certification pathways</span></li>
+              <li><i class="fas fa-check-circle"></i><span><strong>Mathematics</strong> is strongly recommended and required for most 6th Form and tertiary programmes</span></li>
+              <li><i class="fas fa-check-circle"></i><span>Students may sit up to <strong>10 subjects</strong> choose strategically based on career goals</span></li>
+              <li><i class="fas fa-check-circle"></i><span>School-Based Assessments (SBAs) must be submitted on time,  late submissions affect final grades</span></li>
+            </ul>
+            <div class="req-note"><i class="fas fa-info-circle"></i> CXC grades run from I (highest) to VI (fail). Grades I III are passes. Grades IV–VI do not count toward the graduation requirement.</div>
+
+            <table class="subject-table" style="margin-top:20px;">
+              <thead><tr><th>Subject</th><th>Status</th></tr></thead>
+              <tbody>
+                <tr><td>English Language</td><td><span class="badge badge-req">Mandatory</span></td></tr>
+                <tr><td>Mathematics</td><td><span class="badge badge-req">Strongly Required</span></td></tr>
+                <tr><td>English Literature</td><td><span class="badge badge-elec">Elective</span></td></tr>
+                <tr><td>Information Technology</td><td><span class="badge badge-elec">Elective</span></td></tr>
+                <tr><td>Agricultural Science</td><td><span class="badge badge-elec">Elective</span></td></tr>
+                <tr><td>Principles of Accounts</td><td><span class="badge badge-elec">Elective</span></td></tr>
+                <tr><td>Home Economics</td><td><span class="badge badge-elec">Elective</span></td></tr>
+                <tr><td>Additional subjects (up to 10)</td><td><span class="badge badge-opt">Optional</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- CAPE -->
+          <div class="req-card reveal delay-2">
+            <h3>CAPE 6th Form</h3>
+            <span class="req-sub">Caribbean Advanced Proficiency Examination</span>
+            <ul class="req-list">
+              <li><i class="fas fa-check-circle"></i><span>Minimum of <strong>2 CAPE Units</strong> required for a 6th Form completion certificate</span></li>
+              <li><i class="fas fa-check-circle"></i><span><strong>Communication Studies</strong> and <strong>Caribbean Studies</strong> are compulsory for all 6th Form students</span></li>
+              <li><i class="fas fa-check-circle"></i><span>Each CAPE subject has <strong>Unit 1 (Lower 6th)</strong> and <strong>Unit 2 (Upper 6th)</strong>  both must be completed for a full subject pass</span></li>
+              <li><i class="fas fa-check-circle"></i><span>The <strong>CAPE Associate Degree</strong> requires a minimum of 7 Units including Communication Studies and Caribbean Studies</span></li>
+              <li><i class="fas fa-check-circle"></i><span>Internal Assessments (IAs) carry significant weight,  missing deadlines seriously impacts your final grade</span></li>
+            </ul>
+            <div class="req-note"><i class="fas fa-info-circle"></i> CAPE results are recognised by UWI, UTech, NCU and all major Jamaican and Caribbean universities for direct entry.</div>
+
+            <table class="subject-table" style="margin-top:20px;">
+              <thead><tr><th>Subject</th><th>Status</th></tr></thead>
+              <tbody>
+                <tr><td>Communication Studies</td><td><span class="badge badge-req">Compulsory</span></td></tr>
+                <tr><td>Caribbean Studies</td><td><span class="badge badge-req">Compulsory</span></td></tr>
+                <tr><td>Information Technology</td><td><span class="badge badge-elec">Elective</span></td></tr>
+                <tr><td>Management of Business</td><td><span class="badge badge-elec">Elective</span></td></tr>
+                <tr><td>Accounts</td><td><span class="badge badge-elec">Elective</span></td></tr>
+                <tr><td>Economics</td><td><span class="badge badge-elec">Elective</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ ATTENDANCE & CONDUCT ══ -->
+    <div class="ac-section">
+      <div class="section-inner">
+        <div class="section-title reveal">
+          <h2>Attendance &amp; Conduct</h2>
+          <p>Meeting these standards is essential for graduation eligibility at GMHS</p>
+        </div>
+        <div class="ac-grid">
+
+          <div class="ac-card reveal">
+            <span class="ac-icon">📅</span>
+            <h3>Minimum Attendance</h3>
+            <p>Students must maintain a minimum of <strong>80% attendance</strong> across the academic year to be eligible for graduation and to sit CXC examinations.</p>
+            <p>Absences due to illness must be supported by a medical certificate. Unexplained absences count against your attendance record.</p>
+            <div class="percent-bar-wrap">
+              <div class="percent-label"><span>Required minimum</span><span>80%</span></div>
+              <div class="percent-bar"><div class="percent-fill" data-pct="80"></div></div>
+            </div>
+          </div>
+
+          <div class="ac-card reveal delay-1">
+            <span class="ac-icon">📐</span>
+            <h3>Code of Conduct</h3>
+            <p>Students must demonstrate good conduct throughout their time at GMHS. Serious breaches of the school's code of conduct including persistent indiscipline, violence or dishonesty may result in <strong>withdrawal of graduation eligibility</strong>.</p>
+            <p>All incidents are recorded on the student's file and reviewed at graduation consideration meetings each term.</p>
+          </div>
+
+          <div class="ac-card reveal delay-2">
+            <span class="ac-icon">📝</span>
+            <h3>SBA &amp; IA Submission</h3>
+            <p>School-Based Assessments (CSEC) and Internal Assessments (CAPE) are a required component of CXC examinations. <strong>Failure to submit SBAs/IAs</strong> will result in disqualification from that subject.</p>
+            <p>Deadlines are set by CXC and cannot be extended by the school. Students are responsible for tracking and meeting all submission dates.</p>
+          </div>
+
+          <div class="ac-card reveal delay-3">
+            <span class="ac-icon">💳</span>
+            <h3>Financial Clearance</h3>
+            <p>Students must have <strong>no outstanding school fees or levies</strong> to receive their graduation certificate and participate in the graduation ceremony. Parents are advised to settle any balances well in advance of the ceremony date.</p>
+            <p>Speak to the school bursar privately if you require a payment arrangement.</p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ COMMUNITY SERVICE / HEART ══ -->
+    <div class="cs-section">
+      <div class="section-inner">
+        <div class="section-title reveal">
+          <h2>Community Service &amp; HEART Trust</h2>
+          <p>Building character and vocational readiness beyond the classroom</p>
+        </div>
+        <div class="cs-layout">
+          <div class="cs-text reveal">
+            <h2>Giving Back to Your Community</h2>
+            <p>In keeping with the values of Garvey Maceo High School and the wider Jamaican education system, students are required to complete a minimum of <strong>40 hours of approved community service</strong> before graduation.</p>
+            <p>Community service develops leadership, empathy and civic responsibility values that the school and Jamaican society hold in high regard. Activities must be approved by the school and properly documented.</p>
+            <p>Additionally, eligible 5th and 6th Form students are encouraged to explore programmes offered through the <strong>HEART/NSTA Trust</strong>  Jamaica's national skills training body  which can complement your CXC qualifications with vocational certification.</p>
+            <div class="cs-steps" style="margin-top:24px;">
+              <div class="cs-step">
+                <div class="cs-step-num">1</div>
+                <div class="cs-step-text"><h4>Identify an Approved Activity</h4><p>Community service must benefit others, some examples include church programmes, community clean-ups, tutoring, volunteering at health drives or supporting local organisations in Clarendon.</p></div>
+              </div>
+              <div class="cs-step">
+                <div class="cs-step-num">2</div>
+                <div class="cs-step-text"><h4>Get Prior Approval</h4><p>Submit a proposal to the Guidance Counsellor or VP before starting. Unapproved activities will not count toward your requirement.</p></div>
+              </div>
+              <div class="cs-step">
+                <div class="cs-step-num">3</div>
+                <div class="cs-step-text"><h4>Log Your Hours</h4><p>Keep a signed logbook or letter from your supervisor confirming hours completed. Submit this to the school office by the end of 5th Form.</p></div>
+              </div>
+            </div>
+          </div>
+          <div class="reveal delay-2">
+            <div class="heart-card">
+              <h3>🎓 HEART/NSTA Trust</h3>
+              <div class="heart-row"><i class="fas fa-check-circle"></i><span>Jamaica's national body for technical and vocational training and certification</span></div>
+              <div class="heart-row"><i class="fas fa-check-circle"></i><span>Offers NVQ-J Level 1 to 3 qualifications alongside or after CXC</span></div>
+              <div class="heart-row"><i class="fas fa-check-circle"></i><span>Relevant to students in IT, Business, Home Economics, Agriculture and Industrial Arts</span></div>
+              <div class="heart-row"><i class="fas fa-check-circle"></i><span>HEART certification is widely recognised by Jamaican employers</span></div>
+              <div class="heart-row"><i class="fas fa-external-link-alt"></i><span>Visit <a href="https://www.heart-nsta.gov.jm" target="_blank" style="color:var(--gold-dark);font-weight:600;">heart-nsta.gov.jm</a> for programme listings</span></div>
+              <div class="heart-row"><i class="fas fa-phone"></i><span>Speak to Mrs. Sharon Cascoe (Guidance Counsellor) for referrals</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ GRADUATION CEREMONY ══ -->
+    <div class="ceremony-section">
+      <div class="section-inner">
+        <div class="section-title reveal">
+          <h2>Graduation Ceremony</h2>
+          <p>Celebrating your achievement, key information for students and families</p>
+        </div>
+        <div class="ceremony-grid">
+          <div class="ceremony-card reveal">
+            <div class="c-icon"><i class="fas fa-calendar-alt"></i></div>
+            <h3>Ceremony Date</h3>
+            <span class="c-detail">To Be Confirmed</span>
+            <p>The annual graduation ceremony is typically held in July. Confirmed dates will be communicated via the school office and PTA.</p>
+          </div>
+          <div class="ceremony-card reveal delay-1">
+            <div class="c-icon"><i class="fas fa-map-marker-alt"></i></div>
+            <h3>Venue</h3>
+            <span class="c-detail">GMHS Campus / TBC</span>
+            <p>The ceremony is held on the school grounds at Vernamfield, May Pen, Clarendon. Venue updates will be communicated in advance.</p>
+          </div>
+          <div class="ceremony-card reveal delay-2">
+            <div class="c-icon"><i class="fas fa-hat-wizard"></i></div>
+            <h3>Cap &amp; Gown</h3>
+            <span class="c-detail">Compulsory for all graduates</span>
+            <p>All graduating students must wear the official GMHS cap and gown. Details on collection and cost will be circulated by the school office.</p>
+          </div>
+          <div class="ceremony-card reveal delay-3">
+            <div class="c-icon"><i class="fas fa-ticket-alt"></i></div>
+            <h3>Guest Tickets</h3>
+            <span class="c-detail">2 tickets per graduate</span>
+            <p>Each graduating student receives 2 guest tickets. Additional tickets may be available, please  contact the school office to enquire.</p>
+          </div>
+          <div class="ceremony-card reveal delay-2">
+            <div class="c-icon"><i class="fas fa-check-circle"></i></div>
+            <h3>Eligibility</h3>
+            <span class="c-detail">All requirements must be met</span>
+            <p>Students must have met all academic, attendance, conduct, financial and community service requirements to participate in the ceremony.</p>
+          </div>
+          <div class="ceremony-card reveal delay-3">
+            <div class="c-icon"><i class="fas fa-star"></i></div>
+            <h3>Valedictorian</h3>
+            <span class="c-detail">Top Academic Achiever</span>
+            <p>The Valedictorian is selected based on overall academic performance. Students are recognised for Excellence Awards in specific subjects at the ceremony.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ CHECKLIST ══ -->
+    <div class="checklist-section">
+      <div class="section-inner">
+        <div class="section-title reveal">
+          <h2>Graduation Readiness Checklist</h2>
+          <p>Track your progress, tick each item as you complete it</p>
+        </div>
+        <div class="checklist-wrap reveal">
+          <p class="checklist-intro">Use this interactive checklist to stay on top of your graduation requirements. Your progress is saved in this browser session. Tick each item as you complete it.</p>
+
+          <div class="checklist-progress">
+            <div class="progress-top">
+              <span>Your Progress</span>
+              <span class="prog-pct" id="progPct">0%</span>
+            </div>
+            <div class="progress-outer"><div class="progress-inner" id="progBar"></div></div>
+          </div>
+
+          <!-- Academic -->
+          <div class="checklist-group">
+            <h4 class="checklist-group-title">🎓 Academic Requirements</h4>
+            <div class="check-item" onclick="toggleCheck(this)">
+              <div class="check-box"><i class="fas fa-check"></i></div>
+              <div class="check-label"><strong>Passed English Language CSEC (Grade I–III)</strong><span>Mandatory for all graduation pathways</span></div>
+            </div>
+            <div class="check-item" onclick="toggleCheck(this)">
+              <div class="check-box"><i class="fas fa-check"></i></div>
+              <div class="check-label"><strong>Achieved minimum 5 CSEC passes</strong><span>Grade I, II or III required across 5 subjects</span></div>
+            </div>
+            <div class="check-item" onclick="toggleCheck(this)">
+              <div class="check-box"><i class="fas fa-check"></i></div>
+              <div class="check-label"><strong>All SBAs/IAs submitted on time</strong><span>Check with each subject teacher to confirm receipt</span></div>
+            </div>
+            <div class="check-item" onclick="toggleCheck(this)">
+              <div class="check-box"><i class="fas fa-check"></i></div>
+              <div class="check-label"><strong>6th Form: Completed Communication Studies &amp; Caribbean Studies</strong><span>Compulsory for all CAPE students</span></div>
+            </div>
+          </div>
+
+          <!-- Conduct -->
+          <div class="checklist-group">
+            <h4 class="checklist-group-title">📐 Attendance &amp; Conduct</h4>
+            <div class="check-item" onclick="toggleCheck(this)">
+              <div class="check-box"><i class="fas fa-check"></i></div>
+              <div class="check-label"><strong>Maintained 80%+ attendance</strong><span>Confirm with the school office if unsure of your record</span></div>
+            </div>
+            <div class="check-item" onclick="toggleCheck(this)">
+              <div class="check-box"><i class="fas fa-check"></i></div>
+              <div class="check-label"><strong>No outstanding conduct issues on file</strong><span>Speak to the VP or Guidance Counsellor if concerned</span></div>
+            </div>
+          </div>
+
+          <!-- Community -->
+          <div class="checklist-group">
+            <h4 class="checklist-group-title">🤝 Community Service</h4>
+            <div class="check-item" onclick="toggleCheck(this)">
+              <div class="check-box"><i class="fas fa-check"></i></div>
+              <div class="check-label"><strong>Completed 40 hours of approved community service</strong><span>Activity must have been pre-approved by the school</span></div>
+            </div>
+            <div class="check-item" onclick="toggleCheck(this)">
+              <div class="check-box"><i class="fas fa-check"></i></div>
+              <div class="check-label"><strong>Submitted signed community service log to school office</strong><span>Supervisor's signature and contact details required</span></div>
+            </div>
+          </div>
+
+          <!-- Ceremony -->
+          <div class="checklist-group">
+            <h4 class="checklist-group-title">🎉 Graduation Ceremony</h4>
+            <div class="check-item" onclick="toggleCheck(this)">
+              <div class="check-box"><i class="fas fa-check"></i></div>
+              <div class="check-label"><strong>All school fees and levies cleared</strong><span>Speak to the bursar if you need a payment arrangement</span></div>
+            </div>
+            <div class="check-item" onclick="toggleCheck(this)">
+              <div class="check-box"><i class="fas fa-check"></i></div>
+              <div class="check-label"><strong>Cap &amp; gown collected and paid for</strong><span>Details distributed by the school office before the ceremony</span></div>
+            </div>
+            <div class="check-item" onclick="toggleCheck(this)">
+              <div class="check-box"><i class="fas fa-check"></i></div>
+              <div class="check-label"><strong>Guest tickets collected</strong><span>2 tickets per graduate is available from the school office</span></div>
+            </div>
+          </div>
+
+          <button class="btn-reset" onclick="resetChecklist()"><i class="fas fa-redo"></i> Reset checklist</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ KEY CONTACTS ══ -->
+    <div class="contacts-section">
+      <div class="section-inner">
+        <div class="section-title reveal">
+          <h2>Key Contacts for Graduation</h2>
+          <p>Not sure about a requirement? Reach out to the right person directly</p>
+        </div>
+        <div class="contacts-grid">
+          <a href="tel:8769867006" class="contact-card reveal">
+            <div class="cc-icon"><i class="fas fa-school"></i></div>
+            <h3>School Office</h3>
+            <p>General graduation queries, tickets, financial clearance and certificates</p>
+            <span class="cc-cta">(876) 986-7006 <i class="fas fa-arrow-right"></i></span>
+          </a>
+          <a href="mailto:garveymaceo.high.cla@moey.gov.jm" class="contact-card reveal delay-1">
+            <div class="cc-icon"><i class="fas fa-envelope"></i></div>
+            <h3>Email the School</h3>
+            <p>Written enquiries about requirements, SBA submissions and ceremony logistics</p>
+            <span class="cc-cta">Send Email <i class="fas fa-arrow-right"></i></span>
+          </a>
+          <div class="contact-card reveal delay-2" style="cursor:default;">
+            <div class="cc-icon"><i class="fas fa-user-tie"></i></div>
+            <h3>Vice Principal</h3>
+            <p>Conduct issues, attendance records, academic eligibility decisions</p>
+            <span class="cc-cta" style="color:var(--muted);">Contact via school office</span>
+          </div>
+          <div class="contact-card reveal delay-3" style="cursor:default;">
+            <div class="cc-icon"><i class="fas fa-heart"></i></div>
+            <h3>Guidance Counsellor</h3>
+            <p>Community service approval, HEART Trust referrals, personal support</p>
+            <span class="cc-cta" style="color:var(--muted);">Mrs. Sharon Cascoe</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ CTA ══ -->
+    <div class="cta-banner">
+      <div class="inner reveal">
+        <span class="accent-bar"></span>
+        <h2>Ready to Cross the Stage?</h2>
+        <p>Graduation is one of the proudest moments in a young person's life and in the life of every family. Make sure you meet every requirement so nothing stands between you and that moment.</p>
+        <div class="cta-btn-row">
+          <a href="contact.html" class="btn-ink"><i class="fas fa-envelope"></i> Contact the School</a>
+          <a href="faq.html" class="btn-gold-outline"><i class="fas fa-question-circle"></i> Visit the FAQ</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+     <div class="footer">
+      <div class="top">
+        <div class="col"><b><a href="https://www.google.co.uk/maps/@17.9006093,-77.2989797,17z"><i class="fas fa-map-marker-alt"></i></a><span> Vernamfield, P.O Box 490 May Pen, Clarendon</span></b></div>
+        <div class="col"><b><a href="Tel:876 986-7006"><i class="fas fa-phone"></i></a><span> (876) 986-7006</span></b></div>
+        <div class="col"><b><a href="mailto:garveymaceo.high.cla@moey.gov.jm"><i class="fas fa-envelope"></i></a><span> garveymaceo.high.cla@moey.gov.jm</span></b></div>
+      </div>
+      <div class="bottom"><p>© 2026 Garvey Maceo High School | Website design SkoolTech London</p></div>
+    </div>
+
+    <!-- ══ RADIAL FAB ══ -->
+    <div class="fab-wrap" id="fabWrap">
+      <div class="fab-items">
+        <a href="contact.html" class="fab-item"><i class="fas fa-envelope"></i><span class="fab-tip">Contact Us</span></a>
+        <a href="sports.html"  class="fab-item"><i class="fas fa-images"></i><span class="fab-tip">Gallery</span></a>
+        <a href="Curriculum.html" class="fab-item"><i class="fas fa-book-open"></i><span class="fab-tip">Curriculum</span></a>
+        <a href="donate.html"  class="fab-item"><i class="fas fa-heart"></i><span class="fab-tip">Donate</span></a>
+        <button class="fab-item" onclick="openPanel(); closeFab();"><i class="fas fa-bars"></i><span class="fab-tip">Menu</span></button>
+      </div>
+      <button class="fab-main" id="fabMain" onclick="toggleFab()">
+        <i class="fas fa-grip-dots fab-icon-menu"></i>
+        <i class="fas fa-times fab-icon-close"></i>
+      </button>
+    </div>
+
+    <script src="assets/js/index.js"></script>
+    <script>
+      function openPanel()  { document.getElementById('sidePanel').classList.add('open'); document.getElementById('panelOverlay').classList.add('open'); document.body.style.overflow='hidden'; }
+      function closePanel() { document.getElementById('sidePanel').classList.remove('open'); document.getElementById('panelOverlay').classList.remove('open'); document.body.style.overflow=''; }
+      function toggleFab()  { document.getElementById('fabWrap').classList.toggle('open'); document.getElementById('fabMain').classList.toggle('open'); }
+      function closeFab()   { document.getElementById('fabWrap').classList.remove('open'); document.getElementById('fabMain').classList.remove('open'); }
+      document.addEventListener('keydown', e => { if(e.key==='Escape'){ closePanel(); closeFab(); } });
+    </script>
+    <script>
+      /* Checklist */
+      function toggleCheck(item) {
+        item.classList.toggle('checked');
+        updateProgress();
+      }
+      function updateProgress() {
+        const all     = document.querySelectorAll('.check-item');
+        const done    = document.querySelectorAll('.check-item.checked');
+        const pct     = Math.round((done.length / all.length) * 100);
+        document.getElementById('progPct').textContent = pct + '%';
+        document.getElementById('progBar').style.width = pct + '%';
+      }
+      function resetChecklist() {
+        document.querySelectorAll('.check-item.checked').forEach(i => i.classList.remove('checked'));
+        updateProgress();
+      }
+
+      /* Animated attendance bars */
+      const barObs = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (!e.isIntersecting) return;
+          e.target.querySelectorAll('.percent-fill[data-pct]').forEach(bar => {
+            setTimeout(() => { bar.style.width = bar.dataset.pct + '%'; }, 200);
+          });
+          barObs.unobserve(e.target);
+        });
+      }, { threshold:0.3 });
+      document.querySelectorAll('.ac-card').forEach(c => barObs.observe(c));
+
+      /* Animated counters */
+      const cObs = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (!e.isIntersecting) return;
+          const el = e.target, target = +el.dataset.target;
+          let cur = 0; const step = target / (1200/16);
+          const t = setInterval(() => {
+            cur += step;
+            if (cur >= target) { cur = target; clearInterval(t); }
+            el.textContent = Math.floor(cur);
+          }, 16);
+          cObs.unobserve(el);
+        });
+      }, { threshold:0.4 });
+      document.querySelectorAll('[data-target]').forEach(c => cObs.observe(c));
+
+      /* Scroll reveal */
+      const rObs = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) { e.target.classList.add('visible'); rObs.unobserve(e.target); }
+        });
+      }, { threshold:0.1 });
+      document.querySelectorAll('.reveal').forEach(el => rObs.observe(el));
+    /* ══ HERO SLIDER ══ */
+const slides = Array.from(document.querySelectorAll('.hero_slide'));
+const dotCon = document.getElementById('dotContainer');
+const hcText = document.getElementById('hcText');
+const hcLabel = document.getElementById('hcLabel');
+let current = 0, timer;
+
+/* Always set background images from data-bg — works on ALL pages */
+slides.forEach(s => {
+  if (s.dataset.bg) {
+    s.style.backgroundImage    = `url(${s.dataset.bg})`;
+    s.style.backgroundSize     = 'cover';
+    s.style.backgroundPosition = 'top center';
+  }
+});
+
+/* Only run the slider/dots logic if the homepage elements exist */
+if (dotCon && slides.length > 1) {
+
+  slides.forEach((s, i) => {
+    const d = document.createElement('button');
+    d.className = 'hero_dot' + (i === 0 ? ' active' : '');
+    d.onclick = () => showSlide(i);
+    dotCon.appendChild(d);
+  });
+
+  function showSlide(n) {
+    slides[current].classList.remove('active');
+    dotCon.children[current].classList.remove('active');
+    current = (n + slides.length) % slides.length;
+    slides[current].classList.add('active');
+    dotCon.children[current].classList.add('active');
+    if (hcText)  { hcText.textContent  = slides[current].dataset.text  || ''; }
+    if (hcLabel) { hcLabel.textContent = slides[current].dataset.label || ''; }
+    if (hcText)  { hcText.style.animation  = 'none'; }
+    if (hcLabel) { hcLabel.style.animation = 'none'; }
+    requestAnimationFrame(() => {
+      if (hcText)  hcText.style.animation  = '';
+      if (hcLabel) hcLabel.style.animation = '';
+    });
+    clearInterval(timer);
+    timer = setInterval(() => showSlide(current + 1), 5000);
+  }
+
+  /* Make showSlide available globally for dot onclick */
+  window.showSlide = showSlide;
+  timer = setInterval(() => showSlide(current + 1), 5000);
+
+} else if (slides.length === 1) {
+  /* Single static hero — just show it, no dots needed */
+  slides[0].classList.add('active');
+}
+    </script>
+  </body>
+</html>

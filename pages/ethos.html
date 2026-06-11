@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Garvey Maceo High School – Our Ethos</title>
+    <meta name="description" content="Official website of Garvey Maceo High School featuring news, admissions, student life, academic programmes, and upcoming events.">
+    <link rel="icon" type="image/x-icon" href="../assets/img/logo.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" href="../assets/css/index.css" />
+    <!-- Add to the actual image for that page to reduce the load delay -->
+    <link rel="preload" as="image" href="../assets/img/sixformcenter.avif" />
+    <link rel="stylesheet" type="text/css"
+      href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700,900italic|Poppins:300,400,500,700" />
+    <script src="https://kit.fontawesome.com/742f06a093.js" crossorigin="anonymous" defer></script>
+
+    <style>
+      /* ── Tokens: Cream & Gold (matches Graduation & Spotlight) ── */
+      :root {
+        --gold:        #d4a843;
+        --gold-dark:   #b8922a;
+        --gold-light:  #f2dc8a;
+        --gold-pale:   #fef6de;
+        --gold-soft:   #f9edbc;
+        --gold-border: rgba(212,168,67,.28);
+        --cream:       #faf7f0;
+        --cream-mid:   #f5edd8;
+        --cream-dark:  #ede3c8;
+        --white:       #ffffff;
+        --ink:         #1e1400;
+        --ink-mid:     #3d2e00;
+        --muted:       #8a7240;
+        --shadow:      rgba(180,140,40,.11);
+        --shadow-soft: rgba(212,168,67,.08);
+        --radius:      12px;
+      }
+
+      body {
+        background-color: var(--cream);
+        /* matching geometric pattern from Graduation/Spotlight */
+        background-image:
+          url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Crect x='20' y='20' width='40' height='40' fill='none' stroke='%23d4a843' stroke-width='0.6' opacity='0.08' transform='rotate(45 40 40)'/%3E%3C/svg%3E"),
+          url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20'%3E%3Ccircle cx='10' cy='10' r='0.8' fill='%23d4a843' opacity='0.06'/%3E%3C/svg%3E");
+        background-size: 80px 80px, 20px 20px;
+        font-family: 'Poppins', sans-serif;
+        color: var(--ink);
+        margin: 0;
+      }
+
+      /* ════════ PAGE TITLE ════════ */
+      .ethos-title-block {
+        text-align: center;
+        padding: 60px 24px 48px;
+        max-width: 720px;
+        margin: 0 auto;
+      }
+      .ethos-title-block::before {
+        content: ''; display: block;
+        width: 56px; height: 4px;
+        background: var(--gold);
+        margin: 0 auto 18px; border-radius: 2px;
+      }
+      .ethos-title-block h1 {
+        font-family: 'Playfair Display', serif;
+        font-size: clamp(1.9rem, 4vw, 2.9rem);
+        font-weight: 900;
+        /* ink instead of green */
+        color: var(--ink);
+        margin: 0 0 12px; line-height: 1.15;
+      }
+      .ethos-title-block p {
+        font-size: .95rem; color: var(--muted); line-height: 1.7; margin: 0;
+      }
+
+      /* gold shimmer divider (added to match other pages) */
+      .gold-divider {
+        height: 5px;
+        background: linear-gradient(90deg, transparent, var(--gold), var(--gold-light), var(--gold), transparent);
+      }
+
+      /* ════════ MOTTO BANNER ════════
+         Light gold gradient instead of dark green                */
+      .motto-banner {
+        background: linear-gradient(135deg, var(--gold-pale) 0%, var(--cream-mid) 50%, var(--gold-soft) 100%);
+        border-top: 2px solid var(--gold-border);
+        border-bottom: 2px solid var(--gold-border);
+        position: relative; overflow: hidden;
+        padding: 48px 24px; text-align: center;
+      }
+      /* Diamond watermarks — cream on gold, matching Graduation intro */
+      .motto-banner::before {
+        content: ''; position: absolute;
+        width: 360px; height: 360px;
+        border: 3px solid rgba(212,168,67,.12);
+        transform: rotate(45deg);
+        left: -120px; top: -160px;
+        pointer-events: none; border-radius: 4px;
+      }
+      .motto-banner::after {
+        content: ''; position: absolute;
+        width: 260px; height: 260px;
+        border: 2px solid rgba(212,168,67,.09);
+        transform: rotate(45deg);
+        right: -80px; bottom: -100px;
+        pointer-events: none; border-radius: 4px;
+      }
+      .motto-banner .inner { max-width: 760px; margin: 0 auto; position: relative; z-index: 1; }
+      .motto-banner .label {
+        font-size: .75rem; letter-spacing: .18em;
+        text-transform: uppercase;
+        /* gold-dark on light background — readable */
+        color: var(--gold-dark);
+        font-weight: 700; margin-bottom: 14px; display: block;
+      }
+      .motto-banner .motto-text {
+        font-family: 'Playfair Display', serif;
+        font-style: italic;
+        font-size: clamp(1.4rem, 3.5vw, 2.2rem);
+        /* ink on light background */
+        color: var(--ink);
+        line-height: 1.4; margin: 0 0 10px;
+      }
+      .motto-banner .motto-translation {
+        font-size: .88rem; color: var(--muted); letter-spacing: .04em;
+      }
+
+      /* ════════ STATS STRIP ════════ */
+      .stats-strip { background: var(--gold); padding: 36px 24px; }
+      .stats-strip .inner {
+        max-width: 900px; margin: 0 auto;
+        display: grid; grid-template-columns: repeat(auto-fit, minmax(160px,1fr));
+        gap: 8px; text-align: center;
+      }
+      .stat-item { padding: 12px 8px; }
+      .stat-item .num {
+        font-family: 'Playfair Display', serif; font-size: 2.6rem; font-weight: 900;
+        /* ink on gold — matches Graduation/Spotlight stats */
+        color: var(--ink); line-height: 1; display: block;
+      }
+      .stat-item .stat-label {
+        font-size: .78rem; letter-spacing: .1em; text-transform: uppercase;
+        color: var(--ink-mid); opacity: .72; margin-top: 6px; display: block;
+      }
+
+      /* ════════ ETHOS CARDS ════════ */
+      .ethos-section { max-width: 980px; margin: 0 auto; padding: 72px 24px; }
+      .ethos-section-title { text-align: center; margin-bottom: 48px; }
+      .ethos-section-title h2 {
+        font-family: 'Playfair Display', serif; font-size: 1.7rem;
+        color: var(--ink); /* ink instead of green */
+        margin: 0 0 8px;
+      }
+      .ethos-section-title p { font-size: .88rem; color: var(--muted); margin: 0; }
+
+      .ethos-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 28px;
+      }
+
+      /* Card flip */
+      .ethos-card-wrap { perspective: 1000px; height: 360px; cursor: pointer; }
+      .ethos-card-wrap:hover .card-inner,
+      .ethos-card-wrap.flipped .card-inner { transform: rotateY(180deg); }
+      .card-inner {
+        position: relative; width: 100%; height: 100%;
+        transition: transform .6s cubic-bezier(.4,0,.2,1);
+        transform-style: preserve-3d;
+      }
+      .card-front, .card-back {
+        position: absolute; inset: 0; border-radius: var(--radius);
+        backface-visibility: hidden; -webkit-backface-visibility: hidden;
+        display: flex; flex-direction: column;
+        align-items: center; justify-content: center;
+        padding: 36px 28px; text-align: center;
+      }
+
+      /* Front: white card with gold top — matches profile cards on Spotlight */
+      .card-front {
+        background: var(--white);
+        border-top: 5px solid var(--gold);
+        box-shadow: 0 6px 28px var(--shadow-soft);
+        outline: 1px solid rgba(212,168,67,.08);
+      }
+      .card-front .card-img { margin-bottom: 20px; }
+      .card-front .card-img img { max-width: 220px; height: auto; display: block; margin: 0 auto; }
+      .card-front h3 {
+        font-family: 'Playfair Display', serif; font-size: 1.2rem;
+        color: var(--ink); /* ink instead of green */
+        margin: 0 0 10px;
+      }
+      .card-front p { font-size: .85rem; color: var(--muted); line-height: 1.65; margin: 0; }
+      .card-front .flip-hint {
+        margin-top: 18px; font-size: .73rem; letter-spacing: .08em;
+        text-transform: uppercase; color: var(--gold-dark);
+        display: flex; align-items: center; gap: 5px;
+      }
+      .card-front .flip-hint::before { content: '↻'; font-size: .9rem; }
+
+      /* Back: dark amber gradient instead of dark green — matches Graduation/Spotlight dark sections */
+      .card-back {
+        background: linear-gradient(135deg, var(--ink) 0%, var(--ink-mid) 100%);
+        transform: rotateY(180deg);
+        box-shadow: 0 6px 28px rgba(180,140,40,.2);
+        position: relative; overflow: hidden;
+      }
+      /* Diamond watermark on back */
+      .card-back::before {
+        content: ''; position: absolute;
+        width: 140px; height: 140px;
+        border: 14px solid rgba(212,168,67,.12);
+        transform: rotate(45deg);
+        right: -30px; bottom: -30px;
+        pointer-events: none; border-radius: 3px;
+      }
+      .card-back .back-icon { font-size: 2.4rem; margin-bottom: 18px; position: relative; z-index:1; }
+      .card-back h3 {
+        font-family: 'Playfair Display', serif; font-size: 1.1rem;
+        color: var(--gold-light); /* gold-light on dark — consistent */
+        margin: 0 0 14px; position: relative; z-index:1;
+      }
+      .card-back p {
+        font-size: .87rem; color: rgba(255,255,255,.85);
+        line-height: 1.7; margin: 0;
+        position: relative; z-index:1;
+      }
+      .card-back .back-tag {
+        margin-top: 20px; display: inline-block;
+        background: rgba(212,168,67,.18);
+        border: 1px solid rgba(212,168,67,.35);
+        color: var(--gold-light); font-size: .72rem;
+        letter-spacing: .1em; text-transform: uppercase;
+        padding: 5px 14px; border-radius: 20px;
+        position: relative; z-index:1;
+      }
+
+      /* ════════ TESTIMONIALS ════════
+         Dark ink gradient instead of dark green — richer, not heavy  */
+      .testimonials-section {
+        /* Deep ink gradient matching the card backs and Graduation dark sections */
+        background: linear-gradient(135deg, var(--ink) 0%, var(--ink-mid) 60%, #5c3800 100%);
+        padding: 72px 24px; position: relative; overflow: hidden;
+      }
+      /* Large faint quote mark watermark */
+      .testimonials-section::before {
+        content: '\201C';
+        position: absolute; font-family: 'Playfair Display', serif;
+        font-size: 28rem; color: rgba(255,255,255,.03);
+        top: -60px; left: -20px;
+        line-height: 1; pointer-events: none;
+      }
+      /* Gold orb decoration */
+      .testimonials-section::after {
+        content: ''; position: absolute;
+        width: 400px; height: 400px; border-radius: 50%;
+        background: rgba(212,168,67,.06);
+        right: -120px; bottom: -140px; pointer-events: none;
+      }
+      .testimonials-section .inner { max-width: 960px; margin: 0 auto; position: relative; z-index:1; }
+
+      .testimonials-header { text-align: center; margin-bottom: 48px; }
+      .testimonials-header::before {
+        content: ''; display: block;
+        width: 40px; height: 3px;
+        background: var(--gold); margin: 0 auto 16px; border-radius: 2px;
+      }
+      .testimonials-header h2 {
+        font-family: 'Playfair Display', serif; font-size: 1.7rem;
+        color: var(--white); margin: 0 0 8px;
+      }
+      .testimonials-header p { font-size: .88rem; color: rgba(255,255,255,.55); margin: 0; }
+
+      .testimonials-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 24px;
+      }
+      .testimonial-card {
+        background: rgba(255,255,255,.07);
+        border: 1px solid var(--gold-border);
+        border-radius: var(--radius); padding: 30px 26px;
+        transition: background .25s, transform .25s;
+      }
+      .testimonial-card:hover {
+        background: rgba(212,168,67,.12);
+        border-color: rgba(212,168,67,.45);
+        transform: translateY(-4px);
+      }
+      .testimonial-card .quote-mark {
+        font-family: 'Playfair Display', serif; font-size: 3.5rem;
+        color: var(--gold); line-height: .8; margin-bottom: 12px; display: block;
+      }
+      .testimonial-card p {
+        font-size: .88rem; color: rgba(255,255,255,.85);
+        line-height: 1.75; margin: 0 0 20px; font-style: italic;
+      }
+      .testimonial-card .author {
+        display: flex; align-items: center; gap: 12px;
+        border-top: 1px solid rgba(255,255,255,.1); padding-top: 16px;
+      }
+      .testimonial-card .author .avatar {
+        width: 40px; height: 40px; border-radius: 50%;
+        background: linear-gradient(135deg, var(--gold), var(--gold-light));
+        display: flex; align-items: center; justify-content: center;
+        font-weight: 700; font-size: .9rem; color: var(--ink); flex-shrink: 0;
+      }
+      .testimonial-card .author strong {
+        display: block; font-size: .85rem; color: var(--gold-light);
+      }
+      .testimonial-card .author span { font-size: .75rem; color: rgba(255,255,255,.5); }
+
+      /* ════════ ANIMATIONS ════════ */
+      @keyframes fadeUp {
+        from { opacity: 0; transform: translateY(30px); }
+        to   { opacity: 1; transform: translateY(0); }
+      }
+      .fade-up { opacity: 0; animation: fadeUp .65s ease forwards; }
+      .fade-up:nth-child(1) { animation-delay: .1s; }
+      .fade-up:nth-child(2) { animation-delay: .25s; }
+      .fade-up:nth-child(3) { animation-delay: .4s; }
+      .fade-up:nth-child(4) { animation-delay: .55s; }
+
+      @media (max-width: 600px) {
+        .ethos-card-wrap { height: auto; }
+        .card-inner { transform: none !important; }
+        .card-front, .card-back {
+          position: relative; backface-visibility: visible;
+          -webkit-backface-visibility: visible; transform: none !important;
+        }
+        .card-back { margin-top: 12px; border-radius: var(--radius); }
+      }
+      .hero_slide { opacity: 0; transition: opacity 1s ease; }
+      .hero_slide.active { opacity: 1; }
+      .hero_slide.fixed { background-image: url('../assets/img/sixformcenter.avif') !important; }
+      .hero_container.fixed {
+        position: relative;
+        height: 380px;
+        overflow: hidden;
+        /* This shows while the image loads — customise this colour */
+        background: #2a1800; filter: blur(0); /* remove blur once image loads via JS */;
+      }
+      .hero_slide.fixed { opacity: 0; transition: opacity 0.6s ease; }
+
+      .hero_slide.fixed.active { opacity: 1; }
+      .hero_container.fixed::before {
+          content: '';
+          position: absolute;
+          inset: 0;
+          z-index: 0;
+          background: linear-gradient(
+            90deg,
+            #2a1800 0%,
+            #4a2e00 40%,
+            #2a1800 80%
+          );
+          background-size: 200% 100%;
+          animation: shimmer 1.6s infinite;
+        }
+
+        /* Hide the shimmer once the image is active */
+        .hero_container.fixed.loaded::before {
+          display: none;
+        }
+
+        @keyframes shimmer {
+          0%   { background-position: 200% 0; }
+          100% { background-position: -200% 0; }
+        }
+    </style>
+  </head>
+
+  <body>
+    <!-- ══ PANEL OVERLAY ══ -->
+    <div class="panel-overlay" id="panelOverlay" onclick="closePanel()"></div>
+
+    <!-- ══ SIDE PANEL NAV ══ -->
+    <div class="side-panel" id="sidePanel">
+      <div class="panel-head">
+        <div class="ph-logo">
+          <img src="../assets/img/logo.png" alt="GMHS Logo" />
+          <span>Garvey Maceo<br>High School</span>
+        </div>
+        <button class="panel-close" onclick="closePanel()"><i class="fas fa-times"></i></button>
+      </div>
+      <nav class="panel-nav">
+        <a href="../index.html"          class="pnav-item"><i class="fas fa-home" style="width:18px;margin-right:8px;"></i> Home</a>
+        <a href="Principal.html"         class="pnav-item active"><i class="fas fa-user-tie" style="width:18px;margin-right:8px;"></i> Principal's Message</a>
+
+        <div class="pnav-label">Cubanz</div>
+        <a href="ethos.html"      class="pnav-sub">Our Ethos</a>
+        <a href="staff.html"      class="pnav-sub">Our Staff</a>
+        <a href="department.html" class="pnav-sub">Departments</a>
+        <a href="history.html"    class="pnav-sub">History</a>
+        <a href="news.html"       class="pnav-sub">News Updates</a>
+
+        <div class="pnav-label">Academics</div>
+        <a href="Curriculum.html"        class="pnav-sub">Curriculum</a>
+        <a href="Health.html"            class="pnav-sub">Health &amp; Welfare</a>
+        <a href="graduation.html"        class="pnav-sub">Graduation Requirements</a>
+        <a href="FacultySpotlight.html" class="pnav-sub">Faculty Spotlight</a>
+
+        <div class="pnav-label">Stakeholders</div>
+        <a href="alumni.html" class="pnav-sub">Alumni</a>
+        <a href="pta.html"    class="pnav-sub">PTA</a>
+
+        <div class="pnav-label">Gallery</div>
+        <a href="sports.html" class="pnav-sub">Sports &amp; Events Gallery</a>
+        <a href="events.html" class="pnav-sub">Events</a>
+
+        <div class="pnav-label">Contact</div>
+        <a href="contact.html" class="pnav-sub">Contact Us</a>
+        <a href="faq.html"     class="pnav-sub">FAQ</a>
+        <a href="donate.html"  class="pnav-sub">Donate</a>
+      </nav>
+      <div class="panel-footer">
+        <p>© 2026 Garvey Maceo High School<br>Website design by SkoolTech London</p>
+      </div>
+    </div>
+
+    <!-- ══ STICKY HEADER ══ -->
+    <header>
+      <a href="../index.html" class="text_bg">
+        <img src="../assets/img/logo.png" alt="GMHS Logo" />
+        <span>Garvey Maceo High School</span>
+      </a>
+      <div class="flex_spacer"></div>
+      <div class="header-socials">
+        <a href="https://www.facebook.com/GARVEYMACEOCUBANS" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="youtube.com" title="YouTube"><i class="fab fa-youtube"></i></a>
+        <a href="https://www.instagram.com/garveymaceo/" title="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.linkedin.com/school/garvey-maceo-high-school/" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://twitter.com/garveymaceo" title="Twitter"><i class="fab fa-twitter"></i></a> 
+        <a href="https://www.tiktok.com/discover/garvey-maceo-high-school-jamaica" title="TikTok"><i class="fab fa-tiktok"></i></a>    
+      </div>
+    </header>
+
+ <!-- ══ HERO ══ -->
+<div class="hero_container fixed">
+  <div class="hero_pathbar" style="position:relative;z-index:3;">
+    <div class="inner">
+      <a href="../index.html">Home</a>
+      <i class="fas fa-chevron-right"></i>
+      <a href="ethos.html">Ethos</a>
+    </div>
+  </div>
+  <div class="hero_gradient_overlay fixed" style="pointer-events:none;"></div>
+  <div class="hero_slide fixed"
+       data-bg="../assets/img/sixformcenter.avif"
+       style="background-size:cover;
+              background-position:center;
+              position:absolute;inset:0;z-index:0;">
+  </div>
+</div>
+
+  
+ <div class="gold-divider"></div>
+
+    <!-- PAGE TITLE -->
+    <div class="ethos-title-block fade-up">
+      <h1>Our Ethos &amp; Values</h1>
+      <p>At Garvey Maceo High School, everything we do is guided by a clear sense of purpose 
+         to nurture well-rounded, resilient and ambitious young people ready for a changing world.</p>
+    </div>
+    <div class="gold-divider"></div>
+
+    <!-- MOTTO BANNER -->
+    <div class="motto-banner">
+      <div class="inner">
+        <p class="label">School Motto</p>
+        <p class="motto-text">"Excelencia en estudio, trabajo y recreo"</p>
+        <p class="motto-translation">Excellence in study, work and recreation</p>
+      </div>
+    </div>
+
+    <!-- STATS STRIP -->
+    <div class="stats-strip">
+      <div class="inner">
+        <div class="stat-item fade-up">
+          <span class="num" data-target="50">0</span><span class="num">+</span>
+          <span class="stat-label">Years of Excellence</span>
+        </div>
+        <div class="stat-item fade-up">
+          <span class="num" data-target="1200">0</span><span class="num">+</span>
+          <span class="stat-label">Students Enrolled</span>
+        </div>
+        <div class="stat-item fade-up">
+          <span class="num" data-target="85">0</span><span class="num">+</span>
+          <span class="stat-label">Dedicated Staff</span>
+        </div>
+        <div class="stat-item fade-up">
+          <span class="num" data-target="30">0</span><span class="num">+</span>
+          <span class="stat-label">Awards &amp; Honours</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ETHOS CARDS -->
+    <div class="ethos-section">
+      <div class="ethos-section-title">
+        <h2>What We Stand For</h2>
+        <p>Hover over each card to explore what guides us every day</p>
+      </div>
+
+      <div class="ethos-cards">
+
+        <div class="ethos-card-wrap fade-up" onclick="this.classList.toggle('flipped')">
+          <div class="card-inner">
+            <div class="card-front">
+              <div class="card-img"><img src="../assets/img/MSTATEMENT.png" loading="lazy" alt="Mission Statement" /></div>
+              <p>Producing and maintaining a learning, working and recreation environment where every student and staff member can strive to achieve their greatest potential.</p>
+              <span class="flip-hint">Flip to learn more</span>
+            </div>
+            <div class="card-back">
+              <div class="back-icon">🎓</div>
+              <h3>Our Mission</h3>
+              <p>We commit to creating structured, supportive spaces in the classroom, on the field and beyond, where talent is discovered, nurtured and celebrated. Every student deserves the chance to succeed.</p>
+              <span class="back-tag">Mission Statement</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="ethos-card-wrap fade-up" onclick="this.classList.toggle('flipped')">
+          <div class="card-inner">
+            <div class="card-front">
+              <div class="card-img"><img src="../assets/img/VISIONSTATEMENT.png" loading="lazy" alt="Vision Statement" /></div>
+              <p>We encourage our students to discover their own talents, to be confident in their abilities and to follow their passions across academic subjects, in sports and the arts.</p>
+              <span class="flip-hint">Flip to learn more</span>
+            </div>
+            <div class="card-back">
+              <div class="back-icon">🌟</div>
+              <h3>Our Vision</h3>
+              <p>We envision a school community where ambition meets opportunity. From the science lab to the sports field, we cultivate leaders who are ready to make their mark on Jamaica and the world.</p>
+              <span class="back-tag">Vision Statement</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="ethos-card-wrap fade-up" onclick="this.classList.toggle('flipped')">
+          <div class="card-inner">
+            <div class="card-front">
+              <div class="card-img"><img src="../assets/img/COREVALUES.png" loading="lazy" alt="Core Values" /></div>
+              <p>Helping our students build a set of sound values so they have the strength of character, moral integrity and resilience to meet life's challenges head-on.</p>
+              <span class="flip-hint">Flip to learn more</span>
+            </div>
+            <div class="card-back">
+              <div class="back-icon">⚖️</div>
+              <h3>Core Values</h3>
+              <p>Integrity. Respect. Responsibility. Excellence. These are not just words on a wall — they are the daily decisions our students and staff make together, building a culture of trust and achievement.</p>
+              <span class="back-tag">Core Values</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- TESTIMONIALS -->
+    <div class="testimonials-section">
+      <div class="inner">
+        <div class="testimonials-header">
+          <h2>Voices from Our Community</h2>
+          <p>What students, staff and alumni say about Garvey Maceo</p>
+        </div>
+
+        <div class="testimonials-grid">
+          <div class="testimonial-card fade-up">
+            <span class="quote-mark">"</span>
+            <p>Garvey Maceo didn't just give me an education it gave me the confidence to believe I could achieve anything. The teachers genuinely care about every single student.</p>
+            <div class="author">
+              <div class="avatar">AT</div>
+              <div>
+                <strong>Alicia Thompson</strong>
+                <span>Alumni, Class of 2018</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card fade-up">
+            <span class="quote-mark">"</span>
+            <p>Teaching here is a privilege. We see young people grow every single day academically, in sport and in character. The school motto truly lives in everything we do.</p>
+            <div class="author">
+              <div class="avatar">MR</div>
+              <div>
+                <strong>Mr. M. Reid</strong>
+                <span>Senior Teacher, Mathematics</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card fade-up">
+            <span class="quote-mark">"</span>
+            <p>I never thought I'd represent Jamaica in athletics. Garvey Maceo spotted my talent, supported my training and gave me the platform I needed to compete nationally.</p>
+            <div class="author">
+              <div class="avatar">KB</div>
+              <div>
+                <strong>Kayla Brown</strong>
+                <span>Current Student, Grade 11</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <br />
+    <div class="footer">
+      <div class="top">
+        <div class="col"><b><a href="https://www.google.co.uk/maps/@17.9006093,-77.2989797,17z"><i class="fas fa-map-marker-alt"></i></a><span> Vernamfield, P.O Box 490 May Pen, Clarendon</span></b></div>
+        <div class="col"><b><a href="Tel:876 986-7006"><i class="fas fa-phone"></i></a><span> (876) 986-7006</span></b></div>
+        <div class="col"><b><a href="mailto:garveymaceo.high.cla@moey.gov.jm"><i class="fas fa-envelope"></i></a><span> garveymaceo.high.cla@moey.gov.jm</span></b></div>
+      </div>
+      <div class="bottom"><p>© 2026 Garvey Maceo High School | Website design SkoolTech London</p></div>
+    </div>
+
+    <!-- ══ RADIAL FAB ══ -->
+    <div class="fab-wrap" id="fabWrap">
+      <div class="fab-items">
+        <a href="contact.html" class="fab-item"><i class="fas fa-envelope"></i><span class="fab-tip">Contact Us</span></a>
+        <a href="sports.html"  class="fab-item"><i class="fas fa-images"></i><span class="fab-tip">Gallery</span></a>
+        <a href="Curriculum.html" class="fab-item"><i class="fas fa-book-open"></i><span class="fab-tip">Curriculum</span></a>
+        <a href="donate.html"  class="fab-item"><i class="fas fa-heart"></i><span class="fab-tip">Donate</span></a>
+        <button class="fab-item" onclick="openPanel(); closeFab();"><i class="fas fa-bars"></i><span class="fab-tip">Menu</span></button>
+      </div>
+      <button class="fab-main" id="fabMain" onclick="toggleFab()">
+        <i class="fas fa-grip-dots fab-icon-menu"></i>
+        <i class="fas fa-times fab-icon-close"></i>
+      </button>
+    </div>
+
+    <script src="../assets/js/index.js"></script>
+    <script>
+      function openPanel()  { document.getElementById('sidePanel').classList.add('open'); document.getElementById('panelOverlay').classList.add('open'); document.body.style.overflow='hidden'; }
+      function closePanel() { document.getElementById('sidePanel').classList.remove('open'); document.getElementById('panelOverlay').classList.remove('open'); document.body.style.overflow=''; }
+      function toggleFab()  { document.getElementById('fabWrap').classList.toggle('open'); document.getElementById('fabMain').classList.toggle('open'); }
+      function closeFab()   { document.getElementById('fabWrap').classList.remove('open'); document.getElementById('fabMain').classList.remove('open'); }
+      document.addEventListener('keydown', e => { if(e.key==='Escape'){ closePanel(); closeFab(); } });
+    </script>
+     <script>
+      function animateCounters() {
+        document.querySelectorAll('[data-target]').forEach(el => {
+          const target = +el.dataset.target;
+          const step = target / (1800 / 16);
+          let current = 0;
+          const timer = setInterval(() => {
+            current += step;
+            if (current >= target) { current = target; clearInterval(timer); }
+            el.textContent = Math.floor(current);
+          }, 16);
+        });
+      }
+      const statsStrip = document.querySelector('.stats-strip');
+      if (statsStrip) {
+        const observer = new IntersectionObserver(entries => {
+          if (entries[0].isIntersecting) { animateCounters(); observer.disconnect(); }
+        }, { threshold: 0.3 });
+        observer.observe(statsStrip);
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Garvey Maceo High School – Gallery</title>
+    <link rel="icon" type="image/x-icon" href="../assets/img/logo.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" href="../assets/css/index.css" />
+    <!-- Add to <head> — use the actual image for that page -->
+    <link rel="preload" as="image" href="../assets/img/Sportbanner.png" />
+    <link rel="stylesheet" type="text/css"
+      href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700,900|Poppins:300,400,500,600,700" />
+    <script src="https://kit.fontawesome.com/742f06a093.js" crossorigin="anonymous" defer></script>
+
+    <style>
+      /* ── Tokens: Cream & Gold ── */
+      :root {
+        --gold:        #d4a843;
+        --gold-dark:   #b8922a;
+        --gold-light:  #f2dc8a;
+        --gold-pale:   #fef6de;
+        --gold-soft:   #f9edbc;
+        --gold-border: rgba(212,168,67,.28);
+        --cream:       #faf7f0;
+        --cream-mid:   #f5edd8;
+        --cream-dark:  #ede3c8;
+        --white:       #ffffff;
+        --ink:         #1e1400;
+        --ink-mid:     #3d2e00;
+        --muted:       #8a7240;
+        --shadow:      rgba(180,140,40,.11);
+        --shadow-soft: rgba(212,168,67,.08);
+        --radius:      14px;
+        --radius-sm:   8px;
+      }
+
+      *, *::before, *::after { box-sizing: border-box; }
+      body {
+        font-family: 'Poppins', sans-serif; color: var(--ink); margin: 0;
+        background-color: var(--cream);
+        background-image:
+          url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Crect x='20' y='20' width='40' height='40' fill='none' stroke='%23d4a843' stroke-width='0.6' opacity='0.08' transform='rotate(45 40 40)'/%3E%3C/svg%3E"),
+          url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20'%3E%3Ccircle cx='10' cy='10' r='0.8' fill='%23d4a843' opacity='0.06'/%3E%3C/svg%3E");
+        background-size: 80px 80px, 20px 20px;
+      }
+
+      .hero_pathbar { background: rgba(0,0,0,.1); backdrop-filter: blur(0px); }
+      .gold-divider { height:5px; background:linear-gradient(90deg,transparent,var(--gold),var(--gold-light),var(--gold),transparent); }
+
+      /* ════════ INTRO BAND ════════ */
+      .gallery-intro {
+        background: linear-gradient(135deg, var(--gold-pale) 0%, var(--cream-mid) 50%, var(--gold-soft) 100%);
+        border-bottom: 2px solid var(--gold-border);
+        padding: 56px 24px 48px; text-align: center;
+        position: relative; overflow: hidden;
+      }
+      .gallery-intro::before {
+        content:''; position:absolute; width:360px; height:360px;
+        border:3px solid rgba(212,168,67,.11); transform:rotate(45deg);
+        right:-100px; top:-100px; pointer-events:none; border-radius:4px;
+      }
+      .gallery-intro::after {
+        content:''; position:absolute; width:220px; height:220px;
+        border:2px solid rgba(212,168,67,.08); transform:rotate(45deg);
+        left:-60px; bottom:-60px; pointer-events:none; border-radius:4px;
+      }
+      .gallery-intro .inner { position:relative; z-index:1; max-width:700px; margin:0 auto; }
+      .gallery-intro .accent-bar { display:block; width:52px; height:4px; background:linear-gradient(90deg,var(--gold-dark),var(--gold-light)); border-radius:2px; margin:0 auto 20px; }
+      .gallery-intro .eyebrow { font-size:.7rem; letter-spacing:.22em; text-transform:uppercase; color:var(--gold-dark); margin-bottom:14px; display:block; font-weight:600; }
+      .gallery-intro h1 { font-family:'Playfair Display',serif; font-size:clamp(1.9rem,4.5vw,3rem); font-weight:900; color:var(--ink); margin:0 0 14px; line-height:1.1; }
+      .gallery-intro h1 span { color:var(--gold-dark); font-style:italic; }
+      .gallery-intro p { font-size:.93rem; color:var(--muted); line-height:1.85; margin:0; max-width:560px; margin-left:auto; margin-right:auto; }
+
+      /* ════════ CONTROLS BAR ════════ */
+      .controls-bar {
+        background: var(--white);
+        border-bottom: 1px solid var(--cream-dark);
+        padding: 20px 24px;
+        position: sticky; top: 0; z-index: 90;
+        box-shadow: 0 2px 16px var(--shadow-soft);
+      }
+      .controls-inner {
+        max-width: 980px; margin: 0 auto;
+        display: flex; align-items: center;
+        gap: 20px; flex-wrap: wrap; justify-content: space-between;
+      }
+
+      /* Filter buttons */
+      .filter-group { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+      .filter-label { font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); font-weight:600; white-space:nowrap; }
+      .filter-btn {
+        display: inline-flex; align-items: center; gap: 7px;
+        background: var(--gold-pale);
+        border: 1.5px solid var(--gold-border);
+        color: var(--ink-mid);
+        padding: 8px 16px; border-radius: 50px;
+        font-family: 'Poppins', sans-serif; font-size: .78rem; font-weight: 600;
+        cursor: pointer; transition: background .2s, border-color .2s, color .2s, transform .15s;
+        white-space: nowrap;
+      }
+      .filter-btn:hover { background: var(--gold); border-color: var(--gold-dark); transform: translateY(-1px); }
+      .filter-btn.active {
+        background: var(--gold); border-color: var(--gold-dark);
+        color: var(--ink); box-shadow: 0 3px 12px rgba(212,168,67,.3);
+      }
+      .count-pip {
+        background: rgba(180,140,40,.18); color: var(--gold-dark);
+        font-size: .65rem; font-weight: 800; padding: 2px 7px;
+        border-radius: 20px; letter-spacing:.04em;
+      }
+      .filter-btn.active .count-pip { background: rgba(30,20,0,.15); color: var(--ink); }
+
+      /* Search */
+      .search-wrap { position: relative; flex-shrink: 0; }
+      .search-wrap i { position:absolute; left:14px; top:50%; transform:translateY(-50%); color:var(--gold-dark); font-size:.85rem; pointer-events:none; }
+      .search-wrap input {
+        padding: 9px 16px 9px 38px;
+        border: 1.5px solid var(--cream-dark); border-radius: 50px;
+        font-family: 'Poppins', sans-serif; font-size: .82rem;
+        color: var(--ink); background: var(--cream); outline: none;
+        width: 220px; transition: border-color .2s, box-shadow .2s;
+      }
+      .search-wrap input:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(212,168,67,.12); background: var(--white); }
+      .search-wrap input::placeholder { color: var(--muted); }
+
+      /* result count */
+      .results-count { font-size:.78rem; color:var(--muted); white-space:nowrap; min-width:80px; text-align:right; }
+
+      /* ════════ GALLERY GRID ════════ */
+      .gallery-section { padding: 40px 24px 80px; }
+      .gallery-container {
+        max-width: 980px; margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 18px;
+      }
+
+      /* No results */
+      .no-results {
+        display: none; grid-column: 1/-1;
+        text-align: center; padding: 60px 24px;
+        color: var(--muted); font-size: .9rem;
+      }
+      .no-results .emoji { font-size: 2.8rem; display: block; margin-bottom: 14px; }
+
+      /* Individual photo card */
+      .gallery-card {
+        background: var(--white);
+        border-radius: var(--radius);
+        overflow: hidden;
+        box-shadow: 0 3px 16px var(--shadow-soft);
+        border-top: 3px solid var(--gold);
+        cursor: pointer;
+        transition: transform .25s, box-shadow .25s, border-color .25s;
+        position: relative;
+      }
+      .gallery-card:hover { transform: translateY(-5px); box-shadow: 0 12px 32px rgba(180,140,40,.18); }
+      .gallery-card.hidden { display: none; }
+
+      /* Image container */
+      .card-img-wrap {
+        width: 100%; aspect-ratio: 4/3; overflow: hidden;
+        background: var(--cream-dark); position: relative;
+      }
+      .card-img-wrap img {
+        width: 100%; height: 100%; object-fit: cover;
+        display: block;
+        object-position: top;  
+        transition: transform .4s ease;
+      }
+      .gallery-card:hover .card-img-wrap img { transform: scale(1.06); }
+
+      /* Hover overlay */
+      .card-overlay {
+        position: absolute; inset: 0;
+        background: linear-gradient(to top, rgba(30,14,0,.65) 0%, transparent 55%);
+        opacity: 0; transition: opacity .3s;
+        display: flex; align-items: flex-end; padding: 14px;
+      }
+      .gallery-card:hover .card-overlay { opacity: 1; }
+      .overlay-zoom {
+        background: var(--gold); color: var(--ink);
+        width: 36px; height: 36px; border-radius: 50%;
+        display: flex; align-items: center; justify-content: center;
+        font-size: .85rem; margin-left: auto;
+      }
+
+      /* Card label */
+      .card-label {
+        padding: 12px 14px 14px;
+      }
+      .card-label h4 { font-family:'Playfair Display',serif; font-size:.88rem; color:var(--ink); margin:0 0 3px; line-height:1.3; }
+      .card-label .card-cat {
+        display: inline-block; font-size:.66rem; font-weight:700;
+        letter-spacing:.08em; text-transform:uppercase;
+        background: var(--gold-pale); border: 1px solid var(--gold-border);
+        color: var(--gold-dark); padding: 2px 8px; border-radius: 20px;
+      }
+
+      /* ════════ LIGHTBOX ════════ */
+      .lightbox {
+        display: none; position: fixed; inset: 0; z-index: 999;
+        background: rgba(20,10,0,.9);
+        align-items: center; justify-content: center;
+        padding: 20px;
+        backdrop-filter: blur(6px);
+      }
+      .lightbox.open { display: flex; }
+      .lb-inner {
+        max-width: 900px; width: 100%;
+        position: relative;
+        animation: lbFadeIn .25s ease;
+      }
+      @keyframes lbFadeIn { from{opacity:0;transform:scale(.96)} to{opacity:1;transform:scale(1)} }
+      .lb-inner img {
+        width: 100%; max-height: 80vh;
+        object-fit: contain; border-radius: var(--radius);
+        display: block;
+        box-shadow: 0 20px 60px rgba(0,0,0,.5);
+      }
+      .lb-caption {
+        text-align: center; margin-top: 16px;
+        color: rgba(255,255,255,.8); font-size: .88rem;
+      }
+      .lb-caption strong { color: var(--gold-light); display: block; font-family:'Playfair Display',serif; font-size:1rem; }
+      .lb-close {
+        position: absolute; top: -14px; right: -14px;
+        width: 38px; height: 38px; border-radius: 50%;
+        background: var(--gold); color: var(--ink);
+        border: none; font-size: 1.1rem; cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        box-shadow: 0 4px 14px rgba(0,0,0,.3);
+        transition: background .2s, transform .2s;
+        z-index: 2;
+      }
+      .lb-close:hover { background: var(--gold-light); transform: scale(1.1); }
+      .lb-nav {
+        position: absolute; top: 50%; transform: translateY(-50%);
+        width: 44px; height: 44px; border-radius: 50%;
+        background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.2);
+        color: var(--white); font-size: 1.1rem;
+        cursor: pointer; display: flex; align-items: center; justify-content: center;
+        transition: background .2s; z-index: 2;
+      }
+      .lb-nav:hover { background: rgba(212,168,67,.4); }
+      .lb-prev { left: -56px; }
+      .lb-next { right: -56px; }
+
+      /* ════════ SCROLL REVEAL ════════ */
+      .reveal { opacity:0; transform:translateY(20px); transition:opacity .55s ease,transform .55s ease; }
+      .reveal.visible { opacity:1; transform:translateY(0); }
+
+      /* this code get rid of the hero delay when selection from bav bar, help make page load faster*/
+      .hero_slide.fixed { background-image: url('../assets/img/Sportbanner.png') !important; }
+      .hero_container.fixed {
+        position: relative;
+        height: 380px;
+        overflow: hidden;
+
+        /* This shows while the image loads — customise this colour */
+        background: #2a1800; filter: blur(0); /* remove blur once image loads via JS */;
+      }
+      .hero_slide.fixed { opacity: 0; transition: opacity 0.6s ease; }
+
+      .hero_slide.fixed.active { opacity: 1; }
+      .hero_container.fixed::before {
+          content: '';
+          position: absolute;
+          inset: 0;
+          z-index: 0;
+          background: linear-gradient(
+            90deg,
+            #2a1800 0%,
+            #4a2e00 40%,
+            #2a1800 80%
+          );
+          background-size: 200% 100%;
+          animation: shimmer 1.6s infinite;
+        }
+
+        /* Hide the shimmer once the image is active */
+        .hero_container.fixed.loaded::before {
+          display: none;
+        }
+
+        @keyframes shimmer {
+          0%   { background-position: 200% 0; }
+          100% { background-position: -200% 0; }
+        }
+
+      @media(max-width:720px){
+        .gallery-container { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+        .controls-inner { gap: 12px; }
+        .search-wrap input { width: 160px; }
+        .lb-prev { left: -8px; } .lb-next { right: -8px; }
+      }
+      @media(max-width:480px){
+        .gallery-container { grid-template-columns: 1fr; }
+        .search-wrap input { width: 140px; }
+      }
+    </style>
+  </head>
+
+  <body>
+     <!-- ══ PANEL OVERLAY ══ -->
+    <div class="panel-overlay" id="panelOverlay" onclick="closePanel()"></div>
+
+    <!-- ══ SIDE PANEL NAV ══ -->
+    <div class="side-panel" id="sidePanel">
+      <div class="panel-head">
+        <div class="ph-logo">
+          <img src="../assets/img/logo.png" alt="GMHS Logo" />
+          <span>Garvey Maceo<br>High School</span>
+        </div>
+        <button class="panel-close" onclick="closePanel()"><i class="fas fa-times"></i></button>
+      </div>
+      <nav class="panel-nav">
+        <a href="../index.html"          class="pnav-item"><i class="fas fa-home" style="width:18px;margin-right:8px;"></i> Home</a>
+        <a href="Principal.html"         class="pnav-item active"><i class="fas fa-user-tie" style="width:18px;margin-right:8px;"></i> Principal's Message</a>
+
+        <div class="pnav-label">Cubanz</div>
+        <a href="ethos.html"      class="pnav-sub">Our Ethos</a>
+        <a href="staff.html"      class="pnav-sub">Our Staff</a>
+        <a href="department.html" class="pnav-sub">Departments</a>
+        <a href="history.html"    class="pnav-sub">History</a>
+        <a href="news.html"       class="pnav-sub">News Updates</a>
+
+        <div class="pnav-label">Academics</div>
+        <a href="Curriculum.html"        class="pnav-sub">Curriculum</a>
+        <a href="Health.html"            class="pnav-sub">Health &amp; Welfare</a>
+        <a href="graduation.html"        class="pnav-sub">Graduation Requirements</a>
+        <a href="FacultySpotlight.html" class="pnav-sub">Faculty Spotlight</a>
+
+        <div class="pnav-label">Stakeholders</div>
+        <a href="alumni.html" class="pnav-sub">Alumni</a>
+        <a href="pta.html"    class="pnav-sub">PTA</a>
+
+        <div class="pnav-label">Gallery</div>
+        <a href="sports.html" class="pnav-sub">Sports &amp; Events Gallery</a>
+        <a href="events.html" class="pnav-sub">Events</a>
+
+        <div class="pnav-label">Contact</div>
+        <a href="contact.html" class="pnav-sub">Contact Us</a>
+        <a href="faq.html"     class="pnav-sub">FAQ</a>
+        <a href="donate.html"  class="pnav-sub">Donate</a>
+      </nav>
+      <div class="panel-footer">
+        <p>© 2026 Garvey Maceo High School<br>Website design by SkoolTech London</p>
+      </div>
+    </div>
+
+    <!-- ══ STICKY HEADER ══ -->
+    <header>
+      <a href="../index.html" class="text_bg">
+        <img src="../assets/img/logo.png" alt="GMHS Logo" />
+        <span>Garvey Maceo High School</span>
+      </a>
+      <div class="flex_spacer"></div>
+      <div class="header-socials">
+        <a href="https://www.facebook.com/GARVEYMACEOCUBANS" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="youtube.com" title="YouTube"><i class="fab fa-youtube"></i></a>
+        <a href="https://www.instagram.com/garveymaceo/" title="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.linkedin.com/school/garvey-maceo-high-school/" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://twitter.com/garveymaceo" title="Twitter"><i class="fab fa-twitter"></i></a> 
+        <a href="https://www.tiktok.com/discover/garvey-maceo-high-school-jamaica" title="TikTok"><i class="fab fa-tiktok"></i></a>    
+      </div>
+    </header>
+
+ <!-- ══ HERO ══ -->
+<div class="hero_container fixed">
+  <div class="hero_pathbar" style="position:relative;z-index:3;">
+    <div class="inner">
+      <a href="../index.html">Home</a>
+      <i class="fas fa-chevron-right"></i>
+      <a href="sports.html">Sports</a>
+    </div>
+  </div>
+  <div class="hero_gradient_overlay fixed" style="pointer-events:none;"></div>
+  <div class="hero_slide fixed"
+       data-bg="../assets/img/Sportbanner.PNG"
+       style="background-size:cover;
+              background-position:center;
+              position:absolute;inset:0;z-index:0;">
+  </div>
+</div>
+
+   <div class="gold-divider"></div>
+
+
+    <!-- ══════════ INTRO BAND ══════════ -->
+    <div class="gallery-intro">
+      <div class="inner reveal">
+        <span class="accent-bar"></span>
+        <span class="eyebrow">Garvey Maceo High School</span>
+        <h1>Our <span>Gallery</span></h1>
+        <p>A visual celebration of school life at GMHS, from championship victories on the field to award ceremonies, cultural events and the dedicated staff behind every achievement.</p>
+      </div>
+    </div>
+    <div class="gold-divider"></div>
+
+    <!-- ══════════ CONTROLS BAR ══════════ -->
+    <div class="controls-bar">
+      <div class="controls-inner">
+        <div class="filter-group">
+          <span class="filter-label">Filter:</span>
+          <button class="filter-btn active" data-filter="all">
+            All <span class="count-pip" id="count-all">57</span>
+          </button>
+          <button class="filter-btn" data-filter="Sports">
+            Sports <span class="count-pip" id="count-sports">20</span>
+          </button>
+          <button class="filter-btn" data-filter="Events">
+            Events <span class="count-pip" id="count-events">19</span>
+          </button>
+          <button class="filter-btn" data-filter="Staff">
+            Staff <span class="count-pip" id="count-staff">18</span>
+          </button>
+        </div>
+        <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;">
+          <div class="search-wrap">
+            <i class="fas fa-search"></i>
+            <input type="text" id="gallerySearch" placeholder="Search photos" autocomplete="off" />
+          </div>
+          <span class="results-count" id="resultsCount"></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════ GALLERY GRID ══════════ -->
+    <div class="gallery-section">
+      <div class="gallery-container" id="galleryGrid">
+
+        <!-- ── SPORTS ── -->
+        <div class="gallery-card reveal" data-cat="Sports" data-title="Match Day" data-sub="Football">
+          <div class="card-img-wrap"><img src="../assets/img/Dcupwinners2024.webp" alt="Match Day Football" loading="lazy" onerror="this.closest('.card-img-wrap').style.background='var(--cream-dark)'"/><div class="card-overlay"><div class="overlay-zoom"><i class="fas fa-expand"></i></div></div></div>
+          <div class="card-label"><h4>Match Day</h4><span class="card-cat">Football</span></div>
+        </div>
+        <div class="gallery-card reveal" data-cat="Sports" data-title="Match Day" data-sub="Football">
+          <div class="card-img-wrap"><img src="../assets/img/sport1.jfif" alt="Match Day Football" loading="lazy" onerror="this.closest('.card-img-wrap').style.background='var(--cream-dark)'"/><div class="card-overlay"><div class="overlay-zoom"><i class="fas fa-expand"></i></div></div></div>
+          <div class="card-label"><h4>Match Day</h4><span class="card-cat">Football</span></div>
+        </div>
+        <div class="gallery-card reveal" data-cat="Sports" data-title="Match Day" data-sub="Football">
+          <div class="card-img-wrap"><img src="../assets/img/sport3.jfif" alt="Match Day Football" loading="lazy" onerror="this.closest('.card-img-wrap').style.background='var(--cream-dark)'"/><div class="card-overlay"><div class="overlay-zoom"><i class="fas fa-expand"></i></div></div></div>
+          <div class="card-label"><h4>Match Day</h4><span class="card-cat">Football</span></div>
+        </div>
+        <div class="gallery-card reveal" data-cat="Sports" data-title="Match Day" data-sub="Football">
+          <div class="card-img-wrap"><img src="../assets/img/sports5.jpg" alt="Match Day Football" loading="lazy" onerror="this.closest('.card-img-wrap').style.background='var(--cream-dark)'"/><div class="card-overlay"><div class="overlay-zoom"><i class="fas fa-expand"></i></div></div></div>
+          <div class="card-label"><h4>Match Day</h4><span class="card-cat">Football</span></div>
+        </div>
+        <div class="gallery-card reveal" data-cat="Sports" data-title="Match Day" data-sub="Football">
+          <div class="card-img-wrap"><img src="../assets/img/sports6.png" alt="Match Day Football" loading="lazy" onerror="this.closest('.card-img-wrap').style.background='var(--cream-dark)'"/><div class="card-overlay"><div class="overlay-zoom"><i class="fas fa-expand"></i></div></div></div>
+          <div class="card-label"><h4>Match Day</h4><span class="card-cat">Football</span></div>
+        </div>
+        <div class="gallery-card reveal" data-cat="Sports" data-title="Match Day" data-sub="Football">
+          <div class="card-img-wrap"><img src="../assets/img/sports7.png" alt="Match Day Football" loading="lazy" onerror="this.closest('.card-img-wrap').style.background='var(--cream-dark)'"/><div class="card-overlay"><div class="overlay-zoom"><i class="fas fa-expand"></i></div></div></div>
+          <div class="card-label"><h4>Match Day</h4><span class="card-cat">Football</span></div>
+        </div>
+        <div class="gallery-card reveal" data-cat="Sports" data-title="Match Day" data-sub="Football">
+          <div class="card-img-wrap"><img src="../assets/img/sports9.jpg" alt="Match Day Football" loading="lazy" onerror="this.closest('.card-img-wrap').style.background='var(--cream-dark)'"/><div class="card-overlay"><div class="overlay-zoom"><i class="fas fa-expand"></i></div></div></div>
+          <div class="card-label"><h4>Match Day</h4><span class="card-cat">Football</span></div>
+        </div>
+        <div class="gallery-card reveal" data-cat="Sports" data-title="GMHS Team" data-sub="Football">
+          <div class="card-img-wrap"><img src="../assets/img/sports8.png" alt="GMHS Team Football" loading="lazy" onerror="this.closest('.card-img-wrap').style.background='var(--cream-dark)'"/><div class="card-overlay"><div class="overlay-zoom"><i class="fas fa-expand"></i></div></div></div>
+          <div class="card-label"><h4>GMHS Team</h4><span class="card-cat">Football</span></div>
+        </div>
+        <div class="gallery-card reveal" data-cat="Sports" data-title="GMHS Team" data-sub="Football">
+          <div class="card-img-wrap"><img src="../assets/img/teams.jpg" alt="GMHS Team Football" loading="lazy" onerror="this.closest('.card-img-wrap').style.background='var(--cream-dark)'"/><div class="card-overlay"><div class="overlay-zoom"><i class="fas fa-expand"></i></div></div></div>
+          <div class="card-label"><h4>GMHS Team</h4><span class="card-cat">Football</span></div>
+        </div>
+        <div class="gallery-card reveal" data-cat="Sports" data-title="GMHS Team" data-sub="Football">
+          <div class="card-img-wrap"><img src="../assets/img/Sports4.png" alt="GMHS Team Football" loading="lazy" onerror="this.closest('.card-img-wrap').style.background='var(--cream-dark)'"/><div class="card-overlay"><div class="overlay-zoom"><i class="fas fa-expand"></i></div></div></div>
+          <div class="card-label"><h4>GMHS Team</h4><span class="card-cat">Football</span></div>
+        </div>
+        <div class="gallery-card reveal" data-cat="Sports" data-title="GMHS Team" data-sub="Cricket">
+          <div class="card-img-wrap"><img src="../assets/img/sport-criket.png" alt="GMHS Cricket" loading="lazy" onerror="this.closest('.card-img-wrap').style.background='var(--cream-dark)'"/><div class="card-overlay"><div class="overlay-zoom"><i class="fas fa-expand"></i></div></div></div>
+          <div class="card-label"><h4>GMHS Team</h4><span class="card-cat">Cricket</span></div>
+        </div>
+        <div class="gallery-card reveal" data-cat="Sports" data-title="Team Training" data-sub="Football">
+          <div class="card-img-wrap"><img src="../assets/img/teamtraining.jpg" alt="Team Training Football" loading="lazy" onerror="this.closest('.card-img-wrap').style.background='var(--cream-dark)'"/><div class="card-overlay"><div class="overlay-zoom"><i class="fas fa-expand"></i></div></div></div>
+          <div class="card-label"><h4>Team Training</h4><span class="card-cat">Football</span></div>
+        </div>
+        <div class="gallery-card reveal" data-cat="Sports" data-title="GMHS Champions" data-sub="Track & Field">
+          <div class="card-img-wrap"><img src="../assets/img/tracks5.jpg" alt="GMHS Champions Track" loading="lazy" onerror="this.closest('.card-img-wrap').style.background='var(--cream-dark)'"/><div class="card-overlay"><div class="overlay-zoom"><i class="fas fa-expand"></i></div></div></div>
+          <div class="card-label"><h4>GMHS Champions</h4><span class="card-cat">Track &amp; Field</span></div>
+        </div>
+        <div class="gallery-card reveal" data-cat="Sports" data-title="Track Meet" data-sub="Track & Field">
+          <div class="card-img-wrap"><img src="../assets/img/tracks2.jpg" alt="Track Meet" loading="lazy" onerror="this.closest('.card-img-wrap').style.background='var(--cream-dark)'"/><div class="card-overlay"><div class="overlay-zoom"><i class="fas fa-expand"></i></div></div></div>
+          <div class="card-label"><h4>Track Meet</h4><span class="card-cat">Track &amp; Field</span></div>
+        </div>
+        <div class="gallery-card reveal" data-cat="Sports" data-title="GMHS Champions" data-sub="Track & Field">
+          <div class="card-img-wrap"><img src="../assets/img/tracksGMHS.jpg" alt="GMHS Champions Track" loading="lazy" onerror="this.closest('.card-img-wrap').style.background='var(--cream-dark)'"/><div class="card-overlay"><div class="overlay-zoom"><i class="fas fa-expand"></i></div></div></div>
+          <div class="card-label"><h4>GMHS Champions</h4><span class="card-cat">Track &amp; Field</span></div>
+        </div>
+        <div class="gallery-card reveal" data-cat="Sports" data-title="GMHS Champions" data-sub="Track & Field">
+          <div class="card-img-wrap"><img src="../assets/img/tracks3.jpg" alt="GMHS Champions Track" loading="lazy" onerror="this.closest('.card-img-wrap').style.background='var(--cream-dark)'"/><div class="card-overlay"><div class="overlay-zoom"><i class="fas fa-expand"></i></div></div></div>
+          <div class="card-label"><h4>GMHS Champions</h4><span class="card-cat">Track &amp; Field</span></div>
+        </div>
+        <div class="gallery-card reveal" data-cat="Sports" data-title="GMHS Game" data-sub="Football">
+          <div class="card-img-wrap"><img src="../assets/img/footie.png" alt="GMHS Game Football" loading="lazy" onerror="this.closest('.card-img-wrap').style.background='var(--cream-dark)'"/><div class="card-overlay"><div class="overlay-zoom"><i class="fas fa-expand"></i></div></div></div>
+          <div class="card-label"><h4>GMHS Game</h4><span class="card-cat">Football</span></div>
+        </div>
+        <div class="gallery-card reveal" data-cat="Sports" data-title="GMHS Champions" data-sub="Football">
+          <div class="card-img-wrap"><img src="../assets/img/championsfb.png" alt="GMHS Champions Football" loading="lazy" onerror="this.closest('.card-img-wrap').style.background='var(--cream-dark)'"/><div class="card-overlay"><div class="overlay-zoom"><i class="fas fa-expand"></i></div></div></div>
+          <div class="card-label"><h4>GMHS Champions</h4><span class="card-cat">Football</span></div>
+        </div>
+        <div class="gallery-card reveal" data-cat="Sports" data-title="Football Captain" data-sub="Football">
+          <div class="card-img-wrap"><img src="../assets/img/FootballCaptain.png" alt="Football Captain" loading="lazy" onerror="this.closest('.card-img-wrap').style.background='var(--cream-dark)'"/><div class="card-overlay"><div class="overlay-zoom"><i class="fas fa-expand"></i></div></div></div>
+          <div class="card-label"><h4>Football Captain</h4><span class="card-cat">Football</span></div>
+        </div>
+        <div class="gallery-card reveal" data-cat="Sports" data-title="Cricket Team" data-sub="Cricket">
+          <div class="card-img-wrap"><img src="../assets/img/cricketTeam.png" alt="Cricket Team" loading="lazy" onerror="this.closest('.card-img-wrap').style.background='var(--cream-dark)'"/><div class="card-overlay"><div class="overlay-zoom"><i class="fas fa-expand"></i></div></div></div>
+          <div class="card-label"><h4>Cricket Team</h4><span class="card-cat">Cricket</span></div>
+        </div>
+        <div class="gallery-card reveal" data-cat="Sports" data-title="Girls Football" data-sub="Girls Football">
+          <div class="card-img-wrap"><img src="../assets/img/girlFootball.png" alt="Girls Football" loading="lazy" onerror="this.closest('.card-img-wrap').style.background='var(--cream-dark)'"/><div class="card-overlay"><div class="overlay-zoom"><i class="fas fa-expand"></i></div></div></div>
+          <div class="card-label"><h4>Girls Football</h4><span class="card-cat">Girls Football</span></div>
+        </div>
+        <div class="gallery-card reveal" data-cat="Sports" data-title="Girls Football" data-sub="Girls Football">
+          <div class="card-img-wrap"><img src="../assets/img/Sportbanner.png" alt="Girls Football" loading="lazy" onerror="this.closest('.card-img-wrap').style.background='var(--cream-dark)'"/><div class="card-overlay"><div class="overlay-zoom"><i class="fas fa-expand"></i></div></div></div>
+          <div class="card-label"><h4>DCup 2024</h4><span class="card-cat">DCup 2024</span></div>
+        </div>
+
+        <!-- ── EVENTS ── -->
+        <div class="gallery-card reveal" data-cat="Events" data-title="Trophy" data-sub="Football">
+          <div class="card-img-wrap"><img src="../assets/img/eventsDay7.jpg" alt="Trophy Football" loading="lazy" onerror="this.closest('.card-img-wrap').style.background='var(--cream-dark)'"/><div class="card-overlay"><div class="overlay-zoom"><i class="fas fa-expand"></i></div></div></div>
+          <div class="card-label"><h4>Trophy</h4><span class="card-cat">Football</span></div>
+        </div>
+        <div class="gallery-card reveal" data-cat="Events" data-title="D'Cup Final" data-sub="Football">
+          <div class="card-img-wrap"><img src="../assets/img/event.jpg" alt="D'Cup Final Football" loading="lazy" onerror="this.closest('.card-img-wrap').style.background='var(--cream-dark)'"/><div class="card-overlay"><div class="overlay-zoom"><i class="fas fa-expand"></i></div></div></div>
+          <div class="card-label"><h4>D'Cup Final</h4><span class="card-cat">Football</span></div>
+        </div>
+        <div class="gallery-card reveal" data-cat="Events" data-title="Coach 2022" data-sub="D'Cup Trophy">
+          <div class="card-img-wrap"><img src="../assets/img/coach.jpg" alt="Coach 2022" loading="lazy" onerror="this.closest('.card-img-wrap').style.background='var(--cream-dark)'"/><div class="card-overlay"><div class="overlay-zoom"><i class="fas fa-expand"></i></div></div></div>
+          <div class="card-label"><h4>Coach 2022</h4><span class="card-cat">D'Cup Trophy</span></div>
+        </div>
+        <div class="gallery-card reveal" data-cat="Events" data-title="Team 2022" data-sub="D'Cup Winners">
+          <div class="card-img-wrap"><img src="../assets/img/celebration.jpg" alt="Team 2022 Winners" loading="lazy" onerror="this.closest('.card-img-wrap').style.background='var(--cream-dark)'"/><div class="card-overlay"><div class="overlay-zoom"><i class="fas fa-expand"></i></div></div></div>
+          <div class="card-label"><h4>Team 2022</h4><span class="card-cat">D'Cup Winners</span></div>
+        </div>
+        <div class="gallery-card reveal" data-cat="Events" data-title="Team 2022" data-sub="D'Cup Winners">
+          <div class="card-img-wrap"><img src="../assets/img/winners.png" alt="Team 2022 Winners" loading="lazy" onerror="this.closest('.card-img-wrap').style.background='var(--cream-dark)'"/><div class="card-overlay"><div class="overlay-zoom"><i class="fas fa-expand"></i></div></div></div>
+          <div class="card-label"><h4>Team 2022</h4><span class="card-cat">D'Cup Winners</span></div>
+        </div>
+        <div class="gallery-card reveal" data-cat="Events" data-title="Team 2022" data-sub="D'Cup Winners">
+          <div class="card-img-wrap"><img src="../assets/img/Sportbg.jpg" alt="Team 2022 Winners" loading="lazy" onerror="this.closest('.card-img-wrap').style.background='var(--cream-dark)'"/><div class="card-overlay"><div class="overlay-zoom"><i class="fas fa-expand"></i></div></div></div>
+          <div class="card-label"><h4>Team 2022</h4><span class="card-cat">D'Cup Winners</span></div>
+        </div>
+        <div class="gallery-card reveal" data-cat="Events" data-title="PSA Donation" data-sub="Past Students">
+          <div class="card-img-wrap"><img src="../assets/img/AlumiNY.png" alt="PSA Donation" loading="lazy" onerror="this.closest('.card-img-wrap').style.background='var(--cream-dark)'"/><div class="card-overlay"><div class="overlay-zoom"><i class="fas fa-expand"></i></div></div></div>
+          <div class="card-label"><h4>PSA Donation</h4><span class="card-cat">Past Students</span></div>
+        </div>
+        <div class="gallery-card reveal" data-cat="Events" data-title="Careers Day" data-sub="Past Students">
+          <div class="card-img-wrap"><img src="../assets/img/Paststudenttrue.jpg" alt="Careers Day" loading="lazy" onerror="this.closest('.card-img-wrap').style.background='var(--cream-dark)'"/><div class="card-overlay"><div class="overlay-zoom"><i class="fas fa-expand"></i></div></div></div>
+          <div class="card-label"><h4>Careers Day</h4><span class="card-cat">Past Students</span></div>
+        </div>
+        <div class="gallery-card reveal" data-cat="Events" data-title="Careers Day" data-sub="Past Students">
+          <div class="card-img-wrap"><img src="../assets/img/IMG_7775.jpg" alt="Careers Day" loading="lazy" onerror="this.closest('.card-img-wrap').style.background='var(--cream-dark)'"/><div class="card-overlay"><div class="overlay-zoom"><i class="fas fa-expand"></i></div></div></div>
+          <div class="card-label"><h4>Careers Day</h4><span class="card-cat">Past Students</span></div>
+        </div>
+        <div class="gallery-card reveal" data-cat="Events" data-title="PTA Cover" data-sub="Events">
+          <div class="card-img-wrap"><img src="../assets/img/PTACover.avif" alt="PTA Cover" loading="lazy" onerror="this.closest('.card-img-wrap').style.background='var(--cream-dark)'"/><div class="card-overlay"><div class="overlay-zoom"><i class="fas fa-expand"></i></div></div></div>
+          <div class="card-label"><h4>PTA Cover</h4><span class="card-cat">Events</span></div>
+        </div>
+        <div class="gallery-card reveal" data-cat="Events" data-title="Volunteers" data-sub="Past Students">
+          <div class="card-img-wrap"><img src="../assets/img/IMG_7774.jpg" alt="Volunteers" loading="lazy" onerror="this.closest('.card-img-wrap').style.background='var(--cream-dark)'"/><div class="card-overlay"><div class="overlay-zoom"><i class="fas fa-expand"></i></div></div></div>
+          <div class="card-label"><h4>Volunteers</h4><span class="card-cat">Past Students</span></div>
+        </div>
+        <div class="gallery-card reveal" data-cat="Events" data-title="Award Service" data-sub="Past Students">
+          <div class="card-img-wrap"><img src="../assets/img/psa.png" alt="Award Service" loading="lazy" onerror="this.closest('.card-img-wrap').style.background='var(--cream-dark)'"/><div class="card-overlay"><div class="overlay-zoom"><i class="fas fa-expand"></i></div></div></div>
+          <div class="card-label"><h4>Award Service</h4><span class="card-cat">Past Students</span></div>
+        </div>
+        <div class="gallery-card reveal" data-cat="Events" data-title="Award Service" data-sub="Past Students">
+          <div class="card-img-wrap"><img src="../assets/img/IMG_7776.jpg" alt="Award Service Speech" loading="lazy" onerror="this.closest('.card-img-wrap').style.background='var(--cream-dark)'"/><div class="card-overlay"><div class="overlay-zoom"><i class="fas fa-expand"></i></div></div></div>
+          <div class="card-label"><h4>Celebration</h4><span class="card-cat">D'Cup Games</span></div>
+        </div>
+        <div class="gallery-card reveal" data-cat="Events" data-title="Award Service" data-sub="Past Students">
+          <div class="card-img-wrap"><img src="../assets/img/IMG_7777.jpg" alt="Award Service" loading="lazy" onerror="this.closest('.card-img-wrap').style.background='var(--cream-dark)'"/><div class="card-overlay"><div class="overlay-zoom"><i class="fas fa-expand"></i></div></div></div>
+          <div class="card-label"><h4>Mental Health Week </h4><span class="card-cat">I CAN Event</span></div>
+        </div>
+        <div class="gallery-card reveal" data-cat="Events" data-title="Prize Giving" data-sub="Award Service">
+          <div class="card-img-wrap"><img src="../assets/img/PriceGiving.jpg" alt="Prize Giving" loading="lazy" onerror="this.closest('.card-img-wrap').style.background='var(--cream-dark)'"/><div class="card-overlay"><div class="overlay-zoom"><i class="fas fa-expand"></i></div></div></div>
+          <div class="card-label"><h4>Prize Giving</h4><span class="card-cat">Award Service</span></div>
+        </div>
+        <div class="gallery-card reveal" data-cat="Events" data-title="Prize Giving" data-sub="Award Service">
+          <div class="card-img-wrap"><img src="../assets/img/Student.jpg" alt="Prize Giving Student" loading="lazy" onerror="this.closest('.card-img-wrap').style.background='var(--cream-dark)'"/><div class="card-overlay"><div class="overlay-zoom"><i class="fas fa-expand"></i></div></div></div>
+          <div class="card-label"><h4>Prize Giving</h4><span class="card-cat">Award Service</span></div>
+        </div>
+        <div class="gallery-card reveal" data-cat="Events" data-title="GMHS at Expo" data-sub="Expo">
+          <div class="card-img-wrap"><img src="../assets/img/Expo.png" alt="GMHS at Expo" loading="lazy" onerror="this.closest('.card-img-wrap').style.background='var(--cream-dark)'"/><div class="card-overlay"><div class="overlay-zoom"><i class="fas fa-expand"></i></div></div></div>
+          <div class="card-label"><h4>GMHS at Expo</h4><span class="card-cat">Expo</span></div>
+        </div>
+        <div class="gallery-card reveal" data-cat="Events" data-title="Jamalco Computers" data-sub="Donation">
+          <div class="card-img-wrap"><img src="../assets/img/Donation.png" alt="Jamalco Computers Ceremony" loading="lazy" onerror="this.closest('.card-img-wrap').style.background='var(--cream-dark)'"/><div class="card-overlay"><div class="overlay-zoom"><i class="fas fa-expand"></i></div></div></div>
+          <div class="card-label"><h4>Jamalco Computers</h4><span class="card-cat">Donation</span></div>
+        </div>
+        <div class="gallery-card reveal" data-cat="Events" data-title="Alumni Sports Donation" data-sub="Donation">
+          <div class="card-img-wrap"><img src="../assets/img/Donation2.jpg" alt="Alumni Sports Donation" loading="lazy" onerror="this.closest('.card-img-wrap').style.background='var(--cream-dark)'"/><div class="card-overlay"><div class="overlay-zoom"><i class="fas fa-expand"></i></div></div></div>
+          <div class="card-label"><h4>Alumni Sports Donation</h4><span class="card-cat">Donation</span></div>
+        </div>
+        <div class="gallery-card reveal" data-cat="Events" data-title="Award" data-sub="First Place">
+          <div class="card-img-wrap"><img src="../assets/img/Artward.png" alt="Art Award First Place" loading="lazy" onerror="this.closest('.card-img-wrap').style.background='var(--cream-dark)'"/><div class="card-overlay"><div class="overlay-zoom"><i class="fas fa-expand"></i></div></div></div>
+          <div class="card-label"><h4>Art Award</h4><span class="card-cat">First Place</span></div>
+        </div>
+        <div class="gallery-card reveal" data-cat="Events" data-title="Award" data-sub="Homecoming">
+          <div class="card-img-wrap"><img src="../assets/img/PSAPhoto.jpg" alt="Award Homecoming" loading="lazy" onerror="this.closest('.card-img-wrap').style.background='var(--cream-dark)'"/><div class="card-overlay"><div class="overlay-zoom"><i class="fas fa-expand"></i></div></div></div>
+          <div class="card-label"><h4>Award</h4><span class="card-cat">Homecoming</span></div>
+        </div>
+         <div class="gallery-card reveal" data-cat="Events" data-title="Award" data-sub="Homecoming">
+          <div class="card-img-wrap"><img src="../assets/img/PSAPhoto1.jpg" alt="Award Homecoming" loading="lazy" onerror="this.closest('.card-img-wrap').style.background='var(--cream-dark)'"/><div class="card-overlay"><div class="overlay-zoom"><i class="fas fa-expand"></i></div></div></div>
+          <div class="card-label"><h4>Award</h4><span class="card-cat">Homecoming</span></div>
+        </div>
+         <div class="gallery-card reveal" data-cat="Events" data-title="Award" data-sub="Homecoming">
+          <div class="card-img-wrap"><img src="../assets/img/PSAPhoto2.jpg" alt="Award Homecoming" loading="lazy" onerror="this.closest('.card-img-wrap').style.background='var(--cream-dark)'"/><div class="card-overlay"><div class="overlay-zoom"><i class="fas fa-expand"></i></div></div></div>
+          <div class="card-label"><h4>Award</h4><span class="card-cat">Homecoming</span></div>
+        </div>
+         <div class="gallery-card reveal" data-cat="Events" data-title="Award" data-sub="Homecoming">
+          <div class="card-img-wrap"><img src="../assets/img/PSAPhoto3.jpg" alt="Award Homecoming" loading="lazy" onerror="this.closest('.card-img-wrap').style.background='var(--cream-dark)'"/><div class="card-overlay"><div class="overlay-zoom"><i class="fas fa-expand"></i></div></div></div>
+          <div class="card-label"><h4>Award</h4><span class="card-cat">Homecoming</span></div>
+        </div>
+         <div class="gallery-card reveal" data-cat="Events" data-title="Award" data-sub="Homecoming">
+          <div class="card-img-wrap"><img src="../assets/img/PSAPhoto4.jpg" alt="Award Homecoming" loading="lazy" onerror="this.closest('.card-img-wrap').style.background='var(--cream-dark)'"/><div class="card-overlay"><div class="overlay-zoom"><i class="fas fa-expand"></i></div></div></div>
+          <div class="card-label"><h4>Award</h4><span class="card-cat">Homecoming</span></div>
+        </div>
+         <div class="gallery-card reveal" data-cat="Events" data-title="Award" data-sub="Homecoming">
+          <div class="card-img-wrap"><img src="../assets/img/PSAPhoto5.jpg" alt="Award Homecoming" loading="lazy" onerror="this.closest('.card-img-wrap').style.background='var(--cream-dark)'"/><div class="card-overlay"><div class="overlay-zoom"><i class="fas fa-expand"></i></div></div></div>
+          <div class="card-label"><h4>Award</h4><span class="card-cat">Homecoming</span></div>
+        </div>
+         <div class="gallery-card reveal" data-cat="Events" data-title="Award" data-sub="Homecoming">
+          <div class="card-img-wrap"><img src="../assets/img/PSAPhoto6.jpg" alt="Award Homecoming" loading="lazy" onerror="this.closest('.card-img-wrap').style.background='var(--cream-dark)'"/><div class="card-overlay"><div class="overlay-zoom"><i class="fas fa-expand"></i></div></div></div>
+          <div class="card-label"><h4>Award</h4><span class="card-cat">Homecoming</span></div>
+        </div>
+         <div class="gallery-card reveal" data-cat="Events" data-title="Award" data-sub="Homecoming">
+          <div class="card-img-wrap"><img src="../assets/img/PSAPhoto7.jpg" alt="Award Homecoming" loading="lazy" onerror="this.closest('.card-img-wrap').style.background='var(--cream-dark)'"/><div class="card-overlay"><div class="overlay-zoom"><i class="fas fa-expand"></i></div></div></div>
+          <div class="card-label"><h4>Award</h4><span class="card-cat">Homecoming</span></div>
+        </div>
+         <div class="gallery-card reveal" data-cat="Events" data-title="Award" data-sub="Homecoming">
+          <div class="card-img-wrap"><img src="../assets/img/PSAPhoto8.jpg" alt="Award Homecoming" loading="lazy" onerror="this.closest('.card-img-wrap').style.background='var(--cream-dark)'"/><div class="card-overlay"><div class="overlay-zoom"><i class="fas fa-expand"></i></div></div></div>
+          <div class="card-label"><h4>Award</h4><span class="card-cat">Homecoming</span></div>
+        </div>
+         <div class="gallery-card reveal" data-cat="Events" data-title="Award" data-sub="Homecoming">
+          <div class="card-img-wrap"><img src="../assets/img/PSAPhoto9.jpg" alt="Award Homecoming" loading="lazy" onerror="this.closest('.card-img-wrap').style.background='var(--cream-dark)'"/><div class="card-overlay"><div class="overlay-zoom"><i class="fas fa-expand"></i></div></div></div>
+          <div class="card-label"><h4>Award</h4><span class="card-cat">Homecoming</span></div>
+        </div>
+         <div class="gallery-card reveal" data-cat="Events" data-title="Award" data-sub="Homecoming">
+          <div class="card-img-wrap"><img src="../assets/img/PSAPhoto10.jpg" alt="Award Homecoming" loading="lazy" onerror="this.closest('.card-img-wrap').style.background='var(--cream-dark)'"/><div class="card-overlay"><div class="overlay-zoom"><i class="fas fa-expand"></i></div></div></div>
+          <div class="card-label"><h4>Award</h4><span class="card-cat">Homecoming</span></div>
+        </div>
+         <div class="gallery-card reveal" data-cat="Events" data-title="Award" data-sub="Homecoming">
+          <div class="card-img-wrap"><img src="../assets/img/PSAPhoto11.jpg" alt="Award Homecoming" loading="lazy" onerror="this.closest('.card-img-wrap').style.background='var(--cream-dark)'"/><div class="card-overlay"><div class="overlay-zoom"><i class="fas fa-expand"></i></div></div></div>
+          <div class="card-label"><h4>Award</h4><span class="card-cat">Homecoming</span></div>
+        </div>
+         <div class="gallery-card reveal" data-cat="Events" data-title="Award" data-sub="Homecoming">
+          <div class="card-img-wrap"><img src="../assets/img/PSAPhoto12.jpg" alt="Award Homecoming" loading="lazy" onerror="this.closest('.card-img-wrap').style.background='var(--cream-dark)'"/><div class="card-overlay"><div class="overlay-zoom"><i class="fas fa-expand"></i></div></div></div>
+          <div class="card-label"><h4>Award</h4><span class="card-cat">Homecoming</span></div>
+        </div>
+        <div class="gallery-card reveal" data-cat="Events" data-title="GMHS Event" data-sub="Events">
+          <div class="card-img-wrap"><img src="../assets/img/event1.jpg" alt="Events" loading="lazy" onerror="this.closest('.card-img-wrap').style.background='var(--cream-dark)'"/><div class="card-overlay"><div class="overlay-zoom"><i class="fas fa-expand"></i></div></div></div>
+          <div class="card-label"><h4>Events</h4><span class="card-cat">Events</span></div>
+        </div>
+        <div class="gallery-card reveal" data-cat="Events" data-title="GMHS Event" data-sub="Events">
+          <div class="card-img-wrap"><img src="../assets/img/event2.jpg" alt="Events" loading="lazy" onerror="this.closest('.card-img-wrap').style.background='var(--cream-dark)'"/><div class="card-overlay"><div class="overlay-zoom"><i class="fas fa-expand"></i></div></div></div>
+          <div class="card-label"><h4>Events</h4><span class="card-cat">Events</span></div>
+        </div>
+        <div class="gallery-card reveal" data-cat="Events" data-title="GMHS Event" data-sub="Events">
+          <div class="card-img-wrap"><img src="../assets/img/event3.jpg" alt="Events" loading="lazy" onerror="this.closest('.card-img-wrap').style.background='var(--cream-dark)'"/><div class="card-overlay"><div class="overlay-zoom"><i class="fas fa-expand"></i></div></div></div>
+          <div class="card-label"><h4>Events</h4><span class="card-cat">Events</span></div>
+        </div>
+        <div class="gallery-card reveal" data-cat="Events" data-title="GMHS Event" data-sub="Events">
+          <div class="card-img-wrap"><img src="../assets/img/event4.jpg" alt="Events" loading="lazy" onerror="this.closest('.card-img-wrap').style.background='var(--cream-dark)'"/><div class="card-overlay"><div class="overlay-zoom"><i class="fas fa-expand"></i></div></div></div>
+          <div class="card-label"><h4>Events</h4><span class="card-cat">Events</span></div>
+        </div>
+        <div class="gallery-card reveal" data-cat="Events" data-title="GMHS Event" data-sub="Events">
+          <div class="card-img-wrap"><img src="../assets/img/event5.jpg" alt="Events" loading="lazy" onerror="this.closest('.card-img-wrap').style.background='var(--cream-dark)'"/><div class="card-overlay"><div class="overlay-zoom"><i class="fas fa-expand"></i></div></div></div>
+          <div class="card-label"><h4>Events</h4><span class="card-cat">Events</span></div>
+        </div>
+        <div class="gallery-card reveal" data-cat="Events" data-title="GMHS Event" data-sub="Events">
+          <div class="card-img-wrap"><img src="../assets/img/event7.jpg" alt="Events" loading="lazy" onerror="this.closest('.card-img-wrap').style.background='var(--cream-dark)'"/><div class="card-overlay"><div class="overlay-zoom"><i class="fas fa-expand"></i></div></div></div>
+          <div class="card-label"><h4>Events</h4><span class="card-cat">Events</span></div>
+        </div>
+
+
+        <!-- ── STAFF ── -->
+        <div class="gallery-card reveal" data-cat="Staff" data-title="Teachers Day" data-sub="Staff">
+          <div class="card-img-wrap"><img src="../assets/img/Staff11.png" alt="Teachers Day" loading="lazy" onerror="this.closest('.card-img-wrap').style.background='var(--cream-dark)'"/><div class="card-overlay"><div class="overlay-zoom"><i class="fas fa-expand"></i></div></div></div>
+          <div class="card-label"><h4>Teachers Day</h4><span class="card-cat">Staff</span></div>
+        </div>
+        <div class="gallery-card reveal" data-cat="Staff" data-title="Teachers Day" data-sub="Staff">
+          <div class="card-img-wrap"><img src="../assets/img/Staff-yt.png" alt="Teachers Day" loading="lazy" onerror="this.closest('.card-img-wrap').style.background='var(--cream-dark)'"/><div class="card-overlay"><div class="overlay-zoom"><i class="fas fa-expand"></i></div></div></div>
+          <div class="card-label"><h4>Teachers Day</h4><span class="card-cat">Staff</span></div>
+        </div>
+        <div class="gallery-card reveal" data-cat="Staff" data-title="English Department" data-sub="Staff">
+          <div class="card-img-wrap"><img src="../assets/img/Staff-pp.png" alt="English Department" loading="lazy" onerror="this.closest('.card-img-wrap').style.background='var(--cream-dark)'"/><div class="card-overlay"><div class="overlay-zoom"><i class="fas fa-expand"></i></div></div></div>
+          <div class="card-label"><h4>English Department</h4><span class="card-cat">Staff</span></div>
+        </div>
+        <div class="gallery-card reveal" data-cat="Staff" data-title="Teachers Day" data-sub="Staff">
+          <div class="card-img-wrap"><img src="../assets/img/gallery-staff.png" alt="Teachers Day" loading="lazy" onerror="this.closest('.card-img-wrap').style.background='var(--cream-dark)'"/><div class="card-overlay"><div class="overlay-zoom"><i class="fas fa-expand"></i></div></div></div>
+          <div class="card-label"><h4>Teachers Day</h4><span class="card-cat">Staff</span></div>
+        </div>
+        <div class="gallery-card reveal" data-cat="Staff" data-title="Vice Principal" data-sub="Staff">
+          <div class="card-img-wrap"><img src="../assets/img/vice.jpg" alt="Vice Principal" loading="lazy" onerror="this.closest('.card-img-wrap').style.background='var(--cream-dark)'"/><div class="card-overlay"><div class="overlay-zoom"><i class="fas fa-expand"></i></div></div></div>
+          <div class="card-label"><h4>Vice Principal</h4><span class="card-cat">Staff</span></div>
+        </div>
+        <div class="gallery-card reveal" data-cat="Staff" data-title="Teachers Day" data-sub="Staff">
+          <div class="card-img-wrap"><img src="../assets/img/Staff.jpg" alt="Staff" loading="lazy" onerror="this.closest('.card-img-wrap').style.background='var(--cream-dark)'"/><div class="card-overlay"><div class="overlay-zoom"><i class="fas fa-expand"></i></div></div></div>
+          <div class="card-label"><h4>Teachers Day</h4><span class="card-cat">Staff</span></div>
+        </div>
+        <div class="gallery-card reveal" data-cat="Staff" data-title="Teachers Day" data-sub="Staff">
+          <div class="card-img-wrap"><img src="../assets/img/staff04.jpg" alt="Staff" loading="lazy" onerror="this.closest('.card-img-wrap').style.background='var(--cream-dark)'"/><div class="card-overlay"><div class="overlay-zoom"><i class="fas fa-expand"></i></div></div></div>
+          <div class="card-label"><h4>Teachers Day</h4><span class="card-cat">Staff</span></div>
+        </div>
+        <div class="gallery-card reveal" data-cat="Staff" data-title="Principal" data-sub="Staff">
+          <div class="card-img-wrap"><img src="../assets/img/principal.jpg" alt="Principal" loading="lazy" onerror="this.closest('.card-img-wrap').style.background='var(--cream-dark)'"/><div class="card-overlay"><div class="overlay-zoom"><i class="fas fa-expand"></i></div></div></div>
+          <div class="card-label"><h4>Principal</h4><span class="card-cat">Staff</span></div>
+        </div>
+        <div class="gallery-card reveal" data-cat="Staff" data-title="Teachers Day" data-sub="Staff">
+          <div class="card-img-wrap"><img src="../assets/img/TeacherP.png" alt="Teacher" loading="lazy" onerror="this.closest('.card-img-wrap').style.background='var(--cream-dark)'"/><div class="card-overlay"><div class="overlay-zoom"><i class="fas fa-expand"></i></div></div></div>
+          <div class="card-label"><h4>Teachers Day</h4><span class="card-cat">Staff</span></div>
+        </div>
+        <div class="gallery-card reveal" data-cat="Staff" data-title="Graduation" data-sub="Staff">
+          <div class="card-img-wrap"><img src="../assets/img/teacher2.jpg" alt="Graduation" loading="lazy" onerror="this.closest('.card-img-wrap').style.background='var(--cream-dark)'"/><div class="card-overlay"><div class="overlay-zoom"><i class="fas fa-expand"></i></div></div></div>
+          <div class="card-label"><h4>Graduation</h4><span class="card-cat">Staff</span></div>
+        </div>
+        <div class="gallery-card reveal" data-cat="Staff" data-title="Teachers Day" data-sub="Staff">
+          <div class="card-img-wrap"><img src="../assets/img/teacher4.jpg" alt="Teachers Day" loading="lazy" onerror="this.closest('.card-img-wrap').style.background='var(--cream-dark)'"/><div class="card-overlay"><div class="overlay-zoom"><i class="fas fa-expand"></i></div></div></div>
+          <div class="card-label"><h4>Teachers Day</h4><span class="card-cat">Staff</span></div>
+        </div>
+        <div class="gallery-card reveal" data-cat="Staff" data-title="Teachers Day" data-sub="Staff">
+          <div class="card-img-wrap"><img src="../assets/img/Background1.jpg" alt="Teachers Day" loading="lazy" onerror="this.closest('.card-img-wrap').style.background='var(--cream-dark)'"/><div class="card-overlay"><div class="overlay-zoom"><i class="fas fa-expand"></i></div></div></div>
+          <div class="card-label"><h4>Teachers Day</h4><span class="card-cat">Staff</span></div>
+        </div>
+        <div class="gallery-card reveal" data-cat="Staff" data-title="Valentine's Day" data-sub="Staff">
+          <div class="card-img-wrap"><img src="../assets/img/teacher6.jpg" alt="Valentine's Day" loading="lazy" onerror="this.closest('.card-img-wrap').style.background='var(--cream-dark)'"/><div class="card-overlay"><div class="overlay-zoom"><i class="fas fa-expand"></i></div></div></div>
+          <div class="card-label"><h4>Valentine's Day</h4><span class="card-cat">Staff</span></div>
+        </div>
+        <div class="gallery-card reveal" data-cat="Staff" data-title="Valentine's Day" data-sub="Staff">
+          <div class="card-img-wrap"><img src="../assets/img/teacher7.jpg" alt="Valentine's Day" loading="lazy" onerror="this.closest('.card-img-wrap').style.background='var(--cream-dark)'"/><div class="card-overlay"><div class="overlay-zoom"><i class="fas fa-expand"></i></div></div></div>
+          <div class="card-label"><h4>Valentine's Day</h4><span class="card-cat">Staff</span></div>
+        </div>
+        <div class="gallery-card reveal" data-cat="Staff" data-title="Valentine's Day" data-sub="Staff">
+          <div class="card-img-wrap"><img src="../assets/img/teacher10.jpg" alt="Valentine's Day" loading="lazy" onerror="this.closest('.card-img-wrap').style.background='var(--cream-dark)'"/><div class="card-overlay"><div class="overlay-zoom"><i class="fas fa-expand"></i></div></div></div>
+          <div class="card-label"><h4>Valentine's Day</h4><span class="card-cat">Staff</span></div>
+        </div>
+        <div class="gallery-card reveal" data-cat="Staff" data-title="Valentine's Day" data-sub="Staff">
+          <div class="card-img-wrap"><img src="../assets/img/Teacher12.jpg" alt="Valentine's Day" loading="lazy" onerror="this.closest('.card-img-wrap').style.background='var(--cream-dark)'"/><div class="card-overlay"><div class="overlay-zoom"><i class="fas fa-expand"></i></div></div></div>
+          <div class="card-label"><h4>Valentine's Day</h4><span class="card-cat">Staff</span></div>
+        </div>
+        <div class="gallery-card reveal" data-cat="Staff" data-title="Principal" data-sub="Staff">
+          <div class="card-img-wrap"><img src="../assets/img/Prinical2.jpg" alt="Principal" loading="lazy" onerror="this.closest('.card-img-wrap').style.background='var(--cream-dark)'"/><div class="card-overlay"><div class="overlay-zoom"><i class="fas fa-expand"></i></div></div></div>
+          <div class="card-label"><h4>Principal</h4><span class="card-cat">Staff</span></div>
+        </div>
+        <div class="gallery-card reveal" data-cat="Staff" data-title="T-Shirt Day" data-sub="Staff">
+          <div class="card-img-wrap"><img src="../assets/img/T-Shirtday.jpg" alt="T-Shirt Day" loading="lazy" onerror="this.closest('.card-img-wrap').style.background='var(--cream-dark)'"/><div class="card-overlay"><div class="overlay-zoom"><i class="fas fa-expand"></i></div></div></div>
+          <div class="card-label"><h4>T-Shirt Day</h4><span class="card-cat">Staff</span></div>
+        </div>
+        <div class="gallery-card reveal" data-cat="Staff" data-title="T-Shirt Day" data-sub="Staff">
+          <div class="card-img-wrap"><img src="../assets/img/DacostaCup24.webp" alt="T-Shirt Day" loading="lazy" onerror="this.closest('.card-img-wrap').style.background='var(--cream-dark)'"/><div class="card-overlay"><div class="overlay-zoom"><i class="fas fa-expand"></i></div></div></div>
+          <div class="card-label"><h4>Staff Celebration</h4><span class="card-cat">Staff</span></div>
+        </div>
+        <div class="gallery-card reveal" data-cat="Staff" data-title="T-Shirt Day" data-sub="Staff">
+          <div class="card-img-wrap"><img src="../assets/img/Teacherw.JPG" alt="T-Shirt Day" loading="lazy" onerror="this.closest('.card-img-wrap').style.background='var(--cream-dark)'"/><div class="card-overlay"><div class="overlay-zoom"><i class="fas fa-expand"></i></div></div></div>
+          <div class="card-label"><h4>Teacher's Day</h4><span class="card-cat">Staff</span></div>
+        </div>
+        
+        
+
+        <!-- No results message -->
+        <div class="no-results" id="noResults">
+          <span class="emoji">🔍</span>
+          <p>No photos found matching your search. Try a different keyword.</p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ══════════ LIGHTBOX ══════════ -->
+    <div class="lightbox" id="lightbox" onclick="closeLightboxOnBg(event)">
+      <div class="lb-inner">
+        <button class="lb-close" onclick="closeLightbox()"><i class="fas fa-times"></i></button>
+        <button class="lb-nav lb-prev" onclick="navLightbox(-1)"><i class="fas fa-chevron-left"></i></button>
+        <button class="lb-nav lb-next" onclick="navLightbox(1)"><i class="fas fa-chevron-right"></i></button>
+        <img id="lbImg" src="" alt="" />
+        <div class="lb-caption">
+          <strong id="lbTitle"></strong>
+          <span id="lbSub"></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+   <div class="footer">
+      <div class="top">
+        <div class="col"><b><a href="https://www.google.co.uk/maps/@17.9006093,-77.2989797,17z"><i class="fas fa-map-marker-alt"></i></a><span> Vernamfield, P.O Box 490 May Pen, Clarendon</span></b></div>
+        <div class="col"><b><a href="Tel:876 986-7006"><i class="fas fa-phone"></i></a><span> (876) 986-7006</span></b></div>
+        <div class="col"><b><a href="mailto:garveymaceo.high.cla@moey.gov.jm"><i class="fas fa-envelope"></i></a><span> garveymaceo.high.cla@moey.gov.jm</span></b></div>
+      </div>
+      <div class="bottom"><p>© 2026 Garvey Maceo High School | Website design by SkoolTech London</p></div>
+    </div>
+
+    <!-- ══════════ RADIAL FAB ══════════ -->
+    <div class="fab-wrap" id="fabWrap">
+      <div class="fab-items">
+        <a href="../pages/contact.html" class="fab-item" title="Contact">
+          <i class="fas fa-envelope"></i>
+          <span class="fab-tip">Contact Us</span>
+        </a>
+        <a href="../pages/sports.html" class="fab-item" title="Gallery">
+          <i class="fas fa-images"></i>
+          <span class="fab-tip">Gallery</span>
+        </a>
+        <a href="../pages/Curriculum.html" class="fab-item" title="Curriculum">
+          <i class="fas fa-book-open"></i>
+          <span class="fab-tip">Curriculum</span>
+        </a>
+        <a href="../pages/donate.html" class="fab-item" title="Donate">
+          <i class="fas fa-heart"></i>
+          <span class="fab-tip">Donate</span>
+        </a>
+        <button class="fab-item" onclick="openPanel(); closeFab();" title="Menu">
+          <i class="fas fa-bars"></i>
+          <span class="fab-tip">Menu</span>
+        </button>
+      </div>
+      <button class="fab-main" id="fabMain" onclick="toggleFab()">
+        <i class="fas fa-grip-dots fab-icon-menu"></i>
+        <i class="fas fa-times fab-icon-close"></i>
+      </button>
+    </div>
+
+    <script src="assets/js/index.js"></script>
+    <script>
+      function openPanel()  { document.getElementById('sidePanel').classList.add('open'); document.getElementById('panelOverlay').classList.add('open'); document.body.style.overflow='hidden'; }
+      function closePanel() { document.getElementById('sidePanel').classList.remove('open'); document.getElementById('panelOverlay').classList.remove('open'); document.body.style.overflow=''; }
+      function toggleFab()  { document.getElementById('fabWrap').classList.toggle('open'); document.getElementById('fabMain').classList.toggle('open'); }
+      function closeFab()   { document.getElementById('fabWrap').classList.remove('open'); document.getElementById('fabMain').classList.remove('open'); }
+      document.addEventListener('keydown', e => { if(e.key==='Escape'){ closePanel(); closeFab(); } });
+    </script>
+    <script>
+      /* ── State ── */
+      let currentFilter = 'all';
+      let currentSearch = '';
+      let visibleCards  = [];
+      let lbIndex       = 0;
+
+      const cards       = Array.from(document.querySelectorAll('.gallery-card'));
+      const noResults   = document.getElementById('noResults');
+      const resultsCount= document.getElementById('resultsCount');
+
+      /* ── Filter ── */
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          currentFilter = btn.dataset.filter;
+          applyFilters();
+        });
+      });
+
+      /* ── Search ── */
+      document.getElementById('gallerySearch').addEventListener('input', e => {
+        currentSearch = e.target.value.trim().toLowerCase();
+        applyFilters();
+      });
+
+      function applyFilters() {
+        visibleCards = [];
+        cards.forEach(card => {
+          const catMatch    = currentFilter === 'all' || card.dataset.cat === currentFilter;
+          const searchMatch = !currentSearch ||
+            (card.dataset.title || '').toLowerCase().includes(currentSearch) ||
+            (card.dataset.sub  || '').toLowerCase().includes(currentSearch) ||
+            (card.dataset.cat  || '').toLowerCase().includes(currentSearch);
+          const show = catMatch && searchMatch;
+          card.classList.toggle('hidden', !show);
+          if (show) visibleCards.push(card);
+        });
+        const total = visibleCards.length;
+        noResults.style.display = total === 0 ? 'grid' : 'none';
+        resultsCount.textContent = currentSearch ? `${total} photo${total !== 1 ? 's' : ''} found` : '';
+      }
+
+      /* ── Lightbox ── */
+      cards.forEach(card => {
+        card.addEventListener('click', () => {
+          if (card.classList.contains('hidden')) return;
+          visibleCards = cards.filter(c => !c.classList.contains('hidden'));
+          lbIndex = visibleCards.indexOf(card);
+          openLightbox(lbIndex);
+        });
+      });
+
+      function openLightbox(idx) {
+        const card = visibleCards[idx];
+        const img  = card.querySelector('img');
+        document.getElementById('lbImg').src   = img ? img.src : '';
+        document.getElementById('lbImg').alt   = card.dataset.title || '';
+        document.getElementById('lbTitle').textContent = card.dataset.title || '';
+        document.getElementById('lbSub').textContent   = card.dataset.sub   || '';
+        document.getElementById('lightbox').classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeLightbox() {
+        document.getElementById('lightbox').classList.remove('open');
+        document.body.style.overflow = '';
+      }
+
+      function closeLightboxOnBg(e) {
+        if (e.target === document.getElementById('lightbox')) closeLightbox();
+      }
+
+      function navLightbox(dir) {
+        lbIndex = (lbIndex + dir + visibleCards.length) % visibleCards.length;
+        openLightbox(lbIndex);
+      }
+
+      document.addEventListener('keydown', e => {
+        if (!document.getElementById('lightbox').classList.contains('open')) return;
+        if (e.key === 'ArrowRight') navLightbox(1);
+        if (e.key === 'ArrowLeft')  navLightbox(-1);
+        if (e.key === 'Escape')     closeLightbox();
+      });
+
+      /* ── Scroll reveal ── */
+      const rObs = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) { e.target.classList.add('visible'); rObs.unobserve(e.target); }
+        });
+      }, { threshold: 0.08 });
+      document.querySelectorAll('.reveal').forEach(el => rObs.observe(el));
+
+      /* Init */
+      applyFilters();
+    </script>
+    <script>
+      /* ══ HERO SLIDER ══ */
+const slides = Array.from(document.querySelectorAll('.hero_slide'));
+const dotCon = document.getElementById('dotContainer');
+const hcText = document.getElementById('hcText');
+const hcLabel = document.getElementById('hcLabel');
+let current = 0, timer;
+
+/* Always set background images from data-bg — works on ALL pages */
+slides.forEach(s => {
+  if (s.dataset.bg) {
+    s.style.backgroundImage    = `url(${s.dataset.bg})`;
+    s.style.backgroundSize     = 'cover';
+    s.style.backgroundPosition = 'center';
+  }
+});
+
+/* Only run the slider/dots logic if the homepage elements exist */
+if (dotCon && slides.length > 1) {
+
+  slides.forEach((s, i) => {
+    const d = document.createElement('button');
+    d.className = 'hero_dot' + (i === 0 ? ' active' : '');
+    d.onclick = () => showSlide(i);
+    dotCon.appendChild(d);
+  });
+
+  function showSlide(n) {
+    slides[current].classList.remove('active');
+    dotCon.children[current].classList.remove('active');
+    current = (n + slides.length) % slides.length;
+    slides[current].classList.add('active');
+    dotCon.children[current].classList.add('active');
+    if (hcText)  { hcText.textContent  = slides[current].dataset.text  || ''; }
+    if (hcLabel) { hcLabel.textContent = slides[current].dataset.label || ''; }
+    if (hcText)  { hcText.style.animation  = 'none'; }
+    if (hcLabel) { hcLabel.style.animation = 'none'; }
+    requestAnimationFrame(() => {
+      if (hcText)  hcText.style.animation  = '';
+      if (hcLabel) hcLabel.style.animation = '';
+    });
+    clearInterval(timer);
+    timer = setInterval(() => showSlide(current + 1), 5000);
+  }
+
+  /* Make showSlide available globally for dot onclick */
+  window.showSlide = showSlide;
+  timer = setInterval(() => showSlide(current + 1), 5000);
+
+} else if (slides.length === 1) {
+  /* Single static hero — just show it, no dots needed */
+  slides[0].classList.add('active');
+}
+    </script>
+  </body>
+</html>

@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Garvey Maceo High School</title>
+     <meta charset="UTF-8">
+     <meta name="description" content="Official website of Garvey Maceo High School featuring news, admissions, student life, academic programmes, and upcoming events.">
+     <!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P434FCLJGY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-P434FCLJGY');
+</script>
+    <link rel="icon" type="image/png" href="assets/img/logo.png" />
+    <link rel="shortcut icon" type="image/x-icon" href="assets/img/logo.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" href="assets/css/index.css" />
+    <link rel="preload" as="image" href="assets/img/sports2.webp" />
+    <link rel="stylesheet" type="text/css"
+      href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700,900|Poppins:300,400,500,600,700" />
+    <script src="https://kit.fontawesome.com/742f06a093.js" crossorigin="anonymous" defer></script>
+
+  </head>
+
+  <body>
+
+    <!-- ══════════ PANEL OVERLAY ══════════ -->
+    <div class="panel-overlay" id="panelOverlay" onclick="closePanel()"></div>
+
+    <!-- ══════════ SIDE PANEL NAV ══════════ -->
+    <div class="side-panel" id="sidePanel">
+      <div class="panel-head">
+        <div class="ph-logo">
+          <img src="assets/img/logo.png" alt="GMHS Logo" />
+          <span>Garvey Maceo<br>High School</span>
+        </div>
+        <button class="panel-close" onclick="closePanel()"><i class="fas fa-times"></i></button>
+      </div>
+
+      <nav class="panel-nav">
+        <a href="index.html" class="pnav-item active"><i class="fas fa-home" style="width:18px;margin-right:8px;"></i> Home</a>
+        <a href="pages/principal.html" class="pnav-item"><i class="fas fa-user-tie" style="width:18px;margin-right:8px;"></i> Principal's Message</a>
+
+        <div class="pnav-label">Cubanz</div>
+        <a href="pages/ethos.html"      class="pnav-sub">Our Ethos</a>
+        <a href="pages/staff.html"      class="pnav-sub">Our Staff</a>
+        <a href="pages/department.html" class="pnav-sub">Departments</a>
+        <a href="pages/history.html"    class="pnav-sub">History</a>
+        <a href="pages/news.html"       class="pnav-sub">News Updates</a>
+
+        <div class="pnav-label">Academics</div>
+        <a href="pages/Curriculum.html"         class="pnav-sub">Curriculum</a>
+        <a href="pages/Health.html"             class="pnav-sub">Health &amp; Welfare</a>
+        <a href="pages/graduation.html"         class="pnav-sub">Graduation Requirements</a>
+        <a href="pages/FacultySpotlight.html"  class="pnav-sub">Faculty Spotlight</a>
+
+        <div class="pnav-label">Stakeholders</div>
+        <a href="pages/alumni.html" class="pnav-sub">Alumni</a>
+        <a href="pages/pta.html"    class="pnav-sub">PTA</a>
+
+        <div class="pnav-label">Gallery</div>
+        <a href="pages/sports.html" class="pnav-sub">Sports &amp; Events Gallery</a>
+        <a href="pages/events.html" class="pnav-sub">Events</a>
+
+        <div class="pnav-label">Contact</div>
+        <a href="pages/contact.html" class="pnav-sub">Contact Us</a>
+        <a href="pages/faq.html"     class="pnav-sub">FAQ</a>
+        <a href="pages/donate.html"  class="pnav-sub">Donate</a>
+      </nav>
+
+      <div class="panel-footer">
+        <p>© 2026 Garvey Maceo High School<br>Website design by SkoolTech London</p>
+      </div>
+    </div>
+
+    <!-- ══════════ STICKY HEADER ══════════ -->
+    <header>
+      <a href="index.html" class="text_bg">
+        <img src="assets/img/logo.png" alt="GMHS Logo" />
+        <span>Garvey Maceo High School</span>
+      </a>
+      <div class="flex_spacer"></div>
+      <div class="header-socials">
+        <a href="https://www.facebook.com/GARVEYMACEOCUBANS" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="youtube.com" title="YouTube"><i class="fab fa-youtube"></i></a>
+        <a href="https://www.instagram.com/garveymaceo/" title="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.linkedin.com/school/garvey-maceo-high-school/" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://twitter.com/garveymaceo" title="Twitter"><i class="fab fa-twitter"></i></a> 
+        <a href="https://www.tiktok.com/discover/garvey-maceo-high-school-jamaica" title="TikTok"><i class="fab fa-tiktok"></i></a>    
+      </div>
+    </header>
+
+    <!-- ══════════ HERO SLIDER ══════════ -->
+    <div class="hero_container">
+      <div class="hero_gradient_overlay"></div>
+      <div class="hero_inner" id="heroInner">
+        <div class="hero_slide active" data-bg="./assets/img/sports2.webp"      data-text="Sports"            data-label="Excellence in PLAY"></div>
+        <div class="hero_slide"        data-bg="./assets/img/DacostaCup24.webp"    data-text="Championship"        data-label="Excellence in WORK &amp; PLAY"></div>
+        <div class="hero_slide"        data-bg="./assets/img/PTACover.avif"       data-text="Future Work"         data-label="Excellence in WORK"></div>
+        <div class="hero_slide"        data-bg="./assets/img/empowerment.png" data-text="Students Empowerment"         data-label="Excellence in STUDY"></div>
+        <div class="hero_slide"        data-bg="./assets/img/teacher.PNG"        data-text="Staff Support"           data-label="Excellence in STUDY"></div>
+        <div class="hero_slide"        data-bg="./assets/img/Dcupwinners2024.webp"    data-text="D'Cup 2024"          data-label="Excellence in PLAY"></div>
+        <div class="hero_slide"        data-bg="./assets/img/prizegiving.JPG"        data-text="Prize Giving"     data-label="Excellence in STUDY"></div>
+        <div class="hero_slide"        data-bg="./assets/img/YouthAgriculture.png" data-text="Youth in Agriculture" data-label="Excellence in STUDY"></div>
+      </div>
+
+      <!-- Caption overlay -->
+      <div class="hero_caption">
+        <span class="hc-label" id="hcLabel">Excellence in PLAY</span>
+        <h2 id="hcText">Sports</h2>
+      </div>
+
+      <!-- Dots -->
+      <div class="hero_br">
+        <div class="dot_container" id="dotContainer"></div>
+      </div>
+    </div>
+
+    <div class="gold-divider"></div>
+
+    <!-- ══════════ EVENTS STRIP ══════════ -->
+    <section class="events_strip">
+      <div class="events_header"><h2>Notices</h2></div>
+      <div class="events_track" id="events_track">
+        <p style="color:var(--ink-mid); font-size:.82rem; font-weight:600;">Loading events</p>
+      </div>
+    </section>
+
+    <!-- ══════════ WELCOME / ABOUT ══════════ -->
+    <div class="welcome-section">
+      <span class="accent-bar"></span>
+      <h1 class="reveal">Welcome to Garvey Maceo High School</h1>
+      <p class="reveal delay-1">
+        Garvey Maceo High School (G.M.H.S) opened its doors on May 19, 1980, a gift from the government and people of Cuba, fittingly named after Jamaican national hero Marcus Garvey and Cuban revolutionary Antonio Maceo. Originally built as a Comprehensive High School with a major focus on agriculture, GMHS owns 90 acres of land and operates a commercial farm as well as a tutorial farm, engaging students in both vocational and academic subject areas.
+      </p>
+      <a href="pages/history.html" class="btn-read reveal delay-2">
+        <i class="fas fa-book-open"></i> Read Our History
+      </a>
+    </div>
+
+    <!-- ══════════ LATEST NEWS ══════════ -->
+    <div class="news-section">
+      <div class="news-title reveal">
+        <h2>Latest News</h2>
+      </div>
+      <div class="news-grid">
+
+        <div class="news-card reveal">
+          <div class="nc-img">
+            <img src="assets/img/Tracks&Field.png" alt="Track & Field" loading="lazy" />
+            <div class="nc-overlay">
+              <p>Tyquendo Tracey helped Jamaica's 4x100m relay team to a silver medal win in a new National Junior Record of 38.97 seconds at the 14th IAAF World Junior Championships in Barcelona, Spain.</p>
+            </div>
+          </div>
+          <div class="nc-body">
+            <h4>National Junior Record, Track &amp; Field</h4>
+            <span class="nc-cat">⚡ Athletics</span>
+          </div>
+        </div>
+
+        <div class="news-card reveal delay-1">
+          <div class="nc-img">
+            <img src="assets/img/Artward.png" alt="Art Award" loading="lazy" />
+            <div class="nc-overlay">
+              <p>GMHS student Olufemi Allen proudly shows off his Stewart's Hardware plaque for the 'Most Outstanding Art Piece' and NCB Gift Certificate with art teacher Junior Atkinson.</p>
+            </div>
+          </div>
+          <div class="nc-body">
+            <h4>Most Outstanding Art Piece Award</h4>
+            <span class="nc-cat">🎨 Fine Arts</span>
+          </div>
+        </div>
+
+        <div class="news-card reveal delay-2">
+          <div class="nc-img">
+            <img src="assets/img/Donation2.Jpg" alt="Alumni Donation" loading="lazy"
+              onerror="this.src='assets/img/Donation2.jpg'" />
+            <div class="nc-overlay">
+              <p>Garvey Maceo High School received a generous donation from our New York alumni towards continuous support for sporting activities.</p>
+            </div>
+          </div>
+          <div class="nc-body">
+            <h4>New York Alumni Sports Donation</h4>
+            <span class="nc-cat">🤝 Alumni</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ══════════ EXPLORE THE SCHOOL ══════════ -->
+    <div class="explore-section">
+      <div class="section-title reveal">
+        <h2>Explore the School</h2>
+        <p>Everything you need to know about life at Garvey Maceo — in one place</p>
+      </div>
+      <div class="explore-grid">
+        <a href="pages/ethos.html" class="explore-card reveal">
+          <div class="ec-icon">📋</div>
+          <h3>Our Ethos</h3>
+          <p>Mission, vision and values</p>
+          <span class="ec-arrow"><i class="fas fa-arrow-right"></i></span>
+        </a>
+        <a href="pages/staff.html" class="explore-card reveal delay-1">
+          <div class="ec-icon">👩‍🏫</div>
+          <h3>Our Staff</h3>
+          <p>Meet the dedicated team</p>
+          <span class="ec-arrow"><i class="fas fa-arrow-right"></i></span>
+        </a>
+        <a href="pages/Curriculum.html" class="explore-card reveal delay-2">
+          <div class="ec-icon">📚</div>
+          <h3>Curriculum</h3>
+          <p>Courses, guides &amp; resources</p>
+          <span class="ec-arrow"><i class="fas fa-arrow-right"></i></span>
+        </a>
+        <a href="pages/sports.html" class="explore-card reveal delay-3">
+          <div class="ec-icon">🏆</div>
+          <h3>Gallery</h3>
+          <p>Sports, events &amp; highlights</p>
+          <span class="ec-arrow"><i class="fas fa-arrow-right"></i></span>
+        </a>
+        <a href="pages/alumni.html" class="explore-card reveal delay-1">
+          <div class="ec-icon">🎓</div>
+          <h3>Alumni</h3>
+          <p>Past Students' Association</p>
+          <span class="ec-arrow"><i class="fas fa-arrow-right"></i></span>
+        </a>
+        <a href="pages/contact.html" class="explore-card reveal delay-2">
+          <div class="ec-icon">📞</div>
+          <h3>Contact Us</h3>
+          <p>Get in touch with our team</p>
+          <span class="ec-arrow"><i class="fas fa-arrow-right"></i></span>
+        </a>
+        <a href="pages/pta.html" class="explore-card reveal delay-3">
+          <div class="ec-icon">🤝</div>
+          <h3>PTA</h3>
+          <p>Parent Teacher Association</p>
+          <span class="ec-arrow"><i class="fas fa-arrow-right"></i></span>
+        </a>
+        <a href="pages/donate.html" class="explore-card reveal">
+          <div class="ec-icon">❤️</div>
+          <h3>Donate</h3>
+          <p>Support our students</p>
+          <span class="ec-arrow"><i class="fas fa-arrow-right"></i></span>
+        </a>
+      </div>
+    </div>
+
+    <!-- ══════════ LEADERSHIP ══════════ -->
+    <div class="leaders-section">
+      <div class="section-title reveal">
+        <h2>School Leadership</h2>
+        <p>A message from the people who guide Garvey Maceo every day</p>
+      </div>
+      <div class="leaders-grid">
+
+        <div class="leader-card reveal">
+          <div class="leader-avatar">
+            <img src="assets/img/carleneheadshot.jpg" alt="Vice Principal" />
+          </div>
+          <h4>Vice Principal</h4>
+          <span class="l-role">Senior Leadership Team</span>
+          <a href="pages/VP1.html" class="btn-msg"><i class="fas fa-envelope"></i> See Message</a>
+        </div>
+
+        <div class="leader-card reveal delay-1">
+          <div class="leader-avatar">
+            <img src="assets/img/MrsEwbanksHeadshot.webp" alt="Mrs. Erica Ewbanks" />
+          </div>
+          <h4>Mrs. Erica Ewbanks</h4>
+          <span class="l-role">Principal</span>
+          <a href="pages/principal.html" class="btn-msg"><i class="fas fa-envelope"></i> See Message</a>
+        </div>
+
+        <div class="leader-card reveal delay-2">
+          <div class="leader-avatar">
+            <img src="assets/img/img_avatar.png" alt="Vice Principal" />
+          </div>
+          <h4>Vice Principal</h4>
+          <span class="l-role">Senior Leadership Team</span>
+          <a href="pages/VP1.html" class="btn-msg"><i class="fas fa-envelope"></i> See Message</a>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ══════════ RECOGNITION & AFFILIATIONS ══════════ -->
+    <section class="recognition-bar reveal">
+      <div class="rec-inner">
+        <span class="rec-eyebrow">Proud to be associated with</span>
+        <h3>Recognitions &amp; Affiliations</h3>
+ 
+        <div class="rec-track-outer">
+          <!-- Track is duplicated so the scroll loops seamlessly -->
+          <div class="rec-track" id="recTrack">
+ 
+            <!-- ── Set 1 ── -->
+            <a href="https://www.jta.org.jm" target="_blank"  rel="noopener noreferrer" class="rec-badge" title="Jamaica Teacher's Association">
+              <img class="rb-img" src="assets/img/jta.png" alt="Jamaica Teacher's Association"
+                   onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+              <div class="rb-icon" style="display:none;">🏆</div>
+              <span class="rb-label">Jamaica Teacher's</span>
+              <span class="rb-sub">Association</span>
+            </a>
+ 
+            <a href="https://www.issa-ja.org" target="_blank" rel="noopener noreferrer" class="rec-badge" title="ISSA Member School">
+              <img class="rb-img" src="assets/img/issa.png" alt="ISSA"
+                   onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+              <div class="rb-icon" style="display:none;">⚽</div>
+              <span class="rb-label">ISSA</span>
+              <span class="rb-sub">Member School</span>
+            </a>
+ 
+            <a href="https://moey.gov.jm" target="_blank" rel="noopener noreferrer" class="rec-badge" title="Ministry of Education">
+              <img class="rb-img" src="assets/img/moe.png" alt="Ministry of Education"
+                   onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+              <div class="rb-icon" style="display:none;">🎓</div>
+              <span class="rb-label">Ministry of Education</span>
+              <span class="rb-sub">Jamaica</span>
+            </a>
+ 
+            <a href="https://jtc.gov.jm" target="_blank" rel="noopener noreferrer" class="rec-badge" title="`Jamaica Teacher's COMMISSION">
+              <img class="rb-img" src="assets/img/jtc.jpeg" alt="JJamaica Teachers' commission "
+                   onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+              <div class="rb-icon" style="display:none;">🌱</div>
+              <span class="rb-label">Jamaica Teacher's </span>
+              <span class="rb-sub">Commission</span>
+            </a>
+ 
+            <a href="https://www.cityandguilds.com/international/case-studies/ministry-of-education" target="_blank" rel="noopener noreferrer" class="rec-badge" title="City &amp; Guilds">
+              <img class="rb-img" src="assets/img/city.jpg" alt="City &amp; Guilds"
+                   onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+              <div class="rb-icon" style="display:none;">👪</div>
+              <span class="rb-label">City &amp; Guilds</span>
+              <span class="rb-sub">Certification</span>
+            </a>
+ 
+            <a href="https://www.cxc.org" target="_blank" rel="noopener noreferrer" class="rec-badge" title="CXC / Caribbean Examinations Council">
+              <img class="rb-img" src="assets/img/cxc.png" alt="CXC"
+                   onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+              <div class="rb-icon" style="display:none;">📚</div>
+              <span class="rb-label">CXC</span>
+              <span class="rb-sub">CSEC &amp; CAPE Centre</span>
+            </a>
+ 
+            <a href="https://www.heart-nsta.org" target="_blank" rel="noopener noreferrer" class="rec-badge" title="HEART / NSTA Trust">
+              <img class="rb-img" src="assets/img/heart.png" alt="HEART Trust"
+                   onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+              <div class="rb-icon" style="display:none;">🏅</div>
+              <span class="rb-label">HEART / NSTA</span>
+              <span class="rb-sub">Skills Training</span>
+            </a>
+ 
+            <a href="https://www.mona.uwi.edu" target="_blank" rel="noopener noreferrer" class="rec-badge" title="UWI Jamaica">
+              <img class="rb-img" src="assets/img/uwi.png" alt="UWI Jamaica"
+                   onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+              <div class="rb-icon" style="display:none;">🎓</div>
+              <span class="rb-label">UWI Jamaica</span>
+              <span class="rb-sub">University</span>
+            </a>
+            <a href="https://www.utech.edu.jm" target="_blank" rel="noopener noreferrer" class="rec-badge" title="UTech Jamaica">
+              <img class="rb-img" src="assets/img/utech.webp" alt="UTech Jamaica"
+                   onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+              <div class="rb-icon" style="display:none;">🎓</div>
+              <span class="rb-label">UTech Jamaica</span>
+              <span class="rb-sub">University</span>
+            </a>
+ 
+            <!-- ── Set 2 — duplicate for seamless loop ── -->
+            <a href="https://www.jta.org.jm" target="_blank" rel="noopener noreferrer" class="rec-badge" title="Jamaica Teacher's Association">
+              <img class="rb-img" src="assets/img/jta.png" alt="Jamaica Teacher's Association"
+                   onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+              <div class="rb-icon" style="display:none;">🏆</div>
+              <span class="rb-label">Jamaica Teacher's</span>
+              <span class="rb-sub">Association</span>
+            </a>
+            <a href="https://www.issa-ja.org" target="_blank" rel="noopener noreferrer" class="rec-badge" title="ISSA Member School">
+              <img class="rb-img" src="assets/img/issa.png" alt="ISSA"
+                   onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+              <div class="rb-icon" style="display:none;">⚽</div>
+              <span class="rb-label">ISSA</span>
+              <span class="rb-sub">Member School</span>
+            </a>
+            <a href="https://moey.gov.jm" target="_blank" rel="noopener noreferrer" class="rec-badge" title="Ministry of Education">
+              <img class="rb-img" src="assets/img/moe.png" alt="Ministry of Education"
+                   onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+              <div class="rb-icon" style="display:none;">🎓</div>
+              <span class="rb-label">Ministry of Education</span>
+              <span class="rb-sub">Jamaica</span>
+            </a>
+            <a href="https://jtc.gov.jm" target="_blank" rel="noopener noreferrer" class="rec-badge" title="Jamaica Teachers' Commission">
+              <img class="rb-img" src="assets/img/jtc.jpeg" alt="Jamaica Teachers' Commission"
+                   onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+              <div class="rb-icon" style="display:none;">🌱</div>
+              <span class="rb-label">Jamaica Teachers'</span>
+              <span class="rb-sub">Commission</span>
+            </a>
+            <a href="https://www.cityandguilds.com/international/case-studies/ministry-of-education" target="_blank" rel="noopener noreferrer" class="rec-badge" title="City &amp; Guilds">
+              <img class="rb-img" src="assets/img/city.jpg" alt="City &amp; Guilds"
+                   onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+              <div class="rb-icon" style="display:none;">👪</div>
+              <span class="rb-label">City &amp; Guilds</span>
+              <span class="rb-sub">Certification</span>
+            </a>
+            <a href="https://www.cxc.org" target="_blank" rel="noopener noreferrer" class="rec-badge" title="CXC">
+              <img class="rb-img" src="assets/img/CXC.png" alt="CXC"
+                   onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+              <div class="rb-icon" style="display:none;">📚</div>
+              <span class="rb-label">CXC</span>
+              <span class="rb-sub">CSEC &amp; CAPE Centre</span>
+            </a>
+            <a href="https://www.heart-nsta.org" target="_blank" rel="noopener noreferrer" class="rec-badge" title="HEART Trust">
+              <img class="rb-img" src="assets/img/heart.png" alt="HEART Trust"
+                   onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+              <div class="rb-icon" style="display:none;">🏅</div>
+              <span class="rb-label">HEART / NSTA</span>
+              <span class="rb-sub">Skills Training</span>
+            </a>
+            <a href="https://www.mona.uwi.edu" target="_blank" rel="noopener noreferrer" class="rec-badge" title="UWI Jamaica">
+              <img class="rb-img" src="assets/img/uwi.png" alt="UWI Jamaica"
+                   onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+              <div class="rb-icon" style="display:none;">🎓</div>
+              <span class="rb-label">UWI Jamaica</span>
+              <span class="rb-sub">University</span>
+            </a>
+            <a href="https://www.utech.edu.jm" target="_blank" rel="noopener noreferrer" class="rec-badge" title="UTech Jamaica">
+              <img class="rb-img" src="assets/img/utech.webp" alt="UTech Jamaica"
+                   onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+              <div class="rb-icon" style="display:none;">🎓</div>
+              <span class="rb-label">UTech Jamaica</span>
+              <span class="rb-sub">University</span>
+            </a>
+ 
+          </div><!-- /rec-track -->
+        </div><!-- /rec-track-outer -->
+      </div><!-- /rec-inner -->
+    </section>
+
+    <!-- ══════════ FOOTER ══════════ -->
+    <div class="footer">
+      <div class="top">
+        <div class="col"><b><a href="https://www.google.co.uk/maps/@17.9006093,-77.2989797,17z"><i class="fas fa-map-marker-alt"></i></a><span> Vernamfield, P.O Box 490 May Pen, Clarendon</span></b></div>
+        <div class="col"><b><a href="Tel:876 986-7006"><i class="fas fa-phone"></i></a><span> (876) 986-7006</span></b></div>
+        <div class="col"><b><a href="mailto:garveymaceo.high.cla@moey.gov.jm"><i class="fas fa-envelope"></i></a><span> garveymaceo.high.cla@moey.gov.jm</span></b></div>
+      </div>
+      <div class="bottom"><p>© 2026 Garvey Maceo High School | Website design by SkoolTech London</p></div>
+    </div>
+
+    <!-- ══════════ RADIAL FAB ══════════ -->
+    <div class="fab-wrap" id="fabWrap">
+      <div class="fab-items">
+        <a href="pages/contact.html" class="fab-item" title="Contact">
+          <i class="fas fa-envelope"></i>
+          <span class="fab-tip">Contact Us</span>
+        </a>
+        <a href="pages/sports.html" class="fab-item" title="Gallery">
+          <i class="fas fa-images"></i>
+          <span class="fab-tip">Gallery</span>
+        </a>
+        <a href="pages/Curriculum.html" class="fab-item" title="Curriculum">
+          <i class="fas fa-book-open"></i>
+          <span class="fab-tip">Curriculum</span>
+        </a>
+        <a href="pages/donate.html" class="fab-item" title="Donate">
+          <i class="fas fa-heart"></i>
+          <span class="fab-tip">Donate</span>
+        </a>
+        <button class="fab-item" onclick="openPanel(); closeFab();" title="Menu">
+          <i class="fas fa-bars"></i>
+          <span class="fab-tip">Menu</span>
+        </button>
+      </div>
+      <button class="fab-main" id="fabMain" onclick="toggleFab()">
+        <i class="fas fa-grip-dots fab-icon-menu"></i>
+        <i class="fas fa-times fab-icon-close"></i>
+      </button>
+    </div>
+
+    <script src="assets/js/index.js"></script>
+  </body>
+</html>

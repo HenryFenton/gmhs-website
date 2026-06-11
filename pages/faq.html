@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Garvey Maceo High School – FAQ</title>
+    <link rel="icon" type="image/x-icon" href="../assets/img/logo.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" href="../assets/css/index.css" />
+    <link rel="stylesheet" type="text/css" href="../assets/css/FAQ.css" />
+    <!-- Add to <head> — use the actual image for that page -->
+    <link rel="preload" as="image" href="../assets/img/Staff.JPG" />
+    <link rel="stylesheet" type="text/css"
+      href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700,900|Poppins:300,400,500,600,700" />
+    <script src="https://kit.fontawesome.com/742f06a093.js" crossorigin="anonymous" defer></script>
+
+    
+  </head>
+
+  <body>
+    <!-- ══ PANEL OVERLAY ══ -->
+    <div class="panel-overlay" id="panelOverlay" onclick="closePanel()"></div>
+
+    <!-- ══ SIDE PANEL NAV ══ -->
+    <div class="side-panel" id="sidePanel">
+      <div class="panel-head">
+        <div class="ph-logo">
+          <img src="../assets/img/logo.png" alt="GMHS Logo" />
+          <span>Garvey Maceo<br>High School</span>
+        </div>
+        <button class="panel-close" onclick="closePanel()"><i class="fas fa-times"></i></button>
+      </div>
+      <nav class="panel-nav">
+        <a href="../index.html"          class="pnav-item"><i class="fas fa-home" style="width:18px;margin-right:8px;"></i> Home</a>
+        <a href="Principal.html"         class="pnav-item active"><i class="fas fa-user-tie" style="width:18px;margin-right:8px;"></i> Principal's Message</a>
+
+        <div class="pnav-label">Cubanz</div>
+        <a href="ethos.html"      class="pnav-sub">Our Ethos</a>
+        <a href="staff.html"      class="pnav-sub">Our Staff</a>
+        <a href="department.html" class="pnav-sub">Departments</a>
+        <a href="history.html"    class="pnav-sub">History</a>
+        <a href="news.html"       class="pnav-sub">News Updates</a>
+
+        <div class="pnav-label">Academics</div>
+        <a href="Curriculum.html"        class="pnav-sub">Curriculum</a>
+        <a href="Health.html"            class="pnav-sub">Health &amp; Welfare</a>
+        <a href="graduation.html"        class="pnav-sub">Graduation Requirements</a>
+        <a href="FacultySpotlight.html" class="pnav-sub">Faculty Spotlight</a>
+
+        <div class="pnav-label">Stakeholders</div>
+        <a href="alumni.html" class="pnav-sub">Alumni</a>
+        <a href="pta.html"    class="pnav-sub">PTA</a>
+
+        <div class="pnav-label">Gallery</div>
+        <a href="sports.html" class="pnav-sub">Sports &amp; Events Gallery</a>
+        <a href="events.html" class="pnav-sub">Events</a>
+
+        <div class="pnav-label">Contact</div>
+        <a href="contact.html" class="pnav-sub">Contact Us</a>
+        <a href="faq.html"     class="pnav-sub">FAQ</a>
+        <a href="donate.html"  class="pnav-sub">Donate</a>
+      </nav>
+      <div class="panel-footer">
+        <p>© 2026 Garvey Maceo High School<br>Website design by SkoolTech London</p>
+      </div>
+    </div>
+
+    <!-- ══ STICKY HEADER ══ -->
+    <header>
+      <a href="../index.html" class="text_bg">
+        <img src="../assets/img/logo.png" alt="GMHS Logo" />
+        <span>Garvey Maceo High School</span>
+      </a>
+      <div class="flex_spacer"></div>
+      <div class="header-socials">
+        <a href="https://www.facebook.com/GARVEYMACEOCUBANS" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="youtube.com" title="YouTube"><i class="fab fa-youtube"></i></a>
+        <a href="https://www.instagram.com/garveymaceo/" title="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.linkedin.com/school/garvey-maceo-high-school/" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://twitter.com/garveymaceo" title="Twitter"><i class="fab fa-twitter"></i></a> 
+        <a href="https://www.tiktok.com/discover/garvey-maceo-high-school-jamaica" title="TikTok"><i class="fab fa-tiktok"></i></a>    
+      </div>
+    </header>
+
+ <!-- ══ HERO ══ -->
+<div class="hero_container fixed">
+  <div class="hero_pathbar" style="position:relative;z-index:3;">
+    <div class="inner">
+      <a href="../index.html">Home</a>
+      <i class="fas fa-chevron-right"></i>
+      <a href="FAQ.html">FAQ</a>
+    </div>
+  </div>
+  <div class="hero_gradient_overlay fixed" style="pointer-events:none;"></div>
+  <div class="hero_slide fixed"
+       data-bg="../assets/img/Staff.JPG"
+       style="background-size:cover;
+              background-position:center;
+              position:absolute;inset:0;z-index:0;">
+  </div>
+</div>
+
+  
+   <div class="gold-divider"></div>
+
+
+    <!-- ══════════ INTRO ══════════ -->
+    <div class="faq-intro reveal">
+      <h1>Frequently Asked <span>Questions</span></h1>
+      <p>Find quick answers to the most common questions about school life at GMHS. Use the search bar or browse by category below.</p>
+    </div>
+    <div class="gold-divider"></div>
+
+    <!-- ══════════ SEARCH ══════════ -->
+    <div class="search-section">
+      <div class="search-wrap">
+        <i class="fas fa-search"></i>
+        <input type="text" id="faqSearch" placeholder="Search a question or keywords" autocomplete="off" />
+      </div>
+      <p class="search-count" id="searchCount"></p>
+    </div>
+
+    <!-- ══════════ CATEGORY TABS ══════════ -->
+    <div class="tabs-outer" id="tabsOuter">
+      <div class="tabs-nav">
+        <button class="cat-btn active" data-cat="all">
+          <span class="cat-icon">📋</span> All
+          <span class="cat-count" id="count-all">15</span>
+        </button>
+        <button class="cat-btn" data-cat="general">
+          <span class="cat-icon">🏫</span> General
+          <span class="cat-count" id="count-general">4</span>
+        </button>
+        <button class="cat-btn" data-cat="uniform">
+          <span class="cat-icon">👕</span> Uniform &amp; Dress Code
+          <span class="cat-count" id="count-uniform">3</span>
+        </button>
+        <button class="cat-btn" data-cat="online">
+          <span class="cat-icon">💻</span> Online Learning
+          <span class="cat-count" id="count-online">4</span>
+        </button>
+        <button class="cat-btn" data-cat="conduct">
+          <span class="cat-icon">📐</span> Conduct &amp; Discipline
+          <span class="cat-count" id="count-conduct">2</span>
+        </button>
+        <button class="cat-btn" data-cat="contact">
+          <span class="cat-icon">📞</span> Contact &amp; Admin
+          <span class="cat-count" id="count-contact">2</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- ══════════ FAQ ACCORDION ══════════ -->
+    <div class="faq-section">
+      <div class="section-inner">
+
+        <div class="no-results" id="noResults">
+          <span class="emoji">🔍</span>
+          <p>No questions found matching your search. Try a different keyword.</p>
+        </div>
+
+        <!-- ALL panel (shown by default; others are filtered from this) -->
+        <div class="cat-panel active" id="panel-all">
+          <div class="faq-list">
+
+            <!-- ── GENERAL ── -->
+            <div class="faq-item reveal" data-cat="general" data-q="What are the school's opening hours?">
+              <button class="faq-trigger" onclick="toggleFAQ(this)">
+                <span class="faq-q">What are the school's opening hours?</span>
+                <span class="faq-chevron"><i class="fas fa-chevron-down"></i></span>
+              </button>
+              <div class="faq-body-wrap">
+                <div class="faq-body">
+                  <span class="faq-tag">General</span>
+                  <p>The school office is open Monday to Friday from <strong>7:40 am to 3:30 pm</strong>. Staff will make every effort to respond to enquiries within these hours.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="faq-item reveal" data-cat="general" data-q="How do I apply for admission to GMHS?">
+              <button class="faq-trigger" onclick="toggleFAQ(this)">
+                <span class="faq-q">How do I apply for admission to GMHS?</span>
+                <span class="faq-chevron"><i class="fas fa-chevron-down"></i></span>
+              </button>
+              <div class="faq-body-wrap">
+                <div class="faq-body">
+                  <span class="faq-tag">General</span>
+                  <p>Admissions to Garvey Maceo High School are processed through the Ministry of Education's placement system. Parents of prospective students should contact the school office directly for guidance on the current intake process.</p>
+                  <p>Contact us at <a href="mailto:garveymaceo.high.cla@moey.gov.jm">garveymaceo.high.cla@moey.gov.jm</a> or call <a href="tel:8769867006">(876) 986-7006</a>.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="faq-item reveal" data-cat="general" data-q="Where is Garvey Maceo High School located?">
+              <button class="faq-trigger" onclick="toggleFAQ(this)">
+                <span class="faq-q">Where is Garvey Maceo High School located?</span>
+                <span class="faq-chevron"><i class="fas fa-chevron-down"></i></span>
+              </button>
+              <div class="faq-body-wrap">
+                <div class="faq-body">
+                  <span class="faq-tag">General</span>
+                  <p>GMHS is located at <strong>Vernamfield, P.O. Box 490, May Pen, Clarendon, Jamaica W.I.</strong> Use the map on our <a href="contact.html">Contact page</a> for directions.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="faq-item reveal" data-cat="general" data-q="Who is the current principal of GMHS?">
+              <button class="faq-trigger" onclick="toggleFAQ(this)">
+                <span class="faq-q">Who is the current principal of GMHS?</span>
+                <span class="faq-chevron"><i class="fas fa-chevron-down"></i></span>
+              </button>
+              <div class="faq-body-wrap">
+                <div class="faq-body">
+                  <span class="faq-tag">General</span>
+                  <p>The current principal of Garvey Maceo High School is <strong>Mrs. Erica Ewbanks</strong>, who has led the school since 2010.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- ── UNIFORM ── -->
+            <div class="faq-item reveal" data-cat="uniform" data-q="What is the school's dress code for online classes?">
+              <button class="faq-trigger" onclick="toggleFAQ(this)">
+                <span class="faq-q">What is the dress code for online classes?</span>
+                <span class="faq-chevron"><i class="fas fa-chevron-down"></i></span>
+              </button>
+              <div class="faq-body-wrap">
+                <div class="faq-body">
+                  <span class="faq-tag">Uniform &amp; Dress Code</span>
+                  <p>Students must be appropriately attired for online school as dictated by the school's dress code. Students may wear their <strong>school uniform or a school shirt bearing the school logo</strong>.</p>
+                  <p>Hairstyles must be simple no weaves, hair extensions or colour. No head ties or fancy headbands. No make-up or jewellery. Students in breach of these rules may be held in the waiting room until they are appropriately attired.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="faq-item reveal" data-cat="uniform" data-q="What happens if a student does not follow the dress code?">
+              <button class="faq-trigger" onclick="toggleFAQ(this)">
+                <span class="faq-q">What happens if a student does not follow the dress code?</span>
+                <span class="faq-chevron"><i class="fas fa-chevron-down"></i></span>
+              </button>
+              <div class="faq-body-wrap">
+                <div class="faq-body">
+                  <span class="faq-tag">Uniform &amp; Dress Code</span>
+                  <p>The teacher has the right to hold students in the waiting room until they are appropriately attired. If a student refuses to comply after a warning, they will be denied access to the class and <strong>disciplinary action will be taken</strong>.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="faq-item reveal" data-cat="uniform" data-q="Where can I find the school uniform policy?">
+              <button class="faq-trigger" onclick="toggleFAQ(this)">
+                <span class="faq-q">Where can I find the school uniform policy?</span>
+                <span class="faq-chevron"><i class="fas fa-chevron-down"></i></span>
+              </button>
+              <div class="faq-body-wrap">
+                <div class="faq-body">
+                  <span class="faq-tag">Uniform &amp; Dress Code</span>
+                  <p>The full uniform policy is available from the school office. Please contact us at <a href="mailto:garveymaceo.high.cla@moey.gov.jm">garveymaceo.high.cla@moey.gov.jm</a> to request a copy.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- ── ONLINE LEARNING ── -->
+            <div class="faq-item reveal" data-cat="online" data-q="What are the important email addresses for online school?">
+              <button class="faq-trigger" onclick="toggleFAQ(this)">
+                <span class="faq-q">What are the important email addresses for online school?</span>
+                <span class="faq-chevron"><i class="fas fa-chevron-down"></i></span>
+              </button>
+              <div class="faq-body-wrap">
+                <div class="faq-body">
+                  <span class="faq-tag">Online Learning</span>
+                  <p>For general queries, school activity information and online class access, email <a href="mailto:garveymaceo.high.cla@moey.gov.jm">garveymaceo.high.cla@moey.gov.jm</a>. This inbox is monitored Monday to Friday between 7:40 am and 3:30 pm.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="faq-item reveal" data-cat="online" data-q="How should I conduct myself in online classes?">
+              <button class="faq-trigger" onclick="toggleFAQ(this)">
+                <span class="faq-q">How should I conduct myself in online classes?</span>
+                <span class="faq-chevron"><i class="fas fa-chevron-down"></i></span>
+              </button>
+              <div class="faq-body-wrap">
+                <div class="faq-body">
+                  <span class="faq-tag">Online Learning</span>
+                  <p>Students must display appropriate conduct at all times. There should be no unnecessary communication during classes. Designate a quiet space, ideally at a desk or table, free from noise, interruptions and distractions.</p>
+                  <p>If you need to be excused, seek and receive permission first. Ask questions as directed by your teacher. All students must be online as scheduled and submit all Google Classroom assignments within the set deadlines.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="faq-item reveal" data-cat="online" data-q="How do I get my LMS or Zoom access code?">
+              <button class="faq-trigger" onclick="toggleFAQ(this)">
+                <span class="faq-q">How do I get my LMS or Zoom access code?</span>
+                <span class="faq-chevron"><i class="fas fa-chevron-down"></i></span>
+              </button>
+              <div class="faq-body-wrap">
+                <div class="faq-body">
+                  <span class="faq-tag">Online Learning</span>
+                  <p>Access codes for the LMS and Zoom are distributed by your form teacher at the start of each term. If you have not received yours, contact your form teacher or email the school at <a href="mailto:garveymaceo.high.cla@moey.gov.jm">garveymaceo.high.cla@moey.gov.jm</a>.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="faq-item reveal" data-cat="online" data-q="Where can I download the school curriculum?">
+              <button class="faq-trigger" onclick="toggleFAQ(this)">
+                <span class="faq-q">Where can I download the school curriculum?</span>
+                <span class="faq-chevron"><i class="fas fa-chevron-down"></i></span>
+              </button>
+              <div class="faq-body-wrap">
+                <div class="faq-body">
+                  <span class="faq-tag">Online Learning</span>
+                  <p>Curriculum documents for all form groups (1st to 3rd, 4th & 5th and 6th Form) are available to download on our <a href="Curriculum.html">Academics &amp; Curriculum page</a>.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- ── CONDUCT ── -->
+            <div class="faq-item reveal" data-cat="conduct" data-q="What is the school's policy on student behaviour?">
+              <button class="faq-trigger" onclick="toggleFAQ(this)">
+                <span class="faq-q">What is the school's policy on student behaviour?</span>
+                <span class="faq-chevron"><i class="fas fa-chevron-down"></i></span>
+              </button>
+              <div class="faq-body-wrap">
+                <div class="faq-body">
+                  <span class="faq-tag">Conduct &amp; Discipline</span>
+                  <p>GMHS expects all students to behave in a manner that reflects the school's core values, respect, integrity, responsibility and excellence. The full code of conduct is detailed in the student handbook, available from the school office.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="faq-item reveal" data-cat="conduct" data-q="How do I report a concern about a student's welfare?">
+              <button class="faq-trigger" onclick="toggleFAQ(this)">
+                <span class="faq-q">How do I report a concern about a student's welfare?</span>
+                <span class="faq-chevron"><i class="fas fa-chevron-down"></i></span>
+              </button>
+              <div class="faq-body-wrap">
+                <div class="faq-body">
+                  <span class="faq-tag">Conduct &amp; Discipline</span>
+                  <p>Welfare concerns should be directed to the school's <strong>Guidance Counsellor, Mrs. Sharon Cascoe</strong>, or the school office by phone on <a href="tel:8769867006">(876) 986-7006</a> or by email. All reports are treated in strict confidence.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- ── CONTACT ── -->
+            <div class="faq-item reveal" data-cat="contact" data-q="How do I contact a specific teacher?">
+              <button class="faq-trigger" onclick="toggleFAQ(this)">
+                <span class="faq-q">How do I contact a specific member of staff?</span>
+                <span class="faq-chevron"><i class="fas fa-chevron-down"></i></span>
+              </button>
+              <div class="faq-body-wrap">
+                <div class="faq-body">
+                  <span class="faq-tag">Contact &amp; Admin</span>
+                  <p>We do not publish individual staff email addresses on this website. Please use the general school email <a href="mailto:garveymaceo.high.cla@moey.gov.jm">garveymaceo.high.cla@moey.gov.jm</a> and your enquiry will be forwarded to the most appropriate member of staff.</p>
+                  <p>Alternatively, call the school on <a href="tel:8769867006">(876) 986-7006</a> during office hours.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="faq-item reveal" data-cat="contact" data-q="How can I obtain paper copies of information on the website?">
+              <button class="faq-trigger" onclick="toggleFAQ(this)">
+                <span class="faq-q">How can I obtain paper copies of information on the website?</span>
+                <span class="faq-chevron"><i class="fas fa-chevron-down"></i></span>
+              </button>
+              <div class="faq-body-wrap">
+                <div class="faq-body">
+                  <span class="faq-tag">Contact &amp; Admin</span>
+                  <p>Please contact the school office to request paper copies of any information published on this website. Reach us by email at <a href="mailto:garveymaceo.high.cla@moey.gov.jm">garveymaceo.high.cla@moey.gov.jm</a> or by telephone on <a href="tel:8769867006">(876) 986-7006</a>.</p>
+                </div>
+              </div>
+            </div>
+
+          </div><!-- /faq-list -->
+        </div><!-- /panel-all -->
+
+      </div>
+    </div>
+
+    <!-- ══════════ STILL HAVE QUESTIONS CTA ══════════ -->
+    <div class="cta-section">
+      <div class="inner">
+        <span class="cta-eyebrow">Still Need Help?</span>
+        <h2>We're Here for You</h2>
+        <p>Can't find what you're looking for? Our team is happy to help. Reach out directly and we'll get back to you as quickly as possible.</p>
+        <div class="cta-btn-row">
+          <a href="contact.html" class="btn-gold"><i class="fas fa-envelope"></i> Contact Us</a>
+          <a href="tel:8769867006" class="btn-ghost"><i class="fas fa-phone"></i> Call the School</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <div class="top">
+        <div class="col"><b><a href="https://www.google.co.uk/maps/@17.9006093,-77.2989797,17z"><i class="fas fa-map-marker-alt"></i></a><span> Vernamfield, P.O Box 490 May Pen, Clarendon</span></b></div>
+        <div class="col"><b><a href="Tel:876 986-7006"><i class="fas fa-phone"></i></a><span> (876) 986-7006</span></b></div>
+        <div class="col"><b><a href="mailto:garveymaceo.high.cla@moey.gov.jm"><i class="fas fa-envelope"></i></a><span> garveymaceo.high.cla@moey.gov.jm</span></b></div>
+      </div>
+      <div class="bottom"><p>© 2026 Garvey Maceo High School | Website design SkoolTech London</p></div>
+    </div>
+
+    <!-- ══ RADIAL FAB ══ -->
+    <div class="fab-wrap" id="fabWrap">
+      <div class="fab-items">
+        <a href="contact.html" class="fab-item"><i class="fas fa-envelope"></i><span class="fab-tip">Contact Us</span></a>
+        <a href="sports.html"  class="fab-item"><i class="fas fa-images"></i><span class="fab-tip">Gallery</span></a>
+        <a href="Curriculum.html" class="fab-item"><i class="fas fa-book-open"></i><span class="fab-tip">Curriculum</span></a>
+        <a href="donate.html"  class="fab-item"><i class="fas fa-heart"></i><span class="fab-tip">Donate</span></a>
+        <button class="fab-item" onclick="openPanel(); closeFab();"><i class="fas fa-bars"></i><span class="fab-tip">Menu</span></button>
+      </div>
+      <button class="fab-main" id="fabMain" onclick="toggleFab()">
+        <i class="fas fa-grip-dots fab-icon-menu"></i>
+        <i class="fas fa-times fab-icon-close"></i>
+      </button>
+    </div>
+
+    <script src="assets/js/index.js"></script>
+    <script>
+      function openPanel()  { document.getElementById('sidePanel').classList.add('open'); document.getElementById('panelOverlay').classList.add('open'); document.body.style.overflow='hidden'; }
+      function closePanel() { document.getElementById('sidePanel').classList.remove('open'); document.getElementById('panelOverlay').classList.remove('open'); document.body.style.overflow=''; }
+      function toggleFab()  { document.getElementById('fabWrap').classList.toggle('open'); document.getElementById('fabMain').classList.toggle('open'); }
+      function closeFab()   { document.getElementById('fabWrap').classList.remove('open'); document.getElementById('fabMain').classList.remove('open'); }
+      document.addEventListener('keydown', e => { if(e.key==='Escape'){ closePanel(); closeFab(); } });
+    </script>
+    <script>
+      /* ── ACCORDION ── */
+      function toggleFAQ(btn) {
+        const item = btn.closest('.faq-item');
+        const isOpen = item.classList.contains('open');
+        // close all others in same list
+        document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+        if (!isOpen) item.classList.add('open');
+      }
+
+      /* ── CATEGORY TABS ── */
+      const catBtns = document.querySelectorAll('.cat-btn');
+      catBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          catBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          const cat = btn.dataset.cat;
+          // reset search
+          document.getElementById('faqSearch').value = '';
+          document.getElementById('searchCount').textContent = '';
+          document.getElementById('noResults').style.display = 'none';
+
+          document.querySelectorAll('.faq-item').forEach(item => {
+            if (cat === 'all' || item.dataset.cat === cat) {
+              item.classList.remove('hidden');
+            } else {
+              item.classList.add('hidden');
+              item.classList.remove('open');
+            }
+          });
+          btn.scrollIntoView({ behavior:'smooth', inline:'center', block:'nearest' });
+        });
+      });
+
+      /* ── SEARCH ── */
+      const searchInput = document.getElementById('faqSearch');
+      const searchCount = document.getElementById('searchCount');
+      const noResults   = document.getElementById('noResults');
+
+      searchInput.addEventListener('input', e => {
+        const q = e.target.value.trim().toLowerCase();
+        // reset tabs to "all" visual state
+        catBtns.forEach(b => b.classList.toggle('active', b.dataset.cat === 'all'));
+
+        if (!q) {
+          document.querySelectorAll('.faq-item').forEach(item => item.classList.remove('hidden'));
+          noResults.style.display = 'none';
+          searchCount.textContent = '';
+          return;
+        }
+
+        let total = 0;
+        document.querySelectorAll('.faq-item').forEach(item => {
+          const text = (item.dataset.q || '') + ' ' + (item.querySelector('.faq-body')?.textContent || '');
+          const match = text.toLowerCase().includes(q);
+          item.classList.toggle('hidden', !match);
+          if (match) total++;
+        });
+
+        noResults.style.display = total === 0 ? 'block' : 'none';
+        searchCount.textContent = total > 0 ? `${total} question${total !== 1 ? 's' : ''} found` : '';
+      });
+
+      searchInput.addEventListener('keydown', e => {
+        if (e.key === 'Escape') {
+          searchInput.value = '';
+          searchInput.dispatchEvent(new Event('input'));
+        }
+      });
+
+      /* ── SCROLL REVEAL ── */
+      const revealEls = document.querySelectorAll('.reveal');
+      const rObs = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) { e.target.classList.add('visible'); rObs.unobserve(e.target); }
+        });
+      }, { threshold: 0.08 });
+      revealEls.forEach(el => rObs.observe(el));
+      /* ══ HERO SLIDER ══ */
+const slides = Array.from(document.querySelectorAll('.hero_slide'));
+const dotCon = document.getElementById('dotContainer');
+const hcText = document.getElementById('hcText');
+const hcLabel = document.getElementById('hcLabel');
+let current = 0, timer;
+
+/* Always set background images from data-bg — works on ALL pages */
+slides.forEach(s => {
+  if (s.dataset.bg) {
+    s.style.backgroundImage    = `url(${s.dataset.bg})`;
+    s.style.backgroundSize     = 'cover';
+    s.style.backgroundPosition = 'center';
+  }
+});
+
+/* Only run the slider/dots logic if the homepage elements exist */
+if (dotCon && slides.length > 1) {
+
+  slides.forEach((s, i) => {
+    const d = document.createElement('button');
+    d.className = 'hero_dot' + (i === 0 ? ' active' : '');
+    d.onclick = () => showSlide(i);
+    dotCon.appendChild(d);
+  });
+
+  function showSlide(n) {
+    slides[current].classList.remove('active');
+    dotCon.children[current].classList.remove('active');
+    current = (n + slides.length) % slides.length;
+    slides[current].classList.add('active');
+    dotCon.children[current].classList.add('active');
+    if (hcText)  { hcText.textContent  = slides[current].dataset.text  || ''; }
+    if (hcLabel) { hcLabel.textContent = slides[current].dataset.label || ''; }
+    if (hcText)  { hcText.style.animation  = 'none'; }
+    if (hcLabel) { hcLabel.style.animation = 'none'; }
+    requestAnimationFrame(() => {
+      if (hcText)  hcText.style.animation  = '';
+      if (hcLabel) hcLabel.style.animation = '';
+    });
+    clearInterval(timer);
+    timer = setInterval(() => showSlide(current + 1), 5000);
+  }
+
+  /* Make showSlide available globally for dot onclick */
+  window.showSlide = showSlide;
+  timer = setInterval(() => showSlide(current + 1), 5000);
+
+} else if (slides.length === 1) {
+  /* Single static hero — just show it, no dots needed */
+  slides[0].classList.add('active');
+}
+    </script>
+  </body>
+</html>

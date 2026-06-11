@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Garvey Maceo High School – History</title>
+    <link rel="icon" type="image/x-icon" href="../assets/img/logo.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" href="../assets/css/index.css" />
+    <!-- Add to <head> — use the actual image for that page -->
+    <link rel="preload" as="image" href="../assets/img/historypic.jpg" />
+    <link rel="stylesheet" type="text/css"
+      href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700,900italic|Poppins:300,400,500,600,700" />
+    <script src="https://kit.fontawesome.com/742f06a093.js" crossorigin="anonymous" defer></script>
+
+    <style>
+      /* ── Tokens: Cream & Gold (light gold, matches department/staff) ── */
+      :root {
+        --gold:        #d4a843;
+        --gold-dark:   #b8922a;
+        --gold-light:  #f2dc8a;
+        --gold-pale:   #fef6de;
+        --gold-border: rgba(212,168,67,.35);
+        --amber-deep:  #3a2200;
+        --amber-mid:   #6b4200;
+        --amber-warm:  #8c5a00;
+        --cream:       #faf7f0;
+        --cream-dark:  #f0ead8;
+        --white:       #ffffff;
+        --ink:         #1e1400;
+        --ink-mid:     #3d2e00;
+        --muted:       #7a6535;
+        --shadow:      rgba(100,65,0,.12);
+        --radius:      14px;
+        --radius-sm:   8px;
+      }
+
+      *, *::before, *::after { box-sizing: border-box; }
+      body { background: var(--cream); font-family: 'Poppins', sans-serif; color: var(--ink); margin: 0; }
+
+      /* ── Shared helpers ── */
+      .section-inner { max-width: 980px; margin: 0 auto; padding: 0 24px; }
+      .section-title { text-align: center; margin-bottom: 52px; }
+      .section-title::before { content:''; display:block; width:48px; height:4px; background:var(--gold); border-radius:2px; margin:0 auto 18px; }
+      .section-title h2 { font-family:'Playfair Display',serif; font-size:clamp(1.7rem,3.8vw,2.4rem); color:var(--ink); margin:0 0 10px; line-height:1.2; }
+      .section-title p { font-size:.9rem; color:var(--muted); margin:0; line-height:1.7; }
+
+      .gold-divider { height:5px; background:linear-gradient(90deg,transparent,var(--gold),var(--gold-light),var(--gold),transparent); }
+
+      /* ════════ HERO INTRO BAND ════════ */
+      .history-intro {
+        background: linear-gradient(135deg, var(--amber-deep) 0%, var(--amber-mid) 55%, var(--amber-warm) 100%);
+        padding: 68px 24px 60px;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+      .history-intro::before {
+        content:'';
+        position:absolute; inset:0;
+        background: radial-gradient(ellipse at 25% 60%, rgba(212,168,67,.15) 0%, transparent 60%),
+                    radial-gradient(ellipse at 80% 20%, rgba(242,220,138,.10) 0%, transparent 50%);
+        pointer-events:none;
+      }
+      .history-intro::after {
+        content:'';
+        position:absolute; width:500px; height:500px;
+        border:55px solid rgba(212,168,67,.07);
+        border-radius:50%; right:-160px; bottom:-220px;
+        pointer-events:none;
+      }
+      .history-intro .inner { position:relative; z-index:1; max-width:720px; margin:0 auto; }
+      .history-intro .eyebrow { font-size:.7rem; letter-spacing:.25em; text-transform:uppercase; color:var(--gold-light); margin-bottom:14px; display:block; }
+      .history-intro h1 { font-family:'Playfair Display',serif; font-size:clamp(2rem,5vw,3.4rem); font-weight:900; color:var(--white); margin:0 0 18px; line-height:1.1; }
+      .history-intro h1 span { color:var(--gold-light); font-style:italic; }
+      .history-intro p { font-size:.95rem; color:rgba(255,255,255,.68); line-height:1.85; margin:0; }
+
+      /* ════════ FOUNDING STORY — SECTIONED TEXT ════════ */
+      .story-section { padding: 72px 24px; background: var(--white); }
+      .story-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 36px;
+        max-width: 980px;
+        margin: 0 auto;
+      }
+      .story-block {
+        background: var(--cream);
+        border-radius: var(--radius);
+        padding: 32px 28px;
+        border-left: 4px solid var(--gold);
+        box-shadow: 0 3px 18px var(--shadow);
+        transition: transform .25s, box-shadow .25s;
+      }
+      .story-block:hover { transform: translateY(-4px); box-shadow: 0 10px 30px rgba(100,65,0,.15); }
+      .story-block .block-icon { font-size: 1.8rem; margin-bottom: 14px; display: block; }
+      .story-block h3 { font-family:'Playfair Display',serif; font-size:1.1rem; color:var(--ink); margin:0 0 12px; }
+      .story-block p { font-size:.875rem; color:var(--muted); line-height:1.8; margin:0; }
+
+      /* ════════ TIMELINE ════════ */
+      .timeline-section { padding: 72px 24px; background: var(--cream); }
+      .timeline {
+        max-width: 760px;
+        margin: 0 auto;
+        position: relative;
+        padding: 8px 0;
+      }
+      /* centre line */
+      .timeline::before {
+        content:'';
+        position:absolute;
+        left:50%; transform:translateX(-50%);
+        top:0; bottom:0; width:3px;
+        background: linear-gradient(to bottom, transparent, var(--gold) 8%, var(--gold) 92%, transparent);
+        border-radius:2px;
+      }
+
+      .tl-item {
+        display: flex;
+        gap: 32px;
+        margin-bottom: 44px;
+        position: relative;
+        align-items: flex-start;
+      }
+      /* alternating sides */
+      .tl-item:nth-child(odd)  { flex-direction: row; }
+      .tl-item:nth-child(even) { flex-direction: row-reverse; }
+
+      .tl-content {
+        flex: 1;
+        background: var(--white);
+        border-radius: var(--radius);
+        padding: 22px 24px;
+        box-shadow: 0 4px 20px var(--shadow);
+        border-top: 3px solid var(--gold);
+        transition: transform .25s, box-shadow .25s;
+        position: relative;
+      }
+      .tl-content:hover { transform: translateY(-3px); box-shadow: 0 10px 28px rgba(100,65,0,.15); }
+
+      .tl-item:nth-child(odd)  .tl-content::after,
+      .tl-item:nth-child(even) .tl-content::after {
+        content:'';
+        position:absolute; top:18px;
+        width:12px; height:12px;
+        background:var(--cream);
+        border:2px solid var(--gold-border);
+        transform:rotate(45deg);
+      }
+      .tl-item:nth-child(odd)  .tl-content::after { right:-7px; }
+      .tl-item:nth-child(even) .tl-content::after { left:-7px; }
+
+      .tl-dot {
+        flex-shrink:0;
+        width:44px; height:44px;
+        border-radius:50%;
+        background: linear-gradient(135deg, var(--gold), var(--gold-light));
+        display:flex; align-items:center; justify-content:center;
+        font-family:'Playfair Display',serif;
+        font-size:.72rem; font-weight:700;
+        color:var(--ink);
+        box-shadow: 0 0 0 4px var(--cream), 0 0 0 7px rgba(212,168,67,.3);
+        position:relative; z-index:1;
+        margin-top: 12px;
+      }
+
+      .tl-year {
+        font-family:'Playfair Display',serif;
+        font-size:1.05rem; font-weight:700;
+        color:var(--gold-dark); margin:0 0 6px;
+      }
+      .tl-title { font-size:.88rem; font-weight:600; color:var(--ink); margin:0 0 6px; }
+      .tl-desc  { font-size:.82rem; color:var(--muted); line-height:1.7; margin:0; }
+
+      /* ════════ PRINCIPALS ════════ */
+      .principals-section {
+        background: linear-gradient(135deg, var(--amber-deep) 0%, var(--amber-mid) 60%, var(--amber-warm) 100%);
+        padding: 72px 24px;
+        position: relative; overflow: hidden;
+      }
+      .principals-section::before {
+        content:''; position:absolute; width:480px; height:480px; border-radius:50%;
+        background:rgba(212,168,67,.07); right:-140px; top:-160px; pointer-events:none;
+      }
+      .principals-section::after {
+        content:''; position:absolute; width:320px; height:320px; border-radius:50%;
+        background:rgba(242,220,138,.05); left:-80px; bottom:-100px; pointer-events:none;
+      }
+      .principals-section .section-title h2 { color:var(--white); }
+      .principals-section .section-title p  { color:rgba(255,255,255,.55); }
+      .principals-section .section-title::before { background:var(--gold); }
+
+      .principals-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 20px;
+        position: relative; z-index:1;
+        max-width: 980px; margin: 0 auto;
+      }
+      .principal-card {
+        background: rgba(255,255,255,.07);
+        border: 1px solid rgba(212,168,67,.25);
+        border-radius: var(--radius);
+        padding: 26px 20px 22px;
+        text-align: center;
+        transition: background .25s, transform .25s, border-color .25s;
+      }
+      .principal-card:hover {
+        background: rgba(212,168,67,.12);
+        border-color: rgba(212,168,67,.5);
+        transform: translateY(-4px);
+      }
+      .principal-card .p-avatar {
+        width:56px; height:56px; border-radius:50%;
+        background: linear-gradient(135deg, var(--gold), var(--gold-light));
+        margin:0 auto 14px;
+        display:flex; align-items:center; justify-content:center;
+        font-family:'Playfair Display',serif;
+        font-size:1.1rem; font-weight:700; color:var(--ink);
+        box-shadow: 0 0 0 3px rgba(212,168,67,.3);
+      }
+      .principal-card .p-name { font-family:'Playfair Display',serif; font-size:.95rem; color:var(--white); margin:0 0 6px; line-height:1.3; }
+      .principal-card .p-years { font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; color:var(--gold-light); opacity:.85; }
+      /* current principal highlight */
+      .principal-card.current {
+        background: rgba(212,168,67,.18);
+        border-color: rgba(212,168,67,.6);
+      }
+      .principal-card.current .p-name { color:var(--gold-light); }
+      .current-badge {
+        display:inline-block;
+        background:var(--gold);
+        color:var(--ink);
+        font-size:.65rem;
+        font-weight:700;
+        letter-spacing:.07em;
+        text-transform:uppercase;
+        padding:3px 10px;
+        border-radius:20px;
+        margin-top:8px;
+      }
+
+      /* ════════ ACHIEVEMENTS ════════ */
+      .achievements-section { padding: 72px 24px; background: var(--white); }
+      .achievements-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 24px;
+        max-width: 980px; margin: 0 auto;
+      }
+      .achievement-card {
+        background: var(--cream);
+        border-radius: var(--radius);
+        padding: 30px 26px;
+        border-top: 4px solid var(--gold);
+        box-shadow: 0 3px 18px var(--shadow);
+        transition: transform .25s, box-shadow .25s;
+      }
+      .achievement-card:hover { transform: translateY(-5px); box-shadow: 0 12px 32px rgba(100,65,0,.16); }
+      .achievement-card .ach-icon { font-size:2.2rem; display:block; margin-bottom:16px; }
+      .achievement-card h3 { font-family:'Playfair Display',serif; font-size:1.05rem; color:var(--ink); margin:0 0 10px; }
+      .achievement-card ul { margin:0; padding:0 0 0 18px; }
+      .achievement-card ul li { font-size:.84rem; color:var(--muted); line-height:1.8; margin-bottom:4px; }
+
+      /* ════════ FOUNDERS ════════ */
+      .founders-section { padding: 72px 24px; background: var(--gold-pale); }
+      .founders-inner { max-width:900px; margin:0 auto; }
+      .founders-layout {
+        display: flex;
+        gap: 48px;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+      .founders-img-wrap {
+        flex-shrink: 0;
+        width: 100%;
+        max-width: 420px;
+        border-radius: var(--radius);
+        overflow: hidden;
+        box-shadow: 0 10px 40px rgba(100,65,0,.2);
+        border: 4px solid var(--white);
+        position: relative;
+      }
+      .founders-img-wrap img {
+        width:100%; height:auto; display:block;
+        object-fit: cover;
+      }
+      .founders-img-wrap .img-label {
+        position:absolute; bottom:0; left:0; right:0;
+        background:linear-gradient(transparent, rgba(30,14,0,.75));
+        padding:28px 20px 16px;
+        color:var(--white);
+        font-size:.8rem;
+        text-align:center;
+        letter-spacing:.06em;
+      }
+      .founders-img-wrap .img-label strong { display:block; font-family:'Playfair Display',serif; font-size:1rem; color:var(--gold-light); margin-bottom:2px; }
+
+      .founders-text { flex:1; min-width:240px; }
+      .founders-text::before { content:''; display:block; width:40px; height:4px; background:var(--gold); border-radius:2px; margin-bottom:18px; }
+      .founders-text h2 { font-family:'Playfair Display',serif; font-size:clamp(1.5rem,3.5vw,2rem); color:var(--ink); margin:0 0 18px; line-height:1.25; }
+      .founders-text p { font-size:.9rem; color:var(--muted); line-height:1.85; margin:0 0 14px; }
+      .founders-names {
+        display:flex; gap:16px; flex-wrap:wrap; margin-top:24px;
+      }
+      .founder-chip {
+        background:var(--white);
+        border:1px solid var(--gold-border);
+        border-radius:8px;
+        padding:12px 18px;
+        text-align:center;
+        box-shadow:0 2px 10px var(--shadow);
+        flex:1; min-width:140px;
+      }
+      .founder-chip .chip-flag { font-size:1.4rem; display:block; margin-bottom:6px; }
+      .founder-chip .chip-name { font-family:'Playfair Display',serif; font-size:.88rem; font-weight:700; color:var(--ink); display:block; margin-bottom:3px; }
+      .founder-chip .chip-desc { font-size:.72rem; color:var(--muted); letter-spacing:.04em; }
+
+      /* ════════ ANIMATIONS ════════ */
+      @keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
+      .fade-up { opacity:0; animation:fadeUp .6s ease forwards; }
+      .delay-1{animation-delay:.1s} .delay-2{animation-delay:.2s} .delay-3{animation-delay:.3s}
+      .delay-4{animation-delay:.4s} .delay-5{animation-delay:.5s} .delay-6{animation-delay:.6s}
+
+      /* scroll reveal */
+      .reveal { opacity:0; transform:translateY(28px); transition:opacity .65s ease, transform .65s ease; }
+      .reveal.visible { opacity:1; transform:translateY(0); }
+
+      /* this code get rid of the hero delay when selection from bav bar, help make page load faster*/
+      .hero_slide.fixed { background-image: url('../assets/img/historypic.jpg') !important; }
+      .hero_container.fixed {
+        position: relative;
+        height: 380px;
+        overflow: hidden;
+
+        /* This shows while the image loads — customise this colour */
+        background: #2a1800; filter: blur(0); /* remove blur once image loads via JS */;
+      }
+      .hero_slide.fixed { opacity: 0; transition: opacity 0.6s ease; }
+
+      .hero_slide.fixed.active { opacity: 1; }
+      .hero_container.fixed::before {
+          content: '';
+          position: absolute;
+          inset: 0;
+          z-index: 0;
+          background: linear-gradient(
+            90deg,
+            #2a1800 0%,
+            #4a2e00 40%,
+            #2a1800 80%
+          );
+          background-size: 200% 100%;
+          animation: shimmer 1.6s infinite;
+        }
+
+        /* Hide the shimmer once the image is active */
+        .hero_container.fixed.loaded::before {
+          display: none;
+        }
+
+        @keyframes shimmer {
+          0%   { background-position: 200% 0; }
+          100% { background-position: -200% 0; }
+        }
+
+      @media(max-width:680px){
+        .timeline::before { left:20px; }
+        .tl-item, .tl-item:nth-child(even) { flex-direction:column; padding-left:52px; }
+        .tl-dot { position:absolute; left:-8px; top:8px; width:38px; height:38px; }
+        .tl-content::after, .tl-item:nth-child(even) .tl-content::after { display:none; }
+        .founders-img-wrap { max-width:100%; }
+      }
+    </style>
+  </head>
+
+  <body>
+   <!-- ══ PANEL OVERLAY ══ -->
+    <div class="panel-overlay" id="panelOverlay" onclick="closePanel()"></div>
+
+    <!-- ══ SIDE PANEL NAV ══ -->
+    <div class="side-panel" id="sidePanel">
+      <div class="panel-head">
+        <div class="ph-logo">
+          <img src="../assets/img/logo.png" alt="GMHS Logo" />
+          <span>Garvey Maceo<br>High School</span>
+        </div>
+        <button class="panel-close" onclick="closePanel()"><i class="fas fa-times"></i></button>
+      </div>
+      <nav class="panel-nav">
+        <a href="../index.html"          class="pnav-item"><i class="fas fa-home" style="width:18px;margin-right:8px;"></i> Home</a>
+        <a href="Principal.html"         class="pnav-item active"><i class="fas fa-user-tie" style="width:18px;margin-right:8px;"></i> Principal's Message</a>
+
+        <div class="pnav-label">Cubanz</div>
+        <a href="ethos.html"      class="pnav-sub">Our Ethos</a>
+        <a href="staff.html"      class="pnav-sub">Our Staff</a>
+        <a href="department.html" class="pnav-sub">Departments</a>
+        <a href="history.html"    class="pnav-sub">History</a>
+        <a href="news.html"       class="pnav-sub">News Updates</a>
+
+        <div class="pnav-label">Academics</div>
+        <a href="Curriculum.html"        class="pnav-sub">Curriculum</a>
+        <a href="Health.html"            class="pnav-sub">Health &amp; Welfare</a>
+        <a href="graduation.html"        class="pnav-sub">Graduation Requirements</a>
+        <a href="FacultySpotlight.html" class="pnav-sub">Faculty Spotlight</a>
+
+        <div class="pnav-label">Stakeholders</div>
+        <a href="alumni.html" class="pnav-sub">Alumni</a>
+        <a href="pta.html"    class="pnav-sub">PTA</a>
+
+        <div class="pnav-label">Gallery</div>
+        <a href="sports.html" class="pnav-sub">Sports &amp; Events Gallery</a>
+        <a href="events.html" class="pnav-sub">Events</a>
+
+        <div class="pnav-label">Contact</div>
+        <a href="contact.html" class="pnav-sub">Contact Us</a>
+        <a href="faq.html"     class="pnav-sub">FAQ</a>
+        <a href="donate.html"  class="pnav-sub">Donate</a>
+      </nav>
+      <div class="panel-footer">
+        <p>© 2026 Garvey Maceo High School<br>Website design by SkoolTech London</p>
+      </div>
+    </div>
+
+    <!-- ══ STICKY HEADER ══ -->
+    <header>
+      <a href="../index.html" class="text_bg">
+        <img src="../assets/img/logo.png" alt="GMHS Logo" />
+        <span>Garvey Maceo High School</span>
+      </a>
+      <div class="flex_spacer"></div>
+      <div class="header-socials">
+        <a href="https://www.facebook.com/GARVEYMACEOCUBANS" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="youtube.com" title="YouTube"><i class="fab fa-youtube"></i></a>
+        <a href="https://www.instagram.com/garveymaceo/" title="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.linkedin.com/school/garvey-maceo-high-school/" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://twitter.com/garveymaceo" title="Twitter"><i class="fab fa-twitter"></i></a> 
+        <a href="https://www.tiktok.com/discover/garvey-maceo-high-school-jamaica" title="TikTok"><i class="fab fa-tiktok"></i></a>    
+      </div>
+    </header>
+
+ <!-- ══ HERO ══ -->
+<div class="hero_container fixed">
+  <div class="hero_pathbar" style="position:relative;z-index:3;">
+    <div class="inner">
+      <a href="../index.html">Home</a>
+      <i class="fas fa-chevron-right"></i>
+      <a href="history.html">History</a>
+    </div>
+  </div>
+  <div class="hero_gradient_overlay fixed" style="pointer-events:none;"></div>
+  <div class="hero_slide fixed"
+       data-bg="../assets/img/historypic.jpg"
+       style="background-size:cover;
+              background-position:center;
+              position:absolute;inset:0;z-index:0;">
+  </div>
+</div>
+
+   <div class="gold-divider"></div>
+
+
+    <!-- ══════════ INTRO BAND ══════════ -->
+    <div class="history-intro">
+      <div class="inner">
+        <span class="eyebrow">Est. 19 May 1980</span>
+        <h1>A Legacy of <span>Excellence</span></h1>
+        <p>Named after two great heroes,  Marcus Garvey and Antonio Maceo,  Garvey Maceo High School has spent over four decades shaping the minds, character and futures of Clarendon's young people.</p>
+      </div>
+    </div>
+    <div class="gold-divider"></div>
+
+    <!-- ══════════ FOUNDING STORY ══════════ -->
+    <div class="story-section">
+      <div class="section-inner">
+        <div class="section-title reveal">
+          <h2>Our Founding Story</h2>
+          <p>From a gift between nations to a cornerstone of Clarendon's community</p>
+        </div>
+        <div class="story-grid">
+          <div class="story-block reveal">
+            <span class="block-icon">🤝</span>
+            <h3>A Gift from Cuba</h3>
+            <p>Garvey Maceo High School opened its doors on May 19, 1980 from a generous gift from the government and people of Cuba, reflecting a bond of solidarity and shared commitment to education.</p>
+          </div>
+          <div class="story-block reveal delay-1">
+            <span class="block-icon">🌿</span>
+            <h3>Rooted in Agriculture</h3>
+            <p>Originally built as a Comprehensive High School with a major focus on agriculture, GMHS owns 90 acres of land and operates both a commercial farm and a tutorial farm. Students tend to pigs, goats and chickens, and plant and reap cash crops as part of their CXC Agricultural Science requirement.</p>
+          </div>
+          <div class="story-block reveal delay-2">
+            <span class="block-icon">📚</span>
+            <h3>Academic Breadth</h3>
+            <p>Alongside its agricultural roots, the school equips students across vocational and academic subjects, from Electrical Installation, Home Economics and Woodwork to the Arts, Sciences, Information Technology and Business.</p>
+          </div>
+          <div class="story-block reveal delay-3">
+            <span class="block-icon">📈</span>
+            <h3>Decades of Growth</h3>
+            <p>Since 1980 the student population has grown to three times its original size. Since 2001, School Improvement Plans (SIP) have guided the institution's continued structural and academic development.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════ TIMELINE ══════════ -->
+    <div class="timeline-section">
+      <div class="section-inner">
+        <div class="section-title reveal">
+          <h2>Key Milestones</h2>
+          <p>Over four decades of history, achievement and growth</p>
+        </div>
+        <div class="timeline">
+
+          <div class="tl-item reveal">
+            <div class="tl-content">
+              <p class="tl-year">1980</p>
+              <p class="tl-title">School Opens</p>
+              <p class="tl-desc">Garvey Maceo High School officially opens on May 19, 1980, named after Marcus Garvey and Cuban hero Antonio Maceo. First Head Boy: Errol Roman. First Head Girl: Annette Powell.</p>
+            </div>
+            <div class="tl-dot">1980</div>
+          </div>
+
+          <div class="tl-item reveal delay-1">
+            <div class="tl-content">
+              <p class="tl-year">1991</p>
+              <p class="tl-title">Sports Champions</p>
+              <p class="tl-desc">GMHS wins the Headley Cup and becomes all-island cricket champion, lifting the prestigious Spaulding Cup for the first time.</p>
+            </div>
+            <div class="tl-dot">1991</div>
+          </div>
+
+          <div class="tl-item reveal delay-2">
+            <div class="tl-content">
+              <p class="tl-year">1997</p>
+              <p class="tl-title">Headley Cup & Spaulding Cup</p>
+              <p class="tl-desc">Another triumphant year as the school wins the Headley Cup again and shares the Spaulding Cup, cementing its reputation as a sporting powerhouse.</p>
+            </div>
+            <div class="tl-dot">1997</div>
+          </div>
+
+          <div class="tl-item reveal">
+            <div class="tl-content">
+              <p class="tl-year">2001</p>
+              <p class="tl-title">School Improvement Plans Begin</p>
+              <p class="tl-desc">GMHS introduces School Improvement Plans (SIP) to oversee continued growth and development, structurally and academically.</p>
+            </div>
+            <div class="tl-dot">2001</div>
+          </div>
+
+          <div class="tl-item reveal delay-1">
+            <div class="tl-content">
+              <p class="tl-year">2007</p>
+              <p class="tl-title">DaCosta Cup & Ben Francis Cup</p>
+              <p class="tl-desc">A landmark year for football as GMHS wins both the DaCosta Cup and the Ben Francis Cup, a double triumph celebrated across the school community.</p>
+            </div>
+            <div class="tl-dot">2007</div>
+          </div>
+
+          <div class="tl-item reveal delay-2">
+            <div class="tl-content">
+              <p class="tl-year">2008</p>
+              <p class="tl-title">All Together Sing Competition</p>
+              <p class="tl-desc">GMHS enters the national All Together Sing competition for the first time and reaches the studio finals, with the school choir supported by CHASE Fund band equipment.</p>
+            </div>
+            <div class="tl-dot">2008</div>
+          </div>
+
+          <div class="tl-item reveal">
+            <div class="tl-content">
+              <p class="tl-year">2021</p>
+              <p class="tl-title">DaCosta Cup Champions Again</p>
+              <p class="tl-desc">Garvey Maceo clinches the DaCosta Cup for the second time, proving that the school's football excellence endures across generations.</p>
+            </div>
+            <div class="tl-dot">2021</div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════ PRINCIPALS THROUGH THE YEARS ══════════ -->
+    <div class="principals-section">
+      <div class="section-inner">
+        <div class="section-title reveal">
+          <h2>Principals Through the Years</h2>
+          <p>The visionary leaders who have shaped Garvey Maceo since 1980</p>
+        </div>
+        <div class="principals-grid">
+          <div class="principal-card reveal fade-up">
+            <div class="p-avatar">BM</div>
+            <p class="p-name">Mrs. Bernice Magnus</p>
+            <span class="p-years">1980 to 1986</span>
+          </div>
+          <div class="principal-card reveal fade-up delay-1">
+            <div class="p-avatar">TP</div>
+            <p class="p-name">Mr. Trevor Powell</p>
+            <span class="p-years">1986 to 1990</span>
+          </div>
+          <div class="principal-card reveal fade-up delay-2">
+            <div class="p-avatar">MF</div>
+            <p class="p-name">Mrs. Mavis Forrester</p>
+            <span class="p-years">1990 to 2001</span>
+          </div>
+          <div class="principal-card reveal fade-up delay-3">
+            <div class="p-avatar">DB</div>
+            <p class="p-name">Mr. David Brown</p>
+            <span class="p-years">2001 to 2007</span>
+          </div>
+          <div class="principal-card reveal fade-up delay-4">
+            <div class="p-avatar">VG</div>
+            <p class="p-name">Mrs. Valda Gayle</p>
+            <span class="p-years">2007 to 2010</span>
+          </div>
+          <div class="principal-card current reveal fade-up delay-5">
+            <div class="p-avatar">EE</div>
+            <p class="p-name">Mrs. Erica Ewbanks</p>
+            <span class="p-years">2010 to Present</span>
+            <span class="current-badge">Current Principal</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════ ACHIEVEMENTS SHOWCASE ══════════ -->
+    <div class="achievements-section">
+      <div class="section-inner">
+        <div class="section-title reveal">
+          <h2>Sports &amp; Cultural Achievements</h2>
+          <p>A proud record of excellence on the field, on stage and in the studio</p>
+        </div>
+        <div class="achievements-grid">
+          <div class="achievement-card reveal">
+            <span class="ach-icon">🏆</span>
+            <h3>Football</h3>
+            <ul>
+              <li>DaCosta Cup Champions  2007 &amp; 2021 &amp; 2024</li>
+              <li>Ben Francis Cup Champions  2007</li>
+              <li>Students represent national football &amp; girls' football teams</li>
+              <li>Broad-based football development programme</li>
+            </ul>
+          </div>
+          <div class="achievement-card reveal delay-1">
+            <span class="ach-icon">🏏</span>
+            <h3>Cricket</h3>
+            <ul>
+              <li>Headley Cup Winners to 1991 &amp; 1997</li>
+              <li>Spaulding Cup Champions to 1991</li>
+              <li>Spaulding Cup Shared to 1997</li>
+              <li>Players representing national cricket teams</li>
+            </ul>
+          </div>
+          <div class="achievement-card reveal delay-2">
+            <span class="ach-icon">🎨</span>
+            <h3>Fine Arts &amp; Culture</h3>
+            <ul>
+              <li>JCDC Fine Arts, Dance &amp; Speech &amp; Drama Gold, Silver &amp; Bronze medals</li>
+              <li>Student artwork displayed &amp; sold at hotels and galleries</li>
+              <li>Top-3 finishes in JNBS Photography Competition</li>
+              <li>All Together Sing  Studio Finals (2008 &amp; 2009)</li>
+            </ul>
+          </div>
+          <div class="achievement-card reveal delay-3">
+            <span class="ach-icon">⚽</span>
+            <h3>Athletics &amp; Other Sports</h3>
+            <ul>
+              <li>Active participation in competitive athletics</li>
+              <li>Girls' football and netball programmes</li>
+              <li>Developing broad-based athletics development pathway</li>
+              <li>Continued national representation across multiple sports</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════ FOUNDERS ══════════ -->
+    <div class="founders-section">
+      <div class="founders-inner">
+        <div class="founders-layout">
+          <div class="founders-img-wrap reveal">
+            <img src="../assets/img/history.jpg" loading="lazy" alt="Our Founders — Marcus Garvey and Antonio Maceo" />
+            <div class="img-label">
+              <strong>Our Namesakes</strong>
+              Marcus Garvey &amp; Antonio Maceo
+            </div>
+          </div>
+          <div class="founders-text reveal delay-2">
+            <h2>Named After Heroes</h2>
+            <p>Garvey Maceo High School proudly carries the names of two towering figures in Caribbean and Latin American history, men whose courage, vision and belief in the dignity of their people continue to inspire every student who walks through our gates.</p>
+            <p>Their legacies are not just history, they are our daily call to excellence, resilience and purpose.</p>
+            <div class="founders-names">
+              <div class="founder-chip">
+                <span class="chip-flag">🇯🇲</span>
+                <span class="chip-name">Marcus Garvey</span>
+                <span class="chip-desc">Jamaican National Hero &amp; Pan-Africanist</span>
+              </div>
+              <div class="founder-chip">
+                <span class="chip-flag">🇨🇺</span>
+                <span class="chip-name">Antonio Maceo</span>
+                <span class="chip-desc">Cuban Revolutionary Hero</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+   <div class="footer">
+      <div class="top">
+        <div class="col"><b><a href="https://www.google.co.uk/maps/@17.9006093,-77.2989797,17z"><i class="fas fa-map-marker-alt"></i></a><span> Vernamfield, P.O Box 490 May Pen, Clarendon</span></b></div>
+        <div class="col"><b><a href="Tel:876 986-7006"><i class="fas fa-phone"></i></a><span> (876) 986-7006</span></b></div>
+        <div class="col"><b><a href="mailto:garveymaceo.high.cla@moey.gov.jm"><i class="fas fa-envelope"></i></a><span> garveymaceo.high.cla@moey.gov.jm</span></b></div>
+      </div>
+      <div class="bottom"><p>© 2026 Garvey Maceo High School | Website design SkoolTech London</p></div>
+    </div>
+
+    <!-- ══ RADIAL FAB ══ -->
+    <div class="fab-wrap" id="fabWrap">
+      <div class="fab-items">
+        <a href="contact.html" class="fab-item"><i class="fas fa-envelope"></i><span class="fab-tip">Contact Us</span></a>
+        <a href="sports.html"  class="fab-item"><i class="fas fa-images"></i><span class="fab-tip">Gallery</span></a>
+        <a href="Curriculum.html" class="fab-item"><i class="fas fa-book-open"></i><span class="fab-tip">Curriculum</span></a>
+        <a href="donate.html"  class="fab-item"><i class="fas fa-heart"></i><span class="fab-tip">Donate</span></a>
+        <button class="fab-item" onclick="openPanel(); closeFab();"><i class="fas fa-bars"></i><span class="fab-tip">Menu</span></button>
+      </div>
+      <button class="fab-main" id="fabMain" onclick="toggleFab()">
+        <i class="fas fa-grip-dots fab-icon-menu"></i>
+        <i class="fas fa-times fab-icon-close"></i>
+      </button>
+    </div>
+
+    <script src="../assets/js/index.js"></script>
+    <script>
+      function openPanel()  { document.getElementById('sidePanel').classList.add('open'); document.getElementById('panelOverlay').classList.add('open'); document.body.style.overflow='hidden'; }
+      function closePanel() { document.getElementById('sidePanel').classList.remove('open'); document.getElementById('panelOverlay').classList.remove('open'); document.body.style.overflow=''; }
+      function toggleFab()  { document.getElementById('fabWrap').classList.toggle('open'); document.getElementById('fabMain').classList.toggle('open'); }
+      function closeFab()   { document.getElementById('fabWrap').classList.remove('open'); document.getElementById('fabMain').classList.remove('open'); }
+      document.addEventListener('keydown', e => { if(e.key==='Escape'){ closePanel(); closeFab(); } });
+    </script>
+    <script>
+      /* ── Scroll reveal ── */
+      const revealEls = document.querySelectorAll('.reveal');
+      const revealObs = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('visible');
+            revealObs.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      revealEls.forEach(el => revealObs.observe(el));
+    </script>
+  </body>
+</html>

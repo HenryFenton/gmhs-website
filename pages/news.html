@@ -1,0 +1,806 @@
+<!DOCTYPE htm<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Garvey Maceo High School – News &amp; Updates</title>
+    <link rel="icon" type="image/x-icon" href="../assets/img/logo.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" href="../assets/css/index.css" />
+    <link rel="stylesheet" type="text/css" href="../assets/css/Alumni.css" />
+    <link rel="preload" as="image" href="../assets/img/schoolbuilding.png" />
+    <link rel="stylesheet" type="text/css"
+      href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700,900|Poppins:300,400,500,600,700" />
+    <script src="https://kit.fontawesome.com/742f06a093.js" crossorigin="anonymous" defer></script>
+
+    <style>
+      /* ══ TOKENS ══ */
+      :root {
+        --gold:        #d4a843;
+        --gold-dark:   #b8922a;
+        --gold-light:  #f2dc8a;
+        --gold-pale:   #fef6de;
+        --gold-soft:   #f9edbc;
+        --gold-border: rgba(212,168,67,.28);
+        --amber-deep:  #3a2200;
+        --amber-mid:   #6b4200;
+        --amber-warm:  #8c5a00;
+        --cream:       #faf7f0;
+        --cream-mid:   #f5edd8;
+        --cream-dark:  #ede3c8;
+        --white:       #ffffff;
+        --ink:         #1e1400;
+        --ink-mid:     #3d2e00;
+        --muted:       #8a7240;
+        --shadow:      rgba(180,140,40,.11);
+        --shadow-soft: rgba(212,168,67,.08);
+        --radius:      14px;
+        --radius-sm:   8px;
+        --panel-w:     320px;
+      }
+
+      *, *::before, *::after { box-sizing: border-box; }
+      body {
+        font-family: 'Poppins', sans-serif; color: var(--ink); margin: 0;
+        background-color: var(--cream);
+        background-image:
+          url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Crect x='20' y='20' width='40' height='40' fill='none' stroke='%23d4a843' stroke-width='0.6' opacity='0.08' transform='rotate(45 40 40)'/%3E%3C/svg%3E"),
+          url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20'%3E%3Ccircle cx='10' cy='10' r='0.8' fill='%23d4a843' opacity='0.06'/%3E%3C/svg%3E");
+        background-size: 80px 80px, 20px 20px;
+      }
+
+      /* ══ SHARED NAV/HEADER/FAB ══ */
+      header {
+        position: sticky; top: 0; z-index: 200;
+        display: flex; align-items: center;
+        background: linear-gradient(135deg, var(--ink) 0%, var(--ink-mid) 100%);
+        padding: 0 20px; height: 62px; gap: 14px;
+        box-shadow: 0 2px 20px rgba(0,0,0,.3);
+      }
+      .text_bg { display: flex; align-items: center; gap: 12px; flex: 1; }
+      .text_bg img { height: 40px; width: auto; }
+      .text_bg span {
+        font-family: 'Playfair Display', serif;
+        font-size: clamp(.8rem,2vw,1.05rem); font-weight: 700;
+        color: var(--gold-light); letter-spacing: .02em;
+      }
+      .flex_spacer { flex: 1; }
+      .header-socials { display: flex; gap: 10px; align-items: center; }
+      .header-socials a {
+        width: 32px; height: 32px; border-radius: 50%;
+        background: rgba(255,255,255,.08); border: 1px solid rgba(212,168,67,.25);
+        display: flex; align-items: center; justify-content: center;
+        color: var(--gold-light); font-size: .8rem; text-decoration: none;
+        transition: background .2s, transform .2s;
+      }
+      .header-socials a:hover { background: var(--gold); color: var(--ink); transform: scale(1.1); }
+
+      .panel-overlay {
+        position: fixed; inset: 0; background: rgba(0,0,0,.45);
+        backdrop-filter: blur(4px); z-index: 300;
+        opacity: 0; pointer-events: none; transition: opacity .3s ease;
+      }
+      .panel-overlay.open { opacity: 1; pointer-events: all; }
+
+      .side-panel {
+        position: fixed; top: 0; right: calc(-1 * var(--panel-w));
+        width: var(--panel-w); height: 100vh;
+        background: linear-gradient(160deg, var(--ink) 0%, var(--ink-mid) 100%);
+        z-index: 310; overflow-y: auto; overflow-x: hidden;
+        transition: right .35s cubic-bezier(.4,0,.2,1);
+        display: flex; flex-direction: column;
+      }
+      .side-panel.open { right: 0; }
+      .panel-head { display: flex; align-items: center; justify-content: space-between; padding: 20px 22px 16px; border-bottom: 1px solid rgba(212,168,67,.18); flex-shrink: 0; }
+      .panel-head .ph-logo { display: flex; align-items: center; gap: 10px; }
+      .panel-head .ph-logo img { height: 34px; }
+      .panel-head .ph-logo span { font-family: 'Playfair Display', serif; font-size: .82rem; color: var(--gold-light); font-weight: 700; line-height: 1.3; }
+      .panel-close { width: 34px; height: 34px; border-radius: 50%; background: rgba(255,255,255,.08); border: none; cursor: pointer; color: var(--white); font-size: .9rem; display: flex; align-items: center; justify-content: center; transition: background .2s; }
+      .panel-close:hover { background: var(--gold); color: var(--ink); }
+      .panel-nav { padding: 12px 0 20px; flex: 1; }
+      .pnav-item { display: block; padding: 11px 22px; color: rgba(255,255,255,.75); text-decoration: none; font-size: .85rem; font-weight: 500; transition: background .18s, color .18s, padding-left .18s; border-left: 3px solid transparent; }
+      .pnav-item:hover { background: rgba(212,168,67,.1); color: var(--white); padding-left: 28px; border-left-color: var(--gold); }
+      .pnav-item.active { color: var(--gold-light); border-left-color: var(--gold); background: rgba(212,168,67,.08); }
+      .pnav-label { padding: 12px 22px 6px; font-size: .65rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--gold); margin-top: 8px; }
+      .pnav-sub { display: block; padding: 8px 22px 8px 34px; color: rgba(255,255,255,.55); text-decoration: none; font-size: .8rem; transition: color .18s, padding-left .18s; margin-left: 22px; border-left: 1px solid rgba(212,168,67,.15); }
+      .pnav-sub:hover { color: var(--gold-light); padding-left: 40px; }
+      .pnav-sub.active-sub { color: var(--gold-light); }
+      .panel-footer { padding: 16px 22px; border-top: 1px solid rgba(212,168,67,.18); flex-shrink: 0; }
+      .panel-footer p { font-size: .72rem; color: rgba(255,255,255,.35); margin: 0; }
+
+      .fab-wrap { position: fixed; bottom: 32px; right: 28px; z-index: 400; }
+      .fab-main { width: 58px; height: 58px; border-radius: 50%; background: linear-gradient(135deg, var(--gold-dark), var(--gold)); border: none; cursor: pointer; color: var(--ink); font-size: 1.2rem; display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 24px rgba(0,0,0,.3); transition: transform .25s, box-shadow .25s; position: relative; z-index: 2; }
+      .fab-main:hover { transform: scale(1.08); }
+      .fab-main.open { background: linear-gradient(135deg, var(--ink), var(--ink-mid)); color: var(--gold-light); box-shadow: 0 6px 24px rgba(0,0,0,.4), 0 0 0 8px rgba(212,168,67,.12); }
+      .fab-main .fab-icon-menu { transition: opacity .2s, transform .2s; }
+      .fab-main .fab-icon-close { position: absolute; opacity: 0; transform: rotate(-90deg); transition: opacity .2s, transform .2s; }
+      .fab-main.open .fab-icon-menu { opacity: 0; transform: rotate(90deg); }
+      .fab-main.open .fab-icon-close { opacity: 1; transform: rotate(0); }
+      .fab-items { position: absolute; bottom: 0; right: 0; width: 58px; height: 58px; pointer-events: none; }
+      .fab-item { position: absolute; bottom: 0; right: 0; width: 46px; height: 46px; border-radius: 50%; background: var(--white); border: 2px solid var(--gold-border); color: var(--ink-mid); display: flex; align-items: center; justify-content: center; font-size: .95rem; text-decoration: none; box-shadow: 0 4px 14px rgba(0,0,0,.18); transition: transform .35s cubic-bezier(.34,1.56,.64,1), opacity .25s, background .2s; transform: translate(0,0) scale(0); opacity: 0; pointer-events: none; cursor: pointer; }
+      .fab-item:hover { background: var(--gold); border-color: var(--gold-dark); color: var(--ink); }
+      .fab-item .fab-tip { position: absolute; right: 54px; top: 50%; transform: translateY(-50%); background: var(--ink); color: var(--white); font-size: .68rem; font-weight: 600; padding: 4px 10px; border-radius: 6px; white-space: nowrap; opacity: 0; transition: opacity .2s; pointer-events: none; }
+      .fab-item:hover .fab-tip { opacity: 1; }
+      .fab-wrap.open .fab-item { opacity: 1; pointer-events: all; }
+      .fab-wrap.open .fab-item:nth-child(1) { transform: translate(-2px,-72px)  scale(1); transition-delay:.03s; }
+      .fab-wrap.open .fab-item:nth-child(2) { transform: translate(-38px,-60px) scale(1); transition-delay:.06s; }
+      .fab-wrap.open .fab-item:nth-child(3) { transform: translate(-62px,-30px) scale(1); transition-delay:.09s; }
+      .fab-wrap.open .fab-item:nth-child(4) { transform: translate(-72px,2px)   scale(1); transition-delay:.12s; }
+      .fab-wrap.open .fab-item:nth-child(5) { transform: translate(-60px,38px)  scale(1); transition-delay:.15s; }
+
+      /* ══ HERO ══ */
+      .hero_container.fixed { position: relative; height: 380px; overflow: hidden; background: var(--amber-deep); }
+      .hero_slide.fixed { position: absolute; inset: 0; z-index: 0; background-size: cover; background-position: center; opacity: 0; transition: opacity .6s ease; }
+      .hero_slide.fixed.active { opacity: 1; }
+      .hero_gradient_overlay.fixed { position: absolute; inset: 0; z-index: 1; pointer-events: none; background: linear-gradient(to bottom, rgba(0,0,0,.25), rgba(0,0,0,.55)); }
+     
+
+      /* ══ GOLD DIVIDER ══ */
+      .gold-divider { height: 5px; background: linear-gradient(90deg, transparent, var(--gold), var(--gold-light), var(--gold), transparent); }
+
+      /* ══ PAGE INTRO BAND ══ */
+      .news-intro {
+        background: linear-gradient(135deg, var(--gold-pale) 0%, var(--cream-mid) 50%, var(--gold-soft) 100%);
+        border-bottom: 2px solid var(--gold-border);
+        padding: 52px 24px 44px; text-align: center;
+        position: relative; overflow: hidden;
+      }
+      .news-intro::before { content:''; position:absolute; width:360px; height:360px; border:3px solid rgba(212,168,67,.11); transform:rotate(45deg); right:-100px; top:-100px; pointer-events:none; border-radius:4px; }
+      .news-intro::after  { content:''; position:absolute; width:200px; height:200px; border:2px solid rgba(212,168,67,.08); transform:rotate(45deg); left:-60px; bottom:-60px; pointer-events:none; border-radius:4px; }
+      .news-intro .inner { position: relative; z-index: 1; max-width: 680px; margin: 0 auto; }
+      .news-intro .accent-bar { display: block; width: 52px; height: 4px; background: linear-gradient(90deg, var(--gold-dark), var(--gold-light)); border-radius: 2px; margin: 0 auto 18px; }
+      .news-intro .eyebrow { font-size: .7rem; letter-spacing: .22em; text-transform: uppercase; color: var(--gold-dark); margin-bottom: 14px; display: block; font-weight: 600; }
+      .news-intro h1 { font-family: 'Playfair Display', serif; font-size: clamp(1.9rem,4.5vw,3rem); font-weight: 900; color: var(--ink); margin: 0 0 12px; line-height: 1.1; }
+      .news-intro h1 span { color: var(--gold-dark); font-style: italic; }
+      .news-intro p { font-size: .92rem; color: var(--muted); line-height: 1.85; margin: 0; }
+
+      /* ══ MAIN CONTENT LAYOUT ══ */
+      .news-body { max-width: 980px; margin: 0 auto; padding: 48px 24px 80px; }
+
+      /* ── Top controls bar (search + tabs) ── */
+      .news-controls {
+        display: flex; align-items: center; justify-content: space-between;
+        gap: 16px; flex-wrap: wrap;
+        margin-bottom: 36px;
+        padding-bottom: 20px;
+        border-bottom: 2px solid var(--cream-dark);
+      }
+
+      /* Category tabs */
+      .cat-tabs { display: flex; gap: 8px; flex-wrap: wrap; }
+      .cat-tab {
+        padding: 7px 16px; border-radius: 50px;
+        font-family: 'Poppins', sans-serif; font-size: .74rem; font-weight: 600;
+        letter-spacing: .05em; text-transform: uppercase;
+        background: var(--white); border: 1.5px solid var(--cream-dark);
+        color: var(--muted); cursor: pointer;
+        transition: background .2s, border-color .2s, color .2s, transform .15s;
+        display: flex; align-items: center; gap: 6px;
+      }
+      .cat-tab:hover { border-color: var(--gold-border); color: var(--gold-dark); transform: translateY(-1px); }
+      .cat-tab.active { background: var(--gold); border-color: var(--gold-dark); color: var(--ink); box-shadow: 0 3px 12px rgba(212,168,67,.3); }
+      .cat-tab .tab-count { background: rgba(30,20,0,.12); font-size: .65rem; padding: 1px 7px; border-radius: 20px; }
+      .cat-tab.active .tab-count { background: rgba(30,20,0,.18); }
+
+      /* Search */
+      .news-search-wrap { position: relative; flex-shrink: 0; }
+      .news-search-wrap i { position: absolute; left: 13px; top: 50%; transform: translateY(-50%); color: var(--gold-dark); font-size: .82rem; pointer-events: none; }
+      .news-search-wrap input {
+        padding: 9px 16px 9px 36px; border: 1.5px solid var(--cream-dark);
+        border-radius: 50px; font-family: 'Poppins', sans-serif; font-size: .82rem;
+        color: var(--ink); background: var(--white); outline: none;
+        width: 210px; transition: border-color .2s, box-shadow .2s;
+      }
+      .news-search-wrap input:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(212,168,67,.12); }
+      .news-search-wrap input::placeholder { color: var(--muted); }
+
+      /* Results info */
+      .results-info { font-size: .78rem; color: var(--muted); margin-bottom: 24px; min-height: 20px; }
+      .results-info strong { color: var(--gold-dark); }
+
+      /* ══ FEATURED ARTICLE ══ */
+      .featured-article {
+        background: var(--white); border-radius: var(--radius);
+        overflow: hidden; box-shadow: 0 4px 24px var(--shadow);
+        border-top: 5px solid var(--gold);
+        margin-bottom: 36px;
+        display: grid; grid-template-columns: 1fr 1fr;
+        transition: box-shadow .25s;
+      }
+      .featured-article:hover { box-shadow: 0 12px 40px rgba(180,140,40,.18); }
+      .featured-img {
+        background: var(--cream-dark);
+        min-height: 280px; overflow: hidden; position: relative;
+      }
+      .featured-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .4s ease; }
+      .featured-article:hover .featured-img img { transform: scale(1.04); }
+      .featured-body { padding: 36px 32px; display: flex; flex-direction: column; justify-content: center; }
+      .article-badge {
+        display: inline-flex; align-items: center; gap: 6px;
+        font-size: .65rem; font-weight: 800; letter-spacing: .1em;
+        text-transform: uppercase; padding: 4px 12px; border-radius: 20px;
+        margin-bottom: 16px; width: fit-content;
+      }
+      .badge-sports   { background: #fff3cd; color: #856404; border: 1px solid #ffc107; }
+      .badge-academic { background: #d1ecf1; color: #0c5460; border: 1px solid #bee5eb; }
+      .badge-community{ background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+      .badge-staff    { background: #e2d9f3; color: #4a235a; border: 1px solid #c5b4e3; }
+      .badge-student  { background: var(--gold-pale); color: var(--gold-dark); border: 1px solid var(--gold-border); }
+      .badge-events   { background: #fce4ec; color: #880e4f; border: 1px solid #f48fb1; }
+      .featured-body h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.3rem,2.5vw,1.7rem); color: var(--ink); margin: 0 0 12px; line-height: 1.3; }
+      .featured-body p { font-size: .88rem; color: var(--muted); line-height: 1.85; margin: 0 0 20px; }
+      .featured-meta { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; margin-bottom: 20px; }
+      .featured-meta span { font-size: .75rem; color: var(--muted); display: flex; align-items: center; gap: 5px; }
+      .featured-meta i { color: var(--gold-dark); }
+      .btn-readmore {
+        display: inline-flex; align-items: center; gap: 7px;
+        background: var(--ink); color: var(--white);
+        font-size: .82rem; font-weight: 700; padding: 10px 22px;
+        border-radius: 7px; text-decoration: none; letter-spacing: .03em;
+        transition: background .2s, transform .2s; width: fit-content;
+      }
+      .btn-readmore:hover { background: var(--ink-mid); transform: translateY(-2px); }
+
+      /* ══ ACCORDION ══ */
+      .accordion-wrap { display: flex; flex-direction: column; gap: 14px; }
+
+      .acc-item {
+        background: var(--white); border-radius: var(--radius);
+        box-shadow: 0 3px 16px var(--shadow-soft);
+        border-left: 4px solid var(--gold);
+        overflow: hidden;
+        transition: box-shadow .25s;
+      }
+      .acc-item:hover { box-shadow: 0 8px 28px rgba(180,140,40,.16); }
+      .acc-item.hidden { display: none; }
+
+      /* Trigger button */
+      .acc-trigger {
+        width: 100%; background: none; border: none;
+        padding: 22px 24px; cursor: pointer;
+        display: flex; align-items: center; gap: 16px;
+        text-align: left; font-family: 'Poppins', sans-serif;
+        transition: background .2s;
+      }
+      .acc-trigger:hover { background: rgba(212,168,67,.04); }
+      .acc-trigger.open { background: rgba(212,168,67,.06); }
+
+      .acc-meta { flex: 1; min-width: 0; }
+      .acc-title { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--ink); margin: 0 0 6px; line-height: 1.3; }
+      .acc-sub { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+      .acc-sub span { font-size: .74rem; color: var(--muted); display: flex; align-items: center; gap: 4px; }
+      .acc-sub i { color: var(--gold-dark); font-size: .72rem; }
+
+      /* Animated + / × icon */
+      .acc-icon {
+        width: 32px; height: 32px; border-radius: 50%; flex-shrink: 0;
+        background: var(--gold-pale); border: 1.5px solid var(--gold-border);
+        display: flex; align-items: center; justify-content: center;
+        transition: background .25s, transform .35s;
+        position: relative;
+      }
+      .acc-icon::before,
+      .acc-icon::after {
+        content: '';
+        position: absolute;
+        background: var(--gold-dark);
+        border-radius: 2px;
+        transition: transform .35s ease, opacity .25s;
+      }
+      .acc-icon::before { width: 12px; height: 2px; }  /* horizontal bar */
+      .acc-icon::after  { width: 2px; height: 12px; }  /* vertical bar   */
+
+      /* When open — vertical bar rotates to hide (becomes the × top stroke) */
+      .acc-trigger.open .acc-icon { background: var(--gold); transform: rotate(45deg); border-color: var(--gold-dark); }
+      .acc-trigger.open .acc-icon::before,
+      .acc-trigger.open .acc-icon::after { background: var(--ink); }
+
+      /* Panel */
+      .acc-panel {
+        max-height: 0; overflow: hidden;
+        transition: max-height .45s cubic-bezier(.4,0,.2,1), padding .3s ease;
+        padding: 0 24px;
+      }
+      .acc-panel.open {
+        max-height: 600px;
+        padding: 0 24px 24px;
+      }
+      .acc-panel-inner {
+        border-top: 1px solid var(--cream-dark);
+        padding-top: 20px;
+        display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+        align-items: start;
+      }
+      .acc-panel-inner.no-img { grid-template-columns: 1fr; }
+      .acc-img { border-radius: var(--radius-sm); overflow: hidden; background: var(--cream-dark); }
+      .acc-img img { width: 100%; height: 200px; object-fit: cover; display: block; transition: transform .4s; }
+      .acc-item:hover .acc-img img { transform: scale(1.04); }
+      .acc-text p { font-size: .86rem; color: var(--muted); line-height: 1.85; margin: 0 0 14px; }
+      .acc-text p:last-of-type { margin: 0; }
+      .acc-link {
+        display: inline-flex; align-items: center; gap: 6px;
+        color: var(--gold-dark); font-size: .8rem; font-weight: 700;
+        text-decoration: none; margin-top: 14px; letter-spacing: .03em;
+        transition: color .2s, gap .2s;
+      }
+      .acc-link:hover { color: var(--ink); gap: 10px; }
+
+      /* ══ NO RESULTS ══ */
+      .no-results {
+        display: none; text-align: center; padding: 60px 24px;
+        color: var(--muted); font-size: .9rem;
+      }
+      .no-results .nr-emoji { font-size: 2.8rem; display: block; margin-bottom: 14px; }
+
+      /* ══ SCROLL REVEAL ══ */
+      .reveal { opacity:0; transform:translateY(22px); transition:opacity .6s ease,transform .6s ease; }
+      .reveal.visible { opacity:1; transform:translateY(0); }
+      .reveal.delay-1{transition-delay:.1s} .reveal.delay-2{transition-delay:.2s}
+
+      @media(max-width:700px){
+        .featured-article { grid-template-columns:1fr; }
+        .featured-img { min-height:200px; }
+        .acc-panel-inner { grid-template-columns:1fr; }
+        .news-controls { flex-direction:column; align-items:flex-start; }
+        .news-search-wrap input { width:100%; }
+        .header-socials { display:none; }
+        .fab-wrap { bottom:22px; right:18px; }
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <!-- ══ PANEL OVERLAY ══ -->
+    <div class="panel-overlay" id="panelOverlay" onclick="closePanel()"></div>
+
+    <!-- ══ SIDE PANEL NAV ══ -->
+    <div class="side-panel" id="sidePanel">
+      <div class="panel-head">
+        <div class="ph-logo">
+          <img src="../assets/img/logo.png" alt="GMHS Logo" />
+          <span>Garvey Maceo<br>High School</span>
+        </div>
+        <button class="panel-close" onclick="closePanel()"><i class="fas fa-times"></i></button>
+      </div>
+      <nav class="panel-nav">
+        <a href="../index.html"  class="pnav-item"><i class="fas fa-home" style="width:18px;margin-right:8px;"></i> Home</a>
+        <a href="Principal.html" class="pnav-item"><i class="fas fa-user-tie" style="width:18px;margin-right:8px;"></i> Principal's Message</a>
+        <div class="pnav-label">Cubanz</div>
+        <a href="ethos.html"      class="pnav-sub">Our Ethos</a>
+        <a href="staff.html"      class="pnav-sub">Our Staff</a>
+        <a href="department.html" class="pnav-sub">Departments</a>
+        <a href="history.html"    class="pnav-sub">History</a>
+        <a href="news.html"       class="pnav-sub active-sub">News Updates</a>
+        <div class="pnav-label">Academics</div>
+        <a href="Curriculum.html"        class="pnav-sub">Curriculum</a>
+        <a href="Health.html"            class="pnav-sub">Health &amp; Welfare</a>
+        <a href="graduation.html"        class="pnav-sub">Graduation Requirements</a>
+        <a href="FacultySpotlight.html"  class="pnav-sub">Faculty Spotlight</a>
+        <div class="pnav-label">Stakeholders</div>
+        <a href="alumni.html" class="pnav-sub">Alumni</a>
+        <a href="pta.html"    class="pnav-sub">PTA</a>
+        <div class="pnav-label">Gallery</div>
+        <a href="sports.html" class="pnav-sub">Sports &amp; Events Gallery</a>
+        <a href="events.html" class="pnav-sub">Events</a>
+        <div class="pnav-label">Contact</div>
+        <a href="contact.html" class="pnav-sub">Contact Us</a>
+        <a href="faq.html"     class="pnav-sub">FAQ</a>
+        <a href="donate.html"  class="pnav-sub">Donate</a>
+      </nav>
+      <div class="panel-footer">
+        <p>© 2026 Garvey Maceo High School<br>Website design by SkoolTech London</p>
+      </div>
+    </div>
+
+    <!-- ══ STICKY HEADER ══ -->
+    <header>
+      <a href="../index.html" class="text_bg">
+        <img src="../assets/img/logo.png" alt="GMHS Logo" />
+        <span>Garvey Maceo High School</span>
+      </a>
+      <div class="flex_spacer"></div>
+      <div class="header-socials">
+        <a href="https://www.facebook.com/GARVEYMACEOCUBANS" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="youtube.com" title="YouTube"><i class="fab fa-youtube"></i></a>
+        <a href="https://www.instagram.com/garveymaceo/" title="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.linkedin.com/school/garvey-maceo-high-school/" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://twitter.com/garveymaceo" title="Twitter"><i class="fab fa-twitter"></i></a> 
+        <a href="https://www.tiktok.com/discover/garvey-maceo-high-school-jamaica" title="TikTok"><i class="fab fa-tiktok"></i></a>    
+      </div>
+      </div>
+    </header>
+
+    <!-- ══ HERO ══ -->
+<div class="hero_container fixed">
+  <div class="hero_pathbar" style="position:relative;z-index:3;">
+    <div class="inner">
+      <a href="../index.html">Home</a>
+      <i class="fas fa-chevron-right"></i>
+      <a href="../news.html"> News &amp; update</a>
+    </div>
+  </div>
+  <div class="hero_gradient_overlay fixed" style="pointer-events:none;"></div>
+  <div class="hero_slide fixed"
+       data-bg="../assets/img/schoolbuilding.png"
+       style="background-size:cover;
+              background-position:center;
+              position:absolute;inset:0;z-index:0;">
+  </div>
+</div>
+
+  
+
+    <div class="gold-divider"></div>
+
+    <!-- ══ INTRO BAND ══ -->
+    <div class="news-intro">
+      <div class="inner reveal">
+        <span class="accent-bar"></span>
+        <span class="eyebrow">Garvey Maceo High School</span>
+        <h1>News &amp; <span>Updates</span></h1>
+        <p>Stay up to date with the latest achievements, events and announcements from our school community in Clarendon, Jamaica.</p>
+      </div>
+    </div>
+
+    <!-- ══ NEWS BODY ══ -->
+    <div class="news-body">
+
+      <!-- ── Controls ── -->
+      <div class="news-controls reveal">
+        <!-- Category tabs — top left -->
+        <div class="cat-tabs" id="catTabs">
+          <button class="cat-tab active" data-cat="all">All <span class="tab-count" id="tc-all">6</span></button>
+          <button class="cat-tab" data-cat="sports">⚽ Sports <span class="tab-count" id="tc-sports">2</span></button>
+          <button class="cat-tab" data-cat="academic">📚 Academic <span class="tab-count" id="tc-academic">1</span></button>
+          <button class="cat-tab" data-cat="community">🤝 Community <span class="tab-count" id="tc-community">1</span></button>
+          <button class="cat-tab" data-cat="staff">👩‍🏫 Staff <span class="tab-count" id="tc-staff">1</span></button>
+          <button class="cat-tab" data-cat="student">🌟 Students <span class="tab-count" id="tc-student">1</span></button>
+          <button class="cat-tab" data-cat="events">📅 Events <span class="tab-count" id="tc-events">0</span></button>
+        </div>
+        <!-- Search — top right -->
+        <div class="news-search-wrap">
+          <i class="fas fa-search"></i>
+          <input type="text" id="newsSearch" placeholder="Search news…" autocomplete="off" />
+        </div>
+      </div>
+
+      <!-- Results count -->
+      <p class="results-info" id="resultsInfo"></p>
+
+      <!-- ══ FEATURED ARTICLE ══ -->
+      <div class="featured-article reveal" data-cat="sports" data-title="Five-Star Garvey Lift DaCosta Cup">
+        <div class="featured-img">
+          <img src="../assets/img/winnerbanner.jpg" alt="DaCosta Cup Champions" loading="lazy"
+               onerror="this.closest('.featured-img').style.background='linear-gradient(135deg,#6b4200,#3a2200)'" />
+        </div>
+        <div class="featured-body">
+          <span class="article-badge badge-sports">⚽ Sports Victory</span>
+          <div class="featured-meta">
+            <span><i class="fas fa-calendar-alt"></i> December 7, 2024</span>
+            <span><i class="fas fa-newspaper"></i> Jamaica Gleaner</span>
+          </div>
+          <h2>Garvey Maceo win daCosta Cup title in dramatic finale</h2>
+          <p>A goal from Omarion O'Brian in the dying moments of the game sparked a dramatic end to the 2024 ISSA daCosta Cup final as Garvey Maceo clipped first-time finalist McGrath High 5-3 on penalties after a 1-1 draw in regulation time</p>
+          <a href="https://past.jamaica-gleaner.com/article/sports/20241207/garvey-maceo-win-dacosta-cup-title-dramatic-finale"
+             target="_blank" class="btn-readmore">
+            <i class="fas fa-external-link-alt"></i> Read Full Article
+          </a>
+        </div>
+      </div>
+
+      <!-- ══ ACCORDION NEWS LIST ══ -->
+      <div class="accordion-wrap" id="accordionWrap">
+
+        <!-- 1 — Sports -->
+        <div class="acc-item reveal" data-cat="sports" data-title="DaCosta Cup 2024 Champions">
+          <button class="acc-trigger" onclick="toggleAcc(this)">
+            <span class="article-badge badge-sports" style="flex-shrink:0;">⚽ Sports</span>
+            <div class="acc-meta">
+              <p class="acc-title">DaCosta Cup 2024 — Champions Again!</p>
+              <div class="acc-sub">
+                <span><i class="fas fa-calendar-alt"></i> Nov 2024</span>
+                <span><i class="fas fa-map-marker-alt"></i> Clarendon</span>
+              </div>
+            </div>
+            <div class="acc-icon"></div>
+          </button>
+          <div class="acc-panel">
+            <div class="acc-panel-inner">
+              <div class="acc-img">
+                <img src="../assets/img/Dcupwinners2024.webp" alt="DaCosta Cup 2024" loading="lazy"
+                     onerror="this.closest('.acc-img').style.display='none'" />
+              </div>
+              <div class="acc-text">
+                <p>Garvey Maceo High School once again proved their dominance in Jamaican schoolboy football, claiming the 2024 DaCosta Cup title in a thrilling final. The squad, guided by their dedicated coaching staff, showcased exceptional teamwork, discipline and skill throughout the tournament.</p>
+                <p>The victory was greeted with jubilation across the school and the wider Clarendon community — a proud moment for every student, teacher and supporter who backed the team all season.</p>
+                <a href="sports.html" class="acc-link">See Gallery <i class="fas fa-arrow-right"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2 — Academic -->
+        <div class="acc-item reveal delay-1" data-cat="academic" data-title="CSEC Results 2024">
+          <button class="acc-trigger" onclick="toggleAcc(this)">
+            <span class="article-badge badge-academic" style="flex-shrink:0;">📚 Academic</span>
+            <div class="acc-meta">
+              <p class="acc-title">CSEC Results 2024 — Outstanding Achievement</p>
+              <div class="acc-sub">
+                <span><i class="fas fa-calendar-alt"></i> Aug 2024</span>
+                <span><i class="fas fa-graduation-cap"></i> CXC Results</span>
+              </div>
+            </div>
+            <div class="acc-icon"></div>
+          </button>
+          <div class="acc-panel">
+            <div class="acc-panel-inner no-img">
+              <div class="acc-text">
+                <p>GMHS students delivered an outstanding performance in the 2024 CSEC examinations, with significant improvements in pass rates across Mathematics, English Language and Information Technology. Several students achieved Grade I passes across multiple subjects, reflecting the dedication of both learners and their teachers.</p>
+                <p>The school is immensely proud of every student who sat the examinations this year. Results represent the culmination of years of hard work, sacrifice and commitment by students and their families.</p>
+                <a href="graduation.html" class="acc-link">Graduation Requirements <i class="fas fa-arrow-right"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3 — Community -->
+        <div class="acc-item reveal delay-2" data-cat="community" data-title="New York Alumni Donation">
+          <button class="acc-trigger" onclick="toggleAcc(this)">
+            <span class="article-badge badge-community" style="flex-shrink:0;">🤝 Community</span>
+            <div class="acc-meta">
+              <p class="acc-title">New York Alumni Make Generous Sports Donation</p>
+              <div class="acc-sub">
+                <span><i class="fas fa-calendar-alt"></i> 2023</span>
+                <span><i class="fas fa-globe-americas"></i> New York PSA</span>
+              </div>
+            </div>
+            <div class="acc-icon"></div>
+          </button>
+          <div class="acc-panel">
+            <div class="acc-panel-inner">
+              <div class="acc-img">
+                <img src="../assets/img/AlumiNY.png" alt="Alumni Donation" loading="lazy"
+                     onerror="this.closest('.acc-img').style.display='none'" />
+              </div>
+              <div class="acc-text">
+                <p>Garvey Maceo High School received a generous donation from our New York Past Students' Association towards continuous support for sporting activities. The contribution will fund equipment, kits and travel costs for the school's football and athletics programmes.</p>
+                <p>The school extends its deepest gratitude to every alumni member who contributed — your generosity keeps the GMHS sporting legacy alive across generations.</p>
+                <a href="donate.html" class="acc-link">Support GMHS <i class="fas fa-arrow-right"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4 — Staff -->
+        <div class="acc-item reveal" data-cat="staff" data-title="New IT Department Appointment">
+          <button class="acc-trigger" onclick="toggleAcc(this)">
+            <span class="article-badge badge-staff" style="flex-shrink:0;">👩‍🏫 Staff</span>
+            <div class="acc-meta">
+              <p class="acc-title">IT Department Expands with New Appointment</p>
+              <div class="acc-sub">
+                <span><i class="fas fa-calendar-alt"></i> Sep 2024</span>
+                <span><i class="fas fa-building"></i> IT Department</span>
+              </div>
+            </div>
+            <div class="acc-icon"></div>
+          </button>
+          <div class="acc-panel">
+            <div class="acc-panel-inner no-img">
+              <div class="acc-text">
+                <p>GMHS is pleased to welcome an expanded Information Technology department team for the 2024/25 academic year. The new appointment strengthens our capacity to deliver CSEC and CAPE IT, Web Design and Computer Networking to our growing student population.</p>
+                <p>The school continues to invest in technology education, recognising its importance in preparing students for Jamaica's digital economy and career pathways beyond secondary school.</p>
+                <a href="FacultySpotlight.html" class="acc-link">Faculty Spotlight <i class="fas fa-arrow-right"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5 — Student -->
+        <div class="acc-item reveal delay-1" data-cat="student" data-title="Outstanding Art Award Olufemi Allen">
+          <button class="acc-trigger" onclick="toggleAcc(this)">
+            <span class="article-badge badge-student" style="flex-shrink:0;">🌟 Student</span>
+            <div class="acc-meta">
+              <p class="acc-title">Olufemi Allen Wins Most Outstanding Art Piece Award</p>
+              <div class="acc-sub">
+                <span><i class="fas fa-calendar-alt"></i> 2023</span>
+                <span><i class="fas fa-trophy"></i> Stewart's Hardware Award</span>
+              </div>
+            </div>
+            <div class="acc-icon"></div>
+          </button>
+          <div class="acc-panel">
+            <div class="acc-panel-inner">
+              <div class="acc-img">
+                <img src="../assets/img/Artward.png" alt="Art Award" loading="lazy"
+                     onerror="this.closest('.acc-img').style.display='none'" />
+              </div>
+              <div class="acc-text">
+                <p>GMHS student Olufemi Allen proudly received the Stewart's Hardware plaque for the Most Outstanding Art Piece alongside an NCB Gift Certificate, presented by Junior Atkinson, Head of the Art Department. The award recognises exceptional creative talent at the secondary school level.</p>
+                <p>Olufemi's achievement is a wonderful reminder that academic excellence at GMHS extends to the arts — and that our students continue to shine in every field they pursue.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6 — Athletics -->
+        <div class="acc-item reveal delay-2" data-cat="sports" data-title="National Junior Record 4x100 Relay">
+          <button class="acc-trigger" onclick="toggleAcc(this)">
+            <span class="article-badge badge-sports" style="flex-shrink:0;">⚽ Sports</span>
+            <div class="acc-meta">
+              <p class="acc-title">GMHS Alumnus Helps Jamaica Set National Junior 4×100m Record</p>
+              <div class="acc-sub">
+                <span><i class="fas fa-calendar-alt"></i> Barcelona, Spain</span>
+                <span><i class="fas fa-flag"></i> IAAF World Junior Championships</span>
+              </div>
+            </div>
+            <div class="acc-icon"></div>
+          </button>
+          <div class="acc-panel">
+            <div class="acc-panel-inner">
+              <div class="acc-img">
+                <img src="../assets/img/Tracks&Field.png" alt="Track and Field" loading="lazy"
+                     onerror="this.closest('.acc-img').style.display='none'" />
+              </div>
+              <div class="acc-text">
+                <p>GMHS alumnus Tyquendo Tracey helped Jamaica's 4×100m relay team to a silver medal in a new National Junior Record of 38.97 seconds at the 14th IAAF World Junior Championships in Barcelona, Spain. We are immensely proud of Tyquendo and the entire relay squad.</p>
+                <p>This achievement is a testament to the sporting tradition at Garvey Maceo — a school that has always believed in developing the whole student, on the track and in the classroom.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- No results message -->
+        <div class="no-results" id="noResults">
+          <span class="nr-emoji">🔍</span>
+          <p>No articles found matching your search. Try a different keyword or category.</p>
+        </div>
+
+      </div><!-- /accordion-wrap -->
+    </div><!-- /news-body -->
+
+    <!-- ══ FOOTER ══ -->
+    <div class="footer">
+      <div class="top">
+        <div class="col"><b><a href="https://www.google.co.uk/maps/@17.9006093,-77.2989797,17z"><i class="fas fa-map-marker-alt"></i></a><span> Vernamfield, P.O Box 490 May Pen, Clarendon</span></b></div>
+        <div class="col"><b><a href="Tel:876 986-7006"><i class="fas fa-phone"></i></a><span> (876) 986-7006</span></b></div>
+        <div class="col"><b><a href="mailto:garveymaceo.high.cla@moey.gov.jm"><i class="fas fa-envelope"></i></a><span> garveymaceo.high.cla@moey.gov.jm</span></b></div>
+      </div>
+      <div class="bottom"><p>© 2026 Garvey Maceo High School | Website design SkoolTech London</p></div>
+    </div>
+
+    <!-- ══ RADIAL FAB ══ -->
+    <div class="fab-wrap" id="fabWrap">
+      <div class="fab-items">
+        <a href="contact.html"    class="fab-item"><i class="fas fa-envelope"></i><span class="fab-tip">Contact Us</span></a>
+        <a href="sports.html"     class="fab-item"><i class="fas fa-images"></i><span class="fab-tip">Gallery</span></a>
+        <a href="Curriculum.html" class="fab-item"><i class="fas fa-book-open"></i><span class="fab-tip">Curriculum</span></a>
+        <a href="donate.html"     class="fab-item"><i class="fas fa-heart"></i><span class="fab-tip">Donate</span></a>
+        <button class="fab-item"  onclick="openPanel(); closeFab();"><i class="fas fa-bars"></i><span class="fab-tip">Menu</span></button>
+      </div>
+      <button class="fab-main" id="fabMain" onclick="toggleFab()">
+        <i class="fas fa-grip-dots fab-icon-menu"></i>
+        <i class="fas fa-times fab-icon-close"></i>
+      </button>
+    </div>
+
+    <script src="assets/js/index.js"></script> 
+    <script>
+      /* ── Panel / FAB ── */
+      function openPanel()  { document.getElementById('sidePanel').classList.add('open'); document.getElementById('panelOverlay').classList.add('open'); document.body.style.overflow='hidden'; }
+      function closePanel() { document.getElementById('sidePanel').classList.remove('open'); document.getElementById('panelOverlay').classList.remove('open'); document.body.style.overflow=''; }
+      function toggleFab()  { document.getElementById('fabWrap').classList.toggle('open'); document.getElementById('fabMain').classList.toggle('open'); }
+      function closeFab()   { document.getElementById('fabWrap').classList.remove('open'); document.getElementById('fabMain').classList.remove('open'); }
+      document.addEventListener('keydown', e => { if(e.key==='Escape'){ closePanel(); closeFab(); } });
+
+      /* ── Accordion ── */
+      function toggleAcc(btn) {
+        const panel = btn.nextElementSibling;
+        const isOpen = btn.classList.contains('open');
+        /* Close all open panels */
+        document.querySelectorAll('.acc-trigger.open').forEach(b => {
+          b.classList.remove('open');
+          b.nextElementSibling.classList.remove('open');
+        });
+        /* Open clicked if it was closed */
+        if (!isOpen) {
+          btn.classList.add('open');
+          panel.classList.add('open');
+        }
+      }
+
+      /* ── Category filter + Search ── */
+      let currentCat    = 'all';
+      let currentSearch = '';
+
+      const allItems     = Array.from(document.querySelectorAll('.acc-item, .featured-article'));
+      const noResults    = document.getElementById('noResults');
+      const resultsInfo  = document.getElementById('resultsInfo');
+
+      document.querySelectorAll('.cat-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+          document.querySelectorAll('.cat-tab').forEach(t => t.classList.remove('active'));
+          tab.classList.add('active');
+          currentCat = tab.dataset.cat;
+          applyFilters();
+        });
+      });
+
+      document.getElementById('newsSearch').addEventListener('input', e => {
+        currentSearch = e.target.value.trim().toLowerCase();
+        applyFilters();
+      });
+
+      function applyFilters() {
+        let visible = 0;
+        allItems.forEach(item => {
+          const catMatch    = currentCat === 'all' || item.dataset.cat === currentCat;
+          const titleMatch  = !currentSearch || (item.dataset.title || '').toLowerCase().includes(currentSearch);
+          const show = catMatch && titleMatch;
+          item.classList.toggle('hidden', !show);
+          if (show) visible++;
+        });
+        noResults.style.display = visible === 0 ? 'block' : 'none';
+        resultsInfo.innerHTML = currentSearch
+          ? `Showing <strong>${visible}</strong> article${visible !== 1 ? 's' : ''} for "<strong>${currentSearch}</strong>"`
+          : '';
+      }
+
+      /* ── Scroll reveal ── */
+      const rObs = new IntersectionObserver(entries => {
+        entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); rObs.unobserve(e.target); } });
+      }, { threshold: 0.08 });
+      document.querySelectorAll('.reveal').forEach(el => rObs.observe(el));
+    /* ══ HERO SLIDER ══  THis section allow the hero background to stay on page, coode need to be updated to delete slide show */
+const slides = Array.from(document.querySelectorAll('.hero_slide'));
+const dotCon = document.getElementById('dotContainer');
+const hcText = document.getElementById('hcText');
+const hcLabel = document.getElementById('hcLabel');
+let current = 0, timer;
+
+/* Always set background images from data-bg — works on ALL pages */
+slides.forEach(s => {
+  if (s.dataset.bg) {
+    s.style.backgroundImage    = `url(${s.dataset.bg})`;
+    s.style.backgroundSize     = 'cover';
+    s.style.backgroundPosition = 'center';
+  }
+});
+
+/* Only run the slider/dots logic if the homepage elements exist */
+if (dotCon && slides.length > 1) {
+
+  slides.forEach((s, i) => {
+    const d = document.createElement('button');
+    d.className = 'hero_dot' + (i === 0 ? ' active' : '');
+    d.onclick = () => showSlide(i);
+    dotCon.appendChild(d);
+  });
+
+  function showSlide(n) {
+    slides[current].classList.remove('active');
+    dotCon.children[current].classList.remove('active');
+    current = (n + slides.length) % slides.length;
+    slides[current].classList.add('active');
+    dotCon.children[current].classList.add('active');
+    if (hcText)  { hcText.textContent  = slides[current].dataset.text  || ''; }
+    if (hcLabel) { hcLabel.textContent = slides[current].dataset.label || ''; }
+    if (hcText)  { hcText.style.animation  = 'none'; }
+    if (hcLabel) { hcLabel.style.animation = 'none'; }
+    requestAnimationFrame(() => {
+      if (hcText)  hcText.style.animation  = '';
+      if (hcLabel) hcLabel.style.animation = '';
+    });
+    clearInterval(timer);
+    timer = setInterval(() => showSlide(current + 1), 5000);
+  }
+
+  /* Make showSlide available globally for dot onclick */
+  window.showSlide = showSlide;
+  timer = setInterval(() => showSlide(current + 1), 5000);
+
+} else if (slides.length === 1) {
+  /* Single static hero — just show it, no dots needed */
+  slides[0].classList.add('active');
+}
+   </script>
+  </body>
+</html>

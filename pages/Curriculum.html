@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Garvey Maceo High School – Curriculum</title>
+    <link rel="icon" type="image/x-icon" href="../assets/img/logo.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" href="../assets/css/index.css" />
+    <!-- Add to <head> — use the actual image for that page -->
+  <link rel="preload" as="image" href="../assets/img/YouthAgriculture.PNG" />
+    <link rel="stylesheet" type="text/css"
+      href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700,900|Poppins:300,400,500,600,700" />
+    <script src="https://kit.fontawesome.com/742f06a093.js" crossorigin="anonymous" defer></script>
+
+    <style>
+      /* ── Tokens: Cream & Gold (matches history page) ── */
+      :root {
+        --gold:        #d4a843;
+        --gold-dark:   #b8922a;
+        --gold-light:  #f2dc8a;
+        --gold-pale:   #fef6de;
+        --gold-border: rgba(212,168,67,.35);
+        --amber-deep:  #3a2200;
+        --amber-mid:   #6b4200;
+        --amber-warm:  #8c5a00;
+        --cream:       #faf7f0;
+        --cream-dark:  #f0ead8;
+        --white:       #ffffff;
+        --ink:         #1e1400;
+        --ink-mid:     #3d2e00;
+        --muted:       #7a6535;
+        --shadow:      rgba(100,65,0,.12);
+        --radius:      14px;
+        --radius-sm:   8px;
+      }
+
+      *, *::before, *::after { box-sizing: border-box; }
+      body { background: var(--cream); font-family: 'Poppins', sans-serif; color: var(--ink); margin: 0; }
+
+      /* ── Shared helpers ── */
+      .section-inner { max-width: 980px; margin: 0 auto; padding: 0 24px; }
+      .section-title { text-align: center; margin-bottom: 52px; }
+      .section-title::before { content:''; display:block; width:48px; height:4px; background:var(--gold); border-radius:2px; margin:0 auto 18px; }
+      .section-title h2 { font-family:'Playfair Display',serif; font-size:clamp(1.7rem,3.8vw,2.4rem); color:var(--ink); margin:0 0 10px; line-height:1.2; }
+      .section-title p { font-size:.9rem; color:var(--muted); margin:0; line-height:1.7; }
+      .section-title.light h2 { color: var(--white); }
+      .section-title.light p  { color: rgba(255,255,255,.55); }
+      .section-title.light::before { background: var(--gold); }
+
+      .gold-divider { height:5px; background:linear-gradient(90deg,transparent,var(--gold),var(--gold-light),var(--gold),transparent); }
+
+      /* ════════ HERO INTRO ════════ */
+      .cur-intro {
+        background: linear-gradient(135deg, var(--amber-deep) 0%, var(--amber-mid) 55%, var(--amber-warm) 100%);
+        padding: 68px 24px 60px;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+      .cur-intro::before {
+        content:''; position:absolute; inset:0;
+        background: radial-gradient(ellipse at 25% 60%, rgba(212,168,67,.15) 0%, transparent 60%),
+                    radial-gradient(ellipse at 80% 20%, rgba(242,220,138,.10) 0%, transparent 50%);
+        pointer-events:none;
+      }
+      .cur-intro::after {
+        content:''; position:absolute; width:500px; height:500px;
+        border:55px solid rgba(212,168,67,.07); border-radius:50%;
+        right:-160px; bottom:-220px; pointer-events:none;
+      }
+      .cur-intro .inner { position:relative; z-index:1; max-width:720px; margin:0 auto; }
+      .cur-intro .eyebrow { font-size:.7rem; letter-spacing:.25em; text-transform:uppercase; color:var(--gold-light); margin-bottom:14px; display:block; }
+      .cur-intro h1 { font-family:'Playfair Display',serif; font-size:clamp(2rem,5vw,3.4rem); font-weight:900; color:var(--white); margin:0 0 18px; line-height:1.1; }
+      .cur-intro h1 span { color:var(--gold-light); font-style:italic; }
+      .cur-intro p { font-size:.95rem; color:rgba(255,255,255,.68); line-height:1.85; margin:0; }
+
+      /* ════════ ANNOUNCEMENTS STRIP ════════ */
+      .notices-strip {
+        background: var(--gold);
+        padding: 0;
+        overflow: hidden;
+      }
+      .notices-inner {
+        max-width: 980px;
+        margin: 0 auto;
+        padding: 0 24px;
+        display: flex;
+        align-items: stretch;
+        gap: 0;
+      }
+      .notices-label {
+        background: var(--amber-deep);
+        color: var(--gold-light);
+        font-size: .7rem;
+        font-weight: 700;
+        letter-spacing: .14em;
+        text-transform: uppercase;
+        padding: 14px 20px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        white-space: nowrap;
+        flex-shrink: 0;
+      }
+      .notices-label i { font-size: .9rem; }
+      .notices-scroll {
+        overflow: hidden;
+        flex: 1;
+        display: flex;
+        align-items: center;
+        padding: 12px 20px;
+      }
+      .notices-track {
+        display: flex;
+        gap: 56px;
+        animation: scrollNotices 28s linear infinite;
+        white-space: nowrap;
+      }
+      .notices-track:hover { animation-play-state: paused; }
+      .notice-item {
+        font-size: .82rem;
+        font-weight: 600;
+        color: var(--ink);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        white-space: nowrap;
+      }
+      .notice-item::before { content:'◆'; font-size:.5rem; color:var(--amber-deep); opacity:.5; }
+      @keyframes scrollNotices {
+        0%   { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
+      }
+
+      /* ════════ QUICK LINKS BAR ════════ */
+      .quicklinks {
+        background: var(--white);
+        border-bottom: 1px solid var(--cream-dark);
+        padding: 20px 24px;
+        position: sticky;
+        top: 0;
+        z-index: 90;
+        box-shadow: 0 2px 16px var(--shadow);
+      }
+      .quicklinks-inner {
+        max-width: 980px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .ql-label {
+        font-size: .72rem;
+        letter-spacing: .12em;
+        text-transform: uppercase;
+        color: var(--muted);
+        font-weight: 600;
+        margin-right: 4px;
+        white-space: nowrap;
+      }
+      .ql-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: var(--gold-pale);
+        border: 1px solid var(--gold-border);
+        color: var(--ink);
+        text-decoration: none;
+        padding: 9px 18px;
+        border-radius: 50px;
+        font-size: .8rem;
+        font-weight: 600;
+        transition: background .2s, border-color .2s, transform .2s, box-shadow .2s;
+        white-space: nowrap;
+      }
+      .ql-btn i { color: var(--gold-dark); font-size: .85rem; }
+      .ql-btn:hover {
+        background: var(--gold);
+        border-color: var(--gold-dark);
+        color: var(--ink);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 14px rgba(212,168,67,.3);
+      }
+      .ql-btn:hover i { color: var(--ink); }
+
+      /* ════════ HOW IT WORKS ════════ */
+      .how-section { padding: 72px 24px; background: var(--cream); }
+      .steps-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 24px;
+        max-width: 980px;
+        margin: 0 auto;
+        position: relative;
+      }
+      /* connector line between steps on desktop */
+      .steps-grid::before {
+        content:'';
+        position:absolute;
+        top: 44px; left: calc(10% + 44px);
+        right: calc(10% + 44px);
+        height: 2px;
+        background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold));
+        opacity: .4;
+        pointer-events: none;
+      }
+      .step-card {
+        background: var(--white);
+        border-radius: var(--radius);
+        padding: 32px 22px 28px;
+        text-align: center;
+        box-shadow: 0 3px 18px var(--shadow);
+        border-bottom: 3px solid transparent;
+        transition: transform .25s, box-shadow .25s, border-color .25s;
+        position: relative;
+        z-index: 1;
+      }
+      .step-card:hover { transform: translateY(-5px); box-shadow: 0 12px 32px rgba(100,65,0,.16); border-bottom-color: var(--gold); }
+      .step-num {
+        width: 52px; height: 52px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--gold), var(--gold-light));
+        display: flex; align-items: center; justify-content: center;
+        font-family: 'Playfair Display', serif;
+        font-size: 1.3rem; font-weight: 700;
+        color: var(--ink);
+        margin: 0 auto 18px;
+        box-shadow: 0 4px 14px rgba(212,168,67,.35);
+      }
+      .step-icon { font-size: 1.5rem; display: block; margin-bottom: 12px; }
+      .step-card h3 { font-family:'Playfair Display',serif; font-size: 1rem; color: var(--ink); margin: 0 0 10px; }
+      .step-card p  { font-size: .82rem; color: var(--muted); line-height: 1.75; margin: 0; }
+
+      /* ════════ CURRICULUM CARDS ════════ */
+      .curriculum-section { padding: 72px 24px; background: var(--white); }
+      .curriculum-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 28px;
+        max-width: 980px;
+        margin: 0 auto;
+      }
+      .cur-card {
+        background: var(--cream);
+        border-radius: var(--radius);
+        overflow: hidden;
+        box-shadow: 0 4px 22px var(--shadow);
+        border-top: 5px solid var(--gold);
+        transition: transform .25s, box-shadow .25s;
+        display: flex;
+        flex-direction: column;
+      }
+      .cur-card:hover { transform: translateY(-5px); box-shadow: 0 14px 36px rgba(100,65,0,.18); }
+      .cur-card-head {
+        padding: 28px 26px 20px;
+        display: flex;
+        align-items: flex-start;
+        gap: 16px;
+      }
+      .cur-card-icon {
+        width: 54px; height: 54px;
+        border-radius: var(--radius-sm);
+        background: linear-gradient(135deg, var(--amber-deep), var(--amber-warm));
+        display: flex; align-items: center; justify-content: center;
+        font-size: 1.5rem;
+        flex-shrink: 0;
+        box-shadow: 0 4px 14px rgba(100,65,0,.2);
+      }
+      .cur-card-head-text { flex: 1; }
+      .cur-card-head-text h3 { font-family:'Playfair Display',serif; font-size:1.1rem; color:var(--ink); margin:0 0 4px; }
+      .cur-card-head-text p  { font-size:.8rem; color:var(--muted); margin:0; line-height:1.6; }
+      .cur-card-body { padding: 0 26px 10px; flex: 1; }
+      .cur-doc-list { list-style: none; padding: 0; margin: 0; }
+      .cur-doc-list li {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 11px 0;
+        border-bottom: 1px solid var(--cream-dark);
+        gap: 12px;
+      }
+      .cur-doc-list li:last-child { border-bottom: none; }
+      .doc-name {
+        font-size: .82rem;
+        color: var(--ink-mid);
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        flex: 1;
+      }
+      .doc-name i { color: var(--gold-dark); font-size: .85rem; flex-shrink: 0; }
+      .doc-tag {
+        font-size: .68rem;
+        letter-spacing: .07em;
+        text-transform: uppercase;
+        color: var(--muted);
+        background: var(--cream-dark);
+        padding: 2px 8px;
+        border-radius: 20px;
+        flex-shrink: 0;
+      }
+      .btn-download {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: var(--gold);
+        color: var(--ink);
+        text-decoration: none;
+        padding: 6px 14px;
+        border-radius: 6px;
+        font-size: .72rem;
+        font-weight: 700;
+        letter-spacing: .04em;
+        transition: background .2s, transform .2s;
+        flex-shrink: 0;
+      }
+      .btn-download:hover { background: var(--gold-light); transform: translateY(-1px); }
+      .btn-download i { font-size: .75rem; }
+      .cur-card-foot {
+        padding: 14px 26px 22px;
+        display: flex;
+        justify-content: flex-end;
+      }
+      .btn-view-all {
+        font-size: .78rem;
+        color: var(--gold-dark);
+        font-weight: 600;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        transition: gap .2s;
+      }
+      .btn-view-all:hover { gap: 10px; }
+
+      /* ════════ ACCESS CODES SECTION ════════ */
+      .access-section {
+        padding: 72px 24px;
+        background: linear-gradient(135deg, var(--amber-deep) 0%, var(--amber-mid) 60%, var(--amber-warm) 100%);
+        position: relative;
+        overflow: hidden;
+      }
+      .access-section::before { content:''; position:absolute; width:480px; height:480px; border-radius:50%; background:rgba(212,168,67,.07); right:-140px; top:-160px; pointer-events:none; }
+      .access-section::after  { content:''; position:absolute; width:320px; height:320px; border-radius:50%; background:rgba(242,220,138,.05); left:-80px; bottom:-100px; pointer-events:none; }
+
+      .access-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 22px;
+        max-width: 980px;
+        margin: 0 auto;
+        position: relative; z-index:1;
+      }
+      .access-card {
+        background: rgba(255,255,255,.08);
+        border: 1px solid rgba(212,168,67,.28);
+        border-radius: var(--radius);
+        padding: 30px 24px 26px;
+        text-align: center;
+        transition: background .25s, transform .25s, border-color .25s;
+      }
+      .access-card:hover {
+        background: rgba(212,168,67,.14);
+        border-color: rgba(212,168,67,.55);
+        transform: translateY(-5px);
+      }
+      .access-card .ac-icon { font-size: 2.4rem; display: block; margin-bottom: 14px; }
+      .access-card h3 { font-family:'Playfair Display',serif; font-size:1.05rem; color:var(--white); margin:0 0 8px; }
+      .access-card p  { font-size:.8rem; color:rgba(255,255,255,.65); line-height:1.7; margin:0 0 20px; }
+      .btn-access {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: var(--gold);
+        color: var(--ink);
+        text-decoration: none;
+        padding: 10px 22px;
+        border-radius: 8px;
+        font-size: .8rem;
+        font-weight: 700;
+        letter-spacing: .04em;
+        transition: background .2s, transform .2s;
+      }
+      .btn-access:hover { background: var(--gold-light); transform: translateY(-2px); }
+
+      /* ════════ ANIMATIONS & SCROLL REVEAL ════════ */
+      @keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
+      .reveal { opacity:0; transform:translateY(28px); transition:opacity .65s ease, transform .65s ease; }
+      .reveal.visible { opacity:1; transform:translateY(0); }
+      .reveal.delay-1 { transition-delay:.1s; }
+      .reveal.delay-2 { transition-delay:.2s; }
+      .reveal.delay-3 { transition-delay:.3s; }
+      .reveal.delay-4 { transition-delay:.4s; }
+/* this code get rid of the hero delay when selection from bav bar, help make page load faster*/
+      .hero_slide.fixed { background-image: url('../assets/img/YouthAgriculture.png') !important; }
+      .hero_container.fixed {
+        position: relative;
+        height: 380px;
+        overflow: hidden;
+
+        /* This shows while the image loads — customise this colour */
+        background: #2a1800; filter: blur(0); /* remove blur once image loads via JS */;
+      }
+      .hero_slide.fixed { opacity: 0; transition: opacity 0.6s ease; }
+
+      .hero_slide.fixed.active { opacity: 1; }
+      .hero_container.fixed::before {
+          content: '';
+          position: absolute;
+          inset: 0;
+          z-index: 0;
+          background: linear-gradient(
+            90deg,
+            #2a1800 0%,
+            #4a2e00 40%,
+            #2a1800 80%
+          );
+          background-size: 200% 100%;
+          animation: shimmer 1.6s infinite;
+        }
+
+        /* Hide the shimmer once the image is active */
+        .hero_container.fixed.loaded::before {
+          display: none;
+        }
+
+        @keyframes shimmer {
+          0%   { background-position: 200% 0; }
+          100% { background-position: -200% 0; }
+        }
+      @media(max-width:680px){
+        .steps-grid::before { display:none; }
+        .notices-track { animation-duration: 18s; }
+        .quicklinks-inner { gap:8px; }
+        .ql-btn { font-size:.75rem; padding:8px 14px; }
+      }
+
+    </style>
+  </head>
+
+  <body>
+     <!-- ══ PANEL OVERLAY ══ -->
+    <div class="panel-overlay" id="panelOverlay" onclick="closePanel()"></div>
+
+    <!-- ══ SIDE PANEL NAV ══ -->
+    <div class="side-panel" id="sidePanel">
+      <div class="panel-head">
+        <div class="ph-logo">
+          <img src="../assets/img/logo.png" alt="GMHS Logo" />
+          <span>Garvey Maceo<br>High School</span>
+        </div>
+        <button class="panel-close" onclick="closePanel()"><i class="fas fa-times"></i></button>
+      </div>
+      <nav class="panel-nav">
+        <a href="../index.html"          class="pnav-item"><i class="fas fa-home" style="width:18px;margin-right:8px;"></i> Home</a>
+        <a href="Principal.html"         class="pnav-item active"><i class="fas fa-user-tie" style="width:18px;margin-right:8px;"></i> Principal's Message</a>
+
+        <div class="pnav-label">Cubanz</div>
+        <a href="ethos.html"      class="pnav-sub">Our Ethos</a>
+        <a href="staff.html"      class="pnav-sub">Our Staff</a>
+        <a href="department.html" class="pnav-sub">Departments</a>
+        <a href="history.html"    class="pnav-sub">History</a>
+        <a href="news.html"       class="pnav-sub">News Updates</a>
+
+        <div class="pnav-label">Academics</div>
+        <a href="Curriculum.html"        class="pnav-sub">Curriculum</a>
+        <a href="Health.html"            class="pnav-sub">Health &amp; Welfare</a>
+        <a href="graduation.html"        class="pnav-sub">Graduation Requirements</a>
+        <a href="FacultySpotlight.html" class="pnav-sub">Faculty Spotlight</a>
+
+        <div class="pnav-label">Stakeholders</div>
+        <a href="alumni.html" class="pnav-sub">Alumni</a>
+        <a href="pta.html"    class="pnav-sub">PTA</a>
+
+        <div class="pnav-label">Gallery</div>
+        <a href="sports.html" class="pnav-sub">Sports &amp; Events Gallery</a>
+        <a href="events.html" class="pnav-sub">Events</a>
+
+        <div class="pnav-label">Contact</div>
+        <a href="contact.html" class="pnav-sub">Contact Us</a>
+        <a href="faq.html"     class="pnav-sub">FAQ</a>
+        <a href="donate.html"  class="pnav-sub">Donate</a>
+      </nav>
+      <div class="panel-footer">
+        <p>© 2026 Garvey Maceo High School<br>Website design by SkoolTech London</p>
+      </div>
+    </div>
+
+    <!-- ══ STICKY HEADER ══ -->
+    <header>
+      <a href="../index.html" class="text_bg">
+        <img src="../assets/img/logo.png" alt="GMHS Logo" />
+        <span>Garvey Maceo High School</span>
+      </a>
+      <div class="flex_spacer"></div>
+      <div class="header-socials">
+        <a href="https://www.facebook.com/GARVEYMACEOCUBANS" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="youtube.com" title="YouTube"><i class="fab fa-youtube"></i></a>
+        <a href="https://www.instagram.com/garveymaceo/" title="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.linkedin.com/school/garvey-maceo-high-school/" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://twitter.com/garveymaceo" title="Twitter"><i class="fab fa-twitter"></i></a> 
+        <a href="https://www.tiktok.com/discover/garvey-maceo-high-school-jamaica" title="TikTok"><i class="fab fa-tiktok"></i></a>    
+      </div>
+    </header>
+
+ <!-- ══ HERO ══ -->
+<div class="hero_container fixed">
+  <div class="hero_pathbar" style="position:relative;z-index:3;">
+    <div class="inner">
+      <a href="../index.html">Home</a>
+      <i class="fas fa-chevron-right"></i>
+      <a href="Curriculum.html">Curriculum</a>
+    </div>
+  </div>
+  <div class="hero_gradient_overlay fixed" style="pointer-events:none;"></div>
+  <div class="hero_slide fixed"
+       data-bg="../assets/img/YouthAgriculture.PNG"
+       style="background-size:cover;
+              background-position:center;
+              position:absolute;inset:0;z-index:0;">
+  </div>
+</div>
+
+   <div class="gold-divider"></div>
+
+
+    <!-- ══════════ HERO INTRO ══════════ -->
+    <div class="cur-intro">
+      <div class="inner">
+        <span class="eyebrow">Academics at GMHS</span>
+        <h1>Curriculum &amp; <span>Resources</span></h1>
+        <p>Everything you need, curriculum guides, access codes and learning tools in one place. Explore, download and connect to your classes with ease.</p>
+      </div>
+    </div>
+    <div class="gold-divider"></div>
+
+    <!-- ══════════ ANNOUNCEMENTS STRIP ══════════ -->
+    <div class="notices-strip">
+      <div class="notices-inner">
+        <div class="notices-label"><i class="fas fa-bullhorn"></i> Notices</div>
+        <div class="notices-scroll">
+          <div class="notices-track">
+            <!-- Items duplicated for seamless loop -->
+            <span class="notice-item">New 4th–5th Form curriculum documents now available for download</span>
+            <span class="notice-item">LMS login credentials were distributed in class, contact your form teacher if you haven't received yours</span>
+            <span class="notice-item">6th Form subject guides updated for the 2026/27 academic year</span>
+            <span class="notice-item">Zoom meeting links are refreshed each term, check with your subject teacher</span>
+            <span class="notice-item">School Library now accessible online,  ask your teacher for the access link</span>
+            <span class="notice-item">New 4th–5th Form curriculum documents now available for download</span>
+            <span class="notice-item">LMS login credentials were distributed in class, contact your form teacher if you haven't received yours</span>
+            <span class="notice-item">6th Form subject guides updated for the 2026/27 academic year</span>
+            <span class="notice-item">Zoom meeting links are refreshed each term, check with your subject teacher</span>
+            <span class="notice-item">School Library now accessible online — ask your teacher for the access link</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════ QUICK LINKS BAR ══════════ -->
+    <div class="quicklinks">
+      <div class="quicklinks-inner">
+        <span class="ql-label">Quick Access:</span>
+        <a href="#" class="ql-btn"><i class="fas fa-graduation-cap"></i> LMS Portal</a>
+        <a href="#" class="ql-btn"><i class="fas fa-video"></i> Zoom Classes</a>
+        <a href="#" class="ql-btn"><i class="fas fa-book-open"></i> School Library</a>
+        <a href="#curriculum" class="ql-btn"><i class="fas fa-file-alt"></i> Curriculum Docs</a>
+        <a href="#access" class="ql-btn"><i class="fas fa-key"></i> Access Codes</a>
+        <a href="contact.html" class="ql-btn"><i class="fas fa-envelope"></i> Contact a Teacher</a>
+      </div>
+    </div>
+
+    <!-- ══════════ HOW IT WORKS ══════════ -->
+    <div class="how-section">
+      <div class="section-inner">
+        <div class="section-title reveal">
+          <h2>How to Access Your Resources</h2>
+          <p>Follow these simple steps to find your curriculum guides and log in to your online learning tools</p>
+        </div>
+        <div class="steps-grid">
+          <div class="step-card reveal">
+            <div class="step-num">1</div>
+            <span class="step-icon">📋</span>
+            <h3>Find Your Form</h3>
+            <p>Scroll to the Curriculum section below and select the card matching your form group  1st to 3rd, 4th & 5th or 6th Form.</p>
+          </div>
+          <div class="step-card reveal delay-1">
+            <div class="step-num">2</div>
+            <span class="step-icon">⬇️</span>
+            <h3>Download Your Guide</h3>
+            <p>Click the gold Download button next to your subject or document. Guides are in PDF format,  open them on any device.</p>
+          </div>
+          <div class="step-card reveal delay-2">
+            <div class="step-num">3</div>
+            <span class="step-icon">🔑</span>
+            <h3>Get Your Access Code</h3>
+            <p>Scroll to the Access Codes section. Your LMS and Zoom codes are distributed by your form teacher at the start of each term.</p>
+          </div>
+          <div class="step-card reveal delay-3">
+            <div class="step-num">4</div>
+            <span class="step-icon">🖥️</span>
+            <h3>Log In &amp; Learn</h3>
+            <p>Use the Quick Access bar above to jump straight to the LMS, Zoom or Library. If you have trouble, contact the school office.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════ CURRICULUM DOCUMENTS ══════════ -->
+    <div class="curriculum-section" id="curriculum">
+      <div class="section-inner">
+        <div class="section-title reveal">
+          <h2>Curriculum Documents</h2>
+          <p>Download your official curriculum guides organised by form group</p>
+        </div>
+        <div class="curriculum-grid">
+
+          <!-- 1st–3rd Form -->
+          <div class="cur-card reveal">
+            <div class="cur-card-head">
+              <div class="cur-card-icon">📗</div>
+              <div class="cur-card-head-text">
+                <h3>1st to 3rd Form</h3>
+                <p>Foundation curriculum for all students entering GMHS</p>
+              </div>
+            </div>
+            <div class="cur-card-body">
+              <ul class="cur-doc-list">
+                <li>
+                  <span class="doc-name"><i class="fas fa-file-pdf"></i> Core Subject Overview</span>
+                  <span class="doc-tag">PDF</span>
+                  <a href="#" class="btn-download"><i class="fas fa-download"></i> Download</a>
+                </li>
+                <li>
+                  <span class="doc-name"><i class="fas fa-file-pdf"></i> Mathematics Guide</span>
+                  <span class="doc-tag">PDF</span>
+                  <a href="#" class="btn-download"><i class="fas fa-download"></i> Download</a>
+                </li>
+                <li>
+                  <span class="doc-name"><i class="fas fa-file-pdf"></i> English Language Guide</span>
+                  <span class="doc-tag">PDF</span>
+                  <a href="#" class="btn-download"><i class="fas fa-download"></i> Download</a>
+                </li>
+                <li>
+                  <span class="doc-name"><i class="fas fa-file-pdf"></i> Science &amp; Agriculture Guide</span>
+                  <span class="doc-tag">PDF</span>
+                  <a href="#" class="btn-download"><i class="fas fa-download"></i> Download</a>
+                </li>
+              </ul>
+            </div>
+            <div class="cur-card-foot">
+              <a href="#" class="btn-view-all">View all documents <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+
+          <!-- 4th–5th Form -->
+          <div class="cur-card reveal delay-1">
+            <div class="cur-card-head">
+              <div class="cur-card-icon">📘</div>
+              <div class="cur-card-head-text">
+                <h3>4th & 5th Form</h3>
+                <p>CXC / CSEC preparation curriculum and subject syllabi</p>
+              </div>
+            </div>
+            <div class="cur-card-body">
+              <ul class="cur-doc-list">
+                <li>
+                  <span class="doc-name"><i class="fas fa-file-pdf"></i> CSEC Subject Overview</span>
+                  <span class="doc-tag">PDF</span>
+                  <a href="#" class="btn-download"><i class="fas fa-download"></i> Download</a>
+                </li>
+                <li>
+                  <span class="doc-name"><i class="fas fa-file-pdf"></i> Mathematics (CSEC) Guide</span>
+                  <span class="doc-tag">PDF</span>
+                  <a href="#" class="btn-download"><i class="fas fa-download"></i> Download</a>
+                </li>
+                <li>
+                  <span class="doc-name"><i class="fas fa-file-pdf"></i> IT &amp; Business Studies Guide</span>
+                  <span class="doc-tag">PDF</span>
+                  <a href="#" class="btn-download"><i class="fas fa-download"></i> Download</a>
+                </li>
+                <li>
+                  <span class="doc-name"><i class="fas fa-file-pdf"></i> Agricultural Science Guide</span>
+                  <span class="doc-tag">PDF</span>
+                  <a href="#" class="btn-download"><i class="fas fa-download"></i> Download</a>
+                </li>
+              </ul>
+            </div>
+            <div class="cur-card-foot">
+              <a href="#" class="btn-view-all">View all documents <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+
+          <!-- 6th Form -->
+          <div class="cur-card reveal delay-2">
+            <div class="cur-card-head">
+              <div class="cur-card-icon">📙</div>
+              <div class="cur-card-head-text">
+                <h3>6th Form</h3>
+                <p>CAPE &amp; advanced level subject guides for Upper and Lower 6th</p>
+              </div>
+            </div>
+            <div class="cur-card-body">
+              <ul class="cur-doc-list">
+                <li>
+                  <span class="doc-name"><i class="fas fa-file-pdf"></i> CAPE Subject Overview</span>
+                  <span class="doc-tag">PDF</span>
+                  <a href="#" class="btn-download"><i class="fas fa-download"></i> Download</a>
+                </li>
+                <li>
+                  <span class="doc-name"><i class="fas fa-file-pdf"></i> Communication Studies Guide</span>
+                  <span class="doc-tag">PDF</span>
+                  <a href="#" class="btn-download"><i class="fas fa-download"></i> Download</a>
+                </li>
+                <li>
+                  <span class="doc-name"><i class="fas fa-file-pdf"></i> Caribbean Studies Guide</span>
+                  <span class="doc-tag">PDF</span>
+                  <a href="#" class="btn-download"><i class="fas fa-download"></i> Download</a>
+                </li>
+                <li>
+                  <span class="doc-name"><i class="fas fa-file-pdf"></i> IT &amp; Management of Business</span>
+                  <span class="doc-tag">PDF</span>
+                  <a href="#" class="btn-download"><i class="fas fa-download"></i> Download</a>
+                </li>
+              </ul>
+            </div>
+            <div class="cur-card-foot">
+              <a href="#" class="btn-view-all">View all documents <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════ ACCESS CODES ══════════ -->
+    <div class="access-section" id="access">
+      <div class="section-inner">
+        <div class="section-title light reveal">
+          <h2>Access Codes &amp; Platforms</h2>
+          <p>Your gateway to online learning is distributed by your form teacher each term</p>
+        </div>
+        <div class="access-grid">
+
+          <div class="access-card reveal">
+            <span class="ac-icon">🎓</span>
+            <h3>LMS Portal</h3>
+            <p>Log in to the school's Learning Management System to access lessons, assignments and resources for all your subjects.</p>
+            <a href="#" class="btn-access"><i class="fas fa-external-link-alt"></i> Open LMS</a>
+          </div>
+
+          <div class="access-card reveal delay-1">
+            <span class="ac-icon">📹</span>
+            <h3>Zoom Classes</h3>
+            <p>Join live lessons and virtual classes via Zoom. Your unique meeting link and password are given by your subject teacher each term.</p>
+            <a href="#" class="btn-access"><i class="fas fa-video"></i> Open Zoom</a>
+          </div>
+
+          <div class="access-card reveal delay-2">
+            <span class="ac-icon">📚</span>
+            <h3>School Library</h3>
+            <p>Browse the school's digital library for textbooks, reference materials and past papers to support your studies.</p>
+            <a href="#" class="btn-access"><i class="fas fa-book-open"></i> Open Library</a>
+          </div>
+
+          <div class="access-card reveal delay-3">
+            <span class="ac-icon">❓</span>
+            <h3>Need Help?</h3>
+            <p>If you haven't received your access code or are having difficulty logging in, contact your form teacher or the school office directly.</p>
+            <a href="contact.html" class="btn-access"><i class="fas fa-envelope"></i> Contact Us</a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <div class="top">
+        <div class="col"><b><a href="https://www.google.co.uk/maps/@17.9006093,-77.2989797,17z"><i class="fas fa-map-marker-alt"></i></a><span> Vernamfield, P.O Box 490 May Pen, Clarendon</span></b></div>
+        <div class="col"><b><a href="Tel:876 986-7006"><i class="fas fa-phone"></i></a><span> (876) 986-7006</span></b></div>
+        <div class="col"><b><a href="mailto:garveymaceo.high.cla@moey.gov.jm"><i class="fas fa-envelope"></i></a><span> garveymaceo.high.cla@moey.gov.jm</span></b></div>
+      </div>
+      <div class="bottom"><p>© 2026 Garvey Maceo High School | Website design SkoolTech London</p></div>
+    </div>
+
+    <!-- ══ RADIAL FAB ══ -->
+    <div class="fab-wrap" id="fabWrap">
+      <div class="fab-items">
+        <a href="contact.html" class="fab-item"><i class="fas fa-envelope"></i><span class="fab-tip">Contact Us</span></a>
+        <a href="sports.html"  class="fab-item"><i class="fas fa-images"></i><span class="fab-tip">Gallery</span></a>
+        <a href="Curriculum.html" class="fab-item"><i class="fas fa-book-open"></i><span class="fab-tip">Curriculum</span></a>
+        <a href="donate.html"  class="fab-item"><i class="fas fa-heart"></i><span class="fab-tip">Donate</span></a>
+        <button class="fab-item" onclick="openPanel(); closeFab();"><i class="fas fa-bars"></i><span class="fab-tip">Menu</span></button>
+      </div>
+      <button class="fab-main" id="fabMain" onclick="toggleFab()">
+        <i class="fas fa-grip-dots fab-icon-menu"></i>
+        <i class="fas fa-times fab-icon-close"></i>
+      </button>
+    </div>
+
+    <script src="../assets/js/index.js"></script>
+    <script>
+      function openPanel()  { document.getElementById('sidePanel').classList.add('open'); document.getElementById('panelOverlay').classList.add('open'); document.body.style.overflow='hidden'; }
+      function closePanel() { document.getElementById('sidePanel').classList.remove('open'); document.getElementById('panelOverlay').classList.remove('open'); document.body.style.overflow=''; }
+      function toggleFab()  { document.getElementById('fabWrap').classList.toggle('open'); document.getElementById('fabMain').classList.toggle('open'); }
+      function closeFab()   { document.getElementById('fabWrap').classList.remove('open'); document.getElementById('fabMain').classList.remove('open'); }
+      document.addEventListener('keydown', e => { if(e.key==='Escape'){ closePanel(); closeFab(); } });
+    </script>
+    <script>
+      /* Scroll reveal */
+      const revealEls = document.querySelectorAll('.reveal');
+      const revealObs = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); }
+        });
+      }, { threshold: 0.1 });
+      revealEls.forEach(el => revealObs.observe(el));
+    </script>
+  </body>
+</html>

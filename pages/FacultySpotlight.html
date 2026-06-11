@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <head>
+      <meta charset="UTF-8">
+    <title>Garvey Maceo High School – Curriculum</title>
+    <link rel="icon" type="image/x-icon" href="../assets/img/logo.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" href="../assets/css/index.css" />
+    <!-- Add to <head> — use the actual image for that page -->
+    <link rel="preload" as="image" href="../assets/img/IMG_7775.jpg" />
+    <link rel="stylesheet" type="text/css"
+      href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700,900|Poppins:300,400,500,600,700" />
+    <script src="https://kit.fontawesome.com/742f06a093.js" crossorigin="anonymous" defer></script>
+
+    <style>
+      /* ── Tokens: Cream & Gold ── */
+      :root {
+        --gold:        #d4a843;
+        --gold-dark:   #b8922a;
+        --gold-light:  #f2dc8a;
+        --gold-pale:   #fef6de;
+        --gold-soft:   #f9edbc;
+        --gold-border: rgba(212,168,67,.28);
+        --cream:       #faf7f0;
+        --cream-mid:   #f5edd8;
+        --cream-dark:  #ede3c8;
+        --white:       #ffffff;
+        --ink:         #1e1400;
+        --ink-mid:     #3d2e00;
+        --muted:       #8a7240;
+        --shadow:      rgba(180,140,40,.11);
+        --shadow-soft: rgba(212,168,67,.08);
+        --radius:      14px;
+        --radius-sm:   8px;
+      }
+
+      *, *::before, *::after { box-sizing: border-box; }
+      body {
+        font-family: 'Poppins', sans-serif; color: var(--ink); margin: 0;
+        background-color: var(--cream);
+        background-image:
+          url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Crect x='20' y='20' width='40' height='40' fill='none' stroke='%23d4a843' stroke-width='0.6' opacity='0.08' transform='rotate(45 40 40)'/%3E%3C/svg%3E"),
+          url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20'%3E%3Ccircle cx='10' cy='10' r='0.8' fill='%23d4a843' opacity='0.06'/%3E%3C/svg%3E");
+        background-size: 80px 80px, 20px 20px;
+      }
+
+      /* ── Shared ── */
+      .section-inner { max-width: 980px; margin: 0 auto; padding: 0 24px; }
+      .section-title { text-align: center; margin-bottom: 52px; }
+      .section-title::before { content:''; display:block; width:48px; height:4px; background:var(--gold); border-radius:2px; margin:0 auto 18px; }
+      .section-title h2 { font-family:'Playfair Display',serif; font-size:clamp(1.7rem,3.8vw,2.4rem); color:var(--ink); margin:0 0 10px; line-height:1.2; }
+      .section-title p { font-size:.9rem; color:var(--muted); margin:0; line-height:1.7; }
+      .gold-divider { height:5px; background:linear-gradient(90deg,transparent,var(--gold),var(--gold-light),var(--gold),transparent); }
+      .hero_pathbar { background:rgba(0,0,0,.4); backdrop-filter:blur(4px); }
+
+      /* ════════ INTRO BAND ════════ */
+      .fs-intro {
+        background: linear-gradient(135deg, var(--gold-pale) 0%, var(--cream-mid) 50%, var(--gold-soft) 100%);
+        border-bottom: 2px solid var(--gold-border);
+        padding: 60px 24px 52px;
+        text-align: center;
+        position: relative; overflow: hidden;
+      }
+      .fs-intro::before {
+        content:''; position:absolute; width:360px; height:360px;
+        border:3px solid rgba(212,168,67,.11); transform:rotate(45deg);
+        right:-100px; top:-100px; pointer-events:none; border-radius:4px;
+      }
+      .fs-intro::after {
+        content:''; position:absolute; width:220px; height:220px;
+        border:2px solid rgba(212,168,67,.08); transform:rotate(45deg);
+        left:-60px; bottom:-60px; pointer-events:none; border-radius:4px;
+      }
+      .fs-intro .inner { position:relative; z-index:1; max-width:700px; margin:0 auto; }
+      .fs-intro .eyebrow { font-size:.7rem; letter-spacing:.22em; text-transform:uppercase; color:var(--gold-dark); margin-bottom:14px; display:block; font-weight:600; }
+      .fs-intro .accent-bar { display:block; width:52px; height:4px; background:linear-gradient(90deg,var(--gold-dark),var(--gold-light)); border-radius:2px; margin:0 auto 20px; }
+      .fs-intro h1 { font-family:'Playfair Display',serif; font-size:clamp(1.9rem,4.5vw,3rem); font-weight:900; color:var(--ink); margin:0 0 14px; line-height:1.1; }
+      .fs-intro h1 span { color:var(--gold-dark); font-style:italic; }
+      .fs-intro p { font-size:.93rem; color:var(--muted); line-height:1.85; margin:0; max-width:580px; margin-left:auto; margin-right:auto; }
+
+      /* ════════ STATS STRIP ════════ */
+      .stats-strip { background:var(--gold); padding:36px 24px; }
+      .stats-inner { max-width:900px; margin:0 auto; display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:8px; text-align:center; }
+      .stat-item { padding:12px 8px; }
+      .stat-num  { font-family:'Playfair Display',serif; font-size:2.6rem; font-weight:900; color:var(--ink); line-height:1; display:block; }
+      .stat-label{ font-size:.75rem; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-mid); opacity:.72; margin-top:6px; display:block; }
+
+      /* ════════ TEACHER OF THE TERM ════════ */
+      .tott-section { padding: 72px 24px; background: var(--white); }
+      .tott-card {
+        max-width: 860px; margin: 0 auto;
+        background: linear-gradient(135deg, var(--gold-pale) 0%, var(--gold-soft) 50%, var(--cream-mid) 100%);
+        border: 1px solid var(--gold-border);
+        border-radius: var(--radius);
+        padding: 48px 44px;
+        display: flex; gap: 44px; align-items: center; flex-wrap: wrap;
+        box-shadow: 0 8px 36px var(--shadow);
+        position: relative; overflow: hidden;
+      }
+      /* Crown watermark */
+      .tott-card::before {
+        content: '👑';
+        position: absolute; right: 32px; top: 20px;
+        font-size: 5rem; opacity: .08; pointer-events:none;
+        line-height:1;
+      }
+      .tott-card::after {
+        content:''; position:absolute; width:280px; height:280px;
+        border:28px solid rgba(212,168,67,.09); transform:rotate(45deg);
+        right:-70px; bottom:-70px; pointer-events:none; border-radius:4px;
+      }
+      .tott-badge-wrap { flex-shrink:0; text-align:center; position:relative; z-index:1; }
+      .tott-crown { font-size:1.4rem; display:block; margin-bottom:6px; }
+      .tott-badge-label {
+        display:inline-block; background:var(--gold); color:var(--ink);
+        font-size:.65rem; font-weight:800; letter-spacing:.12em;
+        text-transform:uppercase; padding:4px 12px; border-radius:20px;
+        margin-bottom:18px;
+      }
+      .tott-avatar {
+        width:120px; height:120px; border-radius:50%;
+        background:linear-gradient(135deg,var(--gold),var(--gold-light));
+        display:flex; align-items:center; justify-content:center;
+        font-family:'Playfair Display',serif; font-size:2.6rem; font-weight:700;
+        color:var(--ink); margin:0 auto;
+        box-shadow:0 0 0 5px var(--white), 0 0 0 8px rgba(212,168,67,.3);
+        overflow:hidden;
+      }
+      .tott-avatar img { width:100%; height:100%; object-fit:cover; object-position:top; display:block; }
+      .tott-info { flex:1; min-width:240px; position:relative; z-index:1; }
+      .tott-info h2 { font-family:'Playfair Display',serif; font-size:clamp(1.4rem,3vw,2rem); color:var(--ink); margin:0 0 4px; }
+      .tott-info .tott-subject { font-size:.8rem; letter-spacing:.08em; text-transform:uppercase; color:var(--gold-dark); font-weight:700; display:block; margin-bottom:16px; }
+      .tott-info p  { font-size:.88rem; color:var(--muted); line-height:1.85; margin:0 0 14px; }
+      .tott-info p:last-of-type { margin:0; }
+      .tott-quote {
+        border-left:3px solid var(--gold); padding:12px 16px;
+        background:rgba(212,168,67,.07); border-radius:0 var(--radius-sm) var(--radius-sm) 0;
+        margin-top:18px; font-family:'Playfair Display',serif; font-style:italic;
+        font-size:.9rem; color:var(--ink-mid); line-height:1.65;
+      }
+
+      /* ════════ DEPARTMENT TABS + PROFILES ════════ */
+      .spotlight-section { padding: 72px 24px; background: var(--cream); }
+
+      /* Tab nav */
+      .tabs-outer { background:var(--white); border-bottom:2px solid var(--cream-dark); overflow-x:auto; scrollbar-width:none; margin-bottom:48px; border-radius:var(--radius) var(--radius) 0 0; box-shadow:0 2px 12px var(--shadow-soft); }
+      .tabs-outer::-webkit-scrollbar { display:none; }
+      .tabs-nav { display:flex; max-width:980px; margin:0 auto; padding:0 16px; min-width:max-content; }
+      .dept-btn {
+        padding:16px 20px 14px;
+        font-family:'Poppins',sans-serif; font-size:.76rem; font-weight:600;
+        letter-spacing:.06em; text-transform:uppercase;
+        color:var(--muted); background:none; border:none;
+        border-bottom:3px solid transparent; margin-bottom:-2px;
+        cursor:pointer; white-space:nowrap;
+        transition:color .2s, border-color .2s;
+        display:flex; align-items:center; gap:6px;
+      }
+      .dept-btn:hover { color:var(--gold-dark); }
+      .dept-btn.active { color:var(--gold-dark); border-bottom-color:var(--gold); }
+      .dept-btn .d-icon { font-size:.95rem; }
+
+      /* Panels */
+      .dept-panel { display:none; }
+      .dept-panel.active { display:block; }
+
+      /* Profile grid */
+      .profile-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(260px,1fr));
+        gap: 24px; max-width:980px; margin:0 auto;
+      }
+      .profile-card {
+        background: var(--white); border-radius:var(--radius);
+        overflow:hidden; box-shadow:0 4px 22px var(--shadow-soft);
+        border-top:4px solid var(--gold);
+        transition:transform .25s, box-shadow .25s;
+      }
+      .profile-card:hover { transform:translateY(-6px); box-shadow:0 14px 36px rgba(180,140,40,.18); }
+
+      /* Photo / avatar area */
+      .profile-photo {
+        width:100%; height:180px;
+        background:linear-gradient(135deg,var(--cream-mid),var(--gold-pale));
+        display:flex; align-items:center; justify-content:center;
+        position:relative; overflow:hidden;
+      }
+      .profile-photo img { width:100%; height:100%; object-fit:cover; object-position:top; display:block; }
+      .profile-photo .p-initials {
+        font-family:'Playfair Display',serif; font-size:3rem; font-weight:700;
+        color:var(--gold-dark); opacity:.4;
+      }
+      .profile-photo .dept-badge {
+        position:absolute; bottom:10px; left:12px;
+        background:var(--gold); color:var(--ink);
+        font-size:.62rem; font-weight:800; letter-spacing:.09em;
+        text-transform:uppercase; padding:3px 10px; border-radius:20px;
+      }
+
+      .profile-body { padding:22px 22px 26px; }
+      .profile-body h3 { font-family:'Playfair Display',serif; font-size:1.05rem; color:var(--ink); margin:0 0 4px; }
+      .profile-subject { font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; color:var(--gold-dark); font-weight:700; display:block; margin-bottom:12px; }
+      .profile-body p  { font-size:.82rem; color:var(--muted); line-height:1.78; margin:0 0 14px; }
+      .profile-tags { display:flex; gap:6px; flex-wrap:wrap; }
+      .p-tag { background:var(--gold-pale); border:1px solid var(--gold-border); color:var(--gold-dark); font-size:.65rem; font-weight:700; letter-spacing:.06em; text-transform:uppercase; padding:3px 9px; border-radius:20px; }
+
+      /* Empty state */
+      .dept-empty { text-align:center; padding:52px 24px; color:var(--muted); font-size:.88rem; }
+      .dept-empty .emoji { font-size:2.5rem; display:block; margin-bottom:12px; }
+
+      /* ════════ SCROLL REVEAL ════════ */
+      .reveal { opacity:0; transform:translateY(24px); transition:opacity .65s ease,transform .65s ease; }
+      .reveal.visible { opacity:1; transform:translateY(0); }
+      .reveal.delay-1{transition-delay:.1s} .reveal.delay-2{transition-delay:.2s}
+      .reveal.delay-3{transition-delay:.3s} .reveal.delay-4{transition-delay:.4s}
+
+      .hero_slide.fixed { background-image: url('../assets/img/IMG_7775.JPG') !important; }
+      .hero_container.fixed {
+        position: relative;
+        height: 380px;
+        overflow: hidden;
+        /* This shows while the image loads — customise this colour */
+        background: #2a1800; filter: blur(0); /* remove blur once image loads via JS */;
+      }
+      .hero_slide.fixed { opacity: 0; transition: opacity 0.6s ease; }
+
+      .hero_slide.fixed.active { opacity: 1; }
+      .hero_container.fixed::before {
+          content: '';
+          position: absolute;
+          inset: 0;
+          z-index: 0;
+          background: linear-gradient(
+            90deg,
+            #2a1800 0%,
+            #4a2e00 40%,
+            #2a1800 80%
+          );
+          background-size: 200% 100%;
+          animation: shimmer 1.6s infinite;
+        }
+
+        /* Hide the shimmer once the image is active */
+        .hero_container.fixed.loaded::before {
+          display: none;
+        }
+
+        @keyframes shimmer {
+          0%   { background-position: 200% 0; }
+          100% { background-position: -200% 0; }
+        }
+      @media(max-width:700px){
+        .tott-card { flex-direction:column; padding:32px 24px; gap:28px; }
+        .tott-badge-wrap { width:100%; }
+      }
+    </style>
+  </head>
+
+  <body>
+     <!-- ══ PANEL OVERLAY ══ -->
+    <div class="panel-overlay" id="panelOverlay" onclick="closePanel()"></div>
+
+    <!-- ══ SIDE PANEL NAV ══ -->
+    <div class="side-panel" id="sidePanel">
+      <div class="panel-head">
+        <div class="ph-logo">
+          <img src="../assets/img/logo.png" alt="GMHS Logo" />
+          <span>Garvey Maceo<br>High School</span>
+        </div>
+        <button class="panel-close" onclick="closePanel()"><i class="fas fa-times"></i></button>
+      </div>
+      <nav class="panel-nav">
+        <a href="../index.html"          class="pnav-item"><i class="fas fa-home" style="width:18px;margin-right:8px;"></i> Home</a>
+        <a href="Principal.html"         class="pnav-item active"><i class="fas fa-user-tie" style="width:18px;margin-right:8px;"></i> Principal's Message</a>
+
+        <div class="pnav-label">Cubanz</div>
+        <a href="ethos.html"      class="pnav-sub">Our Ethos</a>
+        <a href="staff.html"      class="pnav-sub">Our Staff</a>
+        <a href="department.html" class="pnav-sub">Departments</a>
+        <a href="history.html"    class="pnav-sub">History</a>
+        <a href="news.html"       class="pnav-sub">News Updates</a>
+
+        <div class="pnav-label">Academics</div>
+        <a href="Curriculum.html"        class="pnav-sub">Curriculum</a>
+        <a href="Health.html"            class="pnav-sub">Health &amp; Welfare</a>
+        <a href="graduation.html"        class="pnav-sub">Graduation Requirements</a>
+        <a href="FacultySpotlight.html" class="pnav-sub">Faculty Spotlight</a>
+
+        <div class="pnav-label">Stakeholders</div>
+        <a href="alumni.html" class="pnav-sub">Alumni</a>
+        <a href="pta.html"    class="pnav-sub">PTA</a>
+
+        <div class="pnav-label">Gallery</div>
+        <a href="sports.html" class="pnav-sub">Sports &amp; Events Gallery</a>
+        <a href="events.html" class="pnav-sub">Events</a>
+
+        <div class="pnav-label">Contact</div>
+        <a href="contact.html" class="pnav-sub">Contact Us</a>
+        <a href="faq.html"     class="pnav-sub">FAQ</a>
+        <a href="donate.html"  class="pnav-sub">Donate</a>
+      </nav>
+      <div class="panel-footer">
+        <p>© 2026 Garvey Maceo High School<br>Website design by SkoolTech London</p>
+      </div>
+    </div>
+
+    <!-- ══ STICKY HEADER ══ -->
+    <header>
+      <a href="../index.html" class="text_bg">
+        <img src="../assets/img/logo.png" alt="GMHS Logo" />
+        <span>Garvey Maceo High School</span>
+      </a>
+      <div class="flex_spacer"></div>
+      <div class="header-socials">
+        <a href="https://www.facebook.com/GARVEYMACEOCUBANS" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.youtube.com" title="YouTube"><i class="fab fa-youtube"></i></a>
+        <a href="https://www.instagram.com/garveymaceo/" title="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.linkedin.com/school/garvey-maceo-high-school/" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://twitter.com/garveymaceo" title="Twitter"><i class="fab fa-twitter"></i></a> 
+        <a href="https://www.tiktok.com/discover/garvey-maceo-high-school-jamaica" title="TikTok"><i class="fab fa-tiktok"></i></a>    
+      </div>
+    </header>
+
+ <!-- ══ HERO ══ -->
+<div class="hero_container fixed">
+  <div class="hero_pathbar" style="position:relative;z-index:3;">
+    <div class="inner">
+      <a href="../index.html">Home</a>
+      <i class="fas fa-chevron-right"></i>
+      <a href="FacultySpotlight.html">Faculty Spotlight</a>
+    </div>
+  </div>
+  <div class="hero_gradient_overlay fixed" style="pointer-events:none;"></div>
+  <div class="hero_slide fixed"
+       data-bg="../assets/img/IMG_7775.JPG"
+       style="background-size:cover;
+              background-position:center;
+              position:absolute;inset:0;z-index:0;">
+  </div>
+</div>
+
+ <div class="gold-divider"></div>
+
+
+    <!-- ══════════ INTRO BAND ══════════ -->
+    <div class="fs-intro">
+      <div class="inner reveal">
+        <span class="accent-bar"></span>
+        <span class="eyebrow">Our People Make the Difference</span>
+        <h1>Faculty <span>Spotlight</span></h1>
+        <p>Meet the dedicated educators who inspire, challenge and support every student at Garvey Maceo High School why committed professionals who bring excellence to every classroom, every day.</p>
+      </div>
+    </div>
+    <div class="gold-divider"></div>
+
+    <!-- ══════════ STATS STRIP ══════════ -->
+    <div class="stats-strip">
+      <div class="stats-inner">
+        <div class="stat-item reveal">
+          <span class="stat-num" data-target="61">0</span><span class="stat-num">+</span>
+          <span class="stat-label">Teaching Staff</span>
+        </div>
+        <div class="stat-item reveal delay-1">
+          <span class="stat-num" data-target="11">0</span>
+          <span class="stat-label">Departments</span>
+        </div>
+        <div class="stat-item reveal delay-2">
+          <span class="stat-num" data-target="400">0</span><span class="stat-num">+</span>
+          <span class="stat-label">Years Combined Experience</span>
+        </div>
+        <div class="stat-item reveal delay-3">
+          <span class="stat-num" data-target="100">0</span><span class="stat-num">%</span>
+          <span class="stat-label">Committed to Students</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════ TEACHER OF THE TERM ══════════ -->
+    <div class="tott-section">
+      <div class="section-inner">
+        <div class="section-title reveal">
+          <h2>Teacher of the Term</h2>
+          <p>Nominated by students and staff celebrating outstanding dedication and impact in the classroom</p>
+        </div>
+        <div class="tott-card reveal">
+          <div class="tott-badge-wrap">
+            <span class="tott-crown">👑</span>
+            <span class="tott-badge-label">Term 1 · 2026/27</span>
+            <div class="tott-avatar">
+              <!-- Swap src for a real photo when available -->
+              <img src="../assets/teachimg/logo.png" alt="Teacher of the Term"
+                onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+              <span class="p-initials" style="display:none">FP</span>
+            </div>
+          </div>
+          <div class="tott-info">
+            <h2>Mr. Floyd Palmer</h2>
+            <span class="tott-subject">💻 Information Technology Department</span>
+            <p>Mr. Palmer has served the GMHS community with distinction for over a decade, bringing a passion for technology and a genuine commitment to student achievement to every lesson. He goes above and beyond in the classroom staying after school, mentoring students through CSEC IT and creating engaging, real-world projects that bring the curriculum to life.</p>
+            <p>His students consistently achieve strong results and speak highly of his patience, creativity and high expectations for every learner.</p>
+            <div class="tott-quote">
+              "Mr. Palmer never gives up on any of us. He believes we can all achieve and that makes us believe it too."
+              <br><small style="font-style:normal;font-size:.75rem;color:var(--muted);margin-top:6px;display:block;">— GMHS Student, Form 5</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════ DEPARTMENT SPOTLIGHT ══════════ -->
+    <div class="spotlight-section">
+      <div class="section-inner">
+        <div class="section-title reveal">
+          <h2>Spotlight by Department</h2>
+          <p>Browse featured educators across GMHS — click a department to explore</p>
+        </div>
+      </div>
+
+      <!-- Tab nav -->
+      <div class="tabs-outer reveal">
+        <div class="tabs-nav">
+          <button class="dept-btn active" data-dept="it"><span class="d-icon">💻</span> IT</button>
+          <button class="dept-btn" data-dept="business"><span class="d-icon">💼</span> Business</button>
+          <button class="dept-btn" data-dept="homeec"><span class="d-icon">🏠</span> Home Ec</button>
+          <button class="dept-btn" data-dept="science"><span class="d-icon">🔬</span> Science</button>
+          <button class="dept-btn" data-dept="maths"><span class="d-icon">➕</span> Mathematics</button>
+          <button class="dept-btn" data-dept="humanities"><span class="d-icon">🌍</span> Humanities</button>
+          <button class="dept-btn" data-dept="english"><span class="d-icon">📖</span> English</button>
+          <button class="dept-btn" data-dept="pe"><span class="d-icon">⚽</span> PE &amp; Sports</button>
+          <button class="dept-btn" data-dept="agriculture"><span class="d-icon">🌱</span> Agriculture</button>
+        </div>
+      </div>
+
+      <!-- ── IT ── -->
+      <div class="dept-panel active" id="panel-it">
+        <div class="profile-grid section-inner">
+
+          <div class="profile-card reveal">
+            <div class="profile-photo">
+              <img src="../assets/teachimg/georgiann.jpg" alt="Georgiann Brown"
+                onerror="this.style.display='none';this.nextElementSibling.style.display='block'"/>
+              <span class="p-initials" style="display:none">GB</span>
+              <span class="dept-badge">IT</span>
+            </div>
+            <div class="profile-body">
+              <h3>Ms. Georgiann Brown</h3>
+              <span class="profile-subject">Information Technology</span>
+              <p>A dynamic and innovative educator, Ms. Brown brings energy and creativity to every IT lesson. She champions digital literacy and equips students with practical skills for the modern workforce.</p>
+              <div class="profile-tags">
+                <span class="p-tag">Web Design</span>
+                <span class="p-tag">CSEC IT</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="profile-card reveal delay-1">
+            <div class="profile-photo">
+              <img src="../assets/teachimg/shamoy.jpg" alt="Shamoy Tomlin"
+                onerror="this.style.display='none';this.nextElementSibling.style.display='block'"/>
+              <span class="p-initials" style="display:none">ST</span>
+              <span class="dept-badge">IT</span>
+            </div>
+            <div class="profile-body">
+              <h3>Mr. Shamoy Tomlin</h3>
+              <span class="profile-subject">Information Technology</span>
+              <p>Mr. Tomlin's hands-on approach to programming and networking inspires students to think logically and creatively. Known for making complex concepts accessible and engaging for all ability levels.</p>
+              <div class="profile-tags">
+                <span class="p-tag">Programming</span>
+                <span class="p-tag">Networking</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="profile-card reveal delay-2">
+            <div class="profile-photo">
+              <img src="../assets/teachimg/shevanise.jpg" alt="Shevanise Forbes-Gardner"
+                onerror="this.style.display='none';this.nextElementSibling.style.display='block'"/>
+              <span class="p-initials" style="display:none">SFG</span>
+              <span class="dept-badge">IT</span>
+            </div>
+            <div class="profile-body">
+              <h3>Ms. Shevanise Forbes-Gardner</h3>
+              <span class="profile-subject">Information Technology &amp; Business</span>
+              <p>Bridging IT and Business, Ms. Forbes-Gardner prepares students for Jamaica's growing digital economy. Her lessons connect classroom theory to real-world career opportunities.</p>
+              <div class="profile-tags">
+                <span class="p-tag">Digital Business</span>
+                <span class="p-tag">CAPE IT</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ── BUSINESS ── -->
+      <div class="dept-panel" id="panel-business">
+        <div class="profile-grid section-inner">
+
+          <div class="profile-card reveal">
+            <div class="profile-photo">
+              <img src="../assets/teachimg/jihan.jpg" alt="Jihan Morgan"
+                onerror="this.style.display='none';this.nextElementSibling.style.display='block'"/>
+              <span class="p-initials" style="display:none">JM</span>
+              <span class="dept-badge">Business</span>
+            </div>
+            <div class="profile-body">
+              <h3>Ms. Jihan Morgan</h3>
+              <span class="profile-subject">Business Studies &amp; Accounts</span>
+              <p>Ms. Morgan's passion for entrepreneurship is contagious. She inspires students to think commercially, understand Jamaica's economy and aspire to build businesses of their own.</p>
+              <div class="profile-tags">
+                <span class="p-tag">Entrepreneurship</span>
+                <span class="p-tag">CSEC PoA</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="profile-card reveal delay-1">
+            <div class="profile-photo">
+              <span class="p-initials">RBB</span>
+              <span class="dept-badge">Business</span>
+            </div>
+            <div class="profile-body">
+              <h3>Ms. Rose-Marie Balfour-Brown</h3>
+              <span class="profile-subject">Business Studies · Senior Teacher</span>
+              <p>A senior member of the GMHS faculty, Ms. Balfour-Brown combines deep subject knowledge with outstanding mentorship. Her guidance shapes both students and colleagues across the school.</p>
+              <div class="profile-tags">
+                <span class="p-tag">Senior Teacher</span>
+                <span class="p-tag">Mentorship</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ── HOME EC ── -->
+      <div class="dept-panel" id="panel-homeec">
+        <div class="profile-grid section-inner">
+
+          <div class="profile-card reveal">
+            <div class="profile-photo">
+              <img src="../assets/teachimg/althia.jpg" alt="Althia Fenton"
+                onerror="this.style.display='none';this.nextElementSibling.style.display='block'"/>
+              <span class="p-initials" style="display:none">AF</span>
+              <span class="dept-badge">Home Ec</span>
+            </div>
+            <div class="profile-body">
+              <h3>Ms. Althia Fenton</h3>
+              <span class="profile-subject">Home Economics</span>
+              <p>Ms. Fenton's warm teaching style and practical expertise make Home Economics one of the most popular subjects at GMHS. She champions nutrition, family health and life skills rooted in Jamaican traditions.</p>
+              <div class="profile-tags">
+                <span class="p-tag">Nutrition</span>
+                <span class="p-tag">Family Studies</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="profile-card reveal delay-1">
+            <div class="profile-photo">
+              <img src="../assets/teachimg/charmaine.jpg" alt="Charmaine A Allen"
+                onerror="this.style.display='none';this.nextElementSibling.style.display='block'"/>
+              <span class="p-initials" style="display:none">CAA</span>
+              <span class="dept-badge">Home Ec</span>
+            </div>
+            <div class="profile-body">
+              <h3>Ms. Charmaine A. Allen</h3>
+              <span class="profile-subject">Home Economics</span>
+              <p>A creative and dedicated educator, Ms. Allen connects classroom learning to everyday life — from food preparation and textile skills to household resource management and consumer education.</p>
+              <div class="profile-tags">
+                <span class="p-tag">Textiles</span>
+                <span class="p-tag">CSEC Home Ec</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ── SCIENCE ── -->
+      <div class="dept-panel" id="panel-science">
+        <div class="dept-empty">
+          <span class="emoji">🔬</span>
+          <p>Science department profiles are coming soon.<br>Check back next term for featured educator spotlights.</p>
+        </div>
+      </div>
+
+      <!-- ── MATHS ── -->
+      <div class="dept-panel" id="panel-maths">
+        <div class="dept-empty">
+          <span class="emoji">➕</span>
+          <p>Mathematics department profiles are coming soon.<br>Check back next term for featured educator spotlights.</p>
+        </div>
+      </div>
+
+      <!-- ── HUMANITIES ── -->
+      <div class="dept-panel" id="panel-humanities">
+        <div class="dept-empty">
+          <span class="emoji">🌍</span>
+          <p>Humanities department profiles are coming soon.<br>Check back next term for featured educator spotlights.</p>
+        </div>
+      </div>
+
+      <!-- ── ENGLISH ── -->
+      <div class="dept-panel" id="panel-english">
+        <div class="dept-empty">
+          <span class="emoji">📖</span>
+          <p>English department profiles are coming soon.<br>Check back next term for featured educator spotlights.</p>
+        </div>
+      </div>
+
+      <!-- ── PE ── -->
+      <div class="dept-panel" id="panel-pe">
+        <div class="dept-empty">
+          <span class="emoji">⚽</span>
+          <p>PE &amp; Sports department profiles are coming soon.<br>Check back next term for featured educator spotlights.</p>
+        </div>
+      </div>
+
+      <!-- ── AGRICULTURE ── -->
+      <div class="dept-panel" id="panel-agriculture">
+        <div class="dept-empty">
+          <span class="emoji">🌱</span>
+          <p>Agriculture department profiles are coming soon.<br>Check back next term for featured educator spotlights.</p>
+        </div>
+      </div>
+
+    </div><!-- /spotlight-section -->
+    
+    <!-- Footer -->
+   <div class="footer">
+      <div class="top">
+        <div class="col"><b><a href="https://www.google.co.uk/maps/@17.9006093,-77.2989797,17z"><i class="fas fa-map-marker-alt"></i></a><span> Vernamfield, P.O Box 490 May Pen, Clarendon</span></b></div>
+        <div class="col"><b><a href="Tel:876 986-7006"><i class="fas fa-phone"></i></a><span> (876) 986-7006</span></b></div>
+        <div class="col"><b><a href="mailto:garveymaceo.high.cla@moey.gov.jm"><i class="fas fa-envelope"></i></a><span> garveymaceo.high.cla@moey.gov.jm</span></b></div>
+      </div>
+      <div class="bottom"><p>© 2026 Garvey Maceo High School | Website design by SkoolTech London</p></div>
+    </div>
+
+     <!-- ══ RADIAL FAB ══ -->
+    <div class="fab-wrap" id="fabWrap">
+      <div class="fab-items">
+        <a href="contact.html"    class="fab-item"><i class="fas fa-envelope"></i><span class="fab-tip">Contact Us</span></a>
+        <a href="sports.html"     class="fab-item"><i class="fas fa-images"></i><span class="fab-tip">Gallery</span></a>
+        <a href="Curriculum.html" class="fab-item"><i class="fas fa-book-open"></i><span class="fab-tip">Curriculum</span></a>
+        <a href="donate.html"     class="fab-item"><i class="fas fa-heart"></i><span class="fab-tip">Donate</span></a>
+        <button class="fab-item"  onclick="openPanel(); closeFab();"><i class="fas fa-bars"></i><span class="fab-tip">Menu</span></button>
+      </div>
+      <button class="fab-main" id="fabMain" onclick="toggleFab()">
+        <i class="fas fa-grip-dots fab-icon-menu"></i>
+        <i class="fas fa-times fab-icon-close"></i>
+      </button>
+    </div>
+
+    <script src="assets/js/index.js"></script>
+    <script>
+      function openPanel()  { document.getElementById('sidePanel').classList.add('open'); document.getElementById('panelOverlay').classList.add('open'); document.body.style.overflow='hidden'; }
+      function closePanel() { document.getElementById('sidePanel').classList.remove('open'); document.getElementById('panelOverlay').classList.remove('open'); document.body.style.overflow=''; }
+      function toggleFab()  { document.getElementById('fabWrap').classList.toggle('open'); document.getElementById('fabMain').classList.toggle('open'); }
+      function closeFab()   { document.getElementById('fabWrap').classList.remove('open'); document.getElementById('fabMain').classList.remove('open'); }
+      document.addEventListener('keydown', e => { if(e.key==='Escape'){ closePanel(); closeFab(); } });
+    </script>
+    <script>
+      /* ── Tab switching ── */
+      const deptBtns   = document.querySelectorAll('.dept-btn');
+      const deptPanels = document.querySelectorAll('.dept-panel');
+
+      deptBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          deptBtns.forEach(b => b.classList.remove('active'));
+          deptPanels.forEach(p => p.classList.remove('active'));
+          btn.classList.add('active');
+          const panel = document.getElementById('panel-' + btn.dataset.dept);
+          if (panel) panel.classList.add('active');
+          btn.scrollIntoView({ behavior:'smooth', inline:'center', block:'nearest' });
+
+          /* re-trigger reveal on newly visible cards */
+          panel && panel.querySelectorAll('.reveal:not(.visible)').forEach(el => {
+            const obs = new IntersectionObserver(entries => {
+              entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); } });
+            }, { threshold:0.1 });
+            obs.observe(el);
+          });
+        });
+      });
+
+      /* ── Animated counters ── */
+      const counters = document.querySelectorAll('[data-target]');
+      const cObs = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (!e.isIntersecting) return;
+          const el = e.target, target = +el.dataset.target;
+          let cur = 0; const step = target / (1600/16);
+          const t = setInterval(() => {
+            cur += step;
+            if (cur >= target) { cur = target; clearInterval(t); }
+            el.textContent = Math.floor(cur);
+          }, 16);
+          cObs.unobserve(el);
+        });
+      }, { threshold: 0.4 });
+      counters.forEach(c => cObs.observe(c));
+
+      /* ── Scroll reveal ── */
+      const revealEls = document.querySelectorAll('.reveal');
+      const rObs = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) { e.target.classList.add('visible'); rObs.unobserve(e.target); }
+        });
+      }, { threshold: 0.1 });
+      revealEls.forEach(el => rObs.observe(el));
+    </script>
+    <script>
+      /* ══ HERO SLIDER ══ */
+const slides = Array.from(document.querySelectorAll('.hero_slide'));
+const dotCon = document.getElementById('dotContainer');
+const hcText = document.getElementById('hcText');
+const hcLabel = document.getElementById('hcLabel');
+let current = 0, timer;
+
+/* Always set background images from data-bg — works on ALL pages */
+slides.forEach(s => {
+  if (s.dataset.bg) {
+    s.style.backgroundImage    = `url(${s.dataset.bg})`;
+    s.style.backgroundSize     = 'cover';
+    s.style.backgroundPosition = 'top center';
+  }
+});
+
+/* Only run the slider/dots logic if the homepage elements exist */
+if (dotCon && slides.length > 1) {
+
+  slides.forEach((s, i) => {
+    const d = document.createElement('button');
+    d.className = 'hero_dot' + (i === 0 ? ' active' : '');
+    d.onclick = () => showSlide(i);
+    dotCon.appendChild(d);
+  });
+
+  function showSlide(n) {
+    slides[current].classList.remove('active');
+    dotCon.children[current].classList.remove('active');
+    current = (n + slides.length) % slides.length;
+    slides[current].classList.add('active');
+    dotCon.children[current].classList.add('active');
+    if (hcText)  { hcText.textContent  = slides[current].dataset.text  || ''; }
+    if (hcLabel) { hcLabel.textContent = slides[current].dataset.label || ''; }
+    if (hcText)  { hcText.style.animation  = 'none'; }
+    if (hcLabel) { hcLabel.style.animation = 'none'; }
+    requestAnimationFrame(() => {
+      if (hcText)  hcText.style.animation  = '';
+      if (hcLabel) hcLabel.style.animation = '';
+    });
+    clearInterval(timer);
+    timer = setInterval(() => showSlide(current + 1), 5000);
+  }
+
+  /* Make showSlide available globally for dot onclick */
+  window.showSlide = showSlide;
+  timer = setInterval(() => showSlide(current + 1), 5000);
+
+} else if (slides.length === 1) {
+  /* Single static hero — just show it, no dots needed */
+  slides[0].classList.add('active');
+}
+    </script>
+  </body>
+</html>

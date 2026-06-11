@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Garvey Maceo High School – Health &amp; Welfare</title>
+    <link rel="icon" type="image/x-icon" href="../assets/img/logo.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" href="../assets/css/index.css" />
+    <!-- Add to <head> — use the actual image for that page -->
+    <link rel="preload" as="image" href="../assets/img/empowerment.png" />
+    <link rel="stylesheet" type="text/css"
+      href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700,900|Poppins:300,400,500,600,700" />
+    <script src="https://kit.fontawesome.com/742f06a093.js" crossorigin="anonymous" defer></script>
+
+    <style>
+      /* ══════════════════════════════════════
+         SHARED NAV / FAB TOKENS & STYLES
+         (must be on every inner page that uses
+          the new panel + FAB — copy this block)
+      ══════════════════════════════════════ */
+      :root {
+        --gold:        #d4a843;
+        --gold-dark:   #b8922a;
+        --gold-light:  #f2dc8a;
+        --gold-pale:   #fef6de;
+        --gold-soft:   #f9edbc;
+        --gold-border: rgba(212,168,67,.28);
+        --amber-deep:  #3a2200;
+        --amber-mid:   #6b4200;
+        --amber-warm:  #8c5a00;
+        --cream:       #faf7f0;
+        --cream-mid:   #f5edd8;
+        --cream-dark:  #ede3c8;
+        --white:       #ffffff;
+        --ink:         #1e1400;
+        --ink-mid:     #3d2e00;
+        --muted:       #8a7240;
+        --shadow:      rgba(180,140,40,.11);
+        --shadow-soft: rgba(212,168,67,.08);
+        --radius:      14px;
+        --radius-sm:   8px;
+        --panel-w:     320px;
+      }
+
+      *, *::before, *::after { box-sizing: border-box; }
+
+      body {
+        font-family: 'Poppins', sans-serif; color: var(--ink); margin: 0;
+        background-color: var(--cream);
+        background-image:
+          url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Crect x='20' y='20' width='40' height='40' fill='none' stroke='%23d4a843' stroke-width='0.6' opacity='0.08' transform='rotate(45 40 40)'/%3E%3C/svg%3E"),
+          url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20'%3E%3Ccircle cx='10' cy='10' r='0.8' fill='%23d4a843' opacity='0.06'/%3E%3C/svg%3E");
+        background-size: 80px 80px, 20px 20px;
+      }
+
+      /* ── Sticky Header ── */
+      header {
+        position: sticky; top: 0; z-index: 200;
+        display: flex; align-items: center;
+        background: linear-gradient(135deg, var(--ink) 0%, var(--ink-mid) 100%);
+        padding: 0 20px; height: 62px; gap: 14px;
+        box-shadow: 0 2px 20px rgba(0,0,0,.3);
+      }
+      .text_bg { display: flex; align-items: center; gap: 12px; flex: 1; }
+      .text_bg img { height: 40px; width: auto; }
+      .text_bg span {
+        font-family: 'Playfair Display', serif;
+        font-size: clamp(.8rem,2vw,1.05rem); font-weight: 700;
+        color: var(--gold-light); letter-spacing: .02em;
+      }
+      .flex_spacer { flex: 1; }
+      .header-socials { display: flex; gap: 10px; align-items: center; }
+      .header-socials a {
+        width: 32px; height: 32px; border-radius: 50%;
+        background: rgba(255,255,255,.08); border: 1px solid rgba(212,168,67,.25);
+        display: flex; align-items: center; justify-content: center;
+        color: var(--gold-light); font-size: .8rem; text-decoration: none;
+        transition: background .2s, transform .2s;
+      }
+      .header-socials a:hover { background: var(--gold); color: var(--ink); transform: scale(1.1); }
+
+      /* ── Panel overlay ── */
+      .panel-overlay {
+        position: fixed; inset: 0; background: rgba(0,0,0,.45);
+        backdrop-filter: blur(4px); z-index: 300;
+        opacity: 0; pointer-events: none; transition: opacity .3s ease;
+      }
+      .panel-overlay.open { opacity: 1; pointer-events: all; }
+
+      /* ── Side panel ── */
+      .side-panel {
+        position: fixed; top: 0; right: calc(-1 * var(--panel-w));
+        width: var(--panel-w); height: 100vh;
+        background: linear-gradient(160deg, var(--ink) 0%, var(--ink-mid) 100%);
+        z-index: 310; overflow-y: auto; overflow-x: hidden;
+        transition: right .35s cubic-bezier(.4,0,.2,1);
+        display: flex; flex-direction: column;
+      }
+      .side-panel.open { right: 0; }
+      .panel-head {
+        display: flex; align-items: center; justify-content: space-between;
+        padding: 20px 22px 16px;
+        border-bottom: 1px solid rgba(212,168,67,.18); flex-shrink: 0;
+      }
+      .panel-head .ph-logo { display: flex; align-items: center; gap: 10px; }
+      .panel-head .ph-logo img { height: 34px; }
+      .panel-head .ph-logo span {
+        font-family: 'Playfair Display', serif; font-size: .82rem;
+        color: var(--gold-light); font-weight: 700; line-height: 1.3;
+      }
+      .panel-close {
+        width: 34px; height: 34px; border-radius: 50%;
+        background: rgba(255,255,255,.08); border: none; cursor: pointer;
+        color: var(--white); font-size: .9rem;
+        display: flex; align-items: center; justify-content: center;
+        transition: background .2s;
+      }
+      .panel-close:hover { background: var(--gold); color: var(--ink); }
+      .panel-nav { padding: 12px 0 20px; flex: 1; }
+      .pnav-item {
+        display: block; padding: 11px 22px;
+        color: rgba(255,255,255,.75); text-decoration: none;
+        font-size: .85rem; font-weight: 500;
+        transition: background .18s, color .18s, padding-left .18s;
+        border-left: 3px solid transparent;
+      }
+      .pnav-item:hover { background: rgba(212,168,67,.1); color: var(--white); padding-left: 28px; border-left-color: var(--gold); }
+      .pnav-item.active { color: var(--gold-light); border-left-color: var(--gold); background: rgba(212,168,67,.08); }
+      .pnav-label {
+        padding: 12px 22px 6px; font-size: .65rem; font-weight: 700;
+        letter-spacing: .18em; text-transform: uppercase; color: var(--gold); margin-top: 8px;
+      }
+      .pnav-sub {
+        display: block; padding: 8px 22px 8px 34px;
+        color: rgba(255,255,255,.55); text-decoration: none;
+        font-size: .8rem; transition: color .18s, padding-left .18s;
+        margin-left: 22px; border-left: 1px solid rgba(212,168,67,.15);
+      }
+      .pnav-sub:hover { color: var(--gold-light); padding-left: 40px; }
+      .panel-footer {
+        padding: 16px 22px; border-top: 1px solid rgba(212,168,67,.18); flex-shrink: 0;
+      }
+      .panel-footer p { font-size: .72rem; color: rgba(255,255,255,.35); margin: 0; }
+
+      /* ── Radial FAB ── */
+      .fab-wrap { position: fixed; bottom: 32px; right: 28px; z-index: 400; }
+      .fab-main {
+        width: 58px; height: 58px; border-radius: 50%;
+        background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+        border: none; cursor: pointer; color: var(--ink); font-size: 1.2rem;
+        display: flex; align-items: center; justify-content: center;
+        box-shadow: 0 6px 24px rgba(0,0,0,.3);
+        transition: transform .25s, box-shadow .25s; position: relative; z-index: 2;
+      }
+      .fab-main:hover { transform: scale(1.08); }
+      .fab-main.open {
+        background: linear-gradient(135deg, var(--ink), var(--ink-mid));
+        color: var(--gold-light);
+        box-shadow: 0 6px 24px rgba(0,0,0,.4), 0 0 0 8px rgba(212,168,67,.12);
+      }
+      .fab-main .fab-icon-menu  { transition: opacity .2s, transform .2s; }
+      .fab-main .fab-icon-close { position: absolute; opacity: 0; transform: rotate(-90deg); transition: opacity .2s, transform .2s; }
+      .fab-main.open .fab-icon-menu  { opacity: 0; transform: rotate(90deg); }
+      .fab-main.open .fab-icon-close { opacity: 1; transform: rotate(0); }
+      .fab-items { position: absolute; bottom: 0; right: 0; width: 58px; height: 58px; pointer-events: none; }
+      .fab-item {
+        position: absolute; bottom: 0; right: 0;
+        width: 46px; height: 46px; border-radius: 50%;
+        background: var(--white); border: 2px solid var(--gold-border); color: var(--ink-mid);
+        display: flex; align-items: center; justify-content: center;
+        font-size: .95rem; text-decoration: none;
+        box-shadow: 0 4px 14px rgba(0,0,0,.18);
+        transition: transform .35s cubic-bezier(.34,1.56,.64,1), opacity .25s, background .2s;
+        transform: translate(0,0) scale(0); opacity: 0; pointer-events: none; cursor: pointer;
+      }
+      .fab-item:hover { background: var(--gold); border-color: var(--gold-dark); color: var(--ink); }
+      .fab-item .fab-tip {
+        position: absolute; right: 54px; top: 50%; transform: translateY(-50%);
+        background: var(--ink); color: var(--white);
+        font-size: .68rem; font-weight: 600; padding: 4px 10px; border-radius: 6px;
+        white-space: nowrap; opacity: 0; transition: opacity .2s; pointer-events: none;
+      }
+      .fab-item:hover .fab-tip { opacity: 1; }
+      .fab-wrap.open .fab-item { opacity: 1; pointer-events: all; }
+      .fab-wrap.open .fab-item:nth-child(1) { transform: translate(-2px,-72px)  scale(1); transition-delay:.03s; }
+      .fab-wrap.open .fab-item:nth-child(2) { transform: translate(-38px,-60px) scale(1); transition-delay:.06s; }
+      .fab-wrap.open .fab-item:nth-child(3) { transform: translate(-62px,-30px) scale(1); transition-delay:.09s; }
+      .fab-wrap.open .fab-item:nth-child(4) { transform: translate(-72px,2px)   scale(1); transition-delay:.12s; }
+      .fab-wrap.open .fab-item:nth-child(5) { transform: translate(-60px,38px)  scale(1); transition-delay:.15s; }
+
+      /* ══════════════════════════════════════
+         HERO — correct structure
+         hero_pathbar MUST be INSIDE hero_container
+      ══════════════════════════════════════ */
+    
+      /* this code get rid of the hero delay when selection from bav bar, help make page load faster*/
+      .hero_slide.fixed { background-image: url('../assets/img/empowerment.png') !important; }
+      .hero_container.fixed {
+        position: relative;
+        height: 380px;
+        overflow: hidden;
+
+        /* This shows while the image loads — customise this colour */
+        background: #2a1800; filter: blur(0); /* remove blur once image loads via JS */;
+      }
+      .hero_slide.fixed { opacity: 0; transition: opacity 0.6s ease; }
+
+      .hero_slide.fixed.active { opacity: 1; }
+      .hero_container.fixed::before {
+          content: '';
+          position: absolute;
+          inset: 0;
+          z-index: 0;
+          background: linear-gradient(
+            90deg,
+            #2a1800 0%,
+            #4a2e00 40%,
+            #2a1800 80%
+          );
+          background-size: 200% 100%;
+          animation: shimmer 1.6s infinite;
+        }
+
+        /* Hide the shimmer once the image is active */
+        .hero_container.fixed.loaded::before {
+          display: none;
+        }
+
+        @keyframes shimmer {
+          0%   { background-position: 200% 0; }
+          100% { background-position: -200% 0; }
+        }
+
+      /* ══════════════════════════════════════
+         PAGE-SPECIFIC STYLES (unchanged)
+      ══════════════════════════════════════ */
+      .section-inner { max-width: 980px; margin: 0 auto; padding: 0 24px; }
+      .section-title { text-align: center; margin-bottom: 52px; }
+      .section-title::before { content:''; display:block; width:48px; height:4px; background:var(--gold); border-radius:2px; margin:0 auto 18px; }
+      .section-title h2 { font-family:'Playfair Display',serif; font-size:clamp(1.7rem,3.8vw,2.4rem); color:var(--ink); margin:0 0 10px; line-height:1.2; }
+      .section-title p { font-size:.9rem; color:var(--muted); margin:0; line-height:1.7; }
+      .section-title.light h2 { color:var(--white); }
+      .section-title.light p  { color:rgba(255,255,255,.6); }
+      .section-title.light::before { background:var(--gold); }
+      .gold-divider { height:5px; background:linear-gradient(90deg,transparent,var(--gold),var(--gold-light),var(--gold),transparent); }
+
+      .hw-intro { background:linear-gradient(135deg,var(--gold-pale) 0%,var(--cream-mid) 50%,var(--gold-soft) 100%); border-bottom:2px solid var(--gold-border); padding:60px 24px 52px; text-align:center; position:relative; overflow:hidden; }
+      .hw-intro::before { content:''; position:absolute; width:360px; height:360px; border:3px solid rgba(212,168,67,.11); transform:rotate(45deg); right:-100px; top:-100px; pointer-events:none; border-radius:4px; }
+      .hw-intro::after  { content:''; position:absolute; width:220px; height:220px; border:2px solid rgba(212,168,67,.08); transform:rotate(45deg); left:-60px; bottom:-60px; pointer-events:none; border-radius:4px; }
+      .hw-intro .inner  { position:relative; z-index:1; max-width:700px; margin:0 auto; }
+      .hw-intro .eyebrow { font-size:.7rem; letter-spacing:.22em; text-transform:uppercase; color:var(--gold-dark); margin-bottom:14px; display:block; font-weight:600; }
+      .hw-intro .accent-bar { display:block; width:52px; height:4px; background:linear-gradient(90deg,var(--gold-dark),var(--gold-light)); border-radius:2px; margin:0 auto 20px; }
+      .hw-intro h1 { font-family:'Playfair Display',serif; font-size:clamp(1.9rem,4.5vw,3rem); font-weight:900; color:var(--ink); margin:0 0 14px; line-height:1.1; }
+      .hw-intro h1 span { color:var(--gold-dark); font-style:italic; }
+      .hw-intro p { font-size:.93rem; color:var(--muted); line-height:1.85; margin:0; max-width:580px; margin-left:auto; margin-right:auto; }
+
+      .counsellor-section { padding:72px 24px; background:var(--white); }
+      .counsellor-layout { max-width:860px; margin:0 auto; display:flex; gap:48px; align-items:center; flex-wrap:wrap; }
+      .counsellor-card { background:linear-gradient(135deg,var(--gold-pale),var(--gold-soft)); border:1px solid var(--gold-border); border-radius:var(--radius); padding:36px 32px; text-align:center; flex-shrink:0; width:220px; box-shadow:0 6px 24px var(--shadow); position:relative; overflow:hidden; }
+      .counsellor-card::before { content:''; position:absolute; width:120px; height:120px; border:12px solid rgba(212,168,67,.1); transform:rotate(45deg); right:-30px; top:-30px; pointer-events:none; }
+      .counsellor-avatar { width:80px; height:80px; border-radius:50%; background:linear-gradient(135deg,var(--gold),var(--gold-light)); display:flex; align-items:center; justify-content:center; font-family:'Playfair Display',serif; font-size:1.6rem; font-weight:700; color:var(--ink); margin:0 auto 16px; box-shadow:0 0 0 4px rgba(212,168,67,.25); position:relative; z-index:1; }
+      .counsellor-card h3 { font-family:'Playfair Display',serif; font-size:1rem; color:var(--ink); margin:0 0 4px; position:relative; z-index:1; }
+      .counsellor-card .c-role { font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; color:var(--gold-dark); font-weight:600; display:block; margin-bottom:16px; position:relative; z-index:1; }
+      .counsellor-card .c-contact { font-size:.8rem; color:var(--muted); display:flex; flex-direction:column; gap:6px; position:relative; z-index:1; }
+      .counsellor-card .c-contact a { color:var(--gold-dark); text-decoration:none; font-weight:500; font-size:.78rem; }
+      .counsellor-text { flex:1; min-width:240px; }
+      .counsellor-text::before { content:''; display:block; width:40px; height:4px; background:var(--gold); border-radius:2px; margin-bottom:18px; }
+      .counsellor-text h2 { font-family:'Playfair Display',serif; font-size:clamp(1.4rem,3vw,2rem); color:var(--ink); margin:0 0 16px; line-height:1.25; }
+      .counsellor-text p { font-size:.88rem; color:var(--muted); line-height:1.85; margin:0 0 14px; }
+      .c-hours { display:inline-flex; align-items:center; gap:8px; background:var(--gold-pale); border:1px solid var(--gold-border); border-radius:var(--radius-sm); padding:10px 16px; font-size:.82rem; font-weight:600; color:var(--ink-mid); margin-top:16px; }
+      .c-hours i { color:var(--gold-dark); }
+
+      .mh-section { padding:72px 24px; background:var(--cream); }
+      .mh-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:24px; max-width:980px; margin:0 auto; }
+      .mh-card { background:var(--white); border-radius:var(--radius); padding:30px 26px; border-left:4px solid var(--gold); box-shadow:0 3px 18px var(--shadow-soft); transition:transform .25s,box-shadow .25s; }
+      .mh-card:hover { transform:translateY(-5px); box-shadow:0 12px 30px rgba(180,140,40,.14); }
+      .mh-card .mh-icon { font-size:2rem; display:block; margin-bottom:14px; }
+      .mh-card h3 { font-family:'Playfair Display',serif; font-size:1rem; color:var(--ink); margin:0 0 10px; }
+      .mh-card p  { font-size:.84rem; color:var(--muted); line-height:1.8; margin:0; }
+      .mh-tag { display:inline-block; background:var(--gold-pale); border:1px solid var(--gold-border); color:var(--gold-dark); font-size:.68rem; font-weight:700; letter-spacing:.07em; text-transform:uppercase; padding:3px 10px; border-radius:20px; margin-top:12px; }
+
+      .nutrition-section { padding:72px 24px; background:var(--white); }
+      .nutrition-layout { max-width:980px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:start; }
+      .nutrition-text::before { content:''; display:block; width:40px; height:4px; background:var(--gold); border-radius:2px; margin-bottom:18px; }
+      .nutrition-text h2 { font-family:'Playfair Display',serif; font-size:clamp(1.4rem,3vw,2rem); color:var(--ink); margin:0 0 16px; }
+      .nutrition-text p { font-size:.88rem; color:var(--muted); line-height:1.85; margin:0 0 14px; }
+      .nutrition-tips { display:flex; flex-direction:column; gap:14px; }
+      .tip-card { background:var(--cream); border-radius:var(--radius-sm); padding:16px 18px; display:flex; gap:14px; align-items:flex-start; border:1px solid var(--gold-border); box-shadow:0 2px 12px var(--shadow-soft); transition:transform .2s,box-shadow .2s; }
+      .tip-card:hover { transform:translateX(4px); box-shadow:0 4px 18px var(--shadow); }
+      .tip-card .tip-icon { font-size:1.4rem; flex-shrink:0; margin-top:2px; }
+      .tip-card h4 { font-size:.85rem; font-weight:700; color:var(--ink); margin:0 0 4px; }
+      .tip-card p  { font-size:.8rem; color:var(--muted); margin:0; line-height:1.65; }
+      .canteen-card { background:linear-gradient(135deg,var(--gold-pale),var(--gold-soft)); border:1px solid var(--gold-border); border-radius:var(--radius); padding:28px 26px; box-shadow:0 4px 20px var(--shadow-soft); }
+      .canteen-card h3 { font-family:'Playfair Display',serif; font-size:1.05rem; color:var(--ink); margin:0 0 12px; }
+      .canteen-row { display:flex; align-items:flex-start; gap:10px; margin-bottom:10px; font-size:.84rem; color:var(--muted); }
+      .canteen-row i { color:var(--gold-dark); flex-shrink:0; margin-top:3px; width:16px; }
+
+      .emergency-section { padding:72px 24px; background:linear-gradient(135deg,var(--gold-pale) 0%,var(--cream-mid) 50%,var(--gold-soft) 100%); border-top:2px solid var(--gold-border); border-bottom:2px solid var(--gold-border); position:relative; overflow:hidden; }
+      .emergency-section::before { content:''; position:absolute; width:300px; height:300px; border:2px solid rgba(212,168,67,.1); transform:rotate(45deg); right:-80px; top:-80px; pointer-events:none; }
+      .emergency-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:20px; max-width:980px; margin:0 auto; position:relative; z-index:1; }
+      .emergency-card { background:var(--white); border-radius:var(--radius); padding:26px 22px; text-align:center; box-shadow:0 4px 20px var(--shadow); border-top:4px solid var(--gold); transition:transform .25s,box-shadow .25s; }
+      .emergency-card:hover { transform:translateY(-5px); box-shadow:0 12px 30px rgba(180,140,40,.16); }
+      .emergency-card .e-icon { width:56px; height:56px; border-radius:50%; background:linear-gradient(135deg,var(--gold),var(--gold-light)); display:flex; align-items:center; justify-content:center; font-size:1.3rem; margin:0 auto 14px; box-shadow:0 4px 14px rgba(212,168,67,.3); }
+      .emergency-card h3 { font-family:'Playfair Display',serif; font-size:.95rem; color:var(--ink); margin:0 0 6px; }
+      .emergency-card .e-num { font-size:1.1rem; font-weight:700; color:var(--gold-dark); display:block; margin-bottom:4px; }
+      .emergency-card p { font-size:.76rem; color:var(--muted); margin:0; line-height:1.55; }
+      .emergency-card a { text-decoration:none; color:inherit; }
+      .urgent-label { display:inline-block; background:var(--gold); color:var(--ink); font-size:.65rem; font-weight:800; letter-spacing:.1em; text-transform:uppercase; padding:3px 10px; border-radius:20px; margin-bottom:10px; }
+
+      .guidance-section { padding:72px 24px; background:var(--white); }
+      .guidance-layout { max-width:860px; margin:0 auto; display:grid; grid-template-columns:1.2fr 1fr; gap:48px; align-items:start; }
+      .guidance-text::before { content:''; display:block; width:40px; height:4px; background:var(--gold); border-radius:2px; margin-bottom:18px; }
+      .guidance-text h2 { font-family:'Playfair Display',serif; font-size:clamp(1.4rem,3vw,2rem); color:var(--ink); margin:0 0 16px; }
+      .guidance-text p { font-size:.88rem; color:var(--muted); line-height:1.85; margin:0 0 14px; }
+      .guidance-steps { display:flex; flex-direction:column; gap:14px; }
+      .g-step { display:flex; gap:14px; align-items:flex-start; background:var(--cream); border-radius:var(--radius-sm); padding:16px 18px; border:1px solid var(--gold-border); box-shadow:0 2px 10px var(--shadow-soft); }
+      .g-step-num { width:32px; height:32px; border-radius:50%; flex-shrink:0; background:linear-gradient(135deg,var(--gold),var(--gold-light)); display:flex; align-items:center; justify-content:center; font-family:'Playfair Display',serif; font-size:.9rem; font-weight:700; color:var(--ink); box-shadow:0 2px 8px rgba(212,168,67,.3); }
+      .g-step-text h4 { font-size:.84rem; font-weight:700; color:var(--ink); margin:0 0 4px; }
+      .g-step-text p  { font-size:.79rem; color:var(--muted); margin:0; line-height:1.6; }
+
+      .cta-banner { background:linear-gradient(135deg,var(--gold-soft) 0%,var(--gold-pale) 60%,var(--cream-mid) 100%); padding:64px 24px; text-align:center; border-top:2px solid var(--gold-border); position:relative; overflow:hidden; }
+      .cta-banner::before { content:''; position:absolute; width:260px; height:260px; border:28px solid rgba(212,168,67,.1); transform:rotate(45deg); right:-70px; top:-70px; pointer-events:none; border-radius:4px; }
+      .cta-banner .inner { position:relative; z-index:1; max-width:580px; margin:0 auto; }
+      .cta-banner .accent-bar { display:block; width:40px; height:4px; background:linear-gradient(90deg,var(--gold-dark),var(--gold-light)); border-radius:2px; margin:0 auto 18px; }
+      .cta-banner h2 { font-family:'Playfair Display',serif; font-size:clamp(1.6rem,3.5vw,2.2rem); color:var(--ink); margin:0 0 14px; }
+      .cta-banner p  { font-size:.9rem; color:var(--muted); line-height:1.85; margin:0 0 28px; }
+      .cta-btn-row { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
+      .btn-ink { background:var(--ink); color:var(--white); font-weight:700; font-size:.88rem; padding:13px 28px; border-radius:8px; text-decoration:none; letter-spacing:.03em; transition:background .2s,transform .2s; display:inline-flex; align-items:center; gap:8px; }
+      .btn-ink:hover { background:var(--ink-mid); transform:translateY(-2px); }
+      .btn-gold-outline { border:2px solid var(--gold-border); color:var(--ink-mid); font-size:.88rem; padding:12px 26px; border-radius:8px; text-decoration:none; letter-spacing:.03em; transition:border-color .2s,background .2s,transform .2s; display:inline-flex; align-items:center; gap:8px; }
+      .btn-gold-outline:hover { border-color:var(--gold-dark); background:rgba(212,168,67,.08); transform:translateY(-2px); }
+
+      .reveal { opacity:0; transform:translateY(24px); transition:opacity .65s ease,transform .65s ease; }
+      .reveal.visible { opacity:1; transform:translateY(0); }
+      .reveal.delay-1{transition-delay:.1s} .reveal.delay-2{transition-delay:.2s}
+      .reveal.delay-3{transition-delay:.3s} .reveal.delay-4{transition-delay:.4s}
+
+      @media(max-width:700px){
+        .counsellor-layout { flex-direction:column; }
+        .counsellor-card { width:100%; }
+        .nutrition-layout,.guidance-layout { grid-template-columns:1fr; gap:28px; }
+        .header-socials { display:none; }
+        .fab-wrap { bottom:22px; right:18px; }
+      }
+      
+    </style>
+  </head>
+
+  <body>
+
+    <!-- ══ PANEL OVERLAY ══ -->
+    <div class="panel-overlay" id="panelOverlay" onclick="closePanel()"></div>
+
+    <!-- ══ SIDE PANEL NAV ══ -->
+    <div class="side-panel" id="sidePanel">
+      <div class="panel-head">
+        <div class="ph-logo">
+          <img src="../assets/img/logo.png" alt="GMHS Logo" />
+          <span>Garvey Maceo<br>High School</span>
+        </div>
+        <button class="panel-close" onclick="closePanel()"><i class="fas fa-times"></i></button>
+      </div>
+      <nav class="panel-nav">
+        <a href="../index.html"  class="pnav-item"><i class="fas fa-home" style="width:18px;margin-right:8px;"></i> Home</a>
+        <a href="Principal.html" class="pnav-item"><i class="fas fa-user-tie" style="width:18px;margin-right:8px;"></i> Principal's Message</a>
+        <div class="pnav-label">Cubanz</div>
+        <a href="ethos.html"      class="pnav-sub">Our Ethos</a>
+        <a href="staff.html"      class="pnav-sub">Our Staff</a>
+        <a href="department.html" class="pnav-sub">Departments</a>
+        <a href="history.html"    class="pnav-sub">History</a>
+        <a href="news.html"       class="pnav-sub">News Updates</a>
+        <div class="pnav-label">Academics</div>
+        <a href="Curriculum.html"        class="pnav-sub">Curriculum</a>
+        <a href="Health.html"            class="pnav-sub active" style="color:var(--gold-light);">Health &amp; Welfare</a>
+        <a href="graduation.html"        class="pnav-sub">Graduation Requirements</a>
+        <a href="FacultySpotlight.html" class="pnav-sub">Faculty Spotlight</a>
+        <div class="pnav-label">Stakeholders</div>
+        <a href="alumni.html" class="pnav-sub">Alumni</a>
+        <a href="pta.html"    class="pnav-sub">PTA</a>
+        <div class="pnav-label">Gallery</div>
+        <a href="sports.html" class="pnav-sub">Sports &amp; Events Gallery</a>
+        <a href="events.html" class="pnav-sub">Events</a>
+        <div class="pnav-label">Contact</div>
+        <a href="contact.html" class="pnav-sub">Contact Us</a>
+        <a href="faq.html"     class="pnav-sub">FAQ</a>
+        <a href="donate.html"  class="pnav-sub">Donate</a>
+      </nav>
+      <div class="panel-footer">
+        <p>© 2026 Garvey Maceo High School<br>Website design by SkoolTech London</p>
+      </div>
+    </div>
+
+    <!-- ══ STICKY HEADER ══ -->
+    <header>
+      <a href="../index.html" class="text_bg">
+        <img src="../assets/img/logo.png" alt="GMHS Logo" />
+        <span>Garvey Maceo High School</span>
+      </a>
+      <div class="flex_spacer"></div>
+      <div class="header-socials">
+        <a href="https://www.facebook.com/GARVEYMACEOCUBANS" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="youtube.com" title="YouTube"><i class="fab fa-youtube"></i></a>
+        <a href="https://www.instagram.com/garveymaceo/" title="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.linkedin.com/school/garvey-maceo-high-school/" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://twitter.com/garveymaceo" title="Twitter"><i class="fab fa-twitter"></i></a> 
+        <a href="https://www.tiktok.com/discover/garvey-maceo-high-school-jamaica" title="TikTok"><i class="fab fa-tiktok"></i></a>    
+      </div>
+    </header>
+
+    <!-- ══ HERO ══ -->
+<div class="hero_container fixed">
+  <div class="hero_pathbar" style="position:relative;z-index:3;">
+    <div class="inner">
+      <a href="../index.html">Home</a>
+      <i class="fas fa-chevron-right"></i>
+      <a href="Health.html">Health &AMP; Welfare</a>
+    </div>
+  </div>
+  <div class="hero_gradient_overlay fixed" style="pointer-events:none;"></div>
+  <div class="hero_slide fixed"
+       data-bg="../assets/img/empowerment.png"
+       style="background-size:cover;
+              background-position:center;
+              position:absolute;inset:0;z-index:0;">
+  </div>
+</div>
+
+   <div class="gold-divider"></div>
+
+
+    <!-- ══ PAGE CONTENT ══ -->
+    <div class="hw-intro">
+      <div class="inner reveal">
+        <span class="accent-bar"></span>
+        <span class="eyebrow">Student Wellbeing at GMHS</span>
+        <h1>Health &amp; <span>Welfare</span></h1>
+        <p>At Garvey Maceo High School, the wellbeing of every student is our priority. This page provides parents and guardians with key information about the support, resources and services available to your child.</p>
+      </div>
+    </div>
+    <div class="gold-divider"></div>
+
+    <div class="counsellor-section">
+      <div class="section-inner">
+        <div class="section-title reveal">
+          <h2>Guidance &amp; Counselling</h2>
+          <p>Your first point of contact for student welfare, emotional support and personal development</p>
+        </div>
+        <div class="counsellor-layout">
+          <div class="counsellor-card reveal">
+            <div class="counsellor-avatar">SC</div>
+            <h3>Mrs. Sharon Cascoe</h3>
+            <span class="c-role">WE Coordinator &amp; Guidance Counsellor</span>
+            <div class="c-contact">
+              <span><i class="fas fa-phone" style="color:var(--gold-dark);margin-right:5px;"></i> (876) 986-7006</span>
+              <a href="mailto:garveymaceo.high.cla@moey.gov.jm">Send Email</a>
+            </div>
+          </div>
+          <div class="counsellor-text reveal delay-2">
+            <h2>We Are Here for Your Child</h2>
+            <p>Our Guidance Counsellor works directly with students across all year groups to support their emotional, social and academic wellbeing. All conversations are treated with the utmost confidentiality.</p>
+            <p>In Jamaica, many young people face pressures around exam performance, family challenges, peer relationships and identity. Our counselling service provides a safe, non-judgmental space where students can speak freely and receive professional support grounded in care and respect.</p>
+            <p>Parents and guardians are encouraged to reach out if they have concerns about their child's wellbeing early support makes a real difference.</p>
+            <div class="c-hours"><i class="fas fa-clock"></i> Available Monday to Friday &nbsp;|&nbsp; 7:40 am to 3:30 pm</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mh-section">
+      <div class="section-inner">
+        <div class="section-title reveal">
+          <h2>Mental Health &amp; Emotional Wellbeing</h2>
+          <p>Understanding the challenges facing young people in Jamaica and how GMHS supports every student</p>
+        </div>
+        <div class="mh-grid">
+          <div class="mh-card reveal"><span class="mh-icon">😟</span><h3>Exam Stress &amp; Academic Pressure</h3><p>CSEC and CAPE exams place significant pressure on students. Our counsellor works with students to develop coping strategies, manage anxiety and build resilience ahead of examinations.</p><span class="mh-tag">Academic Support</span></div>
+          <div class="mh-card reveal delay-1"><span class="mh-icon">🤝</span><h3>Peer Relationships &amp; Bullying</h3><p>We take peer conflict and bullying including cyberbullying  seriously. Students are encouraged to report concerns, and our team resolves issues safely in line with the school's code of conduct.</p><span class="mh-tag">Social Welfare</span></div>
+          <div class="mh-card reveal delay-2"><span class="mh-icon">🏠</span><h3>Family &amp; Home Circumstances</h3><p>For students facing economic hardship, family breakdown or challenging home situations common in rural Clarendon, confidential support and referrals to relevant agencies are available.</p><span class="mh-tag">Family Support</span></div>
+          <div class="mh-card reveal delay-3"><span class="mh-icon">🌱</span><h3>Self-Esteem &amp; Identity</h3><p>We support students in building confidence, a positive self-image and a strong sense of purpose, rooted in the values of Garvey Maceo and the proud heritage of their community.</p><span class="mh-tag">Personal Development</span></div>
+          <div class="mh-card reveal delay-2"><span class="mh-icon">📱</span><h3>Social Media &amp; Digital Wellbeing</h3><p>Our guidance programme addresses healthy digital habits, online safety and the impact of platforms on mental health, self-esteem and academic focus.</p><span class="mh-tag">Digital Wellness</span></div>
+          <div class="mh-card reveal delay-3"><span class="mh-icon">🧘</span><h3>Referral &amp; External Support</h3><p>We refer families to external agencies including the Child Development Agency (CDA), the Ministry of Health's mental health services and community health centres in Clarendon.</p><span class="mh-tag">External Referrals</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="nutrition-section">
+      <div class="section-inner">
+        <div class="section-title reveal"><h2>Nutrition &amp; Healthy Eating</h2><p>Supporting students to fuel their bodies and minds throughout the school day</p></div>
+        <div class="nutrition-layout">
+          <div class="nutrition-text reveal">
+            <h2>Good Food, Better Learning</h2>
+            <p>Research consistently shows that students who eat well concentrate better, manage stress more effectively and achieve stronger academic results. At GMHS, we actively promote healthy eating habits drawn from Jamaica's rich food culture.</p>
+            <p>Our school canteen provides affordable, nutritious meals drawing on locally available ingredients. We encourage students to eat breakfast before school and choose balanced lunches that include staples like rice and peas, ground provisions, fresh fruit and vegetables.</p>
+            <p>The Government of Jamaica's School Feeding Programme supports eligible students and parents in financial need are encouraged to speak privately with the school office about accessing this support.</p>
+            <div class="canteen-card" style="margin-top:28px;">
+              <h3>🍽️ School Canteen</h3>
+              <div class="canteen-row"><i class="fas fa-clock"></i><span><strong>Breakfast:</strong> 7:00 am to 7:40 am</span></div>
+              <div class="canteen-row"><i class="fas fa-clock"></i><span><strong>Lunch:</strong> During lunch break (check timetable)</span></div>
+              <div class="canteen-row"><i class="fas fa-leaf"></i><span>Hot meals prepared daily, including vegetarian options</span></div>
+              <div class="canteen-row"><i class="fas fa-hand-holding-heart"></i><span>School Feeding Programme available for eligible students</span></div>
+              <div class="canteen-row"><i class="fas fa-phone"></i><span>For queries, contact the school office on (876) 986-7006</span></div>
+            </div>
+          </div>
+          <div class="nutrition-tips reveal delay-2">
+            <div class="tip-card"><span class="tip-icon">🍌</span><div><h4>Start with Breakfast</h4><p>Ensure your child eats before school even a banana and a glass of milk provides lasting energy.</p></div></div>
+            <div class="tip-card"><span class="tip-icon">💧</span><div><h4>Hydration Matters</h4><p>In Jamaica's heat, dehydration affects concentration quickly. Encourage your child to bring a water bottle.</p></div></div>
+            <div class="tip-card"><span class="tip-icon">🥗</span><div><h4>Balance the Lunch Box</h4><p>Aim for carbohydrates, protein and vegetables or rice, chicken or fish, and a portion of vegetables or fruit.</p></div></div>
+            <div class="tip-card"><span class="tip-icon">🌿</span><div><h4>Embrace Local Foods</h4><p>Breadfruit, dasheen, callaloo, ackee, plantain, nutritious, affordable and rooted in Jamaican food culture.</p></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="emergency-section">
+      <div class="section-inner">
+        <div class="section-title reveal"><h2>Emergency Contacts &amp; Crisis Support</h2><p>Key numbers every parent and guardian in Jamaica should have saved</p></div>
+        <div class="emergency-grid">
+          <div class="emergency-card reveal"><span class="urgent-label">School First</span><div class="e-icon"><i class="fas fa-school"></i></div><h3>GMHS School Office</h3><a href="tel:8769867006"><span class="e-num">(876) 986-7006</span></a><p>First point of contact for all student welfare concerns during school hours</p></div>
+          <div class="emergency-card reveal delay-1"><div class="e-icon"><i class="fas fa-ambulance"></i></div><h3>Jamaica Ambulance Service</h3><a href="tel:110"><span class="e-num">110</span></a><p>National emergency medical response — call 110 in any medical emergency</p></div>
+          <div class="emergency-card reveal delay-2"><div class="e-icon"><i class="fas fa-shield-alt"></i></div><h3>Jamaica Constabulary Force</h3><a href="tel:119"><span class="e-num">119</span></a><p>National police emergency line — for safety threats, violence or criminal matters</p></div>
+          <div class="emergency-card reveal delay-3"><div class="e-icon"><i class="fas fa-child"></i></div><h3>Child Development Agency</h3><a href="tel:18884CHILD"><span class="e-num">1-888-4CHILD</span></a><p>Report child abuse, neglect or welfare concerns, operates 24/7</p></div>
+          <div class="emergency-card reveal delay-2"><div class="e-icon"><i class="fas fa-brain"></i></div><h3>Mental Health Helpline</h3><a href="tel:8769524826"><span class="e-num">(876) 952-4826</span></a><p>Ministry of Health, mental health crisis support Bellevue Hospital, Kingston</p></div>
+          <div class="emergency-card reveal delay-3"><div class="e-icon"><i class="fas fa-hospital"></i></div><h3>May Pen Hospital</h3><a href="tel:8769866240"><span class="e-num">(876) 986-6240</span></a><p>Nearest public hospital to GMHS for A&amp;E and general medical services, Clarendon</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="guidance-section">
+      <div class="section-inner">
+        <div class="section-title reveal"><h2>Guidance for Parents &amp; Guardians</h2><p>How to support your child's health and wellbeing from home</p></div>
+        <div class="guidance-layout">
+          <div class="guidance-text reveal">
+            <h2>Your Role Makes the Difference</h2>
+            <p>Research from the Caribbean shows that parental involvement is one of the strongest predictors of a student's wellbeing and academic success. You don't need to have all the answers, you just need to be present, attentive and willing to communicate.</p>
+            <p>If you notice changes in your child's mood, appetite, sleep or school attendance, trust your instincts and reach out to us early. Early intervention is far more effective than waiting until a crisis develops.</p>
+            <p>Our Guidance Counsellor and school office are available to speak with you confidentially at any time during school hours.</p>
+          </div>
+          <div class="guidance-steps reveal delay-2">
+            <div class="g-step"><div class="g-step-num">1</div><div class="g-step-text"><h4>Talk to Your Child Regularly</h4><p>Ask open questions about their school day, friendships and how they're feeling.</p></div></div>
+            <div class="g-step"><div class="g-step-num">2</div><div class="g-step-text"><h4>Watch for Warning Signs</h4><p>Withdrawal, loss of appetite, declining grades or unusual aggression can all signal deeper difficulties.</p></div></div>
+            <div class="g-step"><div class="g-step-num">3</div><div class="g-step-text"><h4>Contact the School Early</h4><p>Call or email us and we will arrange a private consultation with our Guidance Counsellor.</p></div></div>
+            <div class="g-step"><div class="g-step-num">4</div><div class="g-step-text"><h4>Attend PTA Meetings</h4><p>Our PTA meets three times per year, this is an excellent way to stay connected and raise concerns.</p></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cta-banner">
+      <div class="inner reveal">
+        <span class="accent-bar"></span>
+        <h2>Have a Concern About Your Child?</h2>
+        <p>Please don't hesitate to reach out. Our team is here to support every student and family, early conversations lead to better outcomes for everyone.</p>
+        <div class="cta-btn-row">
+          <a href="contact.html" class="btn-ink"><i class="fas fa-envelope"></i> Contact the School</a>
+          <a href="pta.html" class="btn-gold-outline"><i class="fas fa-users"></i> Join the PTA</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+   <div class="footer">
+      <div class="top">
+        <div class="col"><b><a href="https://www.google.co.uk/maps/@17.9006093,-77.2989797,17z"><i class="fas fa-map-marker-alt"></i></a><span> Vernamfield, P.O Box 490 May Pen, Clarendon</span></b></div>
+        <div class="col"><b><a href="Tel:876 986-7006"><i class="fas fa-phone"></i></a><span> (876) 986-7006</span></b></div>
+        <div class="col"><b><a href="mailto:garveymaceo.high.cla@moey.gov.jm"><i class="fas fa-envelope"></i></a><span> garveymaceo.high.cla@moey.gov.jm</span></b></div>
+      </div>
+      <div class="bottom"><p>© 2026 Garvey Maceo High School | Website design by SkoolTech London</p></div>
+    </div>
+
+    <!-- ══════════ RADIAL FAB ══════════ -->
+    <div class="fab-wrap" id="fabWrap">
+      <div class="fab-items">
+        <a href="../pages/contact.html" class="fab-item" title="Contact">
+          <i class="fas fa-envelope"></i>
+          <span class="fab-tip">Contact Us</span>
+        </a>
+        <a href="../pages/sports.html" class="fab-item" title="Gallery">
+          <i class="fas fa-images"></i>
+          <span class="fab-tip">Gallery</span>
+        </a>
+        <a href="../pages/Curriculum.html" class="fab-item" title="Curriculum">
+          <i class="fas fa-book-open"></i>
+          <span class="fab-tip">Curriculum</span>
+        </a>
+        <a href="../pages/donate.html" class="fab-item" title="Donate">
+          <i class="fas fa-heart"></i>
+          <span class="fab-tip">Donate</span>
+        </a>
+        <button class="fab-item" onclick="openPanel(); closeFab();" title="Menu">
+          <i class="fas fa-bars"></i>
+          <span class="fab-tip">Menu</span>
+        </button>
+      </div>
+      <button class="fab-main" id="fabMain" onclick="toggleFab()">
+        <i class="fas fa-grip-dots fab-icon-menu"></i>
+        <i class="fas fa-times fab-icon-close"></i>
+      </button>
+    </div>
+
+     <script src="assets/js/index.js"></script>
+    <script>
+      function openPanel()  { document.getElementById('sidePanel').classList.add('open'); document.getElementById('panelOverlay').classList.add('open'); document.body.style.overflow='hidden'; }
+      function closePanel() { document.getElementById('sidePanel').classList.remove('open'); document.getElementById('panelOverlay').classList.remove('open'); document.body.style.overflow=''; }
+      function toggleFab()  { document.getElementById('fabWrap').classList.toggle('open'); document.getElementById('fabMain').classList.toggle('open'); }
+      function closeFab()   { document.getElementById('fabWrap').classList.remove('open'); document.getElementById('fabMain').classList.remove('open'); }
+      document.addEventListener('keydown', e => { if(e.key==='Escape'){ closePanel(); closeFab(); } });
+    </script>
+    <script>
+      /* Scroll reveal */
+      const rObs = new IntersectionObserver(entries => {
+        entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); rObs.unobserve(e.target); } });
+      }, { threshold: 0.1 });
+      document.querySelectorAll('.reveal').forEach(el => rObs.observe(el));
+    </script>
+ <script>
+      /* ══ HERO SLIDER ══ */
+const slides = Array.from(document.querySelectorAll('.hero_slide'));
+const dotCon = document.getElementById('dotContainer');
+const hcText = document.getElementById('hcText');
+const hcLabel = document.getElementById('hcLabel');
+let current = 0, timer;
+
+/* Always set background images from data-bg — works on ALL pages */
+slides.forEach(s => {
+  if (s.dataset.bg) {
+    s.style.backgroundImage    = `url(${s.dataset.bg})`;
+    s.style.backgroundSize     = 'cover';
+    s.style.backgroundPosition = 'top center';
+  }
+});
+
+/* Only run the slider/dots logic if the homepage elements exist */
+if (dotCon && slides.length > 1) {
+
+  slides.forEach((s, i) => {
+    const d = document.createElement('button');
+    d.className = 'hero_dot' + (i === 0 ? ' active' : '');
+    d.onclick = () => showSlide(i);
+    dotCon.appendChild(d);
+  });
+
+  function showSlide(n) {
+    slides[current].classList.remove('active');
+    dotCon.children[current].classList.remove('active');
+    current = (n + slides.length) % slides.length;
+    slides[current].classList.add('active');
+    dotCon.children[current].classList.add('active');
+    if (hcText)  { hcText.textContent  = slides[current].dataset.text  || ''; }
+    if (hcLabel) { hcLabel.textContent = slides[current].dataset.label || ''; }
+    if (hcText)  { hcText.style.animation  = 'none'; }
+    if (hcLabel) { hcLabel.style.animation = 'none'; }
+    requestAnimationFrame(() => {
+      if (hcText)  hcText.style.animation  = '';
+      if (hcLabel) hcLabel.style.animation = '';
+    });
+    clearInterval(timer);
+    timer = setInterval(() => showSlide(current + 1), 5000);
+  }
+
+  /* Make showSlide available globally for dot onclick */
+  window.showSlide = showSlide;
+  timer = setInterval(() => showSlide(current + 1), 5000);
+
+} else if (slides.length === 1) {
+  /* Single static hero — just show it, no dots needed */
+  slides[0].classList.add('active');
+}
+    </script>
+  </body>
+</html>

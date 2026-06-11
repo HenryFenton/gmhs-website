@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Garvey Maceo High School</title>
+    <link rel="icon" type="image/x-icon" href="../assets/img/logo.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" href="../assets/css/index.css" />
+    <link rel="stylesheet" type="text/css" href="../assets/css/alumni.css" />
+    <!-- Add to <head> — use the actual image for that page -->
+    <link rel="preload" as="image" href="../assets/img/PSAPhoto8.jpg" />
+    <link rel="stylesheet" type="text/css"
+      href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700,900italic|Poppins:300,400,500,600,700" />
+    <script src="https://kit.fontawesome.com/742f06a093.js" crossorigin="anonymous" defer></script>
+
+    <style>
+      /* ── Tokens ── */
+      :root {
+        --gold:        #d4a843;
+        --gold-dark:   #b8922a;
+        --gold-light:  #f2dc8a;
+        --gold-pale:   #fef6de;
+        --gold-border: rgba(212,168,67,.35);
+        --amber-deep:  #3a2200;
+        --amber-mid:   #6b4200;
+        --amber-warm:  #8c5a00;
+        --amber-card:  rgba(255,255,255,.07);
+        --cream:       #faf7f0;
+        --cream-dark:  #f0ead8;
+        --white:       #ffffff;
+        --ink:         #1e1400;
+        --ink-mid:     #3d2e00;
+        --muted:       #7a6535;
+        --shadow:      rgba(100,65,0,.15);
+        --radius:      14px;
+        --radius-sm:   8px;
+      }
+
+      *, *::before, *::after { box-sizing: border-box; }
+      body { background: var(--amber-deep); font-family: 'Poppins', sans-serif; color: var(--white); margin: 0; }
+
+      /* ── Shared ── */
+      .section-inner { max-width: 980px; margin: 0 auto; padding: 0 24px; }
+
+      .section-title { text-align: center; margin-bottom: 52px; }
+      .section-title::before { content:''; display:block; width:48px; height:4px; background:var(--gold); border-radius:2px; margin:0 auto 18px; }
+      .section-title h2 { font-family:'Playfair Display',serif; font-size:clamp(1.7rem,3.8vw,2.4rem); color:var(--white); margin:0 0 10px; line-height:1.2; }
+      .section-title p { font-size:.9rem; color:rgba(255,255,255,.55); margin:0; line-height:1.7; }
+      .section-title.dark h2 { color: var(--ink); }
+      .section-title.dark p  { color: var(--muted); }
+      .section-title.dark::before { background: var(--gold); }
+
+      .gold-divider { height:5px; background:linear-gradient(90deg,transparent,var(--gold),var(--gold-light),var(--gold),transparent); }
+
+      /* orb decorations (reusable) */
+      .orb {
+        position:absolute; border-radius:50%; pointer-events:none;
+        background: rgba(212,168,67,.07);
+      }
+
+      /* ════════ HERO INTRO ════════ */
+      .alumni-intro {
+        background: linear-gradient(135deg, var(--amber-deep) 0%, var(--amber-mid) 55%, var(--amber-warm) 100%);
+        padding: 72px 24px 64px;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+      .alumni-intro::before {
+        content:''; position:absolute; inset:0;
+        background: radial-gradient(ellipse at 20% 60%, rgba(212,168,67,.16) 0%, transparent 55%),
+                    radial-gradient(ellipse at 82% 18%, rgba(242,220,138,.10) 0%, transparent 50%);
+        pointer-events:none;
+      }
+      .alumni-intro::after {
+        content:''; position:absolute; width:520px; height:520px;
+        border:60px solid rgba(212,168,67,.06); border-radius:50%;
+        right:-180px; bottom:-240px; pointer-events:none;
+      }
+      .alumni-intro .inner { position:relative; z-index:1; max-width:740px; margin:0 auto; }
+      .alumni-intro .eyebrow { font-size:.7rem; letter-spacing:.26em; text-transform:uppercase; color:var(--gold-light); margin-bottom:14px; display:block; }
+      .alumni-intro h1 { font-family:'Playfair Display',serif; font-size:clamp(2rem,5vw,3.5rem); font-weight:900; color:var(--white); margin:0 0 20px; line-height:1.08; }
+      .alumni-intro h1 span { color:var(--gold-light); font-style:italic; }
+      .alumni-intro p { font-size:.95rem; color:rgba(255,255,255,.68); line-height:1.9; margin:0 0 32px; max-width:600px; margin-left:auto; margin-right:auto; }
+      .intro-btn-row { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
+      .btn-gold { background:var(--gold); color:var(--ink); font-weight:700; font-size:.88rem; padding:14px 30px; border-radius:8px; text-decoration:none; letter-spacing:.03em; transition:background .2s, transform .2s; display:inline-block; }
+      .btn-gold:hover { background:var(--gold-light); transform:translateY(-2px); }
+      .btn-ghost { border:2px solid rgba(255,255,255,.3); color:var(--white); font-size:.88rem; padding:12px 28px; border-radius:8px; text-decoration:none; letter-spacing:.03em; transition:border-color .2s, background .2s, transform .2s; display:inline-block; }
+      .btn-ghost:hover { border-color:rgba(255,255,255,.7); background:rgba(255,255,255,.08); transform:translateY(-2px); }
+
+      /* ════════ STATS STRIP ════════ */
+      .stats-strip { background:var(--gold); padding:36px 24px; }
+      .stats-inner { max-width:900px; margin:0 auto; display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:8px; text-align:center; }
+      .stat-item { padding:12px 8px; }
+      .stat-num  { font-family:'Playfair Display',serif; font-size:2.6rem; font-weight:900; color:var(--ink); line-height:1; display:block; }
+      .stat-label{ font-size:.75rem; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-mid); opacity:.72; margin-top:6px; display:block; }
+
+      /* ════════ PHOTO SHOWCASE ════════ */
+      .photo-band {
+        background: var(--amber-deep);
+        padding: 64px 24px;
+        position: relative; overflow: hidden;
+      }
+      .photo-band .orb { width:400px; height:400px; left:-100px; top:-150px; }
+      .photo-band .orb2 { position:absolute; width:260px; height:260px; border-radius:50%; background:rgba(212,168,67,.05); right:-60px; bottom:-80px; pointer-events:none; }
+      .photo-grid {
+        max-width: 980px; margin: 0 auto;
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr;
+        grid-template-rows: 220px 220px;
+        gap: 14px;
+        position: relative; z-index:1;
+      }
+      .photo-grid .p1 { grid-row: 1 / 3; }
+      .photo-item {
+        border-radius: var(--radius);
+        overflow: hidden;
+        position: relative;
+        background: var(--amber-mid);
+        box-shadow: 0 6px 24px rgba(0,0,0,.3);
+      }
+      .photo-item img {
+        width:100%; height:100%; object-fit:cover; display:block;
+        transition: transform .4s ease;
+      }
+      .photo-item:hover img { transform: scale(1.05); }
+      .photo-item .photo-overlay {
+        position:absolute; inset:0;
+        background: linear-gradient(to top, rgba(30,14,0,.7) 0%, transparent 50%);
+        opacity:0; transition:opacity .3s;
+        display:flex; align-items:flex-end; padding:18px;
+      }
+      .photo-item:hover .photo-overlay { opacity:1; }
+      .photo-overlay span { font-size:.8rem; color:var(--gold-light); font-weight:600; letter-spacing:.05em; }
+      /* fallback gradient when no real image */
+      .photo-item.grad1 { background: linear-gradient(135deg,#4a2e00,#8c5a00); }
+      .photo-item.grad2 { background: linear-gradient(135deg,#6b4200,#3a2200); }
+      .photo-item.grad3 { background: linear-gradient(135deg,#3a2200,#8c5a00); }
+      .photo-item.grad4 { background: linear-gradient(135deg,#8c5a00,#4a2e00); }
+      .photo-item.grad5 { background: linear-gradient(135deg,#5c3a00,#6b4200); }
+      .photo-placeholder {
+        width:100%; height:100%; display:flex; flex-direction:column;
+        align-items:center; justify-content:center; gap:10px;
+      }
+      .photo-placeholder i { font-size:2rem; color:rgba(212,168,67,.4); }
+      .photo-placeholder span { font-size:.72rem; color:rgba(255,255,255,.3); letter-spacing:.08em; text-transform:uppercase; }
+
+      /* ════════ WHY JOIN ════════ */
+      .whyjoin-section {
+        background: linear-gradient(135deg, var(--amber-deep) 0%, var(--amber-mid) 60%, var(--amber-warm) 100%);
+        padding: 72px 24px;
+        position: relative; overflow:hidden;
+      }
+      .whyjoin-section .orb { width:500px; height:500px; right:-150px; top:-180px; }
+      .whyjoin-section .orb2 { position:absolute; width:300px; height:300px; border-radius:50%; background:rgba(242,220,138,.05); left:-80px; bottom:-100px; pointer-events:none; }
+      .whyjoin-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 22px;
+        max-width: 980px; margin: 0 auto;
+        position: relative; z-index:1;
+      }
+      .wj-card {
+        background: var(--amber-card);
+        border: 1px solid var(--gold-border);
+        border-radius: var(--radius);
+        padding: 30px 24px;
+        text-align: center;
+        transition: background .25s, transform .25s, border-color .25s;
+      }
+      .wj-card:hover { background:rgba(212,168,67,.14); border-color:rgba(212,168,67,.55); transform:translateY(-5px); }
+      .wj-card .wj-icon { font-size:2.2rem; display:block; margin-bottom:14px; }
+      .wj-card h3 { font-family:'Playfair Display',serif; font-size:1rem; color:var(--white); margin:0 0 10px; }
+      .wj-card p  { font-size:.82rem; color:rgba(255,255,255,.65); line-height:1.78; margin:0; }
+
+      /* ════════ NOTABLE ALUMNI ════════ */
+      .alumni-section {
+        background: var(--cream);
+        padding: 72px 24px;
+      }
+      .alumni-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        gap: 24px;
+        max-width: 980px; margin: 0 auto;
+      }
+      .alumni-card {
+        background: var(--white);
+        border-radius: var(--radius);
+        overflow: hidden;
+        box-shadow: 0 4px 22px var(--shadow);
+        border-top: 4px solid var(--gold);
+        transition: transform .25s, box-shadow .25s;
+      }
+      .alumni-card:hover { transform:translateY(-6px); box-shadow:0 16px 38px rgba(100,65,0,.2); }
+      .alumni-card-head {
+        background: linear-gradient(135deg, var(--amber-deep), var(--amber-warm));
+        padding: 28px 20px 20px;
+        text-align: center;
+        position: relative;
+        overflow:hidden;
+      }
+      .alumni-card-head::after {
+        content:''; position:absolute; width:200px; height:200px; border-radius:50%;
+        background:rgba(212,168,67,.08); right:-60px; top:-60px; pointer-events:none;
+      }
+      .alumni-avatar {
+        width: 72px; height: 72px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--gold), var(--gold-light));
+        display: flex; align-items:center; justify-content:center;
+        font-family:'Playfair Display',serif;
+        font-size:1.5rem; font-weight:700; color:var(--ink);
+        margin: 0 auto 12px;
+        box-shadow: 0 0 0 4px rgba(212,168,67,.3);
+        position: relative; z-index:1;
+      }
+      .alumni-card-head h3 { font-family:'Playfair Display',serif; font-size:1rem; color:var(--white); margin:0 0 4px; position:relative; z-index:1; }
+      .alumni-grad-year { font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; color:var(--gold-light); opacity:.85; position:relative; z-index:1; }
+      .alumni-card-body { padding:20px 20px 22px; }
+      .alumni-field { display:inline-block; background:var(--gold-pale); border:1px solid var(--gold-border); color:var(--gold-dark); font-size:.7rem; font-weight:600; letter-spacing:.07em; text-transform:uppercase; padding:4px 12px; border-radius:20px; margin-bottom:12px; }
+      .alumni-card-body p { font-size:.82rem; color:var(--muted); line-height:1.78; margin:0; }
+
+      /* ════════ EVENTS ════════ */
+      .events-section {
+        background: var(--amber-deep);
+        padding: 72px 24px;
+        position: relative; overflow:hidden;
+      }
+      .events-section .orb { width:460px; height:460px; left:-120px; top:-150px; }
+      .events-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 22px;
+        max-width: 980px; margin:0 auto;
+        position:relative; z-index:1;
+      }
+      .event-card {
+        background: var(--amber-card);
+        border: 1px solid var(--gold-border);
+        border-radius: var(--radius);
+        padding: 0;
+        overflow: hidden;
+        transition: background .25s, transform .25s, border-color .25s;
+      }
+      .event-card:hover { background:rgba(212,168,67,.12); border-color:rgba(212,168,67,.5); transform:translateY(-4px); }
+      .event-card-top {
+        background: linear-gradient(135deg, var(--amber-mid), var(--amber-warm));
+        padding: 20px 24px;
+        display: flex;
+        align-items: center;
+        gap: 18px;
+      }
+      .event-date-box {
+        background: var(--gold);
+        border-radius: var(--radius-sm);
+        min-width: 56px; text-align:center;
+        padding: 8px 6px; flex-shrink:0;
+      }
+      .event-date-box .e-month { font-size:.62rem; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-mid); font-weight:700; display:block; }
+      .event-date-box .e-day   { font-family:'Playfair Display',serif; font-size:1.7rem; font-weight:900; color:var(--ink); line-height:1; display:block; }
+      .event-head-text h3 { font-family:'Playfair Display',serif; font-size:1rem; color:var(--white); margin:0 0 4px; }
+      .event-head-text .e-type { font-size:.7rem; letter-spacing:.08em; text-transform:uppercase; color:var(--gold-light); opacity:.85; }
+      .event-card-body { padding:18px 24px 22px; }
+      .event-card-body p { font-size:.82rem; color:rgba(255,255,255,.65); line-height:1.75; margin:0 0 14px; }
+      .event-meta { display:flex; gap:16px; flex-wrap:wrap; }
+      .event-meta span { font-size:.75rem; color:rgba(255,255,255,.5); display:flex; align-items:center; gap:5px; }
+      .event-meta span i { color:var(--gold); font-size:.75rem; }
+
+      /* ════════ JOIN CTA ════════ */
+      .join-cta {
+        background: linear-gradient(135deg, var(--amber-mid) 0%, var(--amber-warm) 100%);
+        padding: 80px 24px;
+        text-align: center;
+        position: relative; overflow:hidden;
+      }
+      .join-cta::before { content:''; position:absolute; width:440px; height:440px; border-radius:50%; background:rgba(212,168,67,.08); left:-120px; bottom:-160px; pointer-events:none; }
+      .join-cta::after  { content:''; position:absolute; width:300px; height:300px; border-radius:50%; background:rgba(242,220,138,.06); right:-70px; top:-90px; pointer-events:none; }
+      .join-cta .inner  { position:relative; z-index:1; max-width:640px; margin:0 auto; }
+      .join-cta .eyebrow { font-size:.7rem; letter-spacing:.24em; text-transform:uppercase; color:var(--gold-light); margin-bottom:14px; display:block; }
+      .join-cta h2 { font-family:'Playfair Display',serif; font-size:clamp(1.8rem,4vw,2.8rem); color:var(--white); margin:0 0 16px; line-height:1.2; }
+      .join-cta p  { font-size:.93rem; color:rgba(255,255,255,.7); line-height:1.85; margin:0 0 32px; }
+
+      /* ════════ SCROLL REVEAL ════════ */
+      .reveal { opacity:0; transform:translateY(26px); transition:opacity .65s ease, transform .65s ease; }
+      .reveal.visible { opacity:1; transform:translateY(0); }
+      .reveal.delay-1{transition-delay:.1s} .reveal.delay-2{transition-delay:.2s}
+      .reveal.delay-3{transition-delay:.3s} .reveal.delay-4{transition-delay:.4s}
+      .reveal.delay-5{transition-delay:.5s}
+
+      @media(max-width:700px){
+        .photo-grid { grid-template-columns:1fr 1fr; grid-template-rows:auto; }
+        .photo-grid .p1 { grid-row:auto; grid-column:1 / -1; height:200px; }
+        .photo-item:not(.p1) { height:140px; }
+      }
+      @media(max-width:480px){
+        .photo-grid { grid-template-columns:1fr; }
+        .photo-grid .p1 { grid-column:auto; }
+      }
+      /* Hero loads instantly — no JS needed */
+        .hero_slide.fixed {
+          background-image: url('../assets/img/PSAPhoto8.jpg') !important;
+      }
+      
+    </style>
+  </head>
+
+  <body>
+     <!-- ══ PANEL OVERLAY ══ -->
+    <div class="panel-overlay" id="panelOverlay" onclick="closePanel()"></div>
+
+    <!-- ══ SIDE PANEL NAV ══ -->
+    <div class="side-panel" id="sidePanel">
+      <div class="panel-head">
+        <div class="ph-logo">
+          <img src="../assets/img/logo.png" alt="GMHS Logo" />
+          <span>Garvey Maceo<br>High School</span>
+        </div>
+        <button class="panel-close" onclick="closePanel()"><i class="fas fa-times"></i></button>
+      </div>
+      <nav class="panel-nav">
+        <a href="../index.html"          class="pnav-item"><i class="fas fa-home" style="width:18px;margin-right:8px;"></i> Home</a>
+        <a href="Principal.html"         class="pnav-item active"><i class="fas fa-user-tie" style="width:18px;margin-right:8px;"></i> Principal's Message</a>
+
+        <div class="pnav-label">Cubanz</div>
+        <a href="ethos.html"      class="pnav-sub">Our Ethos</a>
+        <a href="staff.html"      class="pnav-sub">Our Staff</a>
+        <a href="department.html" class="pnav-sub">Departments</a>
+        <a href="history.html"    class="pnav-sub">History</a>
+        <a href="news.html"       class="pnav-sub">News Updates</a>
+
+        <div class="pnav-label">Academics</div>
+        <a href="Curriculum.html"        class="pnav-sub">Curriculum</a>
+        <a href="Health.html"            class="pnav-sub">Health &amp; Welfare</a>
+        <a href="graduation.html"        class="pnav-sub">Graduation Requirements</a>
+        <a href="FacultySpotlight.html" class="pnav-sub">Faculty Spotlight</a>
+
+        <div class="pnav-label">Stakeholders</div>
+        <a href="alumni.html" class="pnav-sub">Alumni</a>
+        <a href="pta.html"    class="pnav-sub">PTA</a>
+
+        <div class="pnav-label">Gallery</div>
+        <a href="sports.html" class="pnav-sub">Sports &amp; Events Gallery</a>
+        <a href="events.html" class="pnav-sub">Events</a>
+
+        <div class="pnav-label">Contact</div>
+        <a href="contact.html" class="pnav-sub">Contact Us</a>
+        <a href="faq.html"     class="pnav-sub">FAQ</a>
+        <a href="donate.html"  class="pnav-sub">Donate</a>
+      </nav>
+      <div class="panel-footer">
+        <p>© 2026 Garvey Maceo High School<br>Website design by SkoolTech London</p>
+      </div>
+    </div>
+
+     <!-- ══ STICKY HEADER ══ -->
+    <header>
+      <div class="text_bg">
+        <img src="../assets/img/logo.png" alt="GMHS Logo" />
+        <span>Garvey Maceo High School</span>
+      </div>
+      <div class="flex_spacer"></div>
+      <div class="header-socials">
+        <a href="https://www.facebook.com/GARVEYMACEOCUBANS" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.youtube.com" title="YouTube"><i class="fab fa-youtube"></i></a>
+        <a href="https://www.instagram.com/garveymaceo/" title="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.linkedin.com/school/garvey-maceo-high-school/" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://twitter.com/garveymaceo" title="Twitter"><i class="fab fa-twitter"></i></a> 
+        <a href="https://www.tiktok.com/discover/garvey-maceo-high-school-jamaica" title="TikTok"><i class="fab fa-tiktok"></i></a>    
+      </div>
+    </header>
+
+ <!-- ══ HERO ══ -->
+<div class="hero_container fixed">
+  <div class="hero_pathbar" style="position:relative;z-index:3;">
+    <div class="inner">
+      <a href="../index.html">Home</a>
+      <i class="fas fa-chevron-right"></i>
+      <a href="alumni.html">Alumni</a>
+    </div>
+  </div>
+  <div class="hero_gradient_overlay fixed" style="pointer-events:none;"></div>
+  <div class="hero_slide fixed"
+       data-bg="../assets/img/PSAPhoto8.jpg"
+       style="background-size:cover;
+              background-position:center;
+              position:absolute;inset:0;z-index:0;">
+  </div>
+</div>
+
+   <div class="gold-divider"></div>
+
+
+    <!-- ══════════ HERO INTRO ══════════ -->
+    <div class="alumni-intro">
+      <div class="inner">
+        <span class="eyebrow">Est. 1980 · Vernamfield, Clarendon</span>
+        <h1>Garvey Maceo <span>Past Students'</span> Association</h1>
+        <p>Once a Cubanz, always a Cubanz. The PSA unites former students across Jamaica and around the world — keeping the spirit of Garvey Maceo alive long after graduation.</p>
+        <div class="intro-btn-row">
+          <a href="https://garveymaceohighpsa.com/member-application-form" class="btn-gold" target="_blank">
+            <i class="fas fa-user-plus"></i> Apply for Membership
+          </a>
+          <a href="#events" class="btn-ghost">Upcoming Events</a>
+        </div>
+      </div>
+    </div>
+    <div class="gold-divider"></div>
+
+    <!-- ══════════ STATS STRIP ══════════ -->
+    <div class="stats-strip">
+      <div class="stats-inner">
+        <div class="stat-item reveal">
+          <span class="stat-num" data-target="44">0</span><span class="stat-num">+</span>
+          <span class="stat-label">Years of History</span>
+        </div>
+        <div class="stat-item reveal delay-1">
+          <span class="stat-num" data-target="500">0</span><span class="stat-num">+</span>
+          <span class="stat-label">Active Members</span>
+        </div>
+        <div class="stat-item reveal delay-2">
+          <span class="stat-num" data-target="3">0</span>
+          <span class="stat-label">Regional Chapters</span>
+        </div>
+        <div class="stat-item reveal delay-3">
+          <span class="stat-num" data-target="1980">0</span>
+          <span class="stat-label">Founded</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════ PHOTO SHOWCASE ══════════ -->
+    <div class="photo-band">
+      <div class="orb"></div>
+      <div class="orb2"></div>
+      <div class="section-inner" style="margin-bottom:36px;">
+        <div class="section-title reveal" style="margin-bottom:36px;">
+          <h2>Our Community in Pictures</h2>
+          <p>Memories made at GMHS on the field, on stage and beyond</p>
+        </div>
+      </div>
+      <div class="photo-grid section-inner" style="max-width:980px;">
+        <div class="photo-item p1 grad1 reveal">
+          <img src="../assets/img/Paststudenttrue.jpg" alt="Past Students" onerror="this.style.display='none'"/>
+          <div class="photo-overlay"><span>Past Students Association</span></div>
+        </div>
+        <div class="photo-item grad2 reveal delay-1">
+          <img src="../assets/img/Background2.jpg" alt="School Life" onerror="this.style.display='none'"/>
+          <div class="photo-overlay"><span>School Life</span></div>
+          <div class="photo-placeholder"><i class="fas fa-image"></i><span>Add Photo</span></div>
+        </div>
+        <div class="photo-item grad3 reveal delay-2">
+          <img src="../assets/img/PSAPhoto1.jpg" alt="Campus" onerror="this.style.display='none'"/>
+          <div class="photo-overlay"><span>GMHS Campus</span></div>
+          <div class="photo-placeholder"><i class="fas fa-image"></i><span>Add Photo</span></div>
+        </div>
+        <div class="photo-item grad4 reveal delay-1">
+          <img src="../assets/img/PSAPhoto3.jpg" alt="Prize Giving" onerror="this.style.display='none'"/>
+          <div class="photo-overlay"><span>Prize Giving Day</span></div>
+          <div class="photo-placeholder"><i class="fas fa-image"></i><span>Add Photo</span></div>
+        </div>
+        <div class="photo-item grad5 reveal delay-2">
+          <img src="../assets/img/PSAPhoto5.jpg" alt="Awards" onerror="this.style.display='none'"/>
+          <div class="photo-overlay"><span>Awards &amp; Achievements</span></div>
+          <div class="photo-placeholder"><i class="fas fa-image"></i><span>Add Photo</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════ WHY JOIN ══════════ -->
+    <div class="whyjoin-section">
+      <div class="orb"></div>
+      <div class="orb2"></div>
+      <div class="section-inner">
+        <div class="section-title reveal">
+          <h2>Why Join the PSA?</h2>
+          <p>Membership connects you to a lifelong network of Garvey Maceo graduates</p>
+        </div>
+        <div class="whyjoin-grid">
+          <div class="wj-card reveal">
+            <span class="wj-icon">🌐</span>
+            <h3>Global Network</h3>
+            <p>Connect with fellow graduates across Jamaica and internationally. Our members span industries from medicine and law to sport and the arts.</p>
+          </div>
+          <div class="wj-card reveal delay-1">
+            <span class="wj-icon">🏫</span>
+            <h3>Give Back to GMHS</h3>
+            <p>Support the school that shaped you — through scholarships, mentorship programmes, donations and volunteering at events.</p>
+          </div>
+          <div class="wj-card reveal delay-2">
+            <span class="wj-icon">🎓</span>
+            <h3>Mentor Current Students</h3>
+            <p>Share your career journey and life experience to inspire the next generation of Cubanzs preparing for life beyond GMHS.</p>
+          </div>
+          <div class="wj-card reveal delay-3">
+            <span class="wj-icon">🤝</span>
+            <h3>Career Opportunities</h3>
+            <p>Tap into the PSA professional network for job opportunities, business referrals and industry connections with trusted fellow alumni.</p>
+          </div>
+          <div class="wj-card reveal delay-2">
+            <span class="wj-icon">🎉</span>
+            <h3>Reunions &amp; Events</h3>
+            <p>Attend annual reunions, homecoming events, sporting fixtures and cultural evenings that keep the GMHS spirit alive all year round.</p>
+          </div>
+          <div class="wj-card reveal delay-3">
+            <span class="wj-icon">🏆</span>
+            <h3>Recognition &amp; Awards</h3>
+            <p>Outstanding alumni are celebrated at our annual awards, honouring achievement, service and the enduring values of Garvey Maceo.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════ NOTABLE ALUMNI ══════════ -->
+    <div class="alumni-section">
+      <div class="section-inner">
+        <div class="section-title dark reveal">
+          <h2>Notable Alumni</h2>
+          <p>Garvey Maceo graduates making their mark across Jamaica and the world</p>
+        </div>
+        <div class="alumni-grid">
+          <div class="alumni-card reveal">
+            <div class="alumni-card-head">
+              <div class="alumni-avatar">ER</div>
+              <h3>Errol Roman</h3>
+              <span class="alumni-grad-year">Class of 1982 · First Head Boy</span>
+            </div>
+            <div class="alumni-card-body">
+              <span class="alumni-field">Leadership</span>
+              <p>The very first Head Boy of GMHS, Errol Roman set the standard for student leadership at the school from its founding year.</p>
+            </div>
+          </div>
+          <div class="alumni-card reveal delay-1">
+            <div class="alumni-card-head">
+              <div class="alumni-avatar">AP</div>
+              <h3>Annette Powell</h3>
+              <span class="alumni-grad-year">Class of 1982 · First Head Girl</span>
+            </div>
+            <div class="alumni-card-body">
+              <span class="alumni-field">Leadership</span>
+              <p>The first Head Girl in GMHS history, Annette Powell helped define the values and culture of the school in its earliest years.</p>
+            </div>
+          </div>
+          <div class="alumni-card reveal delay-2">
+            <div class="alumni-card-head">
+              <div class="alumni-avatar">GM</div>
+              <h3>GMHS Athlete</h3>
+              <span class="alumni-grad-year">National Representative</span>
+            </div>
+            <div class="alumni-card-body">
+              <span class="alumni-field">Sport</span>
+              <p>GMHS has produced numerous athletes who have represented Jamaica in football and cricket at national level. Add your alumni here.</p>
+            </div>
+          </div>
+          <div class="alumni-card reveal delay-3">
+            <div class="alumni-card-head">
+              <div class="alumni-avatar">+</div>
+              <h3>Your Story Here</h3>
+              <span class="alumni-grad-year">GMHS Graduate</span>
+            </div>
+            <div class="alumni-card-body">
+              <span class="alumni-field">Your Field</span>
+              <p>Know a notable GMHS alumnus? Contact the PSA to have their story featured and celebrated in our alumni spotlight.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════ EVENTS & REUNIONS ══════════ -->
+    <div class="events-section" id="events">
+      <div class="orb"></div>
+      <div class="section-inner">
+        <div class="section-title reveal">
+          <h2>Events &amp; Reunions</h2>
+          <p>Mark your calendar — upcoming PSA events and homecoming activities</p>
+        </div>
+        <div class="events-grid">
+          <div class="event-card reveal">
+            <div class="event-card-top">
+              <div class="event-date-box">
+                <span class="e-month">Aug</span>
+                <span class="e-day">16</span>
+              </div>
+              <div class="event-head-text">
+                <h3>Annual Homecoming Weekend</h3>
+                <span class="e-type">Reunion</span>
+              </div>
+            </div>
+            <div class="event-card-body">
+              <p>A full weekend of celebrations welcoming alumni home to Vernamfield — including a school tour, sports day, cultural show and formal dinner.</p>
+              <div class="event-meta">
+                <span><i class="fas fa-map-marker-alt"></i> GMHS Campus</span>
+                <span><i class="fas fa-clock"></i> All Day</span>
+              </div>
+            </div>
+          </div>
+          <div class="event-card reveal delay-1">
+            <div class="event-card-top">
+              <div class="event-date-box">
+                <span class="e-month">Oct</span>
+                <span class="e-day">05</span>
+              </div>
+              <div class="event-head-text">
+                <h3>PSA Annual General Meeting</h3>
+                <span class="e-type">AGM</span>
+              </div>
+            </div>
+            <div class="event-card-body">
+              <p>The annual general meeting of the Past Students' Association — open to all active members. Reports, elections and planning for the year ahead.</p>
+              <div class="event-meta">
+                <span><i class="fas fa-map-marker-alt"></i> May Pen, Clarendon</span>
+                <span><i class="fas fa-clock"></i> 4:00 PM</span>
+              </div>
+            </div>
+          </div>
+          <div class="event-card reveal delay-2">
+            <div class="event-card-top">
+              <div class="event-date-box">
+                <span class="e-month">Dec</span>
+                <span class="e-day">07</span>
+              </div>
+              <div class="event-head-text">
+                <h3>Alumni Awards Gala</h3>
+                <span class="e-type">Awards Night</span>
+              </div>
+            </div>
+            <div class="event-card-body">
+              <p>An evening of recognition and celebration honouring outstanding GMHS graduates for their achievements and contributions to school and community.</p>
+              <div class="event-meta">
+                <span><i class="fas fa-map-marker-alt"></i> TBC, Clarendon</span>
+                <span><i class="fas fa-clock"></i> 7:00 PM</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════ JOIN CTA ══════════ -->
+    <div class="join-cta">
+      <div class="inner">
+        <span class="eyebrow">Become a Member</span>
+        <h2>Ready to Reconnect?</h2>
+        <p>Whether you graduated last year or decades ago, your place in the GMHS family is always waiting. Join the Past Students' Association and stay connected to the school that made you.</p>
+        <div class="intro-btn-row">
+          <a href="https://garveymaceohighpsa.com/member-application-form" class="btn-gold" target="_blank">
+            <i class="fas fa-user-plus"></i> Apply for Membership
+          </a>
+          <a href="contact.html" class="btn-ghost">Get in Touch</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+   <div class="footer">
+      <div class="top">
+        <div class="col"><b><a href="https://www.google.co.uk/maps/@17.9006093,-77.2989797,17z"><i class="fas fa-map-marker-alt"></i></a><span> Vernamfield, P.O Box 490 May Pen, Clarendon</span></b></div>
+        <div class="col"><b><a href="Tel:876 986-7006"><i class="fas fa-phone"></i></a><span> (876) 986-7006</span></b></div>
+        <div class="col"><b><a href="mailto:garveymaceo.high.cla@moey.gov.jm"><i class="fas fa-envelope"></i></a><span> garveymaceo.high.cla@moey.gov.jm</span></b></div>
+      </div>
+      <div class="bottom"><p>© 2026 Garvey Maceo High School | Website design by SkoolTech London</p></div>
+    </div>
+
+    <!-- ══════════ RADIAL FAB ══════════ -->
+    <div class="fab-wrap" id="fabWrap">
+      <div class="fab-items">
+        <a href="contact.html" class="fab-item" title="Contact">
+          <i class="fas fa-envelope"></i>
+          <span class="fab-tip">Contact Us</span>
+        </a>
+        <a href="sports.html" class="fab-item" title="Gallery">
+          <i class="fas fa-images"></i>
+          <span class="fab-tip">Gallery</span>
+        </a>
+        <a href="Curriculum.html" class="fab-item" title="Curriculum">
+          <i class="fas fa-book-open"></i>
+          <span class="fab-tip">Curriculum</span>
+        </a>
+        <a href="donate.html" class="fab-item" title="Donate">
+          <i class="fas fa-heart"></i>
+          <span class="fab-tip">Donate</span>
+        </a>
+        <button class="fab-item" onclick="openPanel(); closeFab();" title="Menu">
+          <i class="fas fa-bars"></i>
+          <span class="fab-tip">Menu</span>
+        </button>
+      </div>
+      <button class="fab-main" id="fabMain" onclick="toggleFab()">
+        <i class="fas fa-grip-dots fab-icon-menu"></i>
+        <i class="fas fa-times fab-icon-close"></i>
+      </button>
+    </div>
+
+    <script src="assets/js/index.js"></script>
+    <script>
+      function openPanel()  { document.getElementById('sidePanel').classList.add('open'); document.getElementById('panelOverlay').classList.add('open'); document.body.style.overflow='hidden'; }
+      function closePanel() { document.getElementById('sidePanel').classList.remove('open'); document.getElementById('panelOverlay').classList.remove('open'); document.body.style.overflow=''; }
+      function toggleFab()  { document.getElementById('fabWrap').classList.toggle('open'); document.getElementById('fabMain').classList.toggle('open'); }
+      function closeFab()   { document.getElementById('fabWrap').classList.remove('open'); document.getElementById('fabMain').classList.remove('open'); }
+      document.addEventListener('keydown', e => { if(e.key==='Escape'){ closePanel(); closeFab(); } });
+    </script>
+    <script>
+      /* Animated counters */
+      const counters = document.querySelectorAll('[data-target]');
+      const cObs = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (!e.isIntersecting) return;
+          const el = e.target, target = +el.dataset.target;
+          let cur = 0; const step = target / (1600/16);
+          const t = setInterval(() => {
+            cur += step;
+            if (cur >= target) { cur = target; clearInterval(t); }
+            el.textContent = Math.floor(cur);
+          }, 16);
+          cObs.unobserve(el);
+        });
+      }, { threshold: 0.4 });
+      counters.forEach(c => cObs.observe(c));
+
+      /* Scroll reveal */
+      const revealEls = document.querySelectorAll('.reveal');
+      const rObs = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) { e.target.classList.add('visible'); rObs.unobserve(e.target); }
+        });
+      }, { threshold: 0.1 });
+      revealEls.forEach(el => rObs.observe(el));
+    </script>
+     <script>
+      /* ══ HERO SLIDER ══ */
+const slides = Array.from(document.querySelectorAll('.hero_slide'));
+const dotCon = document.getElementById('dotContainer');
+const hcText = document.getElementById('hcText');
+const hcLabel = document.getElementById('hcLabel');
+let current = 0, timer;
+
+/* Always set background images from data-bg — works on ALL pages */
+slides.forEach(s => {
+  if (s.dataset.bg) {
+    s.style.backgroundImage    = `url(${s.dataset.bg})`;
+    s.style.backgroundSize     = 'cover';
+    s.style.backgroundPosition = 'center';
+  }
+});
+
+/* Only run the slider/dots logic if the homepage elements exist */
+if (dotCon && slides.length > 1) {
+
+  slides.forEach((s, i) => {
+    const d = document.createElement('button');
+    d.className = 'hero_dot' + (i === 0 ? ' active' : '');
+    d.onclick = () => showSlide(i);
+    dotCon.appendChild(d);
+  });
+
+  function showSlide(n) {
+    slides[current].classList.remove('active');
+    dotCon.children[current].classList.remove('active');
+    current = (n + slides.length) % slides.length;
+    slides[current].classList.add('active');
+    dotCon.children[current].classList.add('active');
+    if (hcText)  { hcText.textContent  = slides[current].dataset.text  || ''; }
+    if (hcLabel) { hcLabel.textContent = slides[current].dataset.label || ''; }
+    if (hcText)  { hcText.style.animation  = 'none'; }
+    if (hcLabel) { hcLabel.style.animation = 'none'; }
+    requestAnimationFrame(() => {
+      if (hcText)  hcText.style.animation  = '';
+      if (hcLabel) hcLabel.style.animation = '';
+    });
+    clearInterval(timer);
+    timer = setInterval(() => showSlide(current + 1), 5000);
+  }
+
+  /* Make showSlide available globally for dot onclick */
+  window.showSlide = showSlide;
+  timer = setInterval(() => showSlide(current + 1), 5000);
+
+} else if (slides.length === 1) {
+  /* Single static hero — just show it, no dots needed */
+  slides[0].classList.add('active');
+}
+    </script>
+  </body>
+</html>

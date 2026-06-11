@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Garvey Maceo High School – Contact Us</title>
+    <link rel="icon" type="image/x-icon" href="../assets/img/logo.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" href="../assets/css/index.css" />
+     <link rel="stylesheet" type="text/css" href="../assets/css/contact.css" />
+     <!-- Add to <head> — use the actual image for that page -->
+    <link rel="preload" as="image" href="../assets/img/Garveybg1.webp" />
+    <link rel="stylesheet" type="text/css"
+      href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700,900|Poppins:300,400,500,600,700" />
+    <script src="https://kit.fontawesome.com/742f06a093.js" crossorigin="anonymous" defer></script>
+
+    
+  </head>
+
+  <body>
+      <!-- ══ PANEL OVERLAY ══ -->
+    <div class="panel-overlay" id="panelOverlay" onclick="closePanel()"></div>
+
+    <!-- ══ SIDE PANEL NAV ══ -->
+    <div class="side-panel" id="sidePanel">
+      <div class="panel-head">
+        <div class="ph-logo">
+          <img src="../assets/img/logo.png" alt="GMHS Logo" />
+          <span>Garvey Maceo<br>High School</span>
+        </div>
+        <button class="panel-close" onclick="closePanel()"><i class="fas fa-times"></i></button>
+      </div>
+      <nav class="panel-nav">
+        <a href="../index.html"          class="pnav-item"><i class="fas fa-home" style="width:18px;margin-right:8px;"></i> Home</a>
+        <a href="Principal.html"         class="pnav-item active"><i class="fas fa-user-tie" style="width:18px;margin-right:8px;"></i> Principal's Message</a>
+
+        <div class="pnav-label">Cubanz</div>
+        <a href="ethos.html"      class="pnav-sub">Our Ethos</a>
+        <a href="staff.html"      class="pnav-sub">Our Staff</a>
+        <a href="department.html" class="pnav-sub">Departments</a>
+        <a href="history.html"    class="pnav-sub">History</a>
+        <a href="news.html"       class="pnav-sub">News Updates</a>
+
+        <div class="pnav-label">Academics</div>
+        <a href="Curriculum.html"        class="pnav-sub">Curriculum</a>
+        <a href="Health.html"            class="pnav-sub">Health &amp; Welfare</a>
+        <a href="graduation.html"        class="pnav-sub">Graduation Requirements</a>
+        <a href="FacultySpotlight.html" class="pnav-sub">Faculty Spotlight</a>
+
+        <div class="pnav-label">Stakeholders</div>
+        <a href="alumni.html" class="pnav-sub">Alumni</a>
+        <a href="pta.html"    class="pnav-sub">PTA</a>
+
+        <div class="pnav-label">Gallery</div>
+        <a href="sports.html" class="pnav-sub">Sports &amp; Events Gallery</a>
+        <a href="events.html" class="pnav-sub">Events</a>
+
+        <div class="pnav-label">Contact</div>
+        <a href="contact.html" class="pnav-sub">Contact Us</a>
+        <a href="faq.html"     class="pnav-sub">FAQ</a>
+        <a href="donate.html"  class="pnav-sub">Donate</a>
+      </nav>
+      <div class="panel-footer">
+        <p>© 2026 Garvey Maceo High School<br>Website design by SkoolTech London</p>
+      </div>
+    </div>
+
+    <!-- ══ STICKY HEADER ══ -->
+    <header>
+      <a href="../index.html" class="text_bg">
+        <img src="../assets/img/logo.png" alt="GMHS Logo" />
+        <span>Garvey Maceo High School</span>
+      </a>
+      <div class="flex_spacer"></div>
+      <div class="header-socials">
+        <a href="https://www.facebook.com/GARVEYMACEOCUBANS" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="youtube.com" title="YouTube"><i class="fab fa-youtube"></i></a>
+        <a href="https://www.instagram.com/garveymaceo/" title="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.linkedin.com/school/garvey-maceo-high-school/" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://twitter.com/garveymaceo" title="Twitter"><i class="fab fa-twitter"></i></a> 
+        <a href="https://www.tiktok.com/discover/garvey-maceo-high-school-jamaica" title="TikTok"><i class="fab fa-tiktok"></i></a>    
+      </div>
+    </header>
+
+ <!-- ══ HERO ══ -->
+<div class="hero_container fixed">
+  <div class="hero_pathbar" style="position:relative;z-index:3;">
+    <div class="inner">
+      <a href="../index.html">Home</a>
+      <i class="fas fa-chevron-right"></i>
+      <a href="contact.html">Contact</a>
+    </div>
+  </div>
+  <div class="hero_gradient_overlay fixed" style="pointer-events:none;"></div>
+  <div class="hero_slide fixed"
+       data-bg="../assets/img/Garveybg1.webp"
+       style="background-size:cover;
+              background-position:center;
+              position:absolute;inset:0;z-index:0;">
+  </div>
+</div>
+
+   <div class="gold-divider"></div>
+
+
+    <!-- ══════════ PAGE INTRO ══════════ -->
+    <div class="contact-intro reveal">
+      <h1>Get in Touch</h1>
+      <p>We'd love to hear from you. Whether you're a student, parent, prospective family or member of the community, reach out using any of the details below or send us a message directly.</p>
+    </div>
+    <div class="gold-divider"></div>
+
+    <!-- ══════════ QUICK CONTACT CARDS ══════════ -->
+    <div class="contact-cards-section">
+      <div class="contact-cards-grid">
+
+        <a href="tel:8769867006" class="contact-card reveal">
+          <div class="cc-icon"><i class="fas fa-phone"></i></div>
+          <h3>Phone</h3>
+          <p>(876) 986-7006<br>(876) 976-7005</p>
+          <span class="cc-action">Call Now <i class="fas fa-arrow-right"></i></span>
+        </a>
+
+        <a href="tel:8766108773" class="contact-card reveal delay-1">
+          <div class="cc-icon"><i class="fas fa-fax"></i></div>
+          <h3>Fax</h3>
+          <p>(876) 610-8773</p>
+          <span class="cc-action">Send Fax <i class="fas fa-arrow-right"></i></span>
+        </a>
+
+        <a href="mailto:garveymaceo.high.cla@moey.gov.jm" class="contact-card reveal delay-2">
+          <div class="cc-icon"><i class="fas fa-envelope"></i></div>
+          <h3>Email</h3>
+          <p>garveymaceo.high.cla<br>@moey.gov.jm</p>
+          <span class="cc-action">Send Email <i class="fas fa-arrow-right"></i></span>
+        </a>
+
+        <a href="https://www.google.co.uk/maps/@17.9006093,-77.2989797,17z" target="_blank" class="contact-card reveal delay-3">
+          <div class="cc-icon"><i class="fas fa-map-marker-alt"></i></div>
+          <h3>Address</h3>
+          <p>Vernamfield, P.O Box 490<br>May Pen, Clarendon, Jamaica</p>
+          <span class="cc-action">Get Directions <i class="fas fa-arrow-right"></i></span>
+        </a>
+
+        <a href="https://www.facebook.com/GARVEYMACEOCUBANS" target="_blank" class="contact-card reveal delay-2">
+          <div class="cc-icon"><i class="fab fa-facebook-f"></i></div>
+          <h3>Facebook</h3>
+          <p>facebook.com/<br>Garvey Maceo High School</p>
+          <span class="cc-action">Follow Us <i class="fas fa-arrow-right"></i></span>
+        </a>
+
+      </div>
+    </div>
+
+    <!-- ══════════ CONTACT FORM + SCHOOL INFO ══════════ -->
+    <div class="form-section">
+      <div class="form-layout">
+
+        <!-- Contact Form -->
+       <!-- Contact Form -->
+<form 
+  name="contact" 
+  method="POST" 
+  data-netlify="true"
+  class="styled-form reveal"
+>
+
+  <!-- Netlify Hidden Input -->
+  <input type="hidden" name="form-name" value="contact" />
+
+  <h3>Send Us a Message</h3>
+
+  <p class="form-sub">
+    We do not publish individual staff email addresses. 
+    All enquiries sent here are monitored daily and forwarded 
+    to the most appropriate member of staff.
+  </p>
+
+  <div class="form-row">
+
+    <div class="form-group">
+      <label>First Name</label>
+      <input 
+        type="text" 
+        name="first-name"
+        placeholder="e.g. Marcus"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label>Last Name</label>
+      <input 
+        type="text" 
+        name="last-name"
+        placeholder="e.g. Brown"
+        required
+      />
+    </div>
+
+  </div>
+
+  <div class="form-group">
+    <label>Email Address</label>
+    <input 
+      type="email" 
+      name="email"
+      placeholder="your@email.com"
+      required
+    />
+  </div>
+
+  <div class="form-group">
+    <label>Subject</label>
+
+    <select name="subject">
+
+      <option value="">-Select a subject-</option>
+
+      <option>General Enquiry</option>
+      <option>Admissions</option>
+      <option>Student Welfare</option>
+      <option>Academic Matters</option>
+      <option>Sports &amp; Activities</option>
+      <option>PTA / Alumni</option>
+      <option>Website / Technical</option>
+      <option>Other</option>
+
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label>Your Message</label>
+
+    <textarea 
+      name="message"
+      placeholder="Write your message here"
+      required
+    ></textarea>
+  </div>
+
+  <button class="btn-submit" type="submit">
+    <i class="fas fa-paper-plane"></i>
+    Send Message
+  </button>
+
+  <p class="form-note">
+    We aim to respond within 2 to 3 school days.
+    Thank you for contacting GMHS.
+  </p>
+
+</form>
+
+        <!-- School Info Panel -->
+        <div class="info-panel reveal delay-2">
+
+          <div class="info-block">
+            <h3><i class="fas fa-school"></i> School Details</h3>
+            <div class="info-detail-row">
+              <div class="info-detail"><i class="fas fa-graduation-cap"></i><span><strong>Level:</strong> Secondary</span></div>
+              <div class="info-detail"><i class="fas fa-user-tie"></i><span><strong>Principal:</strong> Mrs. Erica Ewbanks</span></div>
+              <div class="info-detail"><i class="fas fa-map-marker-alt"></i><span>Vernamfield, P.O Box 490, May Pen, Clarendon, Jamaica W.I.</span></div>
+              <div class="info-detail"><i class="fas fa-phone"></i><span>(876) 986-7006 &nbsp;|&nbsp; (876) 976-7005</span></div>
+              <div class="info-detail"><i class="fas fa-fax"></i><span>(876) 610-8773</span></div>
+              <div class="info-detail"><i class="fas fa-envelope"></i>
+                <span><a href="mailto:garveymaceo.high.cla@moey.gov.jm">garveymaceo.high.cla@moey.gov.jm</a></span>
+              </div>
+            </div>
+            <div class="principal-mini">
+              <div class="p-mini-avatar">EE</div>
+              <div class="p-mini-text">
+                <strong>Mrs. Erica Ewbanks</strong>
+                <span>Principal, GMHS</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="info-block">
+            <h3><i class="fas fa-bullseye"></i> Our Mission</h3>
+            <p>The mission of Garvey Maceo High School is to produce and maintain a learning, working and recreation environment in which students and staff will be afforded the opportunity to strive to achieve their greatest potential.</p>
+          </div>
+
+          <div class="info-block">
+            <h3><i class="fas fa-star"></i> Our Motto</h3>
+            <div class="motto-chip">
+              <small>School Motto</small>
+              "Excelencia en estudio, trabajo y recreo"
+            </div>
+            <p style="margin-top:10px; font-size:.82rem; color:var(--muted);">Excellence in study, work and recreation.</p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════ MAP ══════════ -->
+    <div class="map-section">
+      <div class="section-title light reveal">
+        <h2>Find Us</h2>
+        <p>Garvey Maceo High School · Vernamfield, May Pen, Clarendon, Jamaica</p>
+      </div>
+      <div class="map-wrap reveal">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3796.675745279761!2d-77.29897968589466!3d17.900609292513412!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8edb9bf01ad822cb%3A0x9643bc46e98ab99c!2sGarvey%20Maceo%20High%20School!5e0!3m2!1sen!2suk!4v1641751401797!5m2!1sen!2suk"
+          allowfullscreen="" loading="lazy">
+        </iframe>
+      </div>
+    </div>
+
+    <!-- ══════════ FAQ TEASER ══════════ -->
+    <div class="faq-teaser">
+      <div class="faq-teaser-inner">
+        <div class="faq-text reveal">
+          <h2>Have a Common Question?</h2>
+          <p>Before reaching out, check our Frequently Asked Questions page, you may find the answer you need right away, saving you time and effort.</p>
+          <div class="faq-cta-wrap" style="text-align:left; margin-top:24px;">
+            <a href="faq.html" class="btn-amber">
+              <i class="fas fa-question-circle"></i> Visit the FAQ Page
+            </a>
+          </div>
+        </div>
+        <div class="faq-items reveal delay-2">
+          <div class="faq-preview">
+            <i class="fas fa-question-circle"></i>
+            <span>How do I apply for admission to GMHS?</span>
+          </div>
+          <div class="faq-preview">
+            <i class="fas fa-question-circle"></i>
+            <span>What are the school's opening hours?</span>
+          </div>
+          <div class="faq-preview">
+            <i class="fas fa-question-circle"></i>
+            <span>How can I contact my child's form teacher?</span>
+          </div>
+          <div class="faq-preview">
+            <i class="fas fa-question-circle"></i>
+            <span>Where can I find the school's uniform policy?</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <div class="top">
+        <div class="col"><b><a href="https://www.google.co.uk/maps/@17.9006093,-77.2989797,17z"><i class="fas fa-map-marker-alt"></i></a><span> Vernamfield, P.O Box 490 May Pen, Clarendon</span></b></div>
+        <div class="col"><b><a href="Tel:876 986-7006"><i class="fas fa-phone"></i></a><span> (876) 986-7006</span></b></div>
+        <div class="col"><b><a href="mailto:garveymaceo.high.cla@moey.gov.jm"><i class="fas fa-envelope"></i></a><span> garveymaceo.high.cla@moey.gov.jm</span></b></div>
+      </div>
+      <div class="bottom"><p>© 2026 Garvey Maceo High School | Website design SkoolTech London</p></div>
+    </div>
+
+    <!-- ══ RADIAL FAB ══ -->
+    <div class="fab-wrap" id="fabWrap">
+      <div class="fab-items">
+        <a href="contact.html" class="fab-item"><i class="fas fa-envelope"></i><span class="fab-tip">Contact Us</span></a>
+        <a href="sports.html"  class="fab-item"><i class="fas fa-images"></i><span class="fab-tip">Gallery</span></a>
+        <a href="Curriculum.html" class="fab-item"><i class="fas fa-book-open"></i><span class="fab-tip">Curriculum</span></a>
+        <a href="donate.html"  class="fab-item"><i class="fas fa-heart"></i><span class="fab-tip">Donate</span></a>
+        <button class="fab-item" onclick="openPanel(); closeFab();"><i class="fas fa-bars"></i><span class="fab-tip">Menu</span></button>
+      </div>
+      <button class="fab-main" id="fabMain" onclick="toggleFab()">
+        <i class="fas fa-grip-dots fab-icon-menu"></i>
+        <i class="fas fa-times fab-icon-close"></i>
+      </button>
+    </div>
+
+    <script src="assets/js/index.js"></script>
+    <script>
+      function openPanel()  { document.getElementById('sidePanel').classList.add('open'); document.getElementById('panelOverlay').classList.add('open'); document.body.style.overflow='hidden'; }
+      function closePanel() { document.getElementById('sidePanel').classList.remove('open'); document.getElementById('panelOverlay').classList.remove('open'); document.body.style.overflow=''; }
+      function toggleFab()  { document.getElementById('fabWrap').classList.toggle('open'); document.getElementById('fabMain').classList.toggle('open'); }
+      function closeFab()   { document.getElementById('fabWrap').classList.remove('open'); document.getElementById('fabMain').classList.remove('open'); }
+      document.addEventListener('keydown', e => { if(e.key==='Escape'){ closePanel(); closeFab(); } });
+    </script>
+    <script>
+      const revealEls = document.querySelectorAll('.reveal');
+      const rObs = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) { e.target.classList.add('visible'); rObs.unobserve(e.target); }
+        });
+      }, { threshold: 0.1 });
+      revealEls.forEach(el => rObs.observe(el));
+    </script>
+    <script>
+      /* ══ HERO SLIDER ══ */
+const slides = Array.from(document.querySelectorAll('.hero_slide'));
+const dotCon = document.getElementById('dotContainer');
+const hcText = document.getElementById('hcText');
+const hcLabel = document.getElementById('hcLabel');
+let current = 0, timer;
+
+/* Always set background images from data-bg — works on ALL pages */
+slides.forEach(s => {
+  if (s.dataset.bg) {
+    s.style.backgroundImage    = `url(${s.dataset.bg})`;
+    s.style.backgroundSize     = 'cover';
+    s.style.backgroundPosition = 'center';
+  }
+});
+
+/* Only run the slider/dots logic if the homepage elements exist */
+if (dotCon && slides.length > 1) {
+
+  slides.forEach((s, i) => {
+    const d = document.createElement('button');
+    d.className = 'hero_dot' + (i === 0 ? ' active' : '');
+    d.onclick = () => showSlide(i);
+    dotCon.appendChild(d);
+  });
+
+  function showSlide(n) {
+    slides[current].classList.remove('active');
+    dotCon.children[current].classList.remove('active');
+    current = (n + slides.length) % slides.length;
+    slides[current].classList.add('active');
+    dotCon.children[current].classList.add('active');
+    if (hcText)  { hcText.textContent  = slides[current].dataset.text  || ''; }
+    if (hcLabel) { hcLabel.textContent = slides[current].dataset.label || ''; }
+    if (hcText)  { hcText.style.animation  = 'none'; }
+    if (hcLabel) { hcLabel.style.animation = 'none'; }
+    requestAnimationFrame(() => {
+      if (hcText)  hcText.style.animation  = '';
+      if (hcLabel) hcLabel.style.animation = '';
+    });
+    clearInterval(timer);
+    timer = setInterval(() => showSlide(current + 1), 5000);
+  }
+
+  /* Make showSlide available globally for dot onclick */
+  window.showSlide = showSlide;
+  timer = setInterval(() => showSlide(current + 1), 5000);
+
+} else if (slides.length === 1) {
+  /* Single static hero — just show it, no dots needed */
+  slides[0].classList.add('active');
+}
+    </script>
+  </body>
+</html>
